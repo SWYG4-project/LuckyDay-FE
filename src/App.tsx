@@ -1,19 +1,17 @@
-import { ThemeProvider } from "@emotion/react"
-import { ReactIcon } from "assets"
-import { Input } from "components"
-import { theme } from "styles/theme"
+import { ThemeProvider } from "@emotion/react";
 
+import { Input } from "components";
+import { ReactIcon } from "assets";
+import { theme } from "styles/theme";
 
 function App() {
-
   return (
-    <div>
-      <ThemeProvider theme={theme}>
-          <ReactIcon/>
-          <Input/>
+    <ThemeProvider theme={theme}>
+      <ReactIcon />
+      <Input />
+      {/* NOTE: declare 설정 확인을 위해 icon, input 추가 -> 추후 수정 필요 */}
     </ThemeProvider>
-    </div>
-  )
+  );
 }
 
-export default App
+export default App;

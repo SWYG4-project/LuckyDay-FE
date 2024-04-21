@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-import * as S from "./Input.styled"
+import * as S from "./Input.styled";
 
 export default function Input() {
-  return (
-	<S.Input />
-  )
+  return <S.Input />;
 }

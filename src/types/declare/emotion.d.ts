@@ -1,10 +1,10 @@
 // emotion.d.ts
-import '@emotion/react';
+import "@emotion/react";
 
-import { theme } from 'styles/theme';
+import { theme } from "styles/theme";
 
 type ExtendedTheme = typeof theme;
 
-declare module '@emotion/react' {
-  interface Theme extends ExtendedTheme {} 
+declare module "@emotion/react" {
+  interface Theme extends ExtendedTheme {}
 }
