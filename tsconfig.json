@@ -6,7 +6,7 @@
     "module": "ESNext",
     "baseUrl": "src",
     "skipLibCheck": true,
-    "jsxImportSource": "@emotion/react",
+    "jsxImportSource": "@emotion/react/jsx-runtime",
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -22,6 +22,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src","src/types/declare/*"],
+  "include": ["src", "src/types/declare/*"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
