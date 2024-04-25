@@ -1,1 +1,1 @@
-export { ReactComponent as ReactIcon } from "./react.svg";
+export { ReactComponent as MenuIcon } from "./ic_menu.svg";
