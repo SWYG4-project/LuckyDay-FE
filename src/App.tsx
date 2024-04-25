@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RecoilRoot } from "recoil";
 
 import Router from "router/Router";
-import { theme } from "styles/theme";
+import { theme } from "styles/themes/theme";
 
 const queryClient = new QueryClient();
 
