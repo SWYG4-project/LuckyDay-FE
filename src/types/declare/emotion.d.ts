@@ -1,7 +1,7 @@
 // emotion.d.ts
 import "@emotion/react";
 
-import { theme } from "styles/theme";
+import { theme } from "styles/themes/theme";
 
 type ExtendedTheme = typeof theme;
 
