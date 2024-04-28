@@ -2,9 +2,10 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
 export const Header = styled.div`
-  ${({ theme }) => css`
+  ${() => css`
+    display: flex;
+    align-items: center;
     width: 100%;
-    border: 1px solid ${theme.colors.lightBeige};
-    padding: 5px;
+    height: 100px;
   `}
 `;
