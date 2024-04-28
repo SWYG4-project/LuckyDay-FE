@@ -1,0 +1,38 @@
+@font-face {
+  font-family: "omyu";
+  src: url("./omyu.ttf") format("truetype");
+}
+
+.headline {
+  font-family: "omyu";
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.body1 {
+  font-family: "omyu";
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.body2 {
+  font-family: "omyu";
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.luckyBall1 {
+  font-family: "omyu";
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.luckyBall2 {
+  font-family: "omyu";
+  font-size: 25px;
+  font-weight: 400;
+}
+
+body {
+  font-family: "omyu", sans-serif;
+}
