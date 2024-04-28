@@ -1,6 +1,7 @@
 import { ThemeProvider } from "@emotion/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RecoilRoot } from "recoil";
+import { Layout } from "components";
 
 import Router from "router/Router";
 import { theme } from "styles/themes/theme";
@@ -13,6 +14,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
           <Router />
+          <Layout />
         </ThemeProvider>
       </QueryClientProvider>
     </RecoilRoot>
