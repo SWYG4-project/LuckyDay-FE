@@ -3,9 +3,10 @@ import * as S from "./Carousel.styled";
 
 interface CarouselProps {
   images: string[];
+  texts: string[];
 }
 
-const Carousel: React.FC<CarouselProps> = ({ images }) => {
+const Carousel: React.FC<CarouselProps> = ({ images, texts }) => {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const nextSlide = () => {
@@ -18,16 +19,33 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
     setActiveIndex(newIndex);
   };
 
+  const handleDotClick = (index: number) => {
+    setActiveIndex(index);
+  };
+
   return (
     <S.CarouselContainer>
       {images.map((image, index) => (
-        <S.Slide key={index} active={index === activeIndex}>
-          <img src={image} alt={`Slide ${index}`} />
+        <S.Slide
+          key={index}
+          style={{ display: index === activeIndex ? "block" : "none" }}
+        >
+          <S.TextBox>{texts[index]}</S.TextBox>
+          <S.Image src={image} alt={`Slide ${index}`} />
         </S.Slide>
       ))}
       <S.ButtonContainer>
-        <S.PrevButton onClick={prevSlide}></S.PrevButton>
-        <S.NextButton onClick={nextSlide}></S.NextButton>
+        <S.PrevButton onClick={prevSlide} />
+        <S.DotContainer>
+          {images.map((_, index) => (
+            <S.Dot
+              key={index}
+              active={index === activeIndex}
+              onClick={() => handleDotClick(index)}
+            />
+          ))}
+        </S.DotContainer>
+        <S.NextButton onClick={nextSlide} />
       </S.ButtonContainer>
     </S.CarouselContainer>
   );

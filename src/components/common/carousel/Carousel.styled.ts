@@ -3,22 +3,29 @@ import styled from "@emotion/styled";
 
 export const CarouselContainer = styled.div`
   position: relative;
-  width: 100%;
   overflow: hidden;
+  width: 100%;
 `;
 
-interface SlideProps {
-  active: boolean;
-}
+export const Slide = styled.div`
+  position: relative;
+  display: block;
+`;
 
-export const Slide = styled.div<SlideProps>`
-  display: ${({ active }) => (active ? "block" : "none")};
-  transition: opacity 0.5s ease;
+export const Image = styled.img`
+  width: 340px;
+  border-radius: 10px;
+`;
 
-  img {
-    width: 340px;
-    /* object-fit: cover; */
-  }
+export const TextBox = styled.div`
+  ${({ theme }) => css`
+    color: ${theme.colors.black};
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 30px;
+    white-space: pre-wrap;
+  `}
 `;
 
 export const ButtonContainer = styled.div`
@@ -49,4 +56,26 @@ export const NextButton = styled(Button)`
     background-size: cover;
     background-image: url("src/assets/icon/next.png");
   `}
+`;
+
+export const DotContainer = styled.ul`
+  width: 135px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+`;
+
+interface DotProps {
+  active: boolean;
+}
+
+export const Dot = styled.li<DotProps>`
+  width: 10px;
+  height: 10px;
+  margin: 0 5px;
+  border-radius: 50%;
+  background-color: ${({ active }) => (active ? "#323232" : "#ccc")};
+  cursor: pointer;
 `;
