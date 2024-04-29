@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
-export const Landing01 = styled.div`
+export const Landing = styled.div`
   ${() => css`
     width: 100%;
     height: 100vh;

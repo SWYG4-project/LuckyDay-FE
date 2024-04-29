@@ -1,2 +1,2 @@
 export { default as Home } from "./Home/Home";
-export { default as Landing01 } from "./Landing/Landing-01/Landing";
+export { default as Landing } from "./Landing/Landing";
