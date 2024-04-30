@@ -68,10 +68,11 @@ interface DotProps {
 }
 
 export const Dot = styled.li<DotProps>`
-  width: 10px;
-  height: 10px;
-  margin: 0 5px;
-  border-radius: 50%;
-  background-color: ${({ active }) => (active ? "#323232" : "#ccc")};
-  cursor: pointer;
+  ${({ theme, active }) => css`
+    width: 10px;
+    height: 10px;
+    margin: 0 5px;
+    border-radius: 50%;
+    background-color: ${active ? theme.colors.black : "#ccc"};
+  `}
 `;
