@@ -6,20 +6,20 @@ interface CarouselProps {
   texts: string[];
 }
 
-const Carousel: React.FC<CarouselProps> = ({ images, texts }) => {
+const Carousel = ({ images, texts }: CarouselProps): JSX.Element => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const nextSlide = () => {
+  const nextSlide = (): void => {
     const newIndex = (activeIndex + 1) % images.length;
     setActiveIndex(newIndex);
   };
 
-  const prevSlide = () => {
+  const prevSlide = (): void => {
     const newIndex = (activeIndex - 1 + images.length) % images.length;
     setActiveIndex(newIndex);
   };
 
-  const handleDotClick = (index: number) => {
+  const handleDotClick = (index: number): void => {
     setActiveIndex(index);
   };
 
