@@ -32,14 +32,14 @@ const Calendar = ({ dates }: CalendarProps) => {
     currentDay = currentDay.add(1, "day");
   }
 
-  const movePrevMonth = (): void => {
+  const handleMoveToPrevMonth = (): void => {
     setCurrentMonth(dayjs(currentMonth).subtract(1, "month"));
   };
-  const moveNextMonth = (): void => {
+  const handleMoveToNextMonth = (): void => {
     setCurrentMonth(dayjs(currentMonth).add(1, "month"));
   };
 
-  const disabledCheck = (date: dayjs.Dayjs) => (): void => {
+  const handleDisabledCheck = (date: dayjs.Dayjs) => (): void => {
     if (!date) return;
 
     const formattedDate = date.format("YYYY-MM-DD");
@@ -69,11 +69,11 @@ const Calendar = ({ dates }: CalendarProps) => {
       </S.CalendarHeader>
       <S.DayWeekWrapper>
         {/* TODO: button 컴포넌트 제작 필요 */}
-        <S.PrevArrowButton onClick={movePrevMonth}>
+        <S.PrevArrowButton onClick={handleMoveToPrevMonth}>
           <ArrowIcon />
         </S.PrevArrowButton>
         <S.Month>{currentMonth.format("M")}월</S.Month>
-        <S.NextArrowButton onClick={moveNextMonth}>
+        <S.NextArrowButton onClick={handleMoveToNextMonth}>
           <ArrowIcon />
         </S.NextArrowButton>
       </S.DayWeekWrapper>
@@ -91,7 +91,7 @@ const Calendar = ({ dates }: CalendarProps) => {
                 isSelected={monthsData.includes(formattedDate)}
                 isExceptDate={isExceptDate}
                 isChecked={!monthsData.includes(formattedDate)}
-                onClick={disabledCheck(date)}
+                onClick={handleDisabledCheck(date)}
               >
                 {date.format("DD")}
               </S.DayButton>
