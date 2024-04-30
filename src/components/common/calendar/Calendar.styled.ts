@@ -16,7 +16,7 @@ export const Calendar = styled.div`
   background-position: center;
 `;
 
-export const dayWeekWrapper = styled.div`
+export const DayWeekWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
@@ -62,7 +62,7 @@ export const CalendarHeader = styled.div`
   gap: 13px 7px;
 `;
 
-export const DayBtn = styled.button<{
+export const DayButton = styled.button<{
   isSelected: boolean;
   isExceptDate: boolean;
   isChecked: boolean;

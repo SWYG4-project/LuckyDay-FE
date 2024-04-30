@@ -67,7 +67,7 @@ const Calendar = ({ dates }: CalendarProps) => {
           <div key={index}>{dayWeek}</div>
         ))}
       </S.CalendarHeader>
-      <S.dayWeekWrapper>
+      <S.DayWeekWrapper>
         {/* TODO: button 컴포넌트 제작 필요 */}
         <S.PrevArrowButton onClick={movePrevMonth}>
           <ArrowIcon />
@@ -76,7 +76,7 @@ const Calendar = ({ dates }: CalendarProps) => {
         <S.NextArrowButton onClick={moveNextMonth}>
           <ArrowIcon />
         </S.NextArrowButton>
-      </S.dayWeekWrapper>
+      </S.DayWeekWrapper>
       <S.CalendarHeader>
         {calendarList.map((date, i) => {
           if (date === null) {
@@ -86,7 +86,7 @@ const Calendar = ({ dates }: CalendarProps) => {
             const isExceptDate = disabled.includes(formattedDate);
 
             return (
-              <S.DayBtn
+              <S.DayButton
                 key={i}
                 isSelected={monthsData.includes(formattedDate)}
                 isExceptDate={isExceptDate}
@@ -94,7 +94,7 @@ const Calendar = ({ dates }: CalendarProps) => {
                 onClick={disabledCheck(date)}
               >
                 {date.format("DD")}
-              </S.DayBtn>
+              </S.DayButton>
             );
           }
         })}
