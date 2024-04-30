@@ -9,12 +9,12 @@ interface CarouselProps {
 const Carousel = ({ images, texts }: CarouselProps): JSX.Element => {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const nextSlide = (): void => {
+  const handleNextSlide = (): void => {
     const newIndex = (activeIndex + 1) % images.length;
     setActiveIndex(newIndex);
   };
 
-  const prevSlide = (): void => {
+  const handlePrevSlide = (): void => {
     const newIndex = (activeIndex - 1 + images.length) % images.length;
     setActiveIndex(newIndex);
   };
@@ -35,7 +35,7 @@ const Carousel = ({ images, texts }: CarouselProps): JSX.Element => {
         </S.Slide>
       ))}
       <S.ButtonContainer>
-        <S.PrevButton onClick={prevSlide} />
+        <S.PrevButton onClick={handlePrevSlide} />
         <S.DotContainer>
           {images.map((_, index) => (
             <S.Dot
@@ -45,7 +45,7 @@ const Carousel = ({ images, texts }: CarouselProps): JSX.Element => {
             />
           ))}
         </S.DotContainer>
-        <S.NextButton onClick={nextSlide} />
+        <S.NextButton onClick={handleNextSlide} />
       </S.ButtonContainer>
     </S.CarouselContainer>
   );
