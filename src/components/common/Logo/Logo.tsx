@@ -1,11 +1,7 @@
 import * as S from "./Logo.styled";
 
 export default function Logo() {
-  return (
-    <>
-      <S.Logo />
-    </>
-  );
+  return <S.Logo />;
 }
 
 ////// 상의 후 onClick 함수 추가 예정
