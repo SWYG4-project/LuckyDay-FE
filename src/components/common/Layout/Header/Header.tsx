@@ -7,7 +7,7 @@ export default function Header() {
     <>
       <S.Header>
         <Logo />
-        <p className="headline">Lucky Day</p>
+        <S.LogoText className="headline">Lucky Day</S.LogoText>
       </S.Header>
     </>
   );

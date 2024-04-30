@@ -20,9 +20,8 @@ export const Image = styled.img`
 export const TextBox = styled.div`
   ${({ theme }) => css`
     color: ${theme.colors.black};
+    ${theme.fonts.logo};
     text-align: center;
-    font-weight: bold;
-    font-size: 20px;
     margin-bottom: 30px;
     white-space: pre-wrap;
   `}
