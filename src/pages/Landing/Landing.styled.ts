@@ -1,16 +1,13 @@
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
 
 export const Landing = styled.div`
-  ${() => css`
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    z-index: 1;
-  `}
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
 `;
 
 export const ContentsBox = styled.div`

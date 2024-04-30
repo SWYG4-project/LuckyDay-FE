@@ -41,21 +41,17 @@ export const Button = styled.button`
 `;
 
 export const PrevButton = styled(Button)`
-  ${() => css`
-    width: 40px;
-    height: 40px;
-    background-size: cover;
-    background-image: url("src/assets/icon/prev.png");
-  `}
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  background-image: url("src/assets/icon/prev.png");
 `;
 
 export const NextButton = styled(Button)`
-  ${() => css`
-    width: 40px;
-    height: 40px;
-    background-size: cover;
-    background-image: url("src/assets/icon/next.png");
-  `}
+  width: 40px;
+  height: 40px;
+  background-size: cover;
+  background-image: url("src/assets/icon/next.png");
 `;
 
 export const DotContainer = styled.ul`
