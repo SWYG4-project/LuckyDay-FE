@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 
 export const NotFound = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 700px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,7 +16,7 @@ export const NotFound = styled.div`
 export const Logo_Sad = styled.div`
   width: 150px;
   height: 150px;
-  margin: 30px 0px 200px 0px;
+  margin: 30px 0px 100px 0px;
   background-size: 150px;
   background-repeat: no-repeat;
   background-position: center;

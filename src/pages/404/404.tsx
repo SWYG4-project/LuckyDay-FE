@@ -1,4 +1,5 @@
 import * as S from "./404.styled";
+import { HomeButton } from "components/common/homeButton";
 
 export default function Error404Page() {
   return (
@@ -11,6 +12,7 @@ export default function Error404Page() {
           정확한지 다시 한 번 확인해주세요
         </S.Text_Detail>
         <S.Logo_Sad />
+        <HomeButton />
       </S.NotFound>
     </>
   );
