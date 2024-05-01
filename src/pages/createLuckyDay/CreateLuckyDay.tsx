@@ -23,9 +23,9 @@ function CreateLuckyDay() {
       case 0:
         return <SelectActivity />;
       case 1:
-        return <SelectCount />;
-      case 2:
         return <SelectPeriod />;
+      case 2:
+        return <SelectCount />;
       case 3:
         return <SelectExceptDay />;
     }
