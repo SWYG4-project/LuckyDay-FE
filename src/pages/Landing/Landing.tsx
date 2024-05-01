@@ -3,12 +3,13 @@ import * as S from "./Landing.styled";
 
 export default function Landing() {
   const images = [
-    "/images/test1.jpg", // 캐러셀 테스트용 이미지입니다. 추후 랜딩페이지 이미지로 변경예정입니다.
-    "/images/test2.jpg",
-    "/images/test3.jpg",
-    "/images/test4.jpg",
-    "/images/test5.jpg",
-    "/images/test6.jpg",
+    // NOTE : 목업 이미지 첨부해 보았는데 화질이 안좋아서 추후 이미지 확정되면 고화질로 변경 예정입니다.
+    "/images/landing-01.png",
+    "/images/landing-02.png",
+    "/images/landing-03.png",
+    "/images/landing-04.png",
+    "/images/landing-05.png",
+    "/images/landing-06.png",
   ];
 
   const texts = [

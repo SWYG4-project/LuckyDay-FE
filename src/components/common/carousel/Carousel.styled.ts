@@ -14,7 +14,6 @@ export const Slide = styled.div`
 
 export const Image = styled.img`
   width: 340px;
-  border-radius: 10px;
 `;
 
 export const TextBox = styled.div`
@@ -72,6 +71,6 @@ export const Dot = styled.li<DotProps>`
     height: 10px;
     margin: 0 5px;
     border-radius: 50%;
-    background-color: ${active ? theme.colors.black : "#ccc"};
+    background-color: ${active ? theme.colors.black : theme.colors.gray};
   `}
 `;
