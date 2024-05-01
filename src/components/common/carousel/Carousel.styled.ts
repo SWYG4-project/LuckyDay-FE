@@ -5,6 +5,7 @@ export const CarouselContainer = styled.div`
   position: relative;
   overflow: hidden;
   width: 100%;
+  height: 870px;
 `;
 
 export const Slide = styled.div`
@@ -21,7 +22,7 @@ export const TextBox = styled.div`
     color: ${theme.colors.black};
     ${theme.fonts.logo};
     text-align: center;
-    margin-bottom: 30px;
+    margin: 20px 0px 20px 0px;
     white-space: pre-wrap;
   `}
 `;

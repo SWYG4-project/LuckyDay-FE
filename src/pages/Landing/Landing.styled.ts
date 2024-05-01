@@ -15,14 +15,3 @@ export const ContentsBox = styled.div`
   justify-content: center;
   align-items: center;
 `;
-
-export const ImageBox = styled.div`
-  width: 300px;
-  height: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 120px;
-  font-size: 25px;
-  background-color: lightgray;
-`;
