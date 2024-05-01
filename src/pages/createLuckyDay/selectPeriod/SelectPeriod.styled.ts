@@ -21,7 +21,6 @@ export const PeriodWrapper = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 14px; //TODO: 피그마와 간격이 상이함 확인 필요-> 피그마 간격대로 적용 시 간격이 동일하지 않음
-  margin-bottom: 42px;
 `;
 
 export const ActivityButton = styled.button`
@@ -60,6 +59,7 @@ export const arrowIcon = css`
 export const SelectInfo = styled.p`
   ${({ theme }) => css`
     ${theme.fonts.body1}
+    margin-top: 42px;
     text-align: center;
 
     & > strong {

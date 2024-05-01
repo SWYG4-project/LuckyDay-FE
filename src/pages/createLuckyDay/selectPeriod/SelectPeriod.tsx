@@ -4,7 +4,7 @@ import * as S from "./SelectPeriod.styled";
 import dayjs from "dayjs";
 
 function SelectPeriod() {
-  const [selectPeriod, setSelectPeriod] = useState(1);
+  const [selectPeriod, setSelectPeriod] = useState(0);
 
   const periods = [
     { label: "7일", value: 1 },
@@ -13,10 +13,10 @@ function SelectPeriod() {
     { label: "60일", value: 7 },
   ] as const;
 
-  const handleSelectPeriod = (period: string) => () => {
+  const handleSelectPeriod = (period: string) => (): void => {
     const selectPeriod = periods.find((item) => item.label === period);
 
-    setSelectPeriod(selectPeriod?.value ?? 1);
+    setSelectPeriod(selectPeriod?.value ?? 0);
   };
 
   return (
@@ -46,9 +46,11 @@ function SelectPeriod() {
           </S.ActivityButton>
         ))}
       </S.PeriodWrapper>
-      <S.SelectInfo>
-        최대 <strong>{selectPeriod}개</strong>의 럭키 데이를 선택할 수 있어요.
-      </S.SelectInfo>
+      {!!selectPeriod && (
+        <S.SelectInfo>
+          최대 <strong>{selectPeriod}개</strong>의 럭키 데이를 선택할 수 있어요.
+        </S.SelectInfo>
+      )}
     </>
   );
 }
