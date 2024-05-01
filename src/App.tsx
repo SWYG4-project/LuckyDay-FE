@@ -24,8 +24,9 @@ function App() {
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
-          <Router />
-          <Layout />
+          <Layout>
+            <Router />
+          </Layout>
           {/* Fix : 레이아웃 수정 예정 */}
         </ThemeProvider>
       </QueryClientProvider>

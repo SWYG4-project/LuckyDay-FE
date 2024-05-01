@@ -7,6 +7,7 @@ export default function Router() {
     <BrowserRouter>
       <Routes>
         <Route index element={<P.Landing />} />
+        <Route path="createLuckyDay" element={<P.CreateLuckyDay />} />
       </Routes>
     </BrowserRouter>
   );
