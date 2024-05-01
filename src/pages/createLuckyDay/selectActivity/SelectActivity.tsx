@@ -30,7 +30,7 @@ function SelectActivity() {
       </S.HeadLine>
       <div>
         {activities.map((activity) => (
-          <S.ActivityButton>
+          <S.ActivityButton key={activity.label}>
             <S.Img src="images/img_toggle.png" />
             <S.ActivityInfo>
               {activity.icon}
