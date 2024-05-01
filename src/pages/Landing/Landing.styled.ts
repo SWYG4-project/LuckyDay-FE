@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Landing = styled.div`
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 200px); //TODO: 100vh - (header+footer)
   display: flex;
   justify-content: center;
   align-items: center;

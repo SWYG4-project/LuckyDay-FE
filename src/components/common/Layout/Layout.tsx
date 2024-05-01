@@ -1,13 +1,19 @@
 import React from "react";
-import * as S from "./Layout.styled";
+
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import * as S from "./Layout.styled";
 
-const Layout: React.FC = () => {
+interface LayoutProps {
+  children: React.ReactNode;
+}
+
+const Layout = ({ children }: LayoutProps) => {
   return (
     <>
       <S.Layout>
         <Header />
+        {children}
         <Footer />
       </S.Layout>
     </>

@@ -1,10 +1,10 @@
-import { ThemeProvider } from "@emotion/react";
+import { Global, ThemeProvider } from "@emotion/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RecoilRoot } from "recoil";
 import Router from "router/Router";
 import { Layout } from "components";
-import { theme } from "styles/themes/theme";
-import "./fonts/fonts.css";
+import { globalStyle, theme } from "styles";
+import "./styles/fonts.css";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -24,8 +24,10 @@ function App() {
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
-          <Router />
-          <Layout />
+          <Global styles={globalStyle} />
+          <Layout>
+            <Router />
+          </Layout>
           {/* Fix : 레이아웃 수정 예정 */}
         </ThemeProvider>
       </QueryClientProvider>

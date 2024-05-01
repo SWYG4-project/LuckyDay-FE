@@ -1,2 +1,2 @@
 export * from "./themes";
-export { default as GlobalStyles } from "./GlobalStyles";
+export { default as globalStyle } from "./globalStyle";
