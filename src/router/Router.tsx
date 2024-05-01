@@ -6,7 +6,6 @@ export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* <Route index element={<P.Home />} /> */}
         <Route index element={<P.Landing />} />
       </Routes>
     </BrowserRouter>
