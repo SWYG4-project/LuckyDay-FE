@@ -14,6 +14,7 @@ export const HomeButton = styled.button`
   background-image: url("src/assets/button-long.png");
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.4));
   transition: color 0.3s ease;
+  // NOTE : 디자이너님과 hover 관련 논의 시 보여드릴 테스트코드입니다.
   &:hover {
     color: ${({ theme }) => theme.colors.orange};
   }

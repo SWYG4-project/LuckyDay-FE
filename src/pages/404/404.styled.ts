@@ -3,6 +3,8 @@ import { css } from "@emotion/react";
 
 export const NotFound = styled.div`
   width: 100%;
+  // FIXME : Layout 설정 이후 vh로 변경할 예정입니다.
+  /* height: 100vh; */
   height: 700px;
   display: flex;
   flex-direction: column;
