@@ -4,13 +4,14 @@ import styled from "@emotion/styled";
 export const HeadLine = styled.span`
   ${({ theme }) => css`
     ${theme.fonts.headline1};
-    margin: 46px 0 39px;
+    margin: 46px 0 7px;
   `}
 `;
 
 export const SubHeadLine = styled.span`
   ${({ theme }) => css`
     ${theme.fonts.headline2};
+    margin-bottom: 37px;
   `}
 `;
 
