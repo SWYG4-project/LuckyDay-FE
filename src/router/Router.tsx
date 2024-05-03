@@ -5,8 +5,9 @@ export default function Router() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<P.Landing />} />
-        {/* <Route index element={<P.Error404Page />} /> */}
+        <Route index element={<P.LandingPage />} />
+        <Route path="luckyBoard" element={<P.LuckyBoardPage />} />
+        <Route path="404" element={<P.Error404Page />} />
         {/* <Route path="createLuckyDay" element={<P.CreateLuckyDay />} /> */}
       </Routes>
     </BrowserRouter>

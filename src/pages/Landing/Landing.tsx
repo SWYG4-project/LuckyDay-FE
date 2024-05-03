@@ -1,7 +1,7 @@
 import { Carousel } from "components/common/carousel";
 import * as S from "./Landing.styled";
 
-export default function Landing() {
+export default function LandingPage() {
   const images = [
     // NOTE : 목업 이미지 첨부해 보았는데 화질이 안좋아서 추후 이미지 확정되면 고화질로 변경 예정입니다.
     "/images/landing-01.png",
