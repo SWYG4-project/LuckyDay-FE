@@ -1,11 +1,11 @@
-import { css } from "@emotion/react";
 import styled from "@emotion/styled";
+import { css } from "@emotion/react";
+import { ArrowIcon } from "assets";
 
 export const CarouselContainer = styled.div`
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: 870px;
 `;
 
 export const Slide = styled.div`
@@ -33,24 +33,34 @@ export const ButtonContainer = styled.div`
   margin: 40px 0px 20px 0px;
 `;
 
-export const Button = styled.button`
+export const button = css`
+  width: 40px;
+  height: 40px;
+  background-size: cover;
   background-color: transparent;
+  background-image: url("src/assets/icon/ic_empty_beige.png");
   border: none;
   cursor: pointer;
+  & > svg {
+    width: 24px;
+    height: 24px;
+  }
 `;
 
-export const PrevButton = styled(Button)`
-  width: 40px;
-  height: 40px;
-  background-size: cover;
-  background-image: url("src/assets/icon/prev.png");
+export const PrevButton = styled.button`
+  ${button};
 `;
 
-export const NextButton = styled(Button)`
-  width: 40px;
-  height: 40px;
-  background-size: cover;
-  background-image: url("src/assets/icon/next.png");
+export const PrevArrowIcon = styled(ArrowIcon)`
+  transform: rotate(270deg);
+`;
+
+export const NextButton = styled.button`
+  ${button};
+`;
+
+export const NextArrowIcon = styled(ArrowIcon)`
+  transform: rotate(90deg);
 `;
 
 export const DotContainer = styled.ul`

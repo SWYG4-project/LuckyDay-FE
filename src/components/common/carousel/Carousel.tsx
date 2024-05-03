@@ -35,7 +35,9 @@ const Carousel = ({ images, texts }: CarouselProps): JSX.Element => {
         </S.Slide>
       ))}
       <S.ButtonContainer>
-        <S.PrevButton onClick={handlePrevSlide} />
+        <S.PrevButton onClick={handlePrevSlide}>
+          <S.PrevArrowIcon />
+        </S.PrevButton>
         <S.DotContainer>
           {images.map((_, index) => (
             <S.Dot
@@ -45,7 +47,9 @@ const Carousel = ({ images, texts }: CarouselProps): JSX.Element => {
             />
           ))}
         </S.DotContainer>
-        <S.NextButton onClick={handleNextSlide} />
+        <S.NextButton onClick={handleNextSlide}>
+          <S.NextArrowIcon />
+        </S.NextButton>
       </S.ButtonContainer>
     </S.CarouselContainer>
   );
