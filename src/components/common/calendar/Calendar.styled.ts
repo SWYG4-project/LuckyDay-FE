@@ -38,7 +38,8 @@ export const button = css`
   width: 30px;
   height: 30px;
   border: 0;
-  background-color: transparent;
+  border-radius: 50%; //TODO: icon으로 변경 예정 -> 임의로 설정
+  background-color: #fff;
 
   & > svg {
     width: 24px;

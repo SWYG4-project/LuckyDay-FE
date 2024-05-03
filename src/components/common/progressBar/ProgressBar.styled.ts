@@ -6,6 +6,6 @@ export const ProgressBar = styled.div`
     display: flex;
     width: 100%;
     height: 44px;
-    background-color: ${theme.colors.purple};
+    background-color: ${theme.colors.gray};
   `}
 `;

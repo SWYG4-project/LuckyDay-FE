@@ -36,8 +36,8 @@ function CreateLuckyDay() {
       <ProgressBar progressState={currentProgress} />
       {changePage(currentProgress)}
       <S.ButtonWrapper>
-        <button onClick={changeCurrentProgress(-1)}>prev</button>
-        <button onClick={changeCurrentProgress(+1)}>next</button>
+        <S.Button onClick={changeCurrentProgress(-1)}>prev</S.Button>
+        <S.Button onClick={changeCurrentProgress(+1)}>next</S.Button>
       </S.ButtonWrapper>
     </S.CreateLuckyDay>
   );
