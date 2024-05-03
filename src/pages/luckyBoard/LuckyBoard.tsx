@@ -1,5 +1,5 @@
 import * as S from "./LuckyBoard.styled";
-import CreateLuckyDayButton from "components/common/createLuckyDayButton/CreateLuckyDayButton";
+import { CreateLuckyDayButton } from "components";
 
 export default function LuckyBoardPage() {
   return (
