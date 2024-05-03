@@ -1,2 +1,2 @@
 export { default as Landing } from "./Landing/Landing";
-export { default as CreateLuckyDay } from "./createLuckyDay/CreateLuckyDay";
+export { default as CreateLuckyDayPage } from "./createLuckyDay/CreateLuckyDayPage";

@@ -1,10 +1,10 @@
 import React from "react";
-
-import { Calendar } from "components";
-import * as S from "./SelectExecptDay.styled";
 import dayjs from "dayjs";
 
-function SelectExceptDay() {
+import { Calendar } from "components";
+import * as S from "./SelectExceptDate.styled";
+
+function SelectExceptDate() {
   const selectedPeriod = "30";
   const EndOfDate = dayjs(dayjs())
     .add(+selectedPeriod, "day")
@@ -23,4 +23,4 @@ function SelectExceptDay() {
   );
 }
 
-export default SelectExceptDay;
+export default SelectExceptDate;

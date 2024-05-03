@@ -23,7 +23,7 @@ const Calendar = ({ dates }: CalendarProps) => {
     <S.Calendar>
       <S.DayWeekWrapper>
         {/* TODO: button 컴포넌트 제작 필요 */}
-        <S.Img src="images/img_beige_toggle.png" />
+        <S.Img src="images/img_medium_beige.png" />
         <S.DayWeekBox>
           <S.PrevArrowButton onClick={handleMoveToPrevMonth}>
             <ArrowIcon />

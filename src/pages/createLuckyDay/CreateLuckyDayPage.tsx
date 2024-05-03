@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 
-import { ProgressBar } from "components";
-import SelectActivity from "./selectActivity/SelectActivity";
-import SelectCount from "./selectCount/SelectCount";
-import SelectPeriod from "./selectPeriod/SelectPeriod";
-import SelectExceptDay from "./selectExceptDay/SelectExceptDay";
-import * as S from "./CreateLuckyDay.styled";
+import {
+  SelectActivity,
+  SelectCount,
+  SelectPeriod,
+  SelectExceptDate,
+  ProgressBar,
+} from "components";
+import * as S from "./CreateLuckyDayPage.styled";
 
-function CreateLuckyDay() {
+function CreateLuckyDayPage() {
   const [currentProgress, setCurrentProgress] = useState(0);
 
   const changeCurrentProgress = (progress: number) => (): void => {
@@ -27,7 +29,7 @@ function CreateLuckyDay() {
       case 2:
         return <SelectCount />;
       case 3:
-        return <SelectExceptDay />;
+        return <SelectExceptDate />;
     }
   };
 
@@ -43,4 +45,4 @@ function CreateLuckyDay() {
   );
 }
 
-export default CreateLuckyDay;
+export default CreateLuckyDayPage;

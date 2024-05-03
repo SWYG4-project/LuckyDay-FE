@@ -36,8 +36,8 @@ function SelectPeriod() {
             <S.Img
               src={
                 selectPeriod === period.value
-                  ? "images/img_toggle.png"
-                  : "images/img_beige_toggle.png"
+                  ? "images/img_medium_orange.png"
+                  : "images/img_medium_beige.png"
               }
             />
             <S.ActivityInfo>
