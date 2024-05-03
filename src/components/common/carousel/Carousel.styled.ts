@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { ArrowIcon } from "assets";
 
 export const CarouselContainer = styled.div`
   position: relative;
@@ -51,16 +50,16 @@ export const PrevButton = styled.button`
   ${button};
 `;
 
-export const PrevArrowIcon = styled(ArrowIcon)`
-  transform: rotate(270deg);
+export const PrevArrowIcon = css`
+  rotate: 270deg;
 `;
 
 export const NextButton = styled.button`
   ${button};
 `;
 
-export const NextArrowIcon = styled(ArrowIcon)`
-  transform: rotate(90deg);
+export const NextArrowIcon = css`
+  rotate: 90deg;
 `;
 
 export const DotContainer = styled.ul`

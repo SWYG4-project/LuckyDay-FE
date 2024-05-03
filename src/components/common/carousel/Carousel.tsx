@@ -1,5 +1,6 @@
-import React, { useState } from "react";
 import * as S from "./Carousel.styled";
+import { useState } from "react";
+import { ArrowIcon } from "assets";
 
 interface CarouselProps {
   images: string[];
@@ -36,7 +37,7 @@ const Carousel = ({ images, texts }: CarouselProps): JSX.Element => {
       ))}
       <S.ButtonContainer>
         <S.PrevButton onClick={handlePrevSlide}>
-          <S.PrevArrowIcon />
+          <ArrowIcon css={S.PrevArrowIcon} />
         </S.PrevButton>
         <S.DotContainer>
           {images.map((_, index) => (
@@ -48,7 +49,7 @@ const Carousel = ({ images, texts }: CarouselProps): JSX.Element => {
           ))}
         </S.DotContainer>
         <S.NextButton onClick={handleNextSlide}>
-          <S.NextArrowIcon />
+          <ArrowIcon css={S.NextArrowIcon} />
         </S.NextButton>
       </S.ButtonContainer>
     </S.CarouselContainer>
