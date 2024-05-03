@@ -1,5 +1,5 @@
 import { Carousel } from "components/common/carousel";
-import * as S from "./Landing.styled";
+import * as S from "./LandingPage.styled";
 
 export default function LandingPage() {
   const images = [

@@ -1,4 +1,4 @@
-import * as S from "./LuckyBoard.styled";
+import * as S from "./LuckyBoardPage.styled";
 import { CreateLuckyDayButton } from "components";
 
 export default function LuckyBoardPage() {

@@ -1,4 +1,4 @@
-import * as S from "./404.styled";
+import * as S from "./Error404Page.styled";
 import { HomeButton } from "components/common/homeButton";
 
 export default function Error404Page() {
