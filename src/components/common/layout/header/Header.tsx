@@ -1,6 +1,6 @@
 import React from "react";
-import { Logo } from "components/common/logo";
 import * as S from "./Header.styled";
+import { Logo } from "components/common/logo";
 
 export default function Header() {
   return (
