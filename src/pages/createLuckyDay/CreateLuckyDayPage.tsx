@@ -6,7 +6,9 @@ import {
   SelectPeriod,
   SelectExceptDate,
   ProgressBar,
+  ButtonLayout,
 } from "components";
+import { ArrowIcon } from "assets";
 import * as S from "./CreateLuckyDayPage.styled";
 
 function CreateLuckyDayPage() {
@@ -34,14 +36,19 @@ function CreateLuckyDayPage() {
   };
 
   return (
-    <S.CreateLuckyDay>
-      <ProgressBar progressState={currentProgress} />
-      {changePage(currentProgress)}
-      <S.ButtonWrapper>
-        <S.Button onClick={changeCurrentProgress(-1)}>prev</S.Button>
-        <S.Button onClick={changeCurrentProgress(+1)}>next</S.Button>
-      </S.ButtonWrapper>
-    </S.CreateLuckyDay>
+    <ButtonLayout
+      variant="hasIcon"
+      firstLabel="prev"
+      secondLabel="next"
+      icon={<ArrowIcon />}
+      handleClickFirstButton={changeCurrentProgress(-1)}
+      handleClickSecondButton={changeCurrentProgress(+1)}
+    >
+      <S.CreateLuckyDay>
+        <ProgressBar progressState={currentProgress} />
+        {changePage(currentProgress)}
+      </S.CreateLuckyDay>
+    </ButtonLayout>
   );
 }
 
