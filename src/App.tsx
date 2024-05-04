@@ -2,7 +2,6 @@ import { Global, ThemeProvider } from "@emotion/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RecoilRoot } from "recoil";
 import Router from "router/Router";
-import { Layout } from "components";
 import { globalStyle, theme } from "styles";
 import "./styles/fonts.css";
 
@@ -25,9 +24,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
           <Global styles={globalStyle} />
-          <Layout>
-            <Router />
-          </Layout>
+          <Router />
           {/* Fix : 레이아웃 수정 예정 */}
         </ThemeProvider>
       </QueryClientProvider>
