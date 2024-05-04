@@ -25,7 +25,7 @@ function ButtonLayout({
 }: ButtonLayoutProps) {
   return (
     <S.ButtonLayout className={className}>
-      {children}
+      <S.Body>{children}</S.Body>
       <S.ButtonWrapper>
         <S.Button variant={variant} onClick={handleClickFirstButton}>
           <S.Img src="images/img_small_beige.png" />

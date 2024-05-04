@@ -36,6 +36,11 @@ const globalStyle = css`
   a {
     text-decoration: none;
   }
+
+  /* TODO: 스크롤 스크린 확인 필요 */
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export default globalStyle;

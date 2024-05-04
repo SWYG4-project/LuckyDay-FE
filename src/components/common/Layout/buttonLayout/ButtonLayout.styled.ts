@@ -5,7 +5,11 @@ export const ButtonLayout = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: calc(100% - 100px);
+  height: calc(100vh - 100px);
+`;
+
+export const Body = styled.div`
+  overflow: auto; //NOTE: 스크롤 기능/디자인 확인 필요
 `;
 
 export const ButtonWrapper = styled.div`
