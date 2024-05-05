@@ -23,10 +23,12 @@ export const ActivityInfo = styled.div`
   right: 0;
   display: grid;
   grid-template-columns: 35px 1fr 40px;
+  column-gap: 15px;
   align-items: center;
   width: 100%;
   height: 100%;
   padding: 15px 20px 15px 30px;
+  text-align: start;
 
   & > svg:first-of-type {
     margin: 5.5px;
