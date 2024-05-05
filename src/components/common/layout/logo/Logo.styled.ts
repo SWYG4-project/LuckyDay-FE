@@ -15,9 +15,9 @@ export const Logo_Basic = styled.div`
   width: 35px;
   height: 35px;
   margin: 0px 10px 0px 25px;
-  background-size: 35px;
-  background-repeat: no-repeat;
+  background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   background-image: url("images/logo-basic.png");
   cursor: pointer;
 `;
