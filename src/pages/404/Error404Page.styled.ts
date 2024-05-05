@@ -3,9 +3,7 @@ import { css } from "@emotion/react";
 
 export const NotFound = styled.div`
   width: 100%;
-  // FIXME : Layout 설정 이후 vh로 변경할 예정입니다.
-  /* height: 100vh; */
-  height: 700px;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -22,7 +20,7 @@ export const Logo_Sad = styled.div`
   background-size: 150px;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url("src/assets/logo-sad.png");
+  background-image: url("images/logo-sad.png");
 `;
 
 export const Text_404 = styled.div`
