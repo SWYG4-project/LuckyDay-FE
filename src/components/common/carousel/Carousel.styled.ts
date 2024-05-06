@@ -37,7 +37,7 @@ export const button = css`
   height: 40px;
   background-size: cover;
   background-color: transparent;
-  background-image: url("src/assets/icon/ic_empty_beige.png");
+  background-image: url("images/img_empty_beige.png");
   border: none;
   cursor: pointer;
   & > svg {

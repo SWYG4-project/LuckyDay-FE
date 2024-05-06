@@ -1,14 +1,18 @@
-import React from "react";
 import * as S from "./Header.styled";
-import { Logo } from "components/common/logo";
+import { useLocation } from "react-router-dom";
+import { Logo, NavigationToggle } from "components";
 
-export default function Header() {
+const Header = () => {
+  const { pathname } = useLocation();
+
   return (
     <>
       <S.Header>
         <Logo />
-        <S.LogoText className="headline">Lucky Day</S.LogoText>
+        {pathname !== "/" && <NavigationToggle />}
       </S.Header>
     </>
   );
-}
+};
+
+export default Header;

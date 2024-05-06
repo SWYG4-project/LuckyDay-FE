@@ -4,12 +4,12 @@ import * as S from "./LandingPage.styled";
 export default function LandingPage() {
   const images = [
     // NOTE : 목업 이미지 첨부해 보았는데 화질이 안좋아서 추후 이미지 확정되면 고화질로 변경 예정입니다.
-    "/images/landing-01.png",
-    "/images/landing-02.png",
-    "/images/landing-03.png",
-    "/images/landing-04.png",
-    "/images/landing-05.png",
-    "/images/landing-06.png",
+    "/images/landing/landing-01.png",
+    "/images/landing/landing-02.png",
+    "/images/landing/landing-03.png",
+    "/images/landing/landing-04.png",
+    "/images/landing/landing-05.png",
+    "/images/landing/landing-06.png",
   ];
 
   const texts = [
