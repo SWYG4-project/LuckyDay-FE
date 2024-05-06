@@ -7,7 +7,25 @@ interface ProgressBarProps {
 }
 
 function ProgressBar({ progressState }: ProgressBarProps) {
-  return <S.ProgressBar>{progressState}</S.ProgressBar>;
+  const progress = [
+    { state: 1, label: "활동 선택" },
+    { state: 2, label: "기간 선택" },
+    { state: 3, label: "개수 선택" },
+    { state: 4, label: "제외 날짜" },
+  ] as const;
+
+  return (
+    <S.ProgressBar>
+      {progress.map((item) => (
+        <S.SingleProgress>
+          <S.ProgressState state={progressState + 1 === item.state}>
+            {item.state}
+          </S.ProgressState>
+          <div>{item.label}</div>
+        </S.SingleProgress>
+      ))}
+    </S.ProgressBar>
+  );
 }
 
 export default ProgressBar;
