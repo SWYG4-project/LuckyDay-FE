@@ -10,6 +10,7 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import isBetween from "dayjs/plugin/isBetween";
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
 import "dayjs/locale/ko"; // 한국어 가져오기
+import { Modal } from "components";
 
 dayjs.extend(relativeTime);
 dayjs.extend(isBetween);
@@ -25,6 +26,7 @@ function App() {
         <ThemeProvider theme={theme}>
           <Global styles={globalStyle} />
           <Router />
+          <Modal />
           {/* Fix : 레이아웃 수정 예정 */}
         </ThemeProvider>
       </QueryClientProvider>
