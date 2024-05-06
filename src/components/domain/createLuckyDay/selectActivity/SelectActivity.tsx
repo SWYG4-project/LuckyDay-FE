@@ -1,7 +1,7 @@
 import React from "react";
 
+import { useGetLuckyDaysActivities } from "services";
 import {
-  ArrowIcon,
   BookIcon,
   CandyIcon,
   HeartIcon,
@@ -9,9 +9,12 @@ import {
   ShoeIcon,
   SmileIcon,
 } from "assets";
+import { ActivityToggle } from "./container";
 import * as S from "./SelectActivity.styled";
 
 function SelectActivity() {
+  const { data } = useGetLuckyDaysActivities();
+
   const activities = [
     { icon: <PresentIcon />, label: "특별한 선물" },
     { icon: <CandyIcon />, label: "맛있는 음식" },
@@ -30,14 +33,14 @@ function SelectActivity() {
       </S.HeadLine>
       <div>
         {activities.map((activity) => (
-          <S.ActivityButton key={activity.label}>
-            <S.Img src="images/img_toggle.png" />
-            <S.ActivityInfo>
-              {activity.icon}
-              <S.ActivityTitle>{activity.label}</S.ActivityTitle>
-              <ArrowIcon css={S.arrowIcon} />
-            </S.ActivityInfo>
-          </S.ActivityButton>
+          <>
+            <ActivityToggle
+              activity={activity}
+              data={data?.categoriList.find(
+                (item) => item.category === activity.label
+              )}
+            />
+          </>
         ))}
       </div>
     </>
