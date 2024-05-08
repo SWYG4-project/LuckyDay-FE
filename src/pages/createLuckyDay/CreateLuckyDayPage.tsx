@@ -9,9 +9,13 @@ import {
   ButtonLayout,
 } from "components";
 import { ArrowIcon } from "assets";
+import { useModal } from "hooks";
+import { CreateLuckyDayModal } from "./container";
 import * as S from "./CreateLuckyDayPage.styled";
 
 function CreateLuckyDayPage() {
+  const { handleOpenModal } = useModal();
+
   const [currentProgress, setCurrentProgress] = useState(0);
 
   const changeCurrentProgress = (progress: number) => (): void => {
@@ -35,6 +39,11 @@ function CreateLuckyDayPage() {
     }
   };
 
+  const handleClickNextButton = () => {
+    handleOpenModal(<CreateLuckyDayModal />);
+    if (currentProgress !== 3) return changeCurrentProgress(+1)();
+  };
+
   return (
     <ButtonLayout
       variant="hasIcon"
@@ -42,7 +51,7 @@ function CreateLuckyDayPage() {
       secondLabel="next"
       icon={<ArrowIcon />}
       handleClickFirstButton={changeCurrentProgress(-1)}
-      handleClickSecondButton={changeCurrentProgress(+1)}
+      handleClickSecondButton={handleClickNextButton}
     >
       <S.CreateLuckyDay>
         <ProgressBar progressState={currentProgress} />
