@@ -1,24 +1,25 @@
 {
   "compilerOptions": {
-    "experimentalDecorators": true,
-    "baseUrl": "src",
-    "paths": {},
     "target": "es6",
-    "jsx": "react-jsx",
     "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
+    "module": "esnext",
     "skipLibCheck": true,
+    "baseUrl": "src",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "allowJs": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
+    "resolveJsonModule": true,
+    "paths": {},
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
     "isolatedModules": true,
-    "noEmit": true,
-    "jsxImportSource": "@emotion/react"
+    "jsxImportSource": "@emotion/react",
+    "typeRoots": ["./node_modules/@types", "./src/types/declare"]
   },
-  "include": ["src", "src/types/declare/*"]
+  "include": ["src/**/*", "src/types/declare/*", "vite-env.d.ts"]
 }
