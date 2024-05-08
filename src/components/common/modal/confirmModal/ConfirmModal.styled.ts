@@ -13,6 +13,7 @@ export const Title = styled.div`
   ${({ theme }) => css`
     ${theme.fonts.headline1};
     display: flex;
+    justify-content: center;
     margin-bottom: 20px;
   `}
 `;
