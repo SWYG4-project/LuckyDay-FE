@@ -12,6 +12,7 @@ export const Landing = styled.div`
 
 export const ContentsBox = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
