@@ -4,11 +4,11 @@ import * as S from "./SvgFrame.styled";
 
 interface SvgFramProps {
   className?: string;
-  children: React.ReactNode;
+  icon: React.ReactNode;
 }
 
-function SvgFrame({ className, children }: SvgFramProps) {
-  return <S.SvgFrame className={className}>{children}</S.SvgFrame>;
+function SvgFrame({ className, icon }: SvgFramProps) {
+  return <S.SvgFrame className={className}>{icon}</S.SvgFrame>;
 }
 
 export default SvgFrame;
