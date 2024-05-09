@@ -40,8 +40,9 @@ function CreateLuckyDayPage() {
   };
 
   const handleClickNextButton = () => {
-    handleOpenModal(<CreateLuckyDayModal />);
     if (currentProgress !== 3) return changeCurrentProgress(+1)();
+
+    handleOpenModal(<CreateLuckyDayModal />);
   };
 
   return (

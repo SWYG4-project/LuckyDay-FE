@@ -1,18 +1,17 @@
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
+import { Theme, css } from "@emotion/react";
 
 export const Calendar = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  height: 360px;
   width: 100%;
 `;
 
 export const DayWeekWrapper = styled.div`
   position: relative;
-  bottom: -13px;
   display: flex;
   align-items: center;
   width: 295px;
@@ -23,7 +22,7 @@ export const DayWeekBox = styled.div`
   ${({ theme }) => css`
     ${theme.fonts.headline1};
     position: absolute;
-    top: 15px;
+    top: 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -65,13 +64,15 @@ export const Month = styled.h3`
 
 export const CalendarBox = styled.div`
   position: relative;
-  width: 370px;
+  width: 390px;
+  bottom: 40px;
+  left: 0;
 `;
 
 export const CalendarHeader = styled.div`
   position: absolute;
-  top: 20px;
-  left: 22px;
+  top: 40px;
+  left: 32px;
   display: grid;
   grid-template-columns: repeat(7, 35px);
   gap: 7px 13px;
@@ -82,10 +83,6 @@ export const DayWeek = styled.div`
   ${({ theme }) => css`
     ${theme.fonts.body1};
   `}
-`;
-
-export const Img = styled.img`
-  width: 100%;
 `;
 
 export const DayButton = styled.button<{
@@ -103,4 +100,20 @@ export const DayButton = styled.button<{
       ? theme.colors.lightBeige
       : isSelected && theme.colors.lightOrange};
   `}
+`;
+
+export const svgFrame = (theme: Theme) => css`
+  width: 100%;
+  svg {
+    width: 100%;
+    height: fit-content;
+
+    path {
+      fill: ${theme.colors.beige};
+    }
+  }
+`;
+
+export const largeIcon = (theme: Theme) => css`
+  ${svgFrame(theme)}
 `;
