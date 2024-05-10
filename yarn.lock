@@ -2300,6 +2300,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/axios@npm:^0.14.0":
+  version: 0.14.0
+  resolution: "@types/axios@npm:0.14.0"
+  dependencies:
+    axios: "npm:*"
+  checksum: 10c0/f315a485b8069038a1bd8d7c064b84dc6f726dfaab4ef1a6602b0bd38bbf32a6903dc9282293caafefac38da5a0e938fa6623ce8dd173adb41864dac6cb83716
+  languageName: node
+  linkType: hard
+
 "@types/babel__core@npm:^7.20.5":
   version: 7.20.5
   resolution: "@types/babel__core@npm:7.20.5"
@@ -2716,7 +2725,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^1.6.8":
+"axios@npm:*, axios@npm:^1.6.8":
   version: 1.6.8
   resolution: "axios@npm:1.6.8"
   dependencies:
@@ -4320,6 +4329,7 @@ __metadata:
     "@hookform/resolvers": "npm:^3.3.4"
     "@svgr/rollup": "npm:^8.1.0"
     "@tanstack/react-query": "npm:^5.29.2"
+    "@types/axios": "npm:^0.14.0"
     "@types/js-cookie": "npm:^3.0.6"
     "@types/qs": "npm:^6"
     "@types/react": "npm:^18.2.66"
