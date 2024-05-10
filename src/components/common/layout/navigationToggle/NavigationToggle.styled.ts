@@ -56,14 +56,23 @@ export const ToggleMenuBox = styled.div`
   margin: 20px 5px 20px 5px;
 `;
 
-export const ToggleMenu = styled.div`
+export const ToggleMenuBottom = styled.div`
   ${({ theme }) => css`
     width: 100%;
-    height: 70px;
+    height: 65px;
     display: flex;
     align-items: center;
     color: ${theme.colors.black};
-    border-bottom: 1px solid ${theme.colors.gray};
+    transition: color 0.2s ease;
+    &:hover {
+      color: ${theme.colors.lightOrange};
+    }
     cursor: pointer;
+  `}
+`;
+
+export const ToggleMenu = styled(ToggleMenuBottom)`
+  ${({ theme }) => css`
+    border-bottom: 1px solid ${theme.colors.gray};
   `}
 `;
