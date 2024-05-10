@@ -9,9 +9,13 @@ import {
 import Cookies from "js-cookie";
 import qs from "qs";
 
+interface TokenResponse {
+  access_token: string;
+}
+
 export default function Auth() {
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const params = new URL(document.URL).searchParams;
   const code = params.get("code");
 
@@ -25,7 +29,7 @@ export default function Auth() {
     });
 
     try {
-      const res = await axios.post(
+      const res = await axios.post<TokenResponse>(
         "https://kauth.kakao.com/oauth/token",
         payload
       );

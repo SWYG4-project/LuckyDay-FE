@@ -3,11 +3,20 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
+interface KakaoUserProfile {
+  kakao_account: {
+    email: string;
+  };
+  properties: {
+    nickname: string;
+  };
+}
+
 export default function Profile() {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [nickName, setNickName] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [nickName, setNickName] = useState<string>("");
 
   useEffect(() => {
     const token = Cookies.get("token");
@@ -19,7 +28,7 @@ export default function Profile() {
     const getProfile = async () => {
       if (window.Kakao && window.Kakao.API) {
         try {
-          const data = await window.Kakao.API.request({
+          const data: KakaoUserProfile = await window.Kakao.API.request({
             url: "/v2/user/me",
           });
           setEmail(data.kakao_account.email);

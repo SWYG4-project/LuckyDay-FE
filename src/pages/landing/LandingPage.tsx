@@ -8,14 +8,13 @@ export default function LandingPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = Cookies.get("token");
+    const token: string | undefined = Cookies.get("token");
     if (token) {
       navigate("/luckyBoard");
     }
   }, [navigate]);
 
-  const images = [
-    // NOTE : 목업 이미지 첨부해 보았는데 화질이 안좋아서 추후 이미지 확정되면 고화질로 변경 예정입니다.
+  const images: string[] = [
     "/images/landing/landing-01.png",
     "/images/landing/landing-02.png",
     "/images/landing/landing-03.png",
@@ -24,7 +23,7 @@ export default function LandingPage() {
     "/images/landing/landing-06.png",
   ];
 
-  const texts = [
+  const texts: string[] = [
     "럭키 데이 \n 무작위로 찾아오는 나만의 행운의 날",
     "원하는 럭키 데이 활동을 골라 보세요. \n 직접 입력도 가능해요.",
     "럭키 데이 개수와 기간 범위도 \n 직접 정할 수 있어요.",
