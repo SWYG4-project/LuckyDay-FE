@@ -22,7 +22,7 @@ export const ToggleBox = styled.div`
   background-size: cover;
   background-position: center;
   background-image: url("/images/background.png");
-  z-index: 2;
+  z-index: 3;
 `;
 
 export const ToggleContentsBox = styled.div`
