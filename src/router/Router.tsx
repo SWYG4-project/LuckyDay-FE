@@ -11,6 +11,7 @@ export default function Router() {
           <Route path="/oauth2/kakao/callback" element={<P.Auth />} />
           <Route path="profile" element={<P.Profile />} />
           <Route path="myPage" element={<P.MyPage />} />
+          <Route path="editProfile" element={<P.EditProfilePage />} />
           <Route path="luckyBoard" element={<P.LuckyBoardPage />} />
           <Route path="createLuckyDay" element={<P.CreateLuckyDayPage />} />
           <Route
