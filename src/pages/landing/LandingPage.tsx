@@ -8,7 +8,7 @@ export default function LandingPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token: string | undefined = Cookies.get("token");
+    const token = Cookies.get("token");
     if (token) {
       navigate("/luckyBoard");
     }
