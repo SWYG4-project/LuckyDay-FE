@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -6,6 +5,7 @@ import {
   KAKAO_CLIENT_ID,
   KAKAO_REDIRECT_URL,
 } from "apis/auth/Auth";
+import { ax } from "apis/axios";
 import Cookies from "js-cookie";
 import qs from "qs";
 
@@ -29,7 +29,7 @@ export default function Auth() {
     });
 
     try {
-      const res = await axios.post<TokenResponse>(
+      const res = await ax.post<TokenResponse>(
         "https://kauth.kakao.com/oauth/token",
         payload
       );
@@ -37,7 +37,7 @@ export default function Auth() {
       window.Kakao.Auth.setAccessToken(res.data.access_token);
 
       // 쿠키에 토큰 저장: HttpOnly, Secure 옵션은 서버에서 설정
-      Cookies.set("token", res.data.access_token, {
+      Cookies.set("accessToken", res.data.access_token, {
         expires: 1,
         secure: true,
         sameSite: "strict",
@@ -46,15 +46,15 @@ export default function Auth() {
       navigate("/profile"); // 프로필페이지는 논의 예정입니다.
     } catch (err) {
       console.log(err);
-      Cookies.remove("token");
+      Cookies.remove("accessToken");
       setIsLoggedIn(false);
       navigate("/");
     }
   }, [navigate, setIsLoggedIn, code]);
 
   useEffect(() => {
-    const token = Cookies.get("token");
-    setIsLoggedIn(!!token);
+    const accessToken = Cookies.get("accessToken");
+    setIsLoggedIn(!!accessToken);
     getToken();
   }, [getToken, setIsLoggedIn]);
 
