@@ -1,10 +1,6 @@
 import { useEffect, useCallback, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-  CLIENT_SECRET,
-  KAKAO_CLIENT_ID,
-  KAKAO_REDIRECT_URL,
-} from "apis/auth/Auth";
+import { CLIENT_SECRET, KAKAO_CLIENT_ID, KAKAO_REDIRECT_URL } from "config";
 import { ax } from "apis/axios";
 import Cookies from "js-cookie";
 import qs from "qs";

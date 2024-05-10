@@ -1,4 +1,4 @@
-import { KAKAO_AUTH_URL } from "apis/auth/Auth";
+import { KAKAO_AUTH_URL } from "config";
 import { KakaoLoginButton } from "./KakaoLogin.styled";
 
 const KakaoLogin = () => {
