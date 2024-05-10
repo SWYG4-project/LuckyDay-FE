@@ -60,7 +60,10 @@ const NavigationToggle: (props: NavigationToggleProps) => JSX.Element = ({
               >
                 <S.ToggleMenu>럭키 보드 설정</S.ToggleMenu>
               </Link>
-              <Link to="/myPage" onClick={() => setIsToggleVisible(false)}>
+              <Link
+                to="/luckyDayArchive"
+                onClick={() => setIsToggleVisible(false)}
+              >
                 <S.ToggleMenu>럭키 데이 보관함</S.ToggleMenu>
               </Link>
               <Link to="/myPage" onClick={() => setIsToggleVisible(false)}>

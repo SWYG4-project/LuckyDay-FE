@@ -14,6 +14,7 @@ export default function Router() {
           <Route path="editProfile" element={<P.EditProfilePage />} />
           <Route path="luckyBoard" element={<P.LuckyBoardPage />} />
           <Route path="createLuckyDay" element={<P.CreateLuckyDayPage />} />
+          <Route path="luckyDayArchive" element={<P.LuckyDayArchivePage />} />
           <Route
             path="settingLuckyBoard"
             element={<P.SettingLuckyBoardPage />}
