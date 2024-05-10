@@ -19,8 +19,8 @@ export default function Profile() {
   const [nickName, setNickName] = useState<string>("");
 
   useEffect(() => {
-    const token = Cookies.get("token");
-    if (!token) {
+    const accessToken = Cookies.get("accessToken");
+    if (!accessToken) {
       navigate("/"); // 토큰이 없으면 랜딩페이지로 redirect
       return;
     }

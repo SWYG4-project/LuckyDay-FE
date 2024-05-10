@@ -26,8 +26,8 @@ export default function LandingPage() {
   ];
 
   useEffect(() => {
-    const token = Cookies.get("token");
-    if (token) {
+    const accessToken = Cookies.get("accessToken");
+    if (accessToken) {
       navigate("/luckyBoard");
     }
   }, [navigate]);
@@ -36,7 +36,7 @@ export default function LandingPage() {
     <S.Landing>
       <S.ContentsBox>
         <Carousel images={images} texts={texts} />
-        {!Cookies.get("token") && <KakaoLogin />}
+        {!Cookies.get("accessToken") && <KakaoLogin />}
       </S.ContentsBox>
     </S.Landing>
   );
