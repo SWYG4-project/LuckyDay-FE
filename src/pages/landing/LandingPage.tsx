@@ -7,13 +7,6 @@ import Cookies from "js-cookie";
 export default function LandingPage() {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const token = Cookies.get("token");
-    if (token) {
-      navigate("/luckyBoard");
-    }
-  }, [navigate]);
-
   const images: string[] = [
     "/images/landing/landing-01.png",
     "/images/landing/landing-02.png",
@@ -31,6 +24,13 @@ export default function LandingPage() {
     "만들어진 럭키 데이를 \n색과 모양이 바뀌는 아이콘으로 확인해 보세요.",
     "럭키 데이 전날에 깜짝 메일을 받아 보세요. \n배정된 활동을 확인할 수 있습니다.",
   ];
+
+  useEffect(() => {
+    const token = Cookies.get("token");
+    if (token) {
+      navigate("/luckyBoard");
+    }
+  }, [navigate]);
 
   return (
     <S.Landing>
