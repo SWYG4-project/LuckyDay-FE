@@ -1,17 +1,16 @@
 import * as S from "./LandingPage.styled";
 import { useNavigate } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { isLoggedInAtom } from "atoms";
 import { Carousel, KakaoLogin } from "components/domain";
+import Cookies from "js-cookie";
 
 export default function LandingPage() {
-  const isLoggedIn = useRecoilValue(isLoggedInAtom);
   const navigate = useNavigate();
 
   const onClickButton = () => {
     navigate("/luckyBoard");
   };
 
+  const isLoggedIn = !!Cookies.get("token");
   const images = [
     // NOTE : 목업 이미지 첨부해 보았는데 화질이 안좋아서 추후 이미지 확정되면 고화질로 변경 예정입니다.
     "/images/landing/landing-01.png",
@@ -37,7 +36,7 @@ export default function LandingPage() {
         <Carousel images={images} texts={texts} />
         <div>
           {isLoggedIn ? (
-            <button onClick={() => onClickButton()}>로그인 된 상태</button>
+            <button onClick={onClickButton}>로그인 된 상태</button>
           ) : (
             <KakaoLogin />
           )}
