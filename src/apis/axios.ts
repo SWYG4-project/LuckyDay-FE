@@ -1,5 +1,4 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
-import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
 const instance: AxiosInstance = axios.create({
@@ -9,7 +8,7 @@ const instance: AxiosInstance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    const accessToken = Cookies.get("token");
+    const accessToken = Cookies.get("accessToken");
     if (accessToken) {
       config.headers = config.headers || {};
       config.headers["Authorization"] = `Bearer ${accessToken}`;
@@ -26,15 +25,8 @@ instance.interceptors.response.use(
   (response: AxiosResponse) => {
     return response;
   },
-  async (error) => {
-    const navigate = useNavigate();
-    if (error.response) {
-      if (error.response.status === 404) {
-        navigate("/404");
-      } else if (error.response.status === 401) {
-        navigate("/landing");
-      }
-    }
+  (error) => {
+    console.error("API Error: ", error);
     return Promise.reject(error);
   }
 );
