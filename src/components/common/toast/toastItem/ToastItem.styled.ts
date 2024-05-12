@@ -35,7 +35,7 @@ export const ToastItem = styled.div<{ isClosing: boolean }>`
       padding: 10px 0;
       color: ${theme.colors.lightBeige};
       background-color: ${theme.colors.black};
-      /* opacity: 0.9; NOTE: 디자이너님에게 opacity가 들어가면 어떨지 문의드린 상태임 */
+      opacity: 0.9;
       text-align: center;
     }
   `}
