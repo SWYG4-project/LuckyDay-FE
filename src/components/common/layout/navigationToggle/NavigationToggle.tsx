@@ -1,6 +1,7 @@
 import * as S from "./NavigationToggle.styled";
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { useUser } from "hooks";
 import { MenuIcon } from "assets";
 
 interface NavigationToggleProps {
@@ -14,6 +15,8 @@ const NavigationToggle: (props: NavigationToggleProps) => JSX.Element = ({
   const toggleRef = useRef<HTMLDivElement>(null);
   const menuIconRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
+
+  const { userProfile } = useUser();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -48,7 +51,7 @@ const NavigationToggle: (props: NavigationToggleProps) => JSX.Element = ({
           <S.ToggleContentsBox>
             <S.ProfileBox>
               <S.ProfileImage />
-              닉네임님
+              {userProfile.nickname}님
             </S.ProfileBox>
             <S.ToggleMenuBox>
               <Link to="/luckyBoard" onClick={() => setIsToggleVisible(false)}>
