@@ -5,9 +5,10 @@ import * as S from "./Calendar.styled";
 
 interface CalendarProps {
   dates: string;
+  makeExpDates: (dates: string) => void;
 }
 
-const Calendar = ({ dates }: CalendarProps) => {
+const Calendar = ({ dates, makeExpDates }: CalendarProps) => {
   const {
     currentMonth,
     monthsData,
@@ -16,7 +17,7 @@ const Calendar = ({ dates }: CalendarProps) => {
     handleMoveToPrevMonth,
     handleMoveToNextMonth,
     handleDisabledCheck,
-  } = useCalendar(dates);
+  } = useCalendar(dates, makeExpDates);
 
   const dayWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] as const;
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 
-const useCalendar = (dates: string) => {
+const useCalendar = (dates: string, makeExpDates: (dates: string) => void) => {
   const [currentMonth, setCurrentMonth] = useState(dayjs());
   const [period, setPeriod] = useState("");
   const [disabled, setDisabled] = useState<string[]>([]);
@@ -45,6 +45,8 @@ const useCalendar = (dates: string) => {
 
       setDisabled(currentDate);
     }
+
+    makeExpDates(formattedDate);
   };
 
   useEffect(() => {

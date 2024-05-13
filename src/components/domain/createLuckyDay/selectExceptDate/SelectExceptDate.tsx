@@ -1,14 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import dayjs from "dayjs";
 
 import { Calendar } from "components";
 import * as S from "./SelectExceptDate.styled";
+import { UseFormSetValue, UseFormWatch } from "react-hook-form";
+import { CreateLuckyDayForm } from "types";
 
-function SelectExceptDate() {
-  const selectedPeriod = "30";
+interface SelectExceptDateProps {
+  watch: UseFormWatch<CreateLuckyDayForm>;
+  setValue: UseFormSetValue<CreateLuckyDayForm>;
+}
+
+function SelectExceptDate({ watch, setValue }: SelectExceptDateProps) {
+  const [expDates, setExpDates] = useState<string[]>([]);
+
+  const selectedPeriod = `${watch("period")}` ?? "0";
   const EndOfDate = dayjs(dayjs())
     .add(+selectedPeriod, "day")
     .format("YYYY년 MM월 DD일");
+
+  const makeExpDates = (dates: string) => {
+    if (expDates.includes(dates)) {
+      setExpDates((prevExpDates) =>
+        prevExpDates.filter((date) => date !== dates)
+      );
+    } else {
+      setExpDates([...expDates, dates]);
+    }
+    setValue("expDtList", expDates);
+  };
 
   return (
     <>
@@ -17,7 +37,7 @@ function SelectExceptDate() {
         {dayjs().format("YYYY년 MM월 DD일")} ~ {EndOfDate}
       </S.SubHeadLine>
       <div>
-        <Calendar dates={selectedPeriod} />
+        <Calendar dates={selectedPeriod} makeExpDates={makeExpDates} />
       </div>
     </>
   );

@@ -18,7 +18,7 @@ import * as S from "./CreateLuckyDayPage.styled";
 function CreateLuckyDayPage() {
   const [currentProgress, setCurrentProgress] = useState(0);
 
-  const { setValue, watch, register } = useForm<CreateLuckyDayForm>({
+  const { setValue, watch } = useForm<CreateLuckyDayForm>({
     defaultValues: {
       actList: [],
       customActList: [],
@@ -28,6 +28,9 @@ function CreateLuckyDayPage() {
     },
     mode: "onTouched",
   });
+
+  console.log(watch());
+
   const { handleOpenModal } = useModal();
   const { addToast } = useToast();
 
@@ -47,11 +50,11 @@ function CreateLuckyDayPage() {
       case 0:
         return <SelectActivity setValue={setValue} />;
       case 1:
-        return <SelectPeriod />;
+        return <SelectPeriod setValue={setValue} />;
       case 2:
-        return <SelectCount />;
+        return <SelectCount setValue={setValue} watch={watch} />;
       case 3:
-        return <SelectExceptDate />;
+        return <SelectExceptDate setValue={setValue} watch={watch} />;
     }
   };
 
