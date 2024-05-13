@@ -16,6 +16,7 @@ interface UserProfile {
 export interface UserContextType {
   isLoggedIn: boolean;
   userProfile: UserProfile;
+  isLoading: boolean;
   getToken: (code: string) => Promise<void>;
   logout: () => void;
 }
@@ -28,6 +29,7 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [userProfile, setUserProfile] = useState<UserProfile>({
     email: "",
     nickname: "",
@@ -39,69 +41,92 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   }, []);
 
-  useEffect(() => {
-    initializeKakao();
-  }, [initializeKakao]);
-
-  const getToken = useCallback(async (code: string) => {
-    console.log("getToken called with code:", code);
-    const payload = qs.stringify({
-      grant_type: "authorization_code",
-      client_id: KAKAO_CLIENT_ID,
-      redirect_uri: KAKAO_REDIRECT_URL,
-      code: code,
-      client_secret: CLIENT_SECRET,
-    });
-
-    try {
-      const res = await ax.post<TokenResponse>(
-        "https://kauth.kakao.com/oauth/token",
-        payload
-      );
-      Cookies.set("accessToken", res.data.access_token, {
-        expires: 1,
-        secure: true,
-        sameSite: "strict",
-      });
-      window.Kakao.Auth.setAccessToken(res.data.access_token);
+  const fetchProfile = useCallback(async () => {
+    const storedProfile = sessionStorage.getItem("userProfile");
+    if (storedProfile) {
+      setUserProfile(JSON.parse(storedProfile));
       setIsLoggedIn(true);
-
-      if (window.Kakao.isInitialized() && window.Kakao.API) {
-        const profileData = await window.Kakao.API.request({
-          url: "/v2/user/me",
-        });
-        console.log("Profile Data:", profileData);
-        setUserProfile({
+    } else if (window.Kakao.isInitialized() && window.Kakao.API) {
+      const profileData = await window.Kakao.API.request({
+        url: "/v2/user/me",
+      });
+      console.log("Profile Data:", profileData);
+      setUserProfile({
+        email: profileData.kakao_account.email,
+        nickname: profileData.properties.nickname,
+      });
+      sessionStorage.setItem(
+        "userProfile",
+        JSON.stringify({
           email: profileData.kakao_account.email,
           nickname: profileData.properties.nickname,
-        });
-      } else {
-        console.error("Kakao SDK is not initialized or API is unavailable");
-      }
-    } catch (err) {
-      console.log("Error fetching user data:", err);
-      Cookies.remove("accessToken");
-      setIsLoggedIn(false);
-      setUserProfile({ email: "", nickname: "" });
+        })
+      );
+      setIsLoggedIn(true);
     }
+    setIsLoading(false);
   }, []);
+
+  const getToken = useCallback(
+    async (code: string) => {
+      setIsLoading(true);
+      console.log("getToken called with code:", code);
+      const payload = qs.stringify({
+        grant_type: "authorization_code",
+        client_id: KAKAO_CLIENT_ID,
+        redirect_uri: KAKAO_REDIRECT_URL,
+        code: code,
+        client_secret: CLIENT_SECRET,
+      });
+
+      try {
+        const res = await ax.post<TokenResponse>(
+          "https://kauth.kakao.com/oauth/token",
+          payload
+        );
+        Cookies.set("accessToken", res.data.access_token, {
+          expires: 1,
+          secure: true,
+          sameSite: "strict",
+        });
+        window.Kakao.Auth.setAccessToken(res.data.access_token);
+        await fetchProfile();
+      } catch (err) {
+        console.log("Error fetching user data:", err);
+        Cookies.remove("accessToken");
+        setIsLoggedIn(false);
+        setUserProfile({ email: "", nickname: "" });
+        sessionStorage.removeItem("userProfile");
+      } finally {
+        setIsLoading(false);
+      }
+    },
+    [fetchProfile]
+  );
 
   const logout = useCallback(() => {
     Cookies.remove("accessToken");
+    window.Kakao.Auth.setAccessToken("");
     setIsLoggedIn(false);
     setUserProfile({ email: "", nickname: "" });
+    sessionStorage.removeItem("userProfile");
   }, []);
 
   useEffect(() => {
-    const checkLoginStatus = () => {
-      const accessToken = Cookies.get("accessToken");
-      setIsLoggedIn(!!accessToken);
-    };
-    checkLoginStatus();
-  }, []);
+    initializeKakao();
+    const accessToken = Cookies.get("accessToken");
+    if (accessToken) {
+      window.Kakao.Auth.setAccessToken(accessToken);
+      fetchProfile();
+    } else {
+      setIsLoading(false);
+    }
+  }, [initializeKakao, fetchProfile]);
 
   return (
-    <UserContext.Provider value={{ isLoggedIn, userProfile, getToken, logout }}>
+    <UserContext.Provider
+      value={{ isLoggedIn, userProfile, isLoading, getToken, logout }}
+    >
       {children}
     </UserContext.Provider>
   );
