@@ -1,22 +1,29 @@
 import React, { useState } from "react";
-
-import * as S from "./SelectPeriod.styled";
 import dayjs from "dayjs";
+import type { UseFormSetValue } from "react-hook-form";
 
-function SelectPeriod() {
+import type { CreateLuckyDayForm } from "types";
+import * as S from "./SelectPeriod.styled";
+
+interface SelectPeriodProps {
+  setValue: UseFormSetValue<CreateLuckyDayForm>;
+}
+
+function SelectPeriod({ setValue }: SelectPeriodProps) {
   const [selectPeriod, setSelectPeriod] = useState(0);
 
   const periods = [
-    { label: "7일", value: 1 },
-    { label: "14일", value: 2 },
-    { label: "30일", value: 4 },
-    { label: "60일", value: 7 },
+    { label: "7일", value: 7 },
+    { label: "14일", value: 14 },
+    { label: "30일", value: 30 },
+    { label: "60일", value: 60 },
   ] as const;
 
   const handleSelectPeriod = (period: string) => (): void => {
     const selectPeriod = periods.find((item) => item.label === period);
 
     setSelectPeriod(selectPeriod?.value ?? 0);
+    setValue("period", selectPeriod?.value ?? 0);
   };
 
   return (
