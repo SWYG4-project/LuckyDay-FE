@@ -1,50 +1,73 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import type { UseFormSetValue } from "react-hook-form";
 
 import { ArrowIcon, CheckIcon } from "assets";
-import type { Activities } from "types";
+import type { Activities, CreateLuckyDayForm } from "types";
 import * as S from "./ActivityToggle.styled";
 
 interface ActivityToggleProps {
   activity: { icon: React.ReactNode; label: string };
   data?: Activities;
+  actNos: number[];
   isOpen: boolean;
   toggle: string | null;
+  setValue: UseFormSetValue<CreateLuckyDayForm>;
   handleToggle: (toggle: string | null) => void;
 }
 
 function ActivityToggle({
   activity,
   data,
+  actNos,
   isOpen,
   toggle,
+  setValue,
   handleToggle,
 }: ActivityToggleProps) {
-  const ref = useRef<HTMLButtonElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
+  const activityRef = useRef<HTMLButtonElement>(null);
+
+  const [selectedItems, setSelectedItems] = useState<number[]>(actNos);
 
   const handleToggleClick = (): void => {
     if (activity.label === toggle) {
+      if (activityRef.current) return;
+
       return handleToggle(null);
     }
 
     handleToggle(activity.label);
   };
 
+  const handleItemClick = (actNo: number) => (): void => {
+    setSelectedItems((prevSelectedItems) => {
+      if (prevSelectedItems.includes(actNo)) {
+        return prevSelectedItems.filter((item) => item !== actNo);
+      } else {
+        return [...prevSelectedItems, actNo];
+      }
+    });
+  };
+
+  // useEffect(() => { //TODO: 동작 오류가 있어 임시 주석처리
+  //   const handleFocus = (e: MouseEvent): void => {
+  //     if (
+  //       ref.current?.contains(e?.target as HTMLElement) ||
+  //       toggle !== activity.label
+  //     )
+  //       return;
+  //     handleToggle(null);
+  //   };
+
+  //   document.addEventListener("mouseup", handleFocus);
+  //   return () => {
+  //     document.removeEventListener("mouseup", handleFocus);
+  //   };
+  // }, [handleToggle]);
+
   useEffect(() => {
-    const handleFocus = (e: MouseEvent): void => {
-      if (
-        ref.current?.contains(e?.target as HTMLElement) ||
-        toggle !== activity.label
-      )
-        return;
-
-      handleToggle(null);
-    };
-
-    document.addEventListener("mouseup", handleFocus);
-    return () => {
-      document.removeEventListener("mouseup", handleFocus);
-    };
-  }, [handleToggle]);
+    setValue("actList", selectedItems);
+  }, [selectedItems]);
 
   return (
     <S.ActivityButton
@@ -68,12 +91,21 @@ function ActivityToggle({
         </S.ActivityInfo>
         <S.Activities>
           {isOpen &&
-            data?.actList.map((item) => (
-              <S.Activity key={item.actNo}>
-                <CheckIcon css={S.icon} />
-                {item.keyword}
-              </S.Activity>
-            ))}
+            data?.actList?.map((item) => {
+              const isSelected = selectedItems.includes(item.actNo);
+
+              return (
+                <S.Activity
+                  isSelected={isSelected}
+                  ref={activityRef}
+                  key={item.actNo}
+                  onClick={handleItemClick(item.actNo)}
+                >
+                  <CheckIcon css={S.icon} />
+                  {item.keyword}
+                </S.Activity>
+              );
+            })}
         </S.Activities>
       </S.ActivityBox>
     </S.ActivityButton>

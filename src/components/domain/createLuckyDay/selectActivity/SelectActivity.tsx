@@ -1,13 +1,25 @@
 import React, { useState } from "react";
+import type { UseFormSetValue } from "react-hook-form";
 
 import { useGetLuckyDaysActivities } from "services";
 import { BookIcon, CandyIcon, HeartIcon, PresentIcon, ShoeIcon } from "assets";
+import type { CreateLuckyDayForm } from "types";
 import { ActivityToggle } from "./container";
 import * as S from "./SelectActivity.styled";
 
-function SelectActivity() {
+interface SelectActivityProps {
+  setValue: UseFormSetValue<CreateLuckyDayForm>;
+}
+
+function SelectActivity({ setValue }: SelectActivityProps) {
   const { data } = useGetLuckyDaysActivities();
   const [toggle, setToggle] = useState<string | null>(null);
+
+  console.log(data);
+
+  const actNos = data?.resData.flatMap((activity) =>
+    activity.actList.map((item) => item.actNo)
+  );
 
   const activities = [
     { icon: <PresentIcon />, label: "특별한 선물" },
@@ -30,10 +42,14 @@ function SelectActivity() {
       </S.HeadLine>
       <S.Activities>
         {activities.map((activity) => {
+          if (!actNos) return null;
+
           return (
             <ActivityToggle
               key={activity.label}
               activity={activity}
+              actNos={actNos}
+              setValue={setValue}
               data={data?.resData.find(
                 (item) => item.category === activity.label
               )}

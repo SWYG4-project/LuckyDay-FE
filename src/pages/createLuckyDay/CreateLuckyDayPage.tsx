@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 
 import {
   SelectActivity,
@@ -10,12 +11,23 @@ import {
 } from "components";
 import { ArrowIcon } from "assets";
 import { useModal, useToast } from "hooks";
+import type { CreateLuckyDayForm } from "types";
 import { CreateLuckyDayModal } from "./container";
 import * as S from "./CreateLuckyDayPage.styled";
 
 function CreateLuckyDayPage() {
   const [currentProgress, setCurrentProgress] = useState(0);
 
+  const { setValue, watch, register } = useForm<CreateLuckyDayForm>({
+    defaultValues: {
+      actList: [],
+      customActList: [],
+      period: 0,
+      cnt: 0,
+      expDtList: [],
+    },
+    mode: "onTouched",
+  });
   const { handleOpenModal } = useModal();
   const { addToast } = useToast();
 
@@ -33,7 +45,7 @@ function CreateLuckyDayPage() {
   const changePage = (current: number): React.ReactNode => {
     switch (current) {
       case 0:
-        return <SelectActivity />;
+        return <SelectActivity setValue={setValue} />;
       case 1:
         return <SelectPeriod />;
       case 2:

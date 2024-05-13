@@ -8,7 +8,7 @@ export const HeadLine = styled.span`
   `}
 `;
 
-export const ActivityButton = styled.button<{ isOpen: boolean }>`
+export const ActivityButton = styled.div<{ isOpen: boolean }>`
   ${({ isOpen }) => css`
     position: relative;
     width: ${isOpen ? "382px" : "368px"};
@@ -40,6 +40,7 @@ export const ActivityInfo = styled.div<{ isOpen: boolean }>`
     height: fit-content;
     padding: 15px 0 ${isOpen ? "8px" : "18px"} 0; //NOTE: 이미지 간격이 맞지 않아 padding-top 임의 설정함
     text-align: start;
+    cursor: pointer;
 
     & > svg:first-of-type {
       margin: 5px 5px 0 5px;
@@ -70,15 +71,22 @@ export const Activities = styled.div`
   flex-wrap: wrap;
 `;
 
-export const Activity = styled.div`
-  ${({ theme }) => css`
+export const Activity = styled.button<{ isSelected: boolean }>`
+  ${({ theme, isSelected }) => css`
     ${theme.fonts.body1};
     display: flex;
     align-items: center;
     column-gap: 3px;
     border-radius: 30px;
-    padding: 0 11px 0 6px;
-    background-color: ${theme.colors.lightOrange};
+    padding: ${isSelected ? "0 11px 0 6px" : "0 11px"};
+    color: ${!isSelected && theme.colors.gray};
+    background-color: ${isSelected
+      ? theme.colors.lightOrange
+      : theme.colors.lightBeige};
+
+    svg {
+      display: ${!isSelected && "none"};
+    }
   `}
 `;
 
