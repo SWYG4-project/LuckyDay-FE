@@ -15,8 +15,6 @@ function SelectActivity({ setValue }: SelectActivityProps) {
   const { data } = useGetLuckyDaysActivities();
   const [toggle, setToggle] = useState<string | null>(null);
 
-  console.log(data);
-
   const actNos = data?.resData.flatMap((activity) =>
     activity.actList.map((item) => item.actNo)
   );

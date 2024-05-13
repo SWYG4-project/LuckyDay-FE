@@ -11,8 +11,12 @@ export interface ActivitiesServerModel {
 
 export interface CreateLuckyDayForm {
   actList: number[];
-  customActList: string[];
+  customActList?: string[];
   period: number;
   cnt: number;
-  expDtList: string[];
+  expDTList?: string[];
+}
+
+export interface CreateLuckyDayQueryModel {
+  body: CreateLuckyDayForm;
 }

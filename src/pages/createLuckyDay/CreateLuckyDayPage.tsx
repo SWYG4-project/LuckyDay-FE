@@ -18,13 +18,13 @@ import * as S from "./CreateLuckyDayPage.styled";
 function CreateLuckyDayPage() {
   const [currentProgress, setCurrentProgress] = useState(0);
 
-  const { setValue, watch } = useForm<CreateLuckyDayForm>({
+  const { setValue, watch, handleSubmit } = useForm<CreateLuckyDayForm>({
     defaultValues: {
       actList: [],
       customActList: [],
       period: 0,
       cnt: 0,
-      expDtList: [],
+      expDTList: [],
     },
     mode: "onTouched",
   });
@@ -61,7 +61,9 @@ function CreateLuckyDayPage() {
   const handleClickNextButton = () => {
     if (currentProgress !== 3) return changeCurrentProgress(+1)();
 
-    handleOpenModal(<CreateLuckyDayModal />);
+    handleOpenModal(
+      <CreateLuckyDayModal watch={watch} handleSubmit={handleSubmit} />
+    );
   };
 
   return (

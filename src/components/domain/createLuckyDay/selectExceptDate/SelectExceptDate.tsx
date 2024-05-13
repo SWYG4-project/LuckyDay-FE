@@ -27,7 +27,7 @@ function SelectExceptDate({ watch, setValue }: SelectExceptDateProps) {
     } else {
       setExpDates([...expDates, dates]);
     }
-    setValue("expDtList", expDates);
+    setValue("expDTList", expDates);
   };
 
   return (
