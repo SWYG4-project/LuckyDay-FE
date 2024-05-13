@@ -21,8 +21,16 @@ export interface UserContextType {
   logout: () => void;
 }
 
-export const UserContext = createContext<UserContextType | undefined>(
-  undefined
+const defaultUserContextValue: UserContextType = {
+  isLoggedIn: false,
+  userProfile: { email: "", nickname: "" },
+  isLoading: true,
+  getToken: async () => {},
+  logout: () => {},
+};
+
+export const UserContext = createContext<UserContextType>(
+  defaultUserContextValue
 );
 
 export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
@@ -105,11 +113,23 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
   );
 
   const logout = useCallback(() => {
-    Cookies.remove("accessToken");
-    window.Kakao.Auth.setAccessToken("");
-    setIsLoggedIn(false);
-    setUserProfile({ email: "", nickname: "" });
-    sessionStorage.removeItem("userProfile");
+    ax.get("/users/sign-out")
+      .then((response) => {
+        console.log("로그아웃 성공:", response);
+        Cookies.remove("accessToken");
+        sessionStorage.clear();
+        if (window.Kakao && window.Kakao.Auth) {
+          window.Kakao.Auth.logout(() => {
+            console.log("카카오 로그아웃 완료");
+          });
+        }
+        setIsLoggedIn(false);
+        setUserProfile({ email: "", nickname: "" });
+        window.location.href = "/";
+      })
+      .catch((error) => {
+        console.error("로그아웃 실패:", error);
+      });
   }, []);
 
   useEffect(() => {
