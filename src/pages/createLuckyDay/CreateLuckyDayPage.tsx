@@ -9,19 +9,23 @@ import {
   ButtonLayout,
 } from "components";
 import { ArrowIcon } from "assets";
-import { useModal } from "hooks";
+import { useModal, useToast } from "hooks";
 import { CreateLuckyDayModal } from "./container";
 import * as S from "./CreateLuckyDayPage.styled";
 
 function CreateLuckyDayPage() {
-  const { handleOpenModal } = useModal();
-
   const [currentProgress, setCurrentProgress] = useState(0);
+
+  const { handleOpenModal } = useModal();
+  const { addToast } = useToast();
 
   const changeCurrentProgress = (progress: number) => (): void => {
     const changedProgress = currentProgress + progress;
 
-    if (changedProgress > 3 || changedProgress < 0) return console.log("err");
+    if (changedProgress < 0) return addToast({ content: "첫 페이지 입니다." });
+
+    if (changedProgress > 3)
+      return addToast({ content: "마지막 페이지 입니다." });
 
     setCurrentProgress(changedProgress);
   };

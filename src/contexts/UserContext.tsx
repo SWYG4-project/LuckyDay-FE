@@ -33,6 +33,16 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
     nickname: "",
   });
 
+  const initializeKakao = useCallback(() => {
+    if (!window.Kakao.isInitialized()) {
+      window.Kakao.init(KAKAO_CLIENT_ID);
+    }
+  }, []);
+
+  useEffect(() => {
+    initializeKakao();
+  }, [initializeKakao]);
+
   const getToken = useCallback(async (code: string) => {
     console.log("getToken called with code:", code);
     const payload = qs.stringify({
@@ -53,12 +63,9 @@ export const UserProvider: React.FC<{ children: React.ReactNode }> = ({
         secure: true,
         sameSite: "strict",
       });
+      window.Kakao.Auth.setAccessToken(res.data.access_token);
       setIsLoggedIn(true);
 
-      // Kakao SDK 초기화 확인 및 API 요청
-      if (!window.Kakao.isInitialized()) {
-        window.Kakao.init(KAKAO_CLIENT_ID);
-      }
       if (window.Kakao.isInitialized() && window.Kakao.API) {
         const profileData = await window.Kakao.API.request({
           url: "/v2/user/me",
