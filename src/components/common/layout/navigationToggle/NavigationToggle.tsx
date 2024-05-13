@@ -12,11 +12,10 @@ const NavigationToggle: (props: NavigationToggleProps) => JSX.Element = ({
   defaultOn = false,
 }) => {
   const [isToggleVisible, setIsToggleVisible] = useState(defaultOn);
+  const { userProfile, isLoading } = useUser();
   const toggleRef = useRef<HTMLDivElement>(null);
   const menuIconRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
-
-  const { userProfile } = useUser();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -51,7 +50,9 @@ const NavigationToggle: (props: NavigationToggleProps) => JSX.Element = ({
           <S.ToggleContentsBox>
             <S.ProfileBox>
               <S.ProfileImage />
-              {`${userProfile.nickname.substring(0, 8)}님`}
+              {isLoading || !userProfile.nickname
+                ? "사용자님"
+                : `${userProfile.nickname.substring(0, 8)}님`}
             </S.ProfileBox>
             <S.ToggleMenuBox>
               <Link to="/luckyBoard" onClick={() => setIsToggleVisible(false)}>
