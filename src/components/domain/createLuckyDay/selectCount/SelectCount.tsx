@@ -1,20 +1,36 @@
 import React, { useState } from "react";
 import dayjs from "dayjs";
+import type { UseFormSetValue, UseFormWatch } from "react-hook-form";
 
+import type { CreateLuckyDayForm } from "types";
 import * as S from "./SelectCount.styled";
 
-function SelectCount() {
+interface SelectCountProps {
+  watch: UseFormWatch<CreateLuckyDayForm>;
+  setValue: UseFormSetValue<CreateLuckyDayForm>;
+}
+
+function SelectCount({ watch, setValue }: SelectCountProps) {
   const [selectDates, setSelectDates] = useState(1);
 
-  const selectedPeriod = 4; //TODO: 임시데이터
+  const counts = [
+    { period: 7, value: 1 },
+    { period: 14, value: 2 },
+    { period: 30, value: 4 },
+    { period: 60, value: 7 },
+  ] as const;
 
-  const handleSelectCounts = (counts: number) => (): void => {
-    const currentCount = selectDates + counts;
+  const selectedPeriod =
+    counts.find((item) => item.period === watch("period"))?.value ?? 0;
+
+  const handleSelectCounts = (count: number) => (): void => {
+    const currentCount = selectDates + count;
 
     if (currentCount <= 0 || currentCount > selectedPeriod)
       return console.log("err");
 
-    setSelectDates(selectDates + counts);
+    setSelectDates(selectDates + count);
+    setValue("cnt", selectDates);
   };
 
   return (
