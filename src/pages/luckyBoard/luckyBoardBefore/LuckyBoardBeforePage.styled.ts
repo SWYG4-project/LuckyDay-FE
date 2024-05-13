@@ -1,6 +1,13 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const TextBox = styled.div`
   ${({ theme }) => css`
     color: ${theme.colors.black};

@@ -1,16 +1,3 @@
-import * as S from "./LuckyBoardPage.styled";
-import { CreateLuckyDayButton } from "components";
-
 export default function LuckyBoardPage() {
-  return (
-    <>
-      <S.TextBox>
-        아직 만들어진 럭키 데이가 없어요. <br />
-        클릭해서 럭키 데이를 만들어 보세요.
-      </S.TextBox>
-      <S.LuckyMachine>
-        <CreateLuckyDayButton />
-      </S.LuckyMachine>
-    </>
-  );
+  return <>{/* FIX: API 연결 후 수정 예정입니다. */}</>;
 }
