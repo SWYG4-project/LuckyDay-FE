@@ -8,3 +8,7 @@ export { default as CreateLuckyDayPage } from "./createLuckyDay/CreateLuckyDayPa
 export { default as SettingLuckyBoardPage } from "./settingLuckyBoard/SettingLuckyBoardPage";
 export { default as LuckyDayArchivePage } from "./luckyDayArchive/LuckyDayArchivePage";
 export { default as Error404Page } from "./404/Error404Page";
+
+// FIX: API 연결 이후 수정할 예정입니다.
+export { default as LuckyBoardBeforePage } from "./luckyBoard/luckyBoardBefore/LuckyBoardBeforePage";
+export { default as LuckyBoardAfterPage } from "./luckyBoard/luckyBoardAfter/LuckyBoardAfterPage";
