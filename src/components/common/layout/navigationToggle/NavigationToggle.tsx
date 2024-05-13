@@ -51,17 +51,11 @@ const NavigationToggle: (props: NavigationToggleProps) => JSX.Element = ({
           <S.ToggleContentsBox>
             <S.ProfileBox>
               <S.ProfileImage />
-              {userProfile.nickname}님
+              {`${userProfile.nickname.substring(0, 8)}님`}
             </S.ProfileBox>
             <S.ToggleMenuBox>
               <Link to="/luckyBoard" onClick={() => setIsToggleVisible(false)}>
                 <S.ToggleMenu>럭키 보드</S.ToggleMenu>
-              </Link>
-              <Link
-                to="/settingLuckyBoard"
-                onClick={() => setIsToggleVisible(false)}
-              >
-                <S.ToggleMenu>럭키 보드 설정</S.ToggleMenu>
               </Link>
               <Link
                 to="/luckyDayArchive"
