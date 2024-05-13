@@ -9,6 +9,7 @@ export default function MyPage() {
         <Link to="/editProfile">
           <S.MenuBox>프로필 설정</S.MenuBox>
         </Link>
+        <S.MenuBox>럭키보드 초기화</S.MenuBox>
         <S.MenuBox>로그아웃</S.MenuBox>
         <S.MenuBox>회원 탈퇴</S.MenuBox>
       </S.ContentsBox>

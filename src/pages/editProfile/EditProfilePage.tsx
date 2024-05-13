@@ -3,9 +3,8 @@ import * as S from "./EditProfilePage.styled";
 export default function EditProfilePage() {
   return (
     <>
-      <S.TitleBox>마이페이지</S.TitleBox>
+      <S.TitleBox>프로필 설정</S.TitleBox>
       <S.ContentsBox>
-        <S.Text_h1>프로필 설정</S.Text_h1>
         <S.ProfileBox>
           <S.Text_h2>닉네임</S.Text_h2>
           <S.StyledInput placeholder="닉네임을 입력해주세요." />
