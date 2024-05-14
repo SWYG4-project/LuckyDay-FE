@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import type { UseFormSetValue } from "react-hook-form";
+import React, { useEffect, useRef } from "react";
+import type { UseFormSetValue, UseFormWatch } from "react-hook-form";
 
 import { ArrowIcon, CheckIcon } from "assets";
 import type { Activities, CreateLuckyDayForm } from "types";
@@ -8,66 +8,63 @@ import * as S from "./ActivityToggle.styled";
 interface ActivityToggleProps {
   activity: { icon: React.ReactNode; label: string };
   data?: Activities;
-  actNos: number[];
   isOpen: boolean;
   toggle: string | null;
   setValue: UseFormSetValue<CreateLuckyDayForm>;
+  watch: UseFormWatch<CreateLuckyDayForm>;
   handleToggle: (toggle: string | null) => void;
+  getSelectItems: (items: number[]) => void;
 }
 
 function ActivityToggle({
   activity,
   data,
-  actNos,
   isOpen,
   toggle,
   setValue,
+  watch,
   handleToggle,
+  getSelectItems,
 }: ActivityToggleProps) {
   const ref = useRef<HTMLDivElement>(null);
   const activityRef = useRef<HTMLButtonElement>(null);
 
-  const [selectedItems, setSelectedItems] = useState<number[]>(actNos);
-
   const handleToggleClick = (): void => {
     if (activity.label === toggle) {
-      if (activityRef.current) return;
-
       return handleToggle(null);
     }
 
     handleToggle(activity.label);
   };
 
-  const handleItemClick = (actNo: number) => (): void => {
-    setSelectedItems((prevSelectedItems) => {
-      if (prevSelectedItems.includes(actNo)) {
-        return prevSelectedItems.filter((item) => item !== actNo);
-      } else {
-        return [...prevSelectedItems, actNo];
-      }
-    });
-  };
+  const handleItemClick =
+    (actNo: number) =>
+    (e: React.MouseEvent): void => {
+      e.stopPropagation();
+      const updatedSelectedItems = watch("actList").includes(actNo)
+        ? watch("actList").filter((item) => item !== actNo)
+        : [...watch("actList"), actNo];
 
-  // useEffect(() => { //TODO: 동작 오류가 있어 임시 주석처리
-  //   const handleFocus = (e: MouseEvent): void => {
-  //     if (
-  //       ref.current?.contains(e?.target as HTMLElement) ||
-  //       toggle !== activity.label
-  //     )
-  //       return;
-  //     handleToggle(null);
-  //   };
-
-  //   document.addEventListener("mouseup", handleFocus);
-  //   return () => {
-  //     document.removeEventListener("mouseup", handleFocus);
-  //   };
-  // }, [handleToggle]);
+      setValue("actList", updatedSelectedItems);
+      getSelectItems(updatedSelectedItems);
+    };
 
   useEffect(() => {
-    setValue("actList", selectedItems);
-  }, [selectedItems]);
+    const handleFocus = (e: MouseEvent): void => {
+      if (
+        ref.current?.contains(e.target as HTMLElement) ||
+        toggle !== activity.label
+      ) {
+        return;
+      }
+      handleToggle(null);
+    };
+
+    document.addEventListener("mouseup", handleFocus);
+    return () => {
+      document.removeEventListener("mouseup", handleFocus);
+    };
+  }, [handleToggle, toggle, activity.label]);
 
   return (
     <S.ActivityButton
@@ -77,6 +74,7 @@ function ActivityToggle({
       onClick={handleToggleClick}
     >
       <S.Img
+        // TODO:innerShadow값이 있어 이미지로 따로 설정해줌
         src={
           isOpen
             ? "images/img_empty_mediumBox.png"
@@ -92,7 +90,7 @@ function ActivityToggle({
         <S.Activities>
           {isOpen &&
             data?.actList?.map((item) => {
-              const isSelected = selectedItems.includes(item.actNo);
+              const isSelected = watch("actList")?.includes(item.actNo);
 
               return (
                 <S.Activity

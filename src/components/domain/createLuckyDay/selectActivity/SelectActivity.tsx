@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import type { UseFormSetValue } from "react-hook-form";
+import React, { useEffect, useState } from "react";
+import type { UseFormSetValue, UseFormWatch } from "react-hook-form";
 
 import { useGetLuckyDaysActivities } from "services";
 import { BookIcon, CandyIcon, HeartIcon, PresentIcon, ShoeIcon } from "assets";
@@ -9,15 +9,18 @@ import * as S from "./SelectActivity.styled";
 
 interface SelectActivityProps {
   setValue: UseFormSetValue<CreateLuckyDayForm>;
+  watch: UseFormWatch<CreateLuckyDayForm>;
 }
 
-function SelectActivity({ setValue }: SelectActivityProps) {
+function SelectActivity({ watch, setValue }: SelectActivityProps) {
   const { data } = useGetLuckyDaysActivities();
   const [toggle, setToggle] = useState<string | null>(null);
 
   const actNos = data?.resData.flatMap((activity) =>
     activity.actList.map((item) => item.actNo)
   );
+
+  const [, setSelectedItems] = useState<number[]>([]);
 
   const activities = [
     { icon: <PresentIcon />, label: "특별한 선물" },
@@ -28,8 +31,23 @@ function SelectActivity({ setValue }: SelectActivityProps) {
     // { icon: <SmileIcon />, label: "+) 직접 입력" },
   ] as const;
 
+  const getSelectItems = (value: number[]) => {
+    setSelectedItems(value);
+  };
+
   const handleToggle = (toggleLabel: string | null): void =>
     setToggle(toggleLabel);
+
+  useEffect(() => {
+    if (data && !watch("actList").length) {
+      const actNos = data.resData.flatMap((activity) =>
+        activity.actList.map((item) => item.actNo)
+      );
+
+      setSelectedItems(actNos);
+      setValue("actList", actNos);
+    }
+  }, [data]);
 
   return (
     <>
@@ -46,8 +64,9 @@ function SelectActivity({ setValue }: SelectActivityProps) {
             <ActivityToggle
               key={activity.label}
               activity={activity}
-              actNos={actNos}
+              getSelectItems={getSelectItems}
               setValue={setValue}
+              watch={watch}
               data={data?.resData.find(
                 (item) => item.category === activity.label
               )}

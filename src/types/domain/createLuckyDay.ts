@@ -1,6 +1,8 @@
+export type actList = { actNo: number; keyword: string };
+
 export interface Activities {
   category: string;
-  actList: { actNo: number; keyword: string }[];
+  actList: actList[];
 }
 
 export interface ActivitiesServerModel {

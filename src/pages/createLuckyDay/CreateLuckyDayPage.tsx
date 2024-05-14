@@ -46,7 +46,7 @@ function CreateLuckyDayPage() {
   const changePage = (current: number): React.ReactNode => {
     switch (current) {
       case 0:
-        return <SelectActivity setValue={setValue} />;
+        return <SelectActivity setValue={setValue} watch={watch} />;
       case 1:
         return <SelectPeriod setValue={setValue} watch={watch} />;
       case 2:
