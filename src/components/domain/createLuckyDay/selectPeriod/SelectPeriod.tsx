@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import dayjs from "dayjs";
 import type { UseFormSetValue, UseFormWatch } from "react-hook-form";
 
+import { SvgFrame } from "components";
+import { LongBoxIcon } from "assets";
 import type { CreateLuckyDayForm } from "types";
 import * as S from "./SelectPeriod.styled";
-import { SvgFrame } from "components/common";
-import { LongBoxIcon } from "assets";
 
 interface SelectPeriodProps {
   watch: UseFormWatch<CreateLuckyDayForm>;
