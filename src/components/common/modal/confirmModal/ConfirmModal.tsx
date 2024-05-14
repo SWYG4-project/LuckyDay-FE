@@ -1,14 +1,15 @@
 import React from "react";
 
 import { useModal } from "hooks";
-import { CloseIcon } from "assets";
+import { CloseIcon, LargeBoxIcon, ShortBoxIcon } from "assets";
 import { BaseModal } from "../baseModal";
 import * as S from "./ConfirmModal.styled";
+import { SvgFrame } from "components/common/svgFrame";
 
 interface ConfirmModalProps {
   className?: string;
   title: string;
-  subTitle?: string;
+  subTitle?: string | React.ReactNode;
   icon?: React.ReactNode;
   desc?: string;
   cancelLabel?: string;
@@ -42,8 +43,7 @@ const ConfirmModal = React.forwardRef(
           <S.Title>{title}</S.Title>
           {subTitle ? (
             <S.CenterContent>
-              {/* TODO: 이미지 변경 예정 */}
-              <img src="public/images/empty.png" alt="empty" />
+              <SvgFrame css={S.largeBoxIcon} icon={<LargeBoxIcon />} />
               <S.SubTitle>{subTitle}</S.SubTitle>
             </S.CenterContent>
           ) : (
@@ -54,9 +54,15 @@ const ConfirmModal = React.forwardRef(
         <S.ButtonWrapper>
           {/* TODO: 버튼 컴포넌트로 변경 후 수정 예정 */}
           {cancelLabel && (
-            <button onClick={handleCancelClick}>{cancelLabel}</button>
+            <S.CancelButton onClick={handleCancelClick}>
+              <SvgFrame css={S.beigeIcon} icon={<ShortBoxIcon />} />
+              <span>{cancelLabel}</span>
+            </S.CancelButton>
           )}
-          <button onClick={handleBaseClick}>{baseLabel}</button>
+          <S.BaseButton onClick={handleBaseClick}>
+            <SvgFrame css={S.purpleIcon} icon={<ShortBoxIcon />} />
+            <span>{baseLabel}</span>
+          </S.BaseButton>
         </S.ButtonWrapper>
       </BaseModal>
     );
