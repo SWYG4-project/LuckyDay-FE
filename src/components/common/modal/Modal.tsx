@@ -10,7 +10,8 @@ function Modal() {
 
   return (
     <ModalPortal>
-      {modalComp && modalComp.map((item) => <S.Modal>{item}</S.Modal>)}
+      {modalComp &&
+        modalComp.map((item, i) => <S.Modal key={i}>{item}</S.Modal>)}
     </ModalPortal>
   );
 }

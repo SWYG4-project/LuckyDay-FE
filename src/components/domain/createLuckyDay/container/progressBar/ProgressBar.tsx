@@ -17,7 +17,7 @@ function ProgressBar({ progressState }: ProgressBarProps) {
   return (
     <S.ProgressBar>
       {progress.map((item) => (
-        <S.SingleProgress>
+        <S.SingleProgress key={item.label}>
           <S.ProgressState state={progressState + 1 === item.state}>
             {item.state}
           </S.ProgressState>
