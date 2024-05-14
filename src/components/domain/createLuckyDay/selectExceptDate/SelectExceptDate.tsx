@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import type { UseFormSetValue, UseFormWatch } from "react-hook-form";
 
@@ -27,8 +27,11 @@ function SelectExceptDate({ watch, setValue }: SelectExceptDateProps) {
     } else {
       setExpDates([...expDates, dates]);
     }
-    setValue("expDTList", expDates);
   };
+
+  useEffect(() => {
+    setValue("expDTList", expDates);
+  }, [expDates]);
 
   return (
     <>
