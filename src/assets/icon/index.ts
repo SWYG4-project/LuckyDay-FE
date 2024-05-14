@@ -9,6 +9,7 @@ export { ReactComponent as LargeBoxIcon } from "./ic_largeBox.svg";
 export { ReactComponent as LongBoxIcon } from "./ic_longBox.svg";
 export { ReactComponent as MediumBoxIcon } from "./ic_mediumBox.svg";
 export { ReactComponent as MenuIcon } from "./ic_menu.svg";
+export { ReactComponent as MinusIcon } from "./ic_minus.svg";
 export { ReactComponent as PlusIcon } from "./ic_plus.svg";
 export { ReactComponent as PresentIcon } from "./ic_present.svg";
 export { ReactComponent as ShoeIcon } from "./ic_shoe.svg";

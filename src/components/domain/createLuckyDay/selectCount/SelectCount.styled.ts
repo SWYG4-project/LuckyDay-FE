@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
+import { Theme, css } from "@emotion/react";
 
 export const HeadLine = styled.div`
   ${({ theme }) => css`
@@ -43,8 +43,25 @@ export const SelectDatesBox = styled.div`
   `}
 `;
 
-export const Img = styled.img`
+export const icon = css`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px;
+  height: 24px;
+`;
+
+export const svgFrame = (theme: Theme) => css`
   width: 100%;
+
+  svg {
+    width: 100%;
+
+    path {
+      fill: ${theme.colors.lightOrange};
+    }
+  }
 `;
 
 export const SelectDatesButton = styled.button`

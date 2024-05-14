@@ -4,6 +4,8 @@ import type { UseFormSetValue, UseFormWatch } from "react-hook-form";
 
 import type { CreateLuckyDayForm } from "types";
 import * as S from "./SelectCount.styled";
+import { SvgFrame } from "components/common";
+import { CircleBoxIcon, MinusIcon, PlusIcon } from "assets";
 
 interface SelectCountProps {
   watch: UseFormWatch<CreateLuckyDayForm>;
@@ -45,15 +47,13 @@ function SelectCount({ watch, setValue }: SelectCountProps) {
       </S.HeadLine>
       <S.SelectDatesWrapper>
         <S.SelectDatesButton onClick={handleSelectCounts(-1)}>
-          <S.Img src="images/img_small.png" />
-          <S.Icon>-</S.Icon>
-          {/* TODO: 아이콘 width, height 조절 이슈가 있어 임의로 설정 */}
+          <SvgFrame css={S.svgFrame} icon={<CircleBoxIcon />} />
+          <MinusIcon css={S.icon} />
         </S.SelectDatesButton>
         <S.SelectDatesBox>{selectDates}</S.SelectDatesBox>
         <S.SelectDatesButton onClick={handleSelectCounts(+1)}>
-          <S.Img src="images/img_small.png" />
-          <S.Icon>+</S.Icon>
-          {/* TODO: 아이콘 width, height 조절 이슈가 있어 임의로 설정 */}
+          <SvgFrame css={S.svgFrame} icon={<CircleBoxIcon />} />
+          <PlusIcon css={S.icon} />
         </S.SelectDatesButton>
       </S.SelectDatesWrapper>
       {!!selectedPeriod && (
