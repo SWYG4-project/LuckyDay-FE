@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import dayjs from "dayjs";
-import type { UseFormSetValue } from "react-hook-form";
+import type { UseFormSetValue, UseFormWatch } from "react-hook-form";
 
 import type { CreateLuckyDayForm } from "types";
 import * as S from "./SelectPeriod.styled";
+import { SvgFrame } from "components/common";
+import { LongBoxIcon } from "assets";
 
 interface SelectPeriodProps {
+  watch: UseFormWatch<CreateLuckyDayForm>;
   setValue: UseFormSetValue<CreateLuckyDayForm>;
 }
 
-function SelectPeriod({ setValue }: SelectPeriodProps) {
+function SelectPeriod({ watch, setValue }: SelectPeriodProps) {
   const [selectPeriod, setSelectPeriod] = useState(0);
 
   const periods = [
@@ -40,12 +43,9 @@ function SelectPeriod({ setValue }: SelectPeriodProps) {
             key={period.label}
             onClick={handleSelectPeriod(period.label)}
           >
-            <S.Img
-              src={
-                selectPeriod === period.value
-                  ? "images/img_medium_orange.png"
-                  : "images/img_medium_beige.png"
-              }
+            <SvgFrame
+              css={S.icon(watch("period") === period.value)}
+              icon={<LongBoxIcon />}
             />
             <S.ActivityInfo>
               <S.ActivityTitle>{period.label}</S.ActivityTitle>

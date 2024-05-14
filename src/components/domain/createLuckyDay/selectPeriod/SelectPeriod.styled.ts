@@ -1,4 +1,4 @@
-import { css } from "@emotion/react";
+import { Theme, css } from "@emotion/react";
 import styled from "@emotion/styled";
 
 export const HeadLine = styled.div`
@@ -28,9 +28,14 @@ export const ActivityButton = styled.button`
   width: 100%;
 `;
 
-export const Img = styled.img`
-  width: 100%;
-`;
+export const icon = (isSelected: boolean) => (theme: Theme) =>
+  css`
+    width: 100%;
+
+    path {
+      fill: ${isSelected ? theme.colors.lightOrange : theme.colors.beige};
+    }
+  `;
 
 export const ActivityInfo = styled.div`
   position: absolute;

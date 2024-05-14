@@ -48,7 +48,7 @@ function CreateLuckyDayPage() {
       case 0:
         return <SelectActivity setValue={setValue} />;
       case 1:
-        return <SelectPeriod setValue={setValue} />;
+        return <SelectPeriod setValue={setValue} watch={watch} />;
       case 2:
         return <SelectCount setValue={setValue} watch={watch} />;
       case 3:
