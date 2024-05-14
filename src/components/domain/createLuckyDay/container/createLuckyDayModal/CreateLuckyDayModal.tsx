@@ -54,7 +54,6 @@ function CreateLuckyDayModal({
     </p>
   );
 
-  console.log(!!expDatesFormatted?.length);
   return (
     <ConfirmModal
       css={S.modal(!!expDatesFormatted?.length)}

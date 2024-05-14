@@ -57,6 +57,14 @@ function CreateLuckyDayPage() {
   };
 
   const handleClickNextButton = () => {
+    if (currentProgress === 0 && !watch("actList").length) {
+      return addToast({ content: "최소 1개의 카테고리를 선택해 주세요." });
+    }
+
+    if (currentProgress === 1 && watch("period") === 0) {
+      return addToast({ content: "최소 1개의 기간을 선택해 주세요." });
+    }
+
     if (currentProgress !== 3) return changeCurrentProgress(+1)();
 
     handleOpenModal(

@@ -6,6 +6,7 @@ import type { CreateLuckyDayForm } from "types";
 import * as S from "./SelectCount.styled";
 import { SvgFrame } from "components/common";
 import { CircleBoxIcon, MinusIcon, PlusIcon } from "assets";
+import { useToast } from "hooks";
 
 interface SelectCountProps {
   watch: UseFormWatch<CreateLuckyDayForm>;
@@ -14,6 +15,8 @@ interface SelectCountProps {
 
 function SelectCount({ watch, setValue }: SelectCountProps) {
   const [selectDates, setSelectDates] = useState(1);
+
+  const { addToast } = useToast();
 
   const counts = [
     { period: 7, value: 1 },
@@ -28,8 +31,10 @@ function SelectCount({ watch, setValue }: SelectCountProps) {
   const handleSelectCounts = (count: number) => (): void => {
     const currentCount = selectDates + count;
 
-    if (currentCount <= 0 || currentCount > selectedPeriod)
-      return console.log("err");
+    if (currentCount <= 0)
+      return addToast({ content: `1개 이상의 개수를 선택해주세요` });
+    if (currentCount > selectedPeriod)
+      return addToast({ content: `${selectedPeriod}개 이내로 선택해주세요` });
 
     setSelectDates(selectDates + count);
     setValue("cnt", selectDates);
