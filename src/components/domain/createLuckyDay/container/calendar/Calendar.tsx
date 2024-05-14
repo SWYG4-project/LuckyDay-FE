@@ -1,5 +1,5 @@
 import { SvgFrame } from "components";
-import { ArrowIcon, LargeBoxIcon, LongBoxIcon } from "assets";
+import { ArrowIcon, CircleBoxIcon, LargeBoxIcon, LongBoxIcon } from "assets";
 import useCalendar from "./hooks/useCalendar";
 import * as S from "./Calendar.styled";
 
@@ -24,20 +24,21 @@ const Calendar = ({ dates, makeExpDates }: CalendarProps) => {
   return (
     <S.Calendar>
       <S.DayWeekWrapper>
-        {/* TODO: button 컴포넌트 제작 필요 */}
-        <SvgFrame css={S.svgFrame} icon={<LongBoxIcon />} />
+        <SvgFrame css={S.beigeIcon} icon={<LongBoxIcon />} />
         <S.DayWeekBox>
           <S.PrevArrowButton onClick={handleMoveToPrevMonth}>
+            <SvgFrame css={S.lightbeigeIcon} icon={<CircleBoxIcon />} />
             <ArrowIcon />
           </S.PrevArrowButton>
           <S.Month>{currentMonth.format("M")}월</S.Month>
           <S.NextArrowButton onClick={handleMoveToNextMonth}>
+            <SvgFrame css={S.lightbeigeIcon} icon={<CircleBoxIcon />} />
             <ArrowIcon />
           </S.NextArrowButton>
         </S.DayWeekBox>
       </S.DayWeekWrapper>
       <S.CalendarBox>
-        <SvgFrame css={S.largeIcon} icon={<LargeBoxIcon />} />
+        <SvgFrame css={S.beigeIcon} icon={<LargeBoxIcon />} />
         <S.CalendarHeader>
           {dayWeek.map((dayWeek, index) => (
             <S.DayWeek key={index}>{dayWeek}</S.DayWeek>

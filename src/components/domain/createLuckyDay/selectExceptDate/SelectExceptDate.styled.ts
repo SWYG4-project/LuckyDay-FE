@@ -11,7 +11,7 @@ export const HeadLine = styled.span`
 export const SubHeadLine = styled.span`
   ${({ theme }) => css`
     ${theme.fonts.headline2};
-    margin-bottom: 37px;
+    margin-bottom: 20px;
   `}
 `;
 
