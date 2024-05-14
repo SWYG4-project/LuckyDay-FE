@@ -8,11 +8,11 @@ import {
   SelectExceptDate,
   ProgressBar,
   ButtonLayout,
+  CreateLuckyDayModal,
 } from "components";
 import { ArrowIcon } from "assets";
 import { useModal, useToast } from "hooks";
 import type { CreateLuckyDayForm } from "types";
-import { CreateLuckyDayModal } from "./container";
 import * as S from "./CreateLuckyDayPage.styled";
 
 function CreateLuckyDayPage() {
@@ -28,8 +28,6 @@ function CreateLuckyDayPage() {
     },
     mode: "onTouched",
   });
-
-  console.log(watch());
 
   const { handleOpenModal } = useModal();
   const { addToast } = useToast();

@@ -25,10 +25,10 @@ function CreateLuckyDayModal({
   const handleClick = handleSubmit((data) => {
     const req = {
       actList: data.actList,
-      ...(data.customActList?.length && { customActList: data.customActList }),
+      customActList: data.customActList,
       period: data.period,
       cnt: data.cnt,
-      ...(data.expDTList?.length && { expDTList: data.expDTList }),
+      expDTList: data.expDTList,
     };
 
     createLuckyDayMutate(req);
@@ -40,17 +40,26 @@ function CreateLuckyDayModal({
 
   const expDatesFormatted = expDatesString?.replace(/,/g, "");
 
+  const subTitle = (
+    <p>
+      생성 옵션:
+      <br />
+      {dayjs().format("YYYY년 MM월 DD일")}
+      <br />~ {EndOfDate}
+      <br />
+      {<strong>{watch("period")}</strong>}일 동안{" "}
+      <strong>{watch("cnt")}</strong>개의 럭키 데이
+      <br />
+      {expDatesFormatted ? `\n제외 날짜:\n ${expDatesFormatted}` : ""}
+    </p>
+  );
+
+  console.log(!!expDatesFormatted?.length);
   return (
     <ConfirmModal
-      css={S.modal}
+      css={S.modal(!!expDatesFormatted?.length)}
       title="럭키 데이를 생성하시겠어요?"
-      subTitle={`생성 옵션:\n${dayjs().format(
-        "YYYY년 MM월 DD일"
-      )} ~ ${EndOfDate}\n${watch("period")}일 동안 ${watch(
-        "cnt"
-      )}개의 럭키 데이\n${
-        expDatesFormatted ? `\n제외 날짜:\n ${expDatesFormatted}` : ""
-      }`}
+      subTitle={subTitle}
       desc={`한 번 제출한 럭키 데이 옵션은 수정할 수 없으며,\n활동과 날짜는 랜덤 배정됩니다.`}
       baseLabel="생성하기"
       handleBaseClick={handleClick}
