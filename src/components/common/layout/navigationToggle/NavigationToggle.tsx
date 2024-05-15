@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Link, useLocation, useSearchParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { MenuIcon } from "assets";
 import * as S from "./NavigationToggle.styled";
@@ -11,14 +11,12 @@ interface NavigationToggleProps {
 const NavigationToggle: (props: NavigationToggleProps) => JSX.Element = ({
   defaultOn = false,
 }) => {
-  const [searchParams] = useSearchParams();
-
   const [isToggleVisible, setIsToggleVisible] = useState(defaultOn);
   const toggleRef = useRef<HTMLDivElement>(null);
   const menuIconRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
-  const nickname = searchParams.get("nickname")!;
+  const nickname = sessionStorage.getItem("nickname")!;
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
