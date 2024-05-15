@@ -8,7 +8,7 @@ export const KakaoLoginButton = styled.button`
     ${theme.fonts.headline1};
     width: 247px;
     height: 45px;
-    margin: 20px;
+    margin-bottom: -50px;
     border: none;
     background-color: transparent;
     background-size: cover;

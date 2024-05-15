@@ -5,31 +5,51 @@ export const CarouselContainer = styled.div`
   position: relative;
   overflow: hidden;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-export const Slide = styled.div`
-  position: relative;
-  display: block;
+export const SlideContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+interface SlideProps {
+  active: boolean;
+}
+
+export const Slide = styled.div<SlideProps>`
+  display: ${({ active }) => (active ? "block" : "none")};
+  justify-content: center;
+  align-items: center;
 `;
 
 export const Image = styled.img`
-  width: 340px;
+  width: 270px;
+  height: 414px;
 `;
 
 export const TextBox = styled.div`
   ${({ theme }) => css`
+    width: 310px;
+    margin: 30px 0px 30px 0px;
+    text-align: center;
+    white-space: pre-wrap;
     color: ${theme.colors.black};
     ${theme.fonts.logo};
-    text-align: center;
-    margin: 20px 0px 20px 0px;
-    white-space: pre-wrap;
   `}
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  margin: 40px 0px 20px 0px;
+  width: 100%;
+  margin: 50px 0px 50px 0px;
+  padding: 0px 15px 0px 15px;
+  box-sizing: border-box;
 `;
 
 export const button = css`
@@ -68,7 +88,7 @@ export const DotContainer = styled.ul`
   justify-content: center;
   align-items: center;
   list-style: none;
-  padding: 0;
+  margin: 10px 0;
 `;
 
 interface DotProps {
