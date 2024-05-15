@@ -1,5 +1,4 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
-import Cookies from "js-cookie";
 
 const instance: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL,
@@ -7,7 +6,7 @@ const instance: AxiosInstance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    const accessToken = Cookies.get("accessToken");
+    const accessToken = sessionStorage.getItem("accessToken");
     if (accessToken) {
       config.headers = config.headers || {};
       config.headers["Authorization"] = `Bearer ${accessToken}`;

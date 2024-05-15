@@ -8,7 +8,7 @@ export default function Router() {
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<P.LandingPage />} />
-          <Route path="/oauth2/kakao/callback" element={<P.Auth />} />
+          <Route path="oauth2/kakao/callback" element={<P.Auth />} />
           <Route path="profile" element={<P.Profile />} />
           <Route path="myPage" element={<P.MyPage />} />
           <Route path="editProfile" element={<P.EditProfilePage />} />

@@ -1,10 +1,19 @@
+import { Link, useNavigate } from "react-router-dom";
+
+import { useLogout } from "services";
 import * as S from "./myPage.styled";
-import { Link } from "react-router-dom";
-import { useContext } from "react";
-import { UserContext } from "contexts/UserContext";
 
 export default function MyPage() {
-  const { logout } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const { mutate: logoutMutate } = useLogout();
+
+  const logout = () => {
+    sessionStorage.clear();
+    logoutMutate();
+
+    navigate("/");
+  };
 
   return (
     <>

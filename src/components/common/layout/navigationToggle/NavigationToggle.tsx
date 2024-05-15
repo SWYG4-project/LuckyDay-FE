@@ -1,8 +1,8 @@
-import * as S from "./NavigationToggle.styled";
 import { useState, useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { useUser } from "hooks";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
+
 import { MenuIcon } from "assets";
+import * as S from "./NavigationToggle.styled";
 
 interface NavigationToggleProps {
   defaultOn?: boolean;
@@ -11,11 +11,14 @@ interface NavigationToggleProps {
 const NavigationToggle: (props: NavigationToggleProps) => JSX.Element = ({
   defaultOn = false,
 }) => {
+  const [searchParams] = useSearchParams();
+
   const [isToggleVisible, setIsToggleVisible] = useState(defaultOn);
-  const { userProfile, isLoading } = useUser();
   const toggleRef = useRef<HTMLDivElement>(null);
   const menuIconRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
+
+  const nickname = searchParams.get("nickname")!;
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -50,9 +53,7 @@ const NavigationToggle: (props: NavigationToggleProps) => JSX.Element = ({
           <S.ToggleContentsBox>
             <S.ProfileBox>
               <S.ProfileImage />
-              {isLoading || !userProfile.nickname
-                ? "사용자님"
-                : `${userProfile.nickname.substring(0, 8)}님`}
+              {!nickname ? "사용자님" : `${nickname}님`}
             </S.ProfileBox>
             <S.ToggleMenuBox>
               <Link to="/luckyBoard" onClick={() => setIsToggleVisible(false)}>
