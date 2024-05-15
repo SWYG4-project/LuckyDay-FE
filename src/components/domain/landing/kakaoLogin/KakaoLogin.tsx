@@ -1,9 +1,10 @@
-import { KAKAO_AUTH_URL } from "config";
 import { KakaoLoginButton } from "./KakaoLogin.styled";
 
 const KakaoLogin = () => {
   const handleLogin = () => {
-    window.location.href = KAKAO_AUTH_URL;
+    const baseUrl = import.meta.env.VITE_BASE_URL;
+
+    window.location.href = `${baseUrl}/users/sign-in`;
   };
 
   return (
