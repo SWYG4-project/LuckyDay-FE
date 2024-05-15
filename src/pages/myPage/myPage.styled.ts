@@ -12,13 +12,13 @@ export const TitleBox = styled.div`
   ${({ theme }) => css`
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 100%;
-    height: 70px;
+    height: 60px;
     padding: 30px;
-    margin-bottom: 10px;
     color: ${theme.colors.black};
     ${theme.fonts.headline1}
-    border-bottom: 1px  solid ${theme.colors.gray};
+    border-top: 1px  solid ${theme.colors.gray};
   `}
 `;
 

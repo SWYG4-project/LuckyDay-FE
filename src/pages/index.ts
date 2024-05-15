@@ -5,7 +5,6 @@ export { default as MyPage } from "./myPage/MyPage";
 export { default as EditProfilePage } from "./editProfile/EditProfilePage";
 export { default as LuckyBoardPage } from "./luckyBoard/LuckyBoardPage";
 export { default as CreateLuckyDayPage } from "./createLuckyDay/CreateLuckyDayPage";
-export { default as SettingLuckyBoardPage } from "./settingLuckyBoard/SettingLuckyBoardPage";
 export { default as LuckyDayArchivePage } from "./luckyDayArchive/LuckyDayArchivePage";
 export { default as Error404Page } from "./404/Error404Page";
 

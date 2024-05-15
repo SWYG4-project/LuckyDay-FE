@@ -19,10 +19,6 @@ export default function Router() {
           <Route path="luckyBoardAfter" element={<P.LuckyBoardAfterPage />} />
           <Route path="createLuckyDay" element={<P.CreateLuckyDayPage />} />
           <Route path="luckyDayArchive" element={<P.LuckyDayArchivePage />} />
-          <Route
-            path="settingLuckyBoard"
-            element={<P.SettingLuckyBoardPage />}
-          />
           <Route path="404" element={<P.Error404Page />} />
         </Route>
       </Routes>

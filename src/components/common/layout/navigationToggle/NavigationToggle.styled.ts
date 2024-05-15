@@ -36,14 +36,17 @@ export const ToggleContentsBox = styled.div`
 `;
 
 export const ProfileBox = styled.div`
-  display: flex;
-  align-items: center;
+  ${({ theme }) => css`
+    display: flex;
+    align-items: center;
+    ${theme.fonts.headline2};
+  `}
 `;
 
 export const ProfileImage = styled.div`
   width: 45px;
   height: 45px;
-  margin-right: 15px;
+  margin-right: 10px;
   background-size: cover;
   background-position: center;
   background-image: url("/images/profile/profile-03.png");
