@@ -40,7 +40,7 @@ export const largeBoxIcon = (theme: Theme) => css`
   padding: 0 4px;
 
   path {
-    fill: ${theme.colors.purple};
+    fill: ${theme.colors.lightPurple};
   }
 `;
 
