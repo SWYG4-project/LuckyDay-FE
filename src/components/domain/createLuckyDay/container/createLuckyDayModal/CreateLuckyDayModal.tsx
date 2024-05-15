@@ -1,8 +1,10 @@
 import React from "react";
 import dayjs from "dayjs";
+import { useNavigate } from "react-router-dom";
 import type { UseFormHandleSubmit, UseFormWatch } from "react-hook-form";
 
 import { ConfirmModal } from "components";
+import { useModal } from "hooks";
 import { useCreateLuckyDay } from "services";
 import type { CreateLuckyDayForm } from "types";
 import * as S from "./CreateLuckyDayModal.styled";
@@ -16,7 +18,11 @@ function CreateLuckyDayModal({
   watch,
   handleSubmit,
 }: CreateLuckyDayModalProps) {
+  const navigate = useNavigate();
+
   const { mutate: createLuckyDayMutate } = useCreateLuckyDay();
+
+  const { handleModalClose } = useModal();
 
   const EndOfDate = dayjs(dayjs())
     .add(+watch("period"), "day")
@@ -31,7 +37,12 @@ function CreateLuckyDayModal({
       expDTList: data.expDTList,
     };
 
-    createLuckyDayMutate(req);
+    createLuckyDayMutate(req, {
+      onSuccess: () => {
+        handleModalClose();
+        navigate("/luckyBoard");
+      },
+    });
   });
 
   const expDatesString = watch("expDTList")

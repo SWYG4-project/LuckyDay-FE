@@ -26,9 +26,10 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
           <Global styles={globalStyle} />
-          <Router />
-          <Modal />
-          <Toast />
+          <Router>
+            <Modal />
+            <Toast />
+          </Router>
           {/* Fix: 레이아웃 수정 예정 */}
         </ThemeProvider>
       </QueryClientProvider>
