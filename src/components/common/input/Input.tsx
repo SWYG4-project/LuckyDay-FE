@@ -1,3 +1,4 @@
+// Input.tsx
 import React from "react";
 import * as S from "./Input.styled";
 
@@ -5,12 +6,13 @@ interface InputProps {
   className?: string;
   placeholder: string;
   disabled?: boolean;
+  value?: string;
+  handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
   handleBlur?: () => void;
-  handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Input = React.forwardRef(
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
     {
       className,
@@ -19,8 +21,9 @@ const Input = React.forwardRef(
       handleFocus,
       handleBlur,
       handleChange,
-    }: InputProps,
-    ref?: React.ForwardedRef<HTMLInputElement>
+      value,
+    },
+    ref
   ) => {
     return (
       <S.Input
@@ -31,6 +34,7 @@ const Input = React.forwardRef(
         onFocus={handleFocus}
         onBlur={handleBlur}
         onChange={handleChange}
+        value={value}
       />
     );
   }
