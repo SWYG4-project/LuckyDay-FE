@@ -1,14 +1,14 @@
 import * as S from "./myPage.styled";
-import { useState } from "react";
-import { useLogout } from "services";
 import { Link } from "react-router-dom";
-import { ax } from "apis/axios";
+import { useState } from "react";
+import { useLogout, useDeleteUser } from "services";
 import { DeleteUserConfirmModal } from "components";
 
 export default function MyPage() {
   const baseUrl = import.meta.env.VITE_BASE_URL;
   const { mutate: logoutMutate } = useLogout();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { mutate: deleteUserMutate } = useDeleteUser();
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const logout = () => {
     sessionStorage.clear();
@@ -20,20 +20,15 @@ export default function MyPage() {
     window.location.href = `${baseUrl}/users/sign-out`;
   };
 
-  const deleteUser = async () => {
-    try {
-      const res = await ax.delete(`${baseUrl}/users`, {
-        headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-        },
-      });
-
-      if (res.status === 202) {
+  const deleteUser = () => {
+    deleteUserMutate(undefined, {
+      onSuccess: () => {
         logout();
-      }
-    } catch (error) {
-      console.error("회원 탈퇴 실패", error);
-    }
+      },
+      onError: (error: unknown) => {
+        console.error("회원 탈퇴 실패", error);
+      },
+    });
   };
 
   const openModal = () => setIsModalOpen(true);
