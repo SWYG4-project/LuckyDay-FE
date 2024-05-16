@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 
-import { SvgFrame } from "components";
+import { SingleButtonLayout, SvgFrame } from "components";
 import { formatDate } from "utils";
 import { BookIcon, ShortBoxIcon } from "assets";
 import * as S from "./ViewLuckyActivityPage.styled";
@@ -15,28 +15,31 @@ function ViewLuckyActivityPage() {
     imagePath: null,
     imageUrl: null,
     dday: "2024-05-16",
+    category: "특별한 선물",
   };
 
   return (
-    <S.ViewLuckyActivityPage>
-      <S.LuckydayInfo>
-        <span>{formatDate(data.dday)}</span>
-        <span>
-          {data.dday === dayjs().format("YYYY-MM-DD") ? "오늘의" : "추억의"}{" "}
-          럭키 데이 활동은...
-        </span>
-      </S.LuckydayInfo>
-      <S.LuckydayDetailInfo>
-        <S.Img src="public/images/img_luckydayBg.png" />
-        <BookIcon />
-        <p>{data.actNm}</p>
-        <p>{data.actInfo}</p>
-      </S.LuckydayDetailInfo>
-      <S.Button>
-        <SvgFrame css={S.svgFrame} icon={<ShortBoxIcon />} />
-        <span>{data.review ? "기록하기" : "기록보기"}</span>
-      </S.Button>
-    </S.ViewLuckyActivityPage>
+    <SingleButtonLayout>
+      <S.ViewLuckyActivityPage>
+        <S.LuckydayInfo>
+          <span>{formatDate(data.dday)}</span>
+          <span>
+            {data.dday === dayjs().format("YYYY-MM-DD") ? "오늘의" : "추억의"}{" "}
+            럭키 데이 활동은...
+          </span>
+        </S.LuckydayInfo>
+        <S.LuckydayDetailInfo>
+          <S.Img src="public/images/img_luckydayBg.png" />
+          <BookIcon />
+          <p>{data.actNm}</p>
+          <p>{data.actInfo}</p>
+        </S.LuckydayDetailInfo>
+        <S.Button>
+          <SvgFrame css={S.svgFrame} icon={<ShortBoxIcon />} />
+          <span>{data.review ? "기록하기" : "기록보기"}</span>
+        </S.Button>
+      </S.ViewLuckyActivityPage>
+    </SingleButtonLayout>
   );
 }
 
