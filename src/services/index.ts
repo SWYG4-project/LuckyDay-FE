@@ -1,2 +1,2 @@
-export * from "./createLuckyDay";
+export * from "./luckyday";
 export * from "./auth";

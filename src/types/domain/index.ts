@@ -1,1 +1,1 @@
-export * from "./createLuckyDay";
+export * from "./luckyday";

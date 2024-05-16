@@ -1,3 +1,5 @@
+import type { CommonServerModel } from "types";
+
 export type actList = { actNo: number; keyword: string };
 
 export interface Activities {
@@ -21,4 +23,19 @@ export interface CreateLuckyDayForm {
 
 export interface CreateLuckyDayQueryModel {
   body: CreateLuckyDayForm;
+}
+
+interface GetLuckyDayDetail {
+  actNm: string;
+  actInfo: string;
+  review: string | null;
+  imageName: string | null;
+  imagePath: string | null;
+  imageUrl: string | null;
+  category: string;
+  dday: string;
+}
+
+export interface GetLuckyDayDetailServerModel extends CommonServerModel {
+  resData: GetLuckyDayDetail;
 }
