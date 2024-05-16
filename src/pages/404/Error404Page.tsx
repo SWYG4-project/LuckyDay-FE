@@ -1,6 +1,6 @@
 import * as S from "./Error404Page.styled";
 import { useNavigate } from "react-router-dom";
-import { SvgButton } from "components/common/buttons/svgButton";
+import { SvgButton } from "components";
 import { LongBoxIcon } from "assets";
 
 export default function Error404Page() {

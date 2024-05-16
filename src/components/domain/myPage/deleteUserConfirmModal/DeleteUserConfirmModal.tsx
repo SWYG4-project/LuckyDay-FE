@@ -1,7 +1,6 @@
 import * as S from "./DeleteUserConfirmModal.styled";
 import { useTheme } from "@emotion/react";
-import { BaseModal } from "components/common";
-import { SvgButton } from "components/common/buttons/svgButton";
+import { BaseModal, SvgButton } from "components/common";
 import { ShortBoxIcon } from "assets";
 
 interface DeleteUserConfirmModalProps {

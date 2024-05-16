@@ -1,4 +1,4 @@
-import { SvgButton } from "components/common/buttons/svgButton";
+import { SvgButton } from "components/common";
 import { LongBoxIcon } from "assets";
 
 const KakaoLogin = () => {
@@ -8,13 +8,11 @@ const KakaoLogin = () => {
   };
 
   return (
-    <>
-      <SvgButton
-        label={"카카오로 로그인"}
-        onClick={handleLogin}
-        icon={<LongBoxIcon />}
-      ></SvgButton>
-    </>
+    <SvgButton
+      label="카카오로 로그인"
+      onClick={handleLogin}
+      icon={<LongBoxIcon />}
+    ></SvgButton>
   );
 };
 

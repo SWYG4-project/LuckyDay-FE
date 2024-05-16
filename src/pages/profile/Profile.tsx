@@ -1,7 +1,7 @@
 import * as S from "./Profile.styled";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { SvgButton } from "components/common/buttons/svgButton";
+import { SvgButton } from "components";
 import { LongBoxIcon } from "assets";
 
 export default function Profile() {
