@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import dayjs from "dayjs";
 import type { UseFormSetValue, UseFormWatch } from "react-hook-form";
 
@@ -14,8 +13,6 @@ interface SelectCountProps {
 }
 
 function SelectCount({ watch, setValue }: SelectCountProps) {
-  const [selectDates, setSelectDates] = useState(1);
-
   const { addToast } = useToast();
 
   const counts = [
@@ -29,15 +26,14 @@ function SelectCount({ watch, setValue }: SelectCountProps) {
     counts.find((item) => item.period === watch("period"))?.value ?? 0;
 
   const handleSelectCounts = (count: number) => (): void => {
-    const currentCount = selectDates + count;
+    const currentCount = watch("cnt") + count;
 
     if (currentCount <= 0)
       return addToast({ content: `1개 이상의 개수를 선택해주세요` });
     if (currentCount > selectedPeriod)
       return addToast({ content: `${selectedPeriod}개 이내로 선택해주세요` });
 
-    setSelectDates(selectDates + count);
-    setValue("cnt", selectDates);
+    setValue("cnt", watch("cnt") + count);
   };
 
   return (
@@ -55,7 +51,7 @@ function SelectCount({ watch, setValue }: SelectCountProps) {
           <SvgFrame css={S.svgFrame} icon={<CircleBoxIcon />} />
           <MinusIcon css={S.icon} />
         </S.SelectDatesButton>
-        <S.SelectDatesBox>{selectDates}</S.SelectDatesBox>
+        <S.SelectDatesBox>{watch("cnt")}</S.SelectDatesBox>
         <S.SelectDatesButton onClick={handleSelectCounts(+1)}>
           <SvgFrame css={S.svgFrame} icon={<CircleBoxIcon />} />
           <PlusIcon css={S.icon} />
