@@ -19,7 +19,7 @@ export default function Router({ children }: RouterProps) {
           <Route path="editProfile" element={<P.EditProfilePage />} />
           <Route path="luckyBoard" element={<P.LuckyBoardPage />} />
           <Route
-            path="viewLuckyDayActivity"
+            path="viewLuckyDayActivity/:id"
             element={<P.ViewLuckyActivityPage />}
           />
 
