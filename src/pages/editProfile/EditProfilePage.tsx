@@ -2,6 +2,7 @@ import * as S from "./EditProfilePage.styled";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@emotion/react";
+import { useModal } from "hooks";
 import { updateProfile } from "apis/users";
 import { EditProfileConfirmModal, SvgButton } from "components";
 import { ShortBoxIcon } from "assets";
@@ -15,7 +16,7 @@ export default function EditProfilePage() {
   const [nicknameError, setNicknameError] = useState<string>("");
   const [emailError, setEmailError] = useState<string>("");
   const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { handleOpenModal, handleModalClose } = useModal();
 
   const initialNickname = sessionStorage.getItem("nickname") || "";
   const initialEmail = sessionStorage.getItem("email") || "";
@@ -75,8 +76,15 @@ export default function EditProfilePage() {
     }
   }, [nickname, email, initialNickname, initialEmail]);
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const openEditProfileModal = () => {
+    handleOpenModal(
+      <EditProfileConfirmModal
+        onClose={handleModalClose}
+        onSave={handleSave}
+        email={email}
+      />
+    );
+  };
 
   return (
     <>
@@ -109,7 +117,7 @@ export default function EditProfilePage() {
           <S.ButtonBox>
             <SvgButton
               label={"저장하기"}
-              onClick={openModal}
+              onClick={openEditProfileModal}
               icon={<ShortBoxIcon />}
               textColor={
                 isButtonDisabled ? theme.colors.black : theme.colors.white
@@ -124,13 +132,6 @@ export default function EditProfilePage() {
           </S.ButtonBox>
         </S.ProfileBox>
       </S.ContentsBox>
-      {isModalOpen && (
-        <EditProfileConfirmModal
-          onClose={closeModal}
-          onSave={handleSave}
-          email={email}
-        />
-      )}
     </>
   );
 }

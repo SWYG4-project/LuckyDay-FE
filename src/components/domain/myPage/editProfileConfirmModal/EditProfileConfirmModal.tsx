@@ -16,6 +16,11 @@ export default function EditProfileConfirmModal({
 }: EditProfileConfirmModalProps) {
   const theme = useTheme();
 
+  const handleConfirmClick = () => {
+    onSave();
+    onClose();
+  };
+
   return (
     <>
       <BaseModal>
@@ -37,7 +42,7 @@ export default function EditProfileConfirmModal({
             ></SvgButton>
             <SvgButton
               label={"확인"}
-              onClick={onSave}
+              onClick={handleConfirmClick}
               icon={<ShortBoxIcon />}
               textColor={theme.colors.white}
               fillColor={theme.colors.purple}
