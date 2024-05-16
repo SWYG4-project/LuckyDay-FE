@@ -18,6 +18,10 @@ export default function Router({ children }: RouterProps) {
           <Route path="myPage" element={<P.MyPage />} />
           <Route path="editProfile" element={<P.EditProfilePage />} />
           <Route path="luckyBoard" element={<P.LuckyBoardPage />} />
+          <Route
+            path="viewLuckyDayActivity"
+            element={<P.ViewLuckyActivityPage />}
+          />
 
           {/* FIX: API 연결 후 제거할 예정입니다. */}
           <Route path="luckyBoardBefore" element={<P.LuckyBoardBeforePage />} />
