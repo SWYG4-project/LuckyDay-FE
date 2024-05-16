@@ -26,15 +26,14 @@ const Carousel = ({ images, texts }: CarouselProps): JSX.Element => {
 
   return (
     <S.CarouselContainer>
-      {images.map((image, index) => (
-        <S.Slide
-          key={index}
-          style={{ display: index === activeIndex ? "block" : "none" }}
-        >
-          <S.TextBox>{texts[index]}</S.TextBox>
-          <S.Image src={image} alt={`Slide ${index}`} />
-        </S.Slide>
-      ))}
+      <S.TextBox>{texts[activeIndex]}</S.TextBox>
+      <S.SlideContainer>
+        {images.map((image, index) => (
+          <S.Slide key={index} active={index === activeIndex}>
+            <S.Image src={image} alt={`Slide ${index}`} />
+          </S.Slide>
+        ))}
+      </S.SlideContainer>
       <S.ButtonContainer>
         <S.PrevButton onClick={handlePrevSlide}>
           <ArrowIcon css={S.PrevArrowIcon} />

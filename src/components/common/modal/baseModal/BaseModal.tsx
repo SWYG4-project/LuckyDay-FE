@@ -1,5 +1,4 @@
 import React from "react";
-
 import * as S from "./BaseModal.styled";
 
 interface BaseModalProps {
@@ -13,14 +12,16 @@ const BaseModal = React.forwardRef(
     ref: React.ForwardedRef<HTMLDialogElement>
   ) => {
     return (
-      <S.BaseModal
-        ref={ref}
-        className={className}
-        aria-modal="true"
-        tabIndex={0}
-      >
-        {children}
-      </S.BaseModal>
+      <S.ModalOverlay>
+        <S.BaseModal
+          ref={ref}
+          className={className}
+          aria-modal="true"
+          tabIndex={0}
+        >
+          {children}
+        </S.BaseModal>
+      </S.ModalOverlay>
     );
   }
 );

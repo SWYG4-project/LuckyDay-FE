@@ -1,8 +1,7 @@
+import * as S from "./NavigationToggle.styled";
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-
 import { MenuIcon } from "assets";
-import * as S from "./NavigationToggle.styled";
 
 interface NavigationToggleProps {
   defaultOn?: boolean;

@@ -14,7 +14,7 @@ export default function Auth() {
     sessionStorage.setItem("email", email!);
     sessionStorage.setItem("nickname", nickname!);
     if (token) return navigate("/profile");
-  }, [token]);
+  }, [email, navigate, nickname, token]);
 
   return (
     <div>

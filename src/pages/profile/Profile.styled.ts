@@ -4,14 +4,13 @@ import { css } from "@emotion/react";
 export const ContentsBox = styled.div`
   width: 100%;
   /* height: 100vh; */
-  height: 80vh;
+  height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   position: relative;
-  z-index: 1;
 `;
 
 export const Logo_Basic = styled.div`
@@ -24,17 +23,38 @@ export const Logo_Basic = styled.div`
   background-image: url("images/logo-basic.png");
 `;
 
-export const Text_h1 = styled.div`
+export const MailBox = styled.div`
   ${({ theme }) => css`
-    color: ${theme.colors.lightOrange};
+    width: 382px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    border-radius: 20px;
+    ${theme.fonts.headline1}
+    color: ${theme.colors.black};
+    background-color: ${theme.colors.beige};
+  `}
+`;
+
+export const TitleTextBox = styled.div`
+  margin: 20px;
+  ${({ theme }) => css`
+    color: ${theme.colors.black};
     ${theme.fonts.luckyBall1}
   `}
 `;
 
-export const Text_h2 = styled.div`
+export const TextBox = styled.div`
   ${({ theme }) => css`
     color: ${theme.colors.black};
-    ${theme.fonts.headline1}
+    ${theme.fonts.headline1};
+    padding: 20px;
   `}
-  padding: 20px;
+`;
+
+export const ButtonBox = styled.div`
+  position: fixed;
+  bottom: 7rem;
 `;

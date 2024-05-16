@@ -1,7 +1,11 @@
 import * as S from "./Error404Page.styled";
-import { HomeButton } from "components/common/homeButton";
+import { useNavigate } from "react-router-dom";
+import { SvgButton } from "components";
+import { LongBoxIcon } from "assets";
 
 export default function Error404Page() {
+  const navigate = useNavigate();
+
   return (
     <>
       <S.NotFound>
@@ -12,7 +16,11 @@ export default function Error404Page() {
           정확한지 다시 한 번 확인해주세요
         </S.Text_Detail>
         <S.Logo_Sad />
-        <HomeButton />
+        <SvgButton
+          label={"럭키 보드 홈으로 가기"}
+          onClick={() => navigate("/luckyBoard")}
+          icon={<LongBoxIcon />}
+        ></SvgButton>
       </S.NotFound>
     </>
   );
