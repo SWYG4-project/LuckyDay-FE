@@ -1,11 +1,17 @@
 import styled from "@emotion/styled";
 import { css, Theme } from "@emotion/react";
 
-export const SvgWrapper = styled.div`
+export const SvgWrapper = styled.div<{ disabled?: boolean }>`
   position: relative;
   display: inline-block;
   text-align: center;
   cursor: pointer;
+  ${(props) =>
+    props.disabled &&
+    css`
+      cursor: not-allowed;
+      opacity: 0.6;
+    `}
 `;
 
 export const svgFrame = (theme: Theme, width: string, height: string) => css`
@@ -20,11 +26,16 @@ export const svgFrame = (theme: Theme, width: string, height: string) => css`
 `;
 
 export const SvgButton =
-  (fillColor: string, width: string, height: string) => (theme: Theme) =>
+  (fillColor: string, width: string, height: string, disabled: boolean) =>
+  (theme: Theme) =>
     css`
       ${svgFrame(theme, width, height)}
       path {
         fill: ${fillColor};
+        ${disabled &&
+        css`
+          fill: ${theme.colors.gray};
+        `}
       }
     `;
 
