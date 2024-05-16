@@ -2,7 +2,7 @@ import dayjs from "dayjs";
 
 import { SingleButtonLayout, SvgFrame } from "components";
 import { formatDate } from "utils";
-import { BookIcon, ShortBoxIcon } from "assets";
+import { ShortBoxIcon, activities } from "assets";
 import * as S from "./ViewLuckyActivityPage.styled";
 
 function ViewLuckyActivityPage() {
@@ -30,7 +30,7 @@ function ViewLuckyActivityPage() {
         </S.LuckydayInfo>
         <S.LuckydayDetailInfo>
           <S.Img src="public/images/img_luckydayBg.png" />
-          <BookIcon />
+          {activities.find((item) => item.label === data.category)?.icon}
           <p>{data.actNm}</p>
           <p>{data.actInfo}</p>
         </S.LuckydayDetailInfo>
