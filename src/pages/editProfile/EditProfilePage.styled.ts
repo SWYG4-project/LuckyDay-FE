@@ -21,6 +21,7 @@ export const TitleBox = styled.div`
     border-top: 1px  solid ${theme.colors.gray};
   `}
 `;
+
 export const ProfileBox = styled.dialog`
   ${({ theme }) => css`
     position: relative;
@@ -93,4 +94,31 @@ export const Text_h3 = styled.div`
     color: ${theme.colors.black};
     ${theme.fonts.body2}
   `}
+`;
+
+export const ErrorContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+  width: 248px;
+`;
+
+export const ErrorText = styled.p`
+  ${({ theme }) => css`
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    color: ${theme.colors.black};
+    ${theme.fonts.body2}
+  `}
+`;
+
+export const ButtonBox = styled.div`
+  margin-top: 80px;
 `;
