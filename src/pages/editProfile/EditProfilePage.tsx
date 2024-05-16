@@ -2,9 +2,9 @@ import * as S from "./EditProfilePage.styled";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@emotion/react";
-import { ax } from "apis/axios";
-import { ShortBoxIcon } from "assets";
+import { updateProfile } from "apis/users";
 import { EditProfileConfirmModal, SvgButton } from "components";
+import { ShortBoxIcon } from "assets";
 
 export default function EditProfilePage() {
   const navigate = useNavigate();
@@ -13,8 +13,8 @@ export default function EditProfilePage() {
   const [nickname, setNickname] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [nicknameError, setNicknameError] = useState<string>("");
-  const [emailError, setEmailError] = useState<string>(""); // 이메일 에러 상태 추가
-  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true); // 버튼 비활성화 상태 추가
+  const [emailError, setEmailError] = useState<string>("");
+  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const initialNickname = sessionStorage.getItem("nickname") || "";
@@ -55,8 +55,7 @@ export default function EditProfilePage() {
       return;
     }
     try {
-      const res = await ax.put("/users", { nickname, email });
-      console.log("저장 결과: ", res);
+      await updateProfile({ nickname, email });
       sessionStorage.setItem("nickname", nickname);
       sessionStorage.setItem("email", email);
       navigate("/mypage");
