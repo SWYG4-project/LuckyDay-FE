@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
-import { Input as ProfileInput } from "components/common/input";
+import { Input as ProfileInput } from "components/common/input(change)";
 
 export const ContentsBox = styled.div`
   display: flex;
