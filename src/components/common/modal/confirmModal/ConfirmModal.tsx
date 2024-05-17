@@ -8,7 +8,7 @@ import { SvgFrame } from "components/common/svgFrame";
 
 interface ConfirmModalProps {
   className?: string;
-  title: string;
+  title?: string;
   subTitle?: string | React.ReactNode;
   icon?: React.ReactNode;
   desc?: string;
@@ -16,6 +16,7 @@ interface ConfirmModalProps {
   baseLabel: string;
   handleCancelClick?: (e: React.MouseEvent) => void;
   handleBaseClick: (e: React.MouseEvent) => void;
+  children?: React.ReactNode;
 }
 
 const ConfirmModal = React.forwardRef(
@@ -30,6 +31,7 @@ const ConfirmModal = React.forwardRef(
       baseLabel,
       handleCancelClick,
       handleBaseClick,
+      children,
     }: ConfirmModalProps,
     ref: React.ForwardedRef<HTMLDialogElement>
   ) => {
@@ -50,6 +52,7 @@ const ConfirmModal = React.forwardRef(
             <>{icon}</>
           )}
           <S.Desc>{desc}</S.Desc>
+          {children}
         </div>
         <S.ButtonWrapper>
           {/* TODO: 버튼 컴포넌트로 변경 후 수정 예정 */}

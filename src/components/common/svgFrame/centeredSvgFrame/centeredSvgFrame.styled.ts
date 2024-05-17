@@ -5,6 +5,12 @@ export const SvgWrapper = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  cursor: pointer;
+  pointer-events: auto;
+  label {
+    cursor: pointer;
+    pointer-events: auto;
+  }
 `;
 
 export const Text = styled.div<{ color?: string }>`
