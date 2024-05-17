@@ -21,6 +21,7 @@ export default function Router({ children }: RouterProps) {
           <Route
             path="viewLuckyDayActivity/:id"
             element={<P.ViewLuckyActivityPage />}
+          />
           <Route path="createLuckyDay" element={<P.CreateLuckyDayPage />} />
           <Route path="luckyDayArchive" element={<P.LuckyDayArchivePage />} />
           <Route path="404" element={<P.Error404Page />} />
