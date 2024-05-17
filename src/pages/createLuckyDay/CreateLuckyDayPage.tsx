@@ -23,7 +23,7 @@ function CreateLuckyDayPage() {
       actList: [],
       customActList: [],
       period: 0,
-      cnt: 0,
+      cnt: 1,
       expDTList: [],
     },
     mode: "onTouched",

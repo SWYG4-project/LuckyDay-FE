@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import type { UseFormSetValue, UseFormWatch } from "react-hook-form";
 
 import { useGetLuckyDaysActivities } from "services";
-import { BookIcon, CandyIcon, HeartIcon, PresentIcon, ShoeIcon } from "assets";
+import { activities } from "assets";
 import type { CreateLuckyDayForm } from "types";
 import { ActivityToggle } from "./container";
 import * as S from "./SelectActivity.styled";
@@ -21,15 +21,6 @@ function SelectActivity({ watch, setValue }: SelectActivityProps) {
   );
 
   const [, setSelectedItems] = useState<number[]>([]);
-
-  const activities = [
-    { icon: <PresentIcon />, label: "특별한 선물" },
-    { icon: <CandyIcon />, label: "맛있는 음식" },
-    { icon: <BookIcon />, label: "배움과 문화" },
-    { icon: <ShoeIcon />, label: "이동과 탐험" },
-    { icon: <HeartIcon />, label: "일상 속 소소함" },
-    // { icon: <SmileIcon />, label: "+) 직접 입력" },
-  ] as const;
 
   const getSelectItems = (value: number[]) => {
     setSelectedItems(value);

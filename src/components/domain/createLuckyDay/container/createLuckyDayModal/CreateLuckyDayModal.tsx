@@ -1,4 +1,3 @@
-import React from "react";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 import type { UseFormHandleSubmit, UseFormWatch } from "react-hook-form";
@@ -29,8 +28,12 @@ function CreateLuckyDayModal({
     .format("YYYY년 MM월 DD일");
 
   const handleClick = handleSubmit((data) => {
+    const filteredActList = data.actList.filter((item) =>
+      data.customActList?.length ? true : item !== 0
+    );
+
     const req = {
-      actList: data.actList,
+      actList: filteredActList,
       customActList: data.customActList,
       period: data.period,
       cnt: data.cnt,
