@@ -1,5 +1,5 @@
 export * from "./buttons";
-export * from "./layout(change)";
+export * from "./layout";
 export * from "./modal";
 export * from "./portal";
 export * from "./svgFrame";
