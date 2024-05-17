@@ -1,7 +1,6 @@
 import * as S from "./LuckyBoardAfterPage.styled";
-import { ButtonLayout } from "components";
 import { getCurrentDate } from "utils/date";
-import { LuckyBalls } from "components/domain/luckyBoard";
+import { ButtonLayout, LuckyBalls } from "components";
 
 export default function LuckyBoardAfterPage() {
   console.log(getCurrentDate());
