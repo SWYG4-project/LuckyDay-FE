@@ -8,8 +8,8 @@ export default function Profile() {
   const navigate = useNavigate();
 
   const isLoggedIn = sessionStorage.getItem("accessToken");
-  const email = sessionStorage.getItem("email");
   const nickname = sessionStorage.getItem("nickname");
+  const email = sessionStorage.getItem("email");
 
   useEffect(() => {
     if (!isLoggedIn) {

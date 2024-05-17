@@ -13,6 +13,7 @@ interface SvgButtonProps {
   fillColor?: string;
   width?: string;
   height?: string;
+  disabled?: boolean;
 }
 
 export default function SvgButton({
@@ -25,14 +26,22 @@ export default function SvgButton({
   fillColor,
   width = "247px",
   height = "45px",
+  disabled = false,
 }: SvgButtonProps) {
   const theme = useTheme();
   const finalFillColor = fillColor || theme.colors.beige;
 
   return (
-    <S.SvgWrapper className={className} onClick={onClick}>
+    <S.SvgWrapper
+      className={className}
+      onClick={!disabled ? onClick : undefined}
+      disabled={disabled}
+    >
       {children}
-      <SvgFrame css={S.SvgButton(finalFillColor, width, height)} icon={icon} />
+      <SvgFrame
+        css={S.SvgButton(finalFillColor, width, height, disabled)}
+        icon={icon}
+      />
       <S.Text color={textColor}>{label}</S.Text>
     </S.SvgWrapper>
   );
