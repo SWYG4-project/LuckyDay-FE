@@ -1,39 +1,62 @@
-import { ArchiveModal } from "components";
-import { useModal } from "hooks";
-import * as S from "./LuckyBoardPage.styled";
+import React, { useEffect, useState } from "react";
+import { AxiosError, AxiosResponse } from "axios";
+import { ax } from "apis/axios";
+import { LuckyBoardAfterPage, LuckyBoardBeforePage } from ".";
 
-export default function LuckyBoardPage() {
-  const { handleOpenModal } = useModal();
+interface LuckyDayResponse {
+  code: string;
+  message: string;
+  resData: unknown | null;
+}
 
-  const 지난럭키데이 = ["2024년 05월 15일"];
-  const 제외일자 = "2024년 05월 15일";
-
-  const 럭키데이정보 = (
-    <p>
-      생성 옵션:
-      <br />
-      시작일(서버데이터) ~ 시작일(서버데이터)
-      <br />
-      {<strong>선택한 기간(서버데이터)</strong>}일 동안{" "}
-      <strong>선택한 개수(서버데이터)</strong>개의 럭키 데이
-      <br />
-      {제외일자 ? `\n제외 날짜:\n ${제외일자}` : ""}
-    </p>
+const LuckyBoardPage: React.FC = () => {
+  const [hasCurrentLuckyDay, setHasCurrentLuckyDay] = useState<boolean | null>(
+    null
   );
 
-  const handleOpenLastLuckyDayModal = () => {
-    //TODO: 추후 더보기 버튼에 연결 필요
-    handleOpenModal(
-      <ArchiveModal css={S.archiveModal} moreInfo={럭키데이정보} />
-    );
-  };
+  useEffect(() => {
+    const fetchLuckyDayData = async () => {
+      try {
+        const res: AxiosResponse<LuckyDayResponse> = await ax.get(
+          "/luckydays/cycl/1",
+          {
+            params: { isCurrent: 1 },
+          }
+        );
 
-  const handleOpenCheckLuckyDayModal = () => {
-    //TODO: 추후 더보기 버튼에 연결 필요
-    handleOpenModal(
-      <ArchiveModal css={S.archiveModal} lastInfo={지난럭키데이} />
-    );
-  };
+        console.log("API 요청 URL:", res.config.url);
+        console.log("API 요청 파라미터:", res.config.params);
+        console.log("API 응답 데이터:", res.data);
 
-  return <>{/* FIX: API 연결 후 수정 예정입니다. */}</>;
-}
+        if (res.data && res.data.resData !== null) {
+          setHasCurrentLuckyDay(true);
+        } else {
+          setHasCurrentLuckyDay(false);
+        }
+      } catch (error) {
+        const axiosError = error as AxiosError<LuckyDayResponse>;
+        console.error("Error fetching lucky day data:", axiosError);
+
+        if (
+          axiosError.response &&
+          axiosError.response.data &&
+          axiosError.response.data.code === "2007"
+        ) {
+          setHasCurrentLuckyDay(false);
+        } else {
+          console.error("Error fetching lucky day data:", axiosError);
+        }
+      }
+    };
+
+    fetchLuckyDayData();
+  }, []);
+
+  return (
+    <div>
+      {hasCurrentLuckyDay ? <LuckyBoardAfterPage /> : <LuckyBoardBeforePage />}
+    </div>
+  );
+};
+
+export default LuckyBoardPage;
