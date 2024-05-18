@@ -1,9 +1,8 @@
 import React from "react";
-
+import * as S from "./ConfirmModal.styled";
 import { useModal } from "hooks";
 import { CloseIcon, LargeBoxIcon, ShortBoxIcon } from "assets";
 import { BaseModal } from "../baseModal";
-import * as S from "./ConfirmModal.styled";
 import { SvgFrame } from "components/common/svgFrame";
 
 interface ConfirmModalProps {
@@ -16,6 +15,7 @@ interface ConfirmModalProps {
   baseLabel: string;
   handleCancelClick?: (e: React.MouseEvent) => void;
   handleBaseClick: (e: React.MouseEvent) => void;
+  children?: React.ReactNode;
 }
 
 const ConfirmModal = React.forwardRef(
@@ -30,6 +30,7 @@ const ConfirmModal = React.forwardRef(
       baseLabel,
       handleCancelClick,
       handleBaseClick,
+      children,
     }: ConfirmModalProps,
     ref: React.ForwardedRef<HTMLDialogElement>
   ) => {
@@ -51,6 +52,7 @@ const ConfirmModal = React.forwardRef(
           )}
           <S.Desc>{desc}</S.Desc>
         </div>
+        {children && <div>{children}</div>}
         <S.ButtonWrapper>
           {/* TODO: 버튼 컴포넌트로 변경 후 수정 예정 */}
           {cancelLabel && (

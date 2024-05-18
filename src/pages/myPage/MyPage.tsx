@@ -33,12 +33,7 @@ export default function MyPage() {
   };
 
   const openDeleteUserModal = () => {
-    handleOpenModal(
-      <DeleteUserConfirmModal
-        onClose={handleModalClose}
-        onDelete={deleteUser}
-      />
-    );
+    handleOpenModal(<DeleteUserConfirmModal onDelete={deleteUser} />);
   };
 
   const resetLuckyBoard = () => {
@@ -54,12 +49,7 @@ export default function MyPage() {
   };
 
   const openResetLuckyBoardrModal = () => {
-    handleOpenModal(
-      <ResetLuckyBoardModal
-        onClose={handleModalClose}
-        onReset={resetLuckyBoard}
-      />
-    );
+    handleOpenModal(<ResetLuckyBoardModal onReset={resetLuckyBoard} />);
   };
 
   return (

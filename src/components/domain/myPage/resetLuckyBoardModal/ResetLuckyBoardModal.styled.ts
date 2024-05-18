@@ -11,8 +11,9 @@ export const modal = (theme: Theme) =>
     }
   `;
 
-export const ButtonBox = styled.div`
+export const TextBox = styled.div`
   display: flex;
-  justify-content: space-around;
-  width: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 `;
