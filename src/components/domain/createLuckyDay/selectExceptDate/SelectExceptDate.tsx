@@ -40,7 +40,11 @@ function SelectExceptDate({ watch, setValue }: SelectExceptDateProps) {
         {dayjs().format("YYYY년 MM월 DD일")} ~ {EndOfDate}
       </S.SubHeadLine>
       <div>
-        <Calendar dates={selectedPeriod} makeExpDates={makeExpDates} />
+        <Calendar
+          dates={selectedPeriod}
+          expDates={expDates}
+          makeExpDates={makeExpDates}
+        />
       </div>
     </>
   );
