@@ -40,3 +40,10 @@ export const useDeleteLuckyBoard = () => {
     mutationFn: () => deleteLuckyBoard(),
   });
 };
+
+export const useGetLuckyDayCycleInfo = (req: number) => {
+  return useQuery({
+    queryKey: ["luckyday"],
+    queryFn: () => getLuckyDayCycleInfo(req),
+  });
+};

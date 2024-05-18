@@ -1,10 +1,19 @@
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 
-const useCalendar = (dates: string, makeExpDates: (dates: string) => void) => {
+import { useToast } from "hooks";
+import { LUCKYDAY_PERIODS } from "assets";
+
+const useCalendar = (
+  dates: string,
+  expDates: string[],
+  makeExpDates: (dates: string) => void
+) => {
   const [currentMonth, setCurrentMonth] = useState(dayjs());
   const [period, setPeriod] = useState("");
   const [disabled, setDisabled] = useState<string[]>([]);
+
+  const { addToast } = useToast();
 
   const daysInMonth = currentMonth.daysInMonth();
   const firstDayOfMonth = dayjs(currentMonth).startOf("month").locale("ko");
@@ -35,8 +44,14 @@ const useCalendar = (dates: string, makeExpDates: (dates: string) => void) => {
 
     const formattedDate = date.format("YYYY-MM-DD");
     const isAlreadyDisabled = disabled.includes(formattedDate);
+    const luckyday = LUCKYDAY_PERIODS.find((item) => item.period === +dates);
 
     if (!isAlreadyDisabled) {
+      if (expDates.length >= (luckyday?.cnt ?? 2))
+        return addToast({
+          content: `${luckyday?.cnt}일 이상의 제외 날짜를 선택할 수 없어요 :(`,
+        });
+
       if (!monthsData.includes(formattedDate)) return;
 
       setDisabled([...disabled, formattedDate]);
