@@ -25,7 +25,9 @@ function ViewLuckyActivityPage() {
     <SingleButtonLayout>
       <S.ViewLuckyActivityPage>
         <S.LuckydayInfo>
-          <span>{formatDate(data?.resData.dday)}</span>
+          <span>
+            {data ? formatDate(data.resData.dday, "YYYY-MM-DD") : "-"}
+          </span>
           <span>
             {data?.resData.dday === dayjs().format("YYYY-MM-DD")
               ? "오늘의"

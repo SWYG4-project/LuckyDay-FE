@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
+import { Theme, css } from "@emotion/react";
 
 export const Container = styled.div`
   display: flex;
@@ -26,4 +26,16 @@ export const LuckyMachine = styled.div`
   justify-content: center;
   background-size: cover;
   background-image: url("images/machine-filled.png");
+`;
+
+export const archiveModal = (theme: Theme) => css`
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    strong {
+      color: ${theme.colors.orange};
+    }
+  }
 `;
