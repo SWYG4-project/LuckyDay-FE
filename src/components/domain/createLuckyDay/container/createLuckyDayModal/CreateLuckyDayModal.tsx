@@ -49,6 +49,7 @@ function CreateLuckyDayModal({
         }
 
         handleModalClose();
+        addToast({ content: "럭키데이 생성이 완료되었습니다." });
         navigate("/luckyBoard");
       },
     });
