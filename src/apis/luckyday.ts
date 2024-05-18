@@ -37,6 +37,5 @@ export const getLuckyDayCycleInfo = async (req: number) => {
     `/luckydays/info/${req}`
   );
 
-
   return data;
 };
