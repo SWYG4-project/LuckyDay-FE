@@ -5,6 +5,7 @@ import type { UseFormHandleSubmit, UseFormWatch } from "react-hook-form";
 import { ConfirmModal } from "components";
 import { useModal } from "hooks";
 import { useCreateLuckyDay } from "services";
+import { formatDate } from "utils";
 import type { CreateLuckyDayForm } from "types";
 import * as S from "./CreateLuckyDayModal.styled";
 
@@ -48,11 +49,10 @@ function CreateLuckyDayModal({
     });
   });
 
-  const expDatesString = watch("expDTList")
-    ?.map((item) => `${item}\n`)
-    .join("");
-
-  const expDatesFormatted = expDatesString?.replace(/,/g, "");
+  const expDatesFormatted = watch("expDTList")
+    ?.map((item) => `${formatDate(item, "YYYY-MM-DD")}\n`)
+    .join("")
+    .replace(/,/g, "");
 
   const subTitle = (
     <p>
@@ -64,7 +64,7 @@ function CreateLuckyDayModal({
       {<strong>{watch("period")}</strong>}일 동안{" "}
       <strong>{watch("cnt")}</strong>개의 럭키 데이
       <br />
-      {expDatesFormatted ? `\n제외 날짜:\n ${expDatesFormatted}` : ""}
+      {expDatesFormatted ? `\n제외 날짜:\n${expDatesFormatted}` : ""}
     </p>
   );
 
