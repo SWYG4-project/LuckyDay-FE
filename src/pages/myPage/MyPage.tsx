@@ -1,13 +1,14 @@
 import * as S from "./myPage.styled";
 import { Link } from "react-router-dom";
 import { useModal } from "hooks";
-import { useLogout, useDeleteUser } from "services";
-import { DeleteUserConfirmModal } from "components";
+import { useLogout, useDeleteUser, useDeleteLuckyBoard } from "services";
+import { DeleteUserConfirmModal, ResetLuckyBoardModal } from "components";
 
 export default function MyPage() {
   const baseUrl = import.meta.env.VITE_BASE_URL;
   const { mutate: logoutMutate } = useLogout();
   const { mutate: deleteUserMutate } = useDeleteUser();
+  const { mutate: deleteLuckyBoardMutate } = useDeleteLuckyBoard();
   const { handleOpenModal, handleModalClose } = useModal();
 
   const logout = () => {
@@ -32,12 +33,23 @@ export default function MyPage() {
   };
 
   const openDeleteUserModal = () => {
-    handleOpenModal(
-      <DeleteUserConfirmModal
-        onClose={handleModalClose}
-        onDelete={deleteUser}
-      />
-    );
+    handleOpenModal(<DeleteUserConfirmModal onDelete={deleteUser} />);
+  };
+
+  const resetLuckyBoard = () => {
+    deleteLuckyBoardMutate(undefined, {
+      onSuccess: (data) => {
+        console.log("럭키보드 초기화 성공", data);
+        handleModalClose();
+      },
+      onError: (error: unknown) => {
+        console.error("럭키보드 초기화 실패", error);
+      },
+    });
+  };
+
+  const openResetLuckyBoardrModal = () => {
+    handleOpenModal(<ResetLuckyBoardModal onReset={resetLuckyBoard} />);
   };
 
   return (
@@ -47,7 +59,9 @@ export default function MyPage() {
         <Link to="/editProfile">
           <S.MenuBox>프로필 설정</S.MenuBox>
         </Link>
-        <S.MenuBox>럭키보드 초기화</S.MenuBox>
+        <S.MenuBox onClick={openResetLuckyBoardrModal}>
+          럭키보드 초기화
+        </S.MenuBox>
         <S.MenuBox onClick={logout}>로그아웃</S.MenuBox>
         <S.MenuBox onClick={openDeleteUserModal}>회원 탈퇴</S.MenuBox>
       </S.ContentsBox>

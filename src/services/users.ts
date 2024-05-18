@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { logout, deleteUser } from "apis/users"; // 수정된 부분: deleteUser 추가
+import { logout, deleteUser } from "apis/users";
 
 export const useLogout = () => {
   return useMutation({ mutationFn: () => logout() });

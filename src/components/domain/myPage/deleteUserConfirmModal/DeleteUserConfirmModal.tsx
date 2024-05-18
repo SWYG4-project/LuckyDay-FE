@@ -4,12 +4,10 @@ import { BaseModal, SvgButton } from "components/common";
 import { ShortBoxIcon } from "assets";
 
 interface DeleteUserConfirmModalProps {
-  onClose: () => void;
   onDelete: () => void;
 }
 
 export default function DeleteUserConfirmModal({
-  onClose,
   onDelete,
 }: DeleteUserConfirmModalProps) {
   const theme = useTheme();
@@ -28,7 +26,6 @@ export default function DeleteUserConfirmModal({
           <S.ButtonBox>
             <SvgButton
               label={"취소"}
-              onClick={onClose}
               icon={<ShortBoxIcon />}
               width="100px"
               height="42px"
