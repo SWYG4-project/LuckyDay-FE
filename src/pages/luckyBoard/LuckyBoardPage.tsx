@@ -52,8 +52,6 @@ const LuckyBoardPage: React.FC = () => {
     fetchLuckyDayData();
   }, []);
 
-  console.log(hasCurrentLuckyDay);
-
   return (
     <div>
       {hasCurrentLuckyDay ? <LuckyBoardAfterPage /> : <LuckyBoardBeforePage />}

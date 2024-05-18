@@ -39,3 +39,15 @@ interface GetLuckyDayDetail {
 export interface GetLuckyDayDetailServerModel extends CommonServerModel {
   resData: GetLuckyDayDetail;
 }
+
+interface GetLuckyDayCycleInfo {
+  startDt: string;
+  endDt: string;
+  period: number;
+  cnt: number;
+  expDtList: string[];
+}
+
+export interface GetLuckyDayCycleInfoServerModel extends CommonServerModel {
+  resData: GetLuckyDayCycleInfo;
+}
