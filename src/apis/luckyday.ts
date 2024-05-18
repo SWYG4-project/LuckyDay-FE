@@ -24,3 +24,9 @@ export const getLuckyDayDetail = async (req: string) => {
 
   return data;
 };
+
+export const deleteLuckyBoard = async () => {
+  const { data } = await ax.delete("/luckydays");
+
+  return data;
+};
