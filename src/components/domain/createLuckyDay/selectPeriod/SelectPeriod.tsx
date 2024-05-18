@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import dayjs from "dayjs";
 import type { UseFormSetValue, UseFormWatch } from "react-hook-form";
 
@@ -13,20 +12,23 @@ interface SelectPeriodProps {
 }
 
 function SelectPeriod({ watch, setValue }: SelectPeriodProps) {
-  const [selectPeriod, setSelectPeriod] = useState(0);
-
   const periods = [
-    { label: "7일", value: 7 },
-    { label: "14일", value: 14 },
-    { label: "30일", value: 30 },
-    { label: "60일", value: 60 },
+    { label: "7일", value: 7, cnt: 2 },
+    { label: "14일", value: 14, cnt: 2 },
+    { label: "30일", value: 30, cnt: 4 },
+    { label: "60일", value: 60, cnt: 7 },
   ] as const;
+
+  const selectPeriod = periods.find((item) => item.value === watch("period"));
 
   const handleSelectPeriod = (period: string) => (): void => {
     const selectPeriod = periods.find((item) => item.label === period);
 
-    setSelectPeriod(selectPeriod?.value ?? 0);
     setValue("period", selectPeriod?.value ?? 0);
+
+    if (+period !== watch("period")) {
+      return setValue("cnt", 1);
+    }
   };
 
   return (
@@ -53,9 +55,10 @@ function SelectPeriod({ watch, setValue }: SelectPeriodProps) {
           </S.ActivityButton>
         ))}
       </S.PeriodWrapper>
-      {!!selectPeriod && (
+      {!!watch("period") && (
         <S.SelectInfo>
-          최대 <strong>{selectPeriod}개</strong>의 럭키 데이를 선택할 수 있어요.
+          최대 <strong>{selectPeriod?.cnt}개</strong>의 럭키 데이를 선택할 수
+          있어요.
         </S.SelectInfo>
       )}
     </>
