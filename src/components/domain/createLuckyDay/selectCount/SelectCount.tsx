@@ -16,8 +16,7 @@ function SelectCount({ watch, setValue }: SelectCountProps) {
   const { addToast } = useToast();
 
   const selectedPeriod =
-    LUCKYDAY_PERIODS.find((item) => item.period === watch("period"))?.period ??
-    0;
+    LUCKYDAY_PERIODS.find((item) => item.period === watch("period"))?.cnt ?? 0;
 
   const handleSelectCounts = (count: number) => (): void => {
     const currentCount = watch("cnt") + count;
