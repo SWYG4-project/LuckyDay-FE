@@ -22,7 +22,8 @@ function SelectPeriod({ watch, setValue }: SelectPeriodProps) {
     setValue("period", selectPeriod?.period ?? 0);
 
     if (+period !== watch("period")) {
-      return setValue("cnt", 1);
+      setValue("cnt", 1);
+      setValue("expDTList", []);
     }
   };
 
