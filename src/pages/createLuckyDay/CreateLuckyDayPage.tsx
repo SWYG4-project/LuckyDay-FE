@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import {
@@ -16,6 +17,7 @@ import type { CreateLuckyDayForm } from "types";
 import * as S from "./CreateLuckyDayPage.styled";
 
 function CreateLuckyDayPage() {
+  const navigate = useNavigate();
   const [currentProgress, setCurrentProgress] = useState(0);
 
   const { setValue, watch, handleSubmit } = useForm<CreateLuckyDayForm>({
@@ -71,6 +73,15 @@ function CreateLuckyDayPage() {
       <CreateLuckyDayModal watch={watch} handleSubmit={handleSubmit} />
     );
   };
+
+  useEffect(() => {
+    const hasLuckyday = sessionStorage.getItem("hasLuckyday");
+
+    if (hasLuckyday === "1") {
+      navigate("/luckyBoard");
+      return addToast({ content: "이미 생성된 럭키데이가 있어요." });
+    }
+  }, []);
 
   return (
     <ButtonLayout

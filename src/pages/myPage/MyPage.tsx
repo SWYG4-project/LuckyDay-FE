@@ -40,6 +40,7 @@ export default function MyPage() {
     deleteLuckyBoardMutate(undefined, {
       onSuccess: (data) => {
         console.log("럭키보드 초기화 성공", data);
+        sessionStorage.setItem("hasLuckyday", "0");
         handleModalClose();
       },
       onError: (error: unknown) => {
