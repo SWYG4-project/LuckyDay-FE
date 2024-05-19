@@ -74,6 +74,17 @@ export interface GetLuckyDayCycleDetail {
   date: string;
 }
 
+export interface GetLuckyDayCycleQueryModel {
+  hasLuckyday: number;
+  query: {
+    isCurrent: number;
+  };
+}
+
+export interface GetLuckyDayCycleServerModel extends CommonServerModel {
+  resData: GetLuckyDayCycleDetail;
+}
+
 export interface GetLuckyDayCycleDetailResponse {
   code: string;
   message: string;
