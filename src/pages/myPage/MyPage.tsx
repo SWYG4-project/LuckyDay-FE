@@ -33,7 +33,12 @@ export default function MyPage() {
   };
 
   const openDeleteUserModal = () => {
-    handleOpenModal(<DeleteUserConfirmModal onDelete={deleteUser} />);
+    handleOpenModal(
+      <DeleteUserConfirmModal
+        onDelete={deleteUser}
+        onClose={handleModalClose}
+      />
+    );
   };
 
   const resetLuckyBoard = () => {
