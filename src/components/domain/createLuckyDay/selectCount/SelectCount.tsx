@@ -3,7 +3,7 @@ import type { UseFormSetValue, UseFormWatch } from "react-hook-form";
 
 import { SvgFrame } from "components";
 import { useToast } from "hooks";
-import { CircleBoxIcon, MinusIcon, PlusIcon } from "assets";
+import { CircleBoxIcon, LUCKYDAY_PERIODS, MinusIcon, PlusIcon } from "assets";
 import type { CreateLuckyDayForm } from "types";
 import * as S from "./SelectCount.styled";
 
@@ -15,23 +15,16 @@ interface SelectCountProps {
 function SelectCount({ watch, setValue }: SelectCountProps) {
   const { addToast } = useToast();
 
-  const counts = [
-    { period: 7, value: 1 },
-    { period: 14, value: 2 },
-    { period: 30, value: 4 },
-    { period: 60, value: 7 },
-  ] as const;
-
   const selectedPeriod =
-    counts.find((item) => item.period === watch("period"))?.value ?? 0;
+    LUCKYDAY_PERIODS.find((item) => item.period === watch("period"))?.cnt ?? 0;
 
   const handleSelectCounts = (count: number) => (): void => {
     const currentCount = watch("cnt") + count;
 
     if (currentCount <= 0)
-      return addToast({ content: `1개 이상의 개수를 선택해주세요` });
+      return addToast({ content: `1일 이상의 개수를 선택해주세요` });
     if (currentCount > selectedPeriod)
-      return addToast({ content: `${selectedPeriod}개 이내로 선택해주세요` });
+      return addToast({ content: `${selectedPeriod}일 이내로 선택해주세요` });
 
     setValue("cnt", watch("cnt") + count);
   };
