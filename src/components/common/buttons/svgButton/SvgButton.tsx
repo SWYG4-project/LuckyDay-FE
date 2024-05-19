@@ -5,7 +5,7 @@ import { useTheme } from "@emotion/react";
 
 interface SvgButtonProps {
   className?: string;
-  label: string;
+  label?: string;
   textColor?: string;
   onClick?: () => void;
   children?: React.ReactNode;

@@ -1,11 +1,18 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
-  getLuckyDayCycleInfo,
   getLuckyDayDetail,
   getLuckyDaysActivities,
   postLuckyDay,
+  deleteLuckyBoard,
+  getLuckyDayCycleInfo,
+  getLuckyDayCycles,
+  getLuckyDayCycleDetails,
 } from "apis";
-import { CreateLuckyDayForm } from "types";
+import {
+  CreateLuckyDayForm,
+  GetLuckyDayCycleDetailResponse,
+  GetLuckyDayCycleList,
+} from "types";
 
 export const useGetLuckyDaysActivities = () => {
   return useQuery({
@@ -27,9 +34,29 @@ export const useGetLuckyDayDetail = (req: string) => {
   });
 };
 
+export const useDeleteLuckyBoard = () => {
+  return useMutation({
+    mutationFn: () => deleteLuckyBoard(),
+  });
+};
+
 export const useGetLuckyDayCycleInfo = (req: number) => {
   return useQuery({
     queryKey: ["luckyday"],
     queryFn: () => getLuckyDayCycleInfo(req),
+  });
+};
+
+export const useGetLuckyDayCycles = () => {
+  return useQuery<GetLuckyDayCycleList[]>({
+    queryKey: ["cycles"],
+    queryFn: getLuckyDayCycles,
+  });
+};
+
+export const useGetLuckyDayCycleDetails = (isCurrent: number) => {
+  return useQuery<GetLuckyDayCycleDetailResponse>({
+    queryKey: ["luckyDayCycleDetails", isCurrent],
+    queryFn: () => getLuckyDayCycleDetails(isCurrent),
   });
 };

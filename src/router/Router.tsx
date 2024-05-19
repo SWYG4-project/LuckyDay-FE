@@ -18,12 +18,23 @@ export default function Router({ children }: RouterProps) {
           <Route path="myPage" element={<P.MyPage />} />
           <Route path="editProfile" element={<P.EditProfilePage />} />
           <Route path="luckyBoard" element={<P.LuckyBoardPage />} />
+          <Route path="createLuckyDay" element={<P.CreateLuckyDayPage />} />
           <Route
             path="viewLuckyDayActivity/:id"
             element={<P.ViewLuckyActivityPage />}
           />
-          <Route path="createLuckyDay" element={<P.CreateLuckyDayPage />} />
-          <Route path="luckyDayArchive" element={<P.LuckyDayArchivePage />} />
+
+          {/* FIX: 현재 테스트 할 수 있는 사이클이 없어서 임시로 라우터 설정을 하였습니다.  */}
+          {/* 테스트 케이스 받고 나서 /:id로 변경하겠습니다.  */}
+
+          <Route
+            path="luckyDayCycleList"
+            element={<P.LuckyDayCycleListPage />}
+          />
+          <Route
+            path="luckyDayCycleDetail"
+            element={<P.LuckyDayCycleDetailPage />}
+          />
           <Route path="404" element={<P.Error404Page />} />
         </Route>
       </Routes>
