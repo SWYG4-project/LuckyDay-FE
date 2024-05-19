@@ -32,6 +32,9 @@ export const MenuBox = styled.div`
     color: ${theme.colors.black};
     ${theme.fonts.headline1}
     border-bottom: 1px solid ${theme.colors.gray};
+    &:hover {
+      color: ${theme.colors.orange};
+    }
     cursor: pointer;
   `}
 `;
