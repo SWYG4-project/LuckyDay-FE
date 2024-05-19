@@ -7,7 +7,7 @@ import { SvgFrame } from "components/common/svgFrame";
 
 interface ConfirmModalProps {
   className?: string;
-  title: string;
+  title?: string;
   subTitle?: string | React.ReactNode;
   icon?: React.ReactNode;
   desc?: string;
@@ -41,7 +41,7 @@ const ConfirmModal = React.forwardRef(
       <BaseModal ref={ref} css={S.baseModal} className={className}>
         {!cancelLabel && <CloseIcon css={S.icon} onClick={handleModalClose} />}
         <div>
-          <S.Title>{title}</S.Title>
+          {title && <S.Title>{title}</S.Title>}
           {subTitle ? (
             <S.CenterContent>
               <SvgFrame css={S.largeBoxIcon} icon={<LargeBoxIcon />} />
@@ -51,6 +51,7 @@ const ConfirmModal = React.forwardRef(
             <>{icon}</>
           )}
           <S.Desc>{desc}</S.Desc>
+          {children}
         </div>
         {children && <div>{children}</div>}
         <S.ButtonWrapper>

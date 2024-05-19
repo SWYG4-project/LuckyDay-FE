@@ -18,7 +18,8 @@ export const ArchiveModal = styled.div`
     padding: 34px 24px 48px 24px;
     border-radius: 24px 24px 0px 0px;
     background-color: ${theme.colors.lightBeige_opacity};
-    filter: drop-shadow(0px -4px 4px rgba(0, 0, 0, 0.25));
+    filter: none;
+    box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.25);
 
     & > div {
       text-align: center;

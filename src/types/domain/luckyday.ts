@@ -51,3 +51,33 @@ interface GetLuckyDayCycleInfo {
 export interface GetLuckyDayCycleInfoServerModel extends CommonServerModel {
   resData: GetLuckyDayCycleInfo;
 }
+
+export interface GetLuckyDayCycleList {
+  cyclNo: number;
+  startDT: string;
+  endDT: string;
+}
+
+export interface GetLuckyDayCycleResponse {
+  code: string;
+  message: string;
+  resData: {
+    cyclList: GetLuckyDayCycleList[];
+  } | null;
+}
+
+export interface GetLuckyDayCycleDetail {
+  dtlNo: number;
+  cycNo: number;
+  dDay: number;
+  order: number;
+  date: string;
+}
+
+export interface GetLuckyDayCycleDetailResponse {
+  code: string;
+  message: string;
+  resData: {
+    luckyDay: GetLuckyDayCycleDetail[];
+  } | null;
+}
