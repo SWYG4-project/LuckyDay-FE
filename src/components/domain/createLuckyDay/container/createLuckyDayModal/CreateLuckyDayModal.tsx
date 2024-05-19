@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import type { UseFormHandleSubmit, UseFormWatch } from "react-hook-form";
 
 import { ConfirmModal } from "components";
-import { useModal } from "hooks";
+import { useModal, useToast } from "hooks";
 import { useCreateLuckyDay } from "services";
 import { formatDate } from "utils";
 import type { CreateLuckyDayForm } from "types";
@@ -23,6 +23,7 @@ function CreateLuckyDayModal({
   const { mutate: createLuckyDayMutate } = useCreateLuckyDay();
 
   const { handleModalClose } = useModal();
+  const { addToast } = useToast();
 
   const EndOfDate = dayjs(dayjs())
     .add(+watch("period"), "day")
@@ -42,8 +43,14 @@ function CreateLuckyDayModal({
     };
 
     createLuckyDayMutate(req, {
-      onSuccess: () => {
+      onSuccess: (res) => {
+        if (res.code !== "SU") {
+          return addToast({ content: res.message });
+        }
+
         handleModalClose();
+        sessionStorage.setItem("hasLuckyday", "1");
+        addToast({ content: "럭키데이 생성이 완료되었습니다." });
         navigate("/luckyBoard");
       },
     });

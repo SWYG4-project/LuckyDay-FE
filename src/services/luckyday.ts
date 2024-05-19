@@ -7,11 +7,13 @@ import {
   getLuckyDayCycleInfo,
   getLuckyDayCycles,
   getLuckyDayCycleDetails,
+  getLuckyDayCycle,
 } from "apis";
 import {
   CreateLuckyDayForm,
   GetLuckyDayCycleDetailResponse,
   GetLuckyDayCycleList,
+  GetLuckyDayCycleQueryModel,
 } from "types";
 
 export const useGetLuckyDaysActivities = () => {
@@ -34,10 +36,18 @@ export const useGetLuckyDayDetail = (req: string) => {
   });
 };
 
-export const useGetLuckyDayCycleInfo = (req: number) => {
+export const useGetLuckyDayCycleInfo = (req: number, enabled?: boolean) => {
   return useQuery({
-    queryKey: ["luckyday"],
+    queryKey: ["luckydayCycleInfo"],
     queryFn: () => getLuckyDayCycleInfo(req),
+    enabled,
+  });
+};
+
+export const useGetLuckyDayCycle = (req: GetLuckyDayCycleQueryModel) => {
+  return useQuery({
+    queryKey: ["luckydayCycle"],
+    queryFn: () => getLuckyDayCycle(req),
   });
 };
 

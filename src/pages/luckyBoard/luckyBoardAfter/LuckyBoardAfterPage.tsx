@@ -1,19 +1,23 @@
 import dayjs from "dayjs";
 
 import { ArchiveModal, ButtonLayout, LuckyBalls } from "components";
-import { useModal } from "hooks";
-import { useGetLuckyDayCycleInfo } from "services";
+import { useModal, useToast } from "hooks";
+import { useGetLuckyDayCycle, useGetLuckyDayCycleInfo } from "services";
 import { formatDate } from "utils";
 import * as S from "./LuckyBoardAfterPage.styled";
 
 export default function LuckyBoardAfterPage() {
-  const cyclNo = 84; //NOTE: 임시 데이터로 서버 데이터로 변경 필요
+  const hasLuckyday = sessionStorage.getItem("hasLuckyday")!;
 
-  const { data } = useGetLuckyDayCycleInfo(cyclNo); //TODO: enable 조건 추가 리팩토링 필요
+  const { data } = useGetLuckyDayCycle({
+    hasLuckyday: +hasLuckyday,
+    query: { isCurrent: 1 },
+  });
+
+  const { data: info } = useGetLuckyDayCycleInfo(data?.[0].cyclNo ?? 0, !!data); //TODO: enable 조건 추가 리팩토링 필요
 
   const { handleOpenModal } = useModal();
-
-  const info = data?.resData;
+  const { addToast } = useToast();
 
   const expDatesString = info?.expDtList
     ?.map((item) => `${formatDate(item, "YYYY-MM-DD")}\n`)
@@ -27,7 +31,7 @@ export default function LuckyBoardAfterPage() {
       {info ? formatDate(info.startDt, "YYYY-MM-DD") : "-"} ~{" "}
       {info ? formatDate(info.endDt, "YYYY-MM-DD") : "-"}
       <br />
-      {<strong>{info?.period}</strong>}일 동안 <strong>{info?.cnt}</strong>개의
+      <strong>{info?.period}</strong>일 동안 <strong>{info?.cnt}</strong>개의
       럭키 데이
       <br />
       {expDatesString ? `\n제외 날짜:\n${expDatesString}` : ""}
@@ -41,6 +45,9 @@ export default function LuckyBoardAfterPage() {
   };
 
   const handleOpenCheckLuckyDayModal = () => {
+    if (!info)
+      return addToast({ content: "진행 중인 럭키 데이 정보가 없어요." });
+
     handleOpenModal(<ArchiveModal css={S.archiveModal} moreInfo={cycleInfo} />);
   };
 
