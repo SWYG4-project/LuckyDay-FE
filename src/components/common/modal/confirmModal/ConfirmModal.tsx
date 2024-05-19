@@ -51,7 +51,6 @@ const ConfirmModal = React.forwardRef(
             <>{icon}</>
           )}
           <S.Desc>{desc}</S.Desc>
-          {children}
         </div>
         {children && <div>{children}</div>}
         <S.ButtonWrapper>
