@@ -68,7 +68,7 @@ export interface GetLuckyDayCycleResponse {
 
 export interface GetLuckyDayCycleDetail {
   dtlNo: number;
-  cycNo: number;
+  cyclNo: number;
   dDay: number;
   order: number;
   date: string;
@@ -82,7 +82,7 @@ export interface GetLuckyDayCycleQueryModel {
 }
 
 export interface GetLuckyDayCycleServerModel extends CommonServerModel {
-  resData: GetLuckyDayCycleDetail;
+  resData: GetLuckyDayCycleDetail[];
 }
 
 export interface GetLuckyDayCycleDetailResponse {

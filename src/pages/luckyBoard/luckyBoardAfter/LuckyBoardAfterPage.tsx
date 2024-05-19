@@ -14,7 +14,7 @@ export default function LuckyBoardAfterPage() {
     query: { isCurrent: 1 },
   });
 
-  const { data: info } = useGetLuckyDayCycleInfo(data?.dtlNo ?? 0); //TODO: enable 조건 추가 리팩토링 필요
+  const { data: info } = useGetLuckyDayCycleInfo(data?.[0].cyclNo ?? 0, !!data); //TODO: enable 조건 추가 리팩토링 필요
 
   const { handleOpenModal } = useModal();
   const { addToast } = useToast();
@@ -31,7 +31,7 @@ export default function LuckyBoardAfterPage() {
       {info ? formatDate(info.startDt, "YYYY-MM-DD") : "-"} ~{" "}
       {info ? formatDate(info.endDt, "YYYY-MM-DD") : "-"}
       <br />
-      {<strong>{info?.period}</strong>}일 동안 <strong>{info?.cnt}</strong>개의
+      <strong>{info?.period}</strong>일 동안 <strong>{info?.cnt}</strong>개의
       럭키 데이
       <br />
       {expDatesString ? `\n제외 날짜:\n${expDatesString}` : ""}
