@@ -68,7 +68,7 @@ export const ToggleMenuBottom = styled.div`
     color: ${theme.colors.black};
     transition: color 0.2s ease;
     &:hover {
-      color: ${theme.colors.lightOrange};
+      color: ${theme.colors.orange};
     }
     cursor: pointer;
   `}
