@@ -16,8 +16,8 @@ export const activities = [
 ] as const;
 
 export const LUCKYDAY_PERIODS = [
-  { label: "7일", period: 7, cnt: 2 },
-  { label: "14일", period: 14, cnt: 2 },
-  { label: "30일", period: 30, cnt: 4 },
-  { label: "60일", period: 60, cnt: 7 },
+  { label: "7일", period: 7, cnt: 2, expDate: 1 },
+  { label: "14일", period: 14, cnt: 2, expDate: 2 },
+  { label: "30일", period: 30, cnt: 4, expDate: 4 },
+  { label: "60일", period: 60, cnt: 7, expDate: 7 },
 ] as const;

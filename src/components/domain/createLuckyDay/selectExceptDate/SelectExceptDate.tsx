@@ -3,6 +3,7 @@ import dayjs from "dayjs";
 import type { UseFormSetValue, UseFormWatch } from "react-hook-form";
 
 import { Calendar } from "components";
+import { LUCKYDAY_PERIODS } from "assets";
 import type { CreateLuckyDayForm } from "types";
 import * as S from "./SelectExceptDate.styled";
 
@@ -15,6 +16,10 @@ function SelectExceptDate({ watch, setValue }: SelectExceptDateProps) {
   const [expDates, setExpDates] = useState<string[]>([]);
 
   const selectedPeriod = `${watch("period")}` ?? "0";
+  const availableExpDates = LUCKYDAY_PERIODS.find(
+    (item) => item.period === +selectedPeriod
+  )?.expDate;
+
   const EndOfDate = dayjs(dayjs())
     .add(+selectedPeriod, "day")
     .format("YYYY년 MM월 DD일");
@@ -45,6 +50,9 @@ function SelectExceptDate({ watch, setValue }: SelectExceptDateProps) {
           expDates={expDates}
           makeExpDates={makeExpDates}
         />
+        <S.SelectInfo>
+          최대 <strong>{availableExpDates}개</strong>의 날짜를 제외할 수 있어요.
+        </S.SelectInfo>
       </div>
     </>
   );

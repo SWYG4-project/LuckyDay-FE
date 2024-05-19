@@ -51,3 +51,14 @@ export const arrowIcon = css`
   height: 40px;
   rotate: 180deg;
 `;
+
+export const SelectInfo = styled.p`
+  ${({ theme }) => css`
+    ${theme.fonts.body1};
+    text-align: center;
+
+    & > strong {
+      color: ${theme.colors.orange};
+    }
+  `}
+`;
