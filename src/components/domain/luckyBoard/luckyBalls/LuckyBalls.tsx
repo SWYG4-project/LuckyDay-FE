@@ -1,28 +1,16 @@
 import * as S from "./LuckyBalls.styled";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useModal } from "hooks";
-import { SvgFrame, CenteredSvgFrame } from "components";
+import { SvgFrame, CenteredSvgFrame, CountLuckyDayModal } from "components";
 import { CircleBoxIcon } from "assets";
-import CountLuckyDayModal from "../countLuckyDayModal/CountLuckyDayModal";
 import { ax } from "apis/axios";
-
-type LuckyBallStatus =
-  | "LuckyBall_unknown"
-  | "LuckyBall_Dday"
-  | "LuckyBall_D2"
-  | "LuckyBall_D1"
-  | "LuckyBallFace";
-
-interface LuckyBallGrid {
-  row1: LuckyBallStatus[];
-  row2: LuckyBallStatus[];
-  row3: LuckyBallStatus[];
-}
-
-interface LuckyDayDetail {
-  dday: number | null;
-  dtlNo: number;
-}
+import {
+  LuckyBallDetail,
+  LuckyBallGrid,
+  LuckyBallType,
+  LuckyDayDetail,
+} from "types";
 
 interface GetLuckyDayApiResponse {
   code: string;
@@ -40,6 +28,7 @@ export default function LuckyBalls() {
   });
   const [luckyBallFaceImages, setLuckyBallFaceImages] = useState<string[]>([]);
   const { handleOpenModal, handleModalClose } = useModal();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,23 +44,25 @@ export default function LuckyBalls() {
         console.log("API 요청 파라미터:", response.config.params);
         console.log("API 응답 데이터:", response.data);
 
-        const fetchedData: LuckyBallStatus[] = [];
+        const fetchedData: LuckyBallDetail[] = [];
         if (response.data.resData && Array.isArray(response.data.resData)) {
           response.data.resData.forEach((day) => {
+            let type: LuckyBallType;
             if (day.dday === 0) {
-              fetchedData.push("LuckyBall_Dday");
+              type = "LuckyBall_Dday";
             } else if (day.dday === 1) {
-              fetchedData.push("LuckyBall_D1");
+              type = "LuckyBall_D1";
             } else if (day.dday === 2) {
-              fetchedData.push("LuckyBall_D2");
+              type = "LuckyBall_D2";
             } else {
-              fetchedData.push("LuckyBall_unknown");
+              type = "LuckyBall_unknown";
             }
+            fetchedData.push({ type, dtlNo: day.dtlNo });
           });
         }
 
         while (fetchedData.length < MAX_LUCKY_BALLS) {
-          fetchedData.push("LuckyBallFace");
+          fetchedData.push({ type: "LuckyBallFace" });
         }
 
         const shuffledData = fetchedData.sort(() => Math.random() - 0.5);
@@ -83,7 +74,7 @@ export default function LuckyBalls() {
         });
 
         const faceImages = shuffledData
-          .filter((type) => type === "LuckyBallFace")
+          .filter((ball) => ball.type === "LuckyBallFace")
           .map((_, index) => `/images/face-0${index + 1}.png`);
         setLuckyBallFaceImages(faceImages);
       } catch (error) {
@@ -94,23 +85,23 @@ export default function LuckyBalls() {
     fetchData();
   }, []);
 
-  const renderLuckyBall = (type: LuckyBallStatus, index: number) => {
-    if (type === "LuckyBallFace") {
+  const renderLuckyBall = (ball: LuckyBallDetail, index: number) => {
+    if (ball.type === "LuckyBallFace") {
       return (
         <S.LuckyBallFace
           key={index}
-          imageUrl={luckyBallFaceImages[index % luckyBallFaceImages.length]} // 주석: LuckyBallFace 스타일을 styled-components로 옮김
+          imageUrl={luckyBallFaceImages[index % luckyBallFaceImages.length]}
         />
       );
     }
 
-    switch (type) {
+    switch (ball.type) {
       case "LuckyBall_unknown":
         return (
           <CenteredSvgFrame
             key={index}
             label={"D-?"}
-            onClick={() => handleLuckyBallClick(type)}
+            onClick={() => handleLuckyBallClick(ball)}
           >
             <SvgFrame
               key={index}
@@ -124,7 +115,7 @@ export default function LuckyBalls() {
           <CenteredSvgFrame
             key={index}
             label={"D-day"}
-            onClick={() => handleLuckyBallClick(type)}
+            onClick={() => handleLuckyBallClick(ball)}
           >
             <SvgFrame
               key={index}
@@ -138,7 +129,7 @@ export default function LuckyBalls() {
           <CenteredSvgFrame
             key={index}
             label={"D-1"}
-            onClick={() => handleLuckyBallClick(type)}
+            onClick={() => handleLuckyBallClick(ball)}
           >
             <SvgFrame
               key={index}
@@ -152,7 +143,7 @@ export default function LuckyBalls() {
           <CenteredSvgFrame
             key={index}
             label={"D-2"}
-            onClick={() => handleLuckyBallClick(type)}
+            onClick={() => handleLuckyBallClick(ball)}
           >
             <SvgFrame
               key={index}
@@ -166,13 +157,18 @@ export default function LuckyBalls() {
     }
   };
 
-  const handleLuckyBallClick = (type: LuckyBallStatus) => {
-    if (type === "LuckyBallFace") {
+  const handleLuckyBallClick = (ball: LuckyBallDetail) => {
+    if (ball.type === "LuckyBallFace") {
+      return;
+    }
+
+    if (ball.type === "LuckyBall_Dday" && ball.dtlNo) {
+      navigate(`/viewLuckyDayActivity/${ball.dtlNo}`);
       return;
     }
 
     let label = "";
-    switch (type) {
+    switch (ball.type) {
       case "LuckyBall_unknown":
         label = "아직 럭키 데이를 확인할 수 없어요.\n 조금만 기다려주세요.";
         break;
@@ -181,9 +177,6 @@ export default function LuckyBalls() {
         break;
       case "LuckyBall_D1":
         label = "럭키 데이가 1일 남았어요. \n 조금만 기다려주세요.";
-        break;
-      case "LuckyBall_Dday":
-        label = "";
         break;
       default:
         label = "";
@@ -197,34 +190,34 @@ export default function LuckyBalls() {
     <>
       <S.Container>
         <S.RowBox>
-          {luckyBallData.row1.map((type, index) => (
+          {luckyBallData.row1.map((ball, index) => (
             <CenteredSvgFrame
               key={index}
-              onClick={() => handleLuckyBallClick(type)}
+              onClick={() => handleLuckyBallClick(ball)}
             >
-              {renderLuckyBall(type, index)}
+              {renderLuckyBall(ball, index)}
             </CenteredSvgFrame>
           ))}
         </S.RowBox>
 
         <S.RowBox>
-          {luckyBallData.row2.map((type, index) => (
+          {luckyBallData.row2.map((ball, index) => (
             <CenteredSvgFrame
               key={index}
-              onClick={() => handleLuckyBallClick(type)}
+              onClick={() => handleLuckyBallClick(ball)}
             >
-              {renderLuckyBall(type, index)}
+              {renderLuckyBall(ball, index)}
             </CenteredSvgFrame>
           ))}
         </S.RowBox>
 
         <S.RowBox>
-          {luckyBallData.row3.map((type, index) => (
+          {luckyBallData.row3.map((ball, index) => (
             <CenteredSvgFrame
               key={index}
-              onClick={() => handleLuckyBallClick(type)}
+              onClick={() => handleLuckyBallClick(ball)}
             >
-              {renderLuckyBall(type, index)}
+              {renderLuckyBall(ball, index)}
             </CenteredSvgFrame>
           ))}
         </S.RowBox>
