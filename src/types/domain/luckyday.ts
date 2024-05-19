@@ -81,3 +81,26 @@ export interface GetLuckyDayCycleDetailResponse {
     luckyDay: GetLuckyDayCycleDetail[];
   } | null;
 }
+
+export type LuckyBallType =
+  | "LuckyBall_unknown"
+  | "LuckyBall_Dday"
+  | "LuckyBall_D2"
+  | "LuckyBall_D1"
+  | "LuckyBallFace";
+
+export interface LuckyBallDetail {
+  type: LuckyBallType;
+  dtlNo?: number;
+}
+
+export interface LuckyBallGrid {
+  row1: LuckyBallDetail[];
+  row2: LuckyBallDetail[];
+  row3: LuckyBallDetail[];
+}
+
+export interface LuckyDayDetail {
+  dday: number | null;
+  dtlNo: number;
+}
