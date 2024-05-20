@@ -1,20 +1,38 @@
 import * as S from "./LuckyDayCycleDetailPage.styled";
 import React from "react";
+import { useParams } from "react-router-dom";
 import { useTheme } from "@emotion/react";
 import { SvgButton } from "components";
 import { CircleBoxIcon } from "assets";
-import { GetLuckyDayCycleDetail } from "types";
-import { useGetLuckyDayCycleDetails } from "services";
+import { useGetLuckyDayCycleInfo } from "services";
 
-const LuckyDayCycleDetailPage: React.FC = () => {
-  const isCurrent = 0;
-  const { data } = useGetLuckyDayCycleDetails(isCurrent);
+const LuckyDayCycleDetailPage = () => {
+  const { id } = useParams<{ id: string }>();
   const theme = useTheme();
+  const { data, isLoading, error } = useGetLuckyDayCycleInfo(Number(id));
 
+  console.log("Fetched data:", data);
+
+  if (isLoading) {
+    return <S.ErrorBox>로딩 중...</S.ErrorBox>; // NOTE: spinner 추가 예정입니다.
+  }
+
+  if (error) {
+    return (
+      <S.ErrorBox>
+        <p>{error.message}</p>
+        <S.Logo_Sad />
+      </S.ErrorBox>
+    );
+  }
+
+  // FIX: 사이클 내 럭키데이 data 누락, API 수정 요청 드려야 합니다.
   const labels =
-    data?.resData?.luckyDay.map((day: GetLuckyDayCycleDetail) => {
-      const date = new Date(day.date);
-      return `${date.getMonth() + 1}월 ${date.getFullYear()}일`;
+    data?.expDtList.map((date: string) => {
+      const formattedDate = new Date(date);
+      return `${
+        formattedDate.getMonth() + 1
+      }월 ${formattedDate.getFullYear()}일`;
     }) || [];
 
   return (
