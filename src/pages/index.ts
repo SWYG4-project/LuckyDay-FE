@@ -8,4 +8,6 @@ export { default as CreateLuckyDayPage } from "./createLuckyDay/CreateLuckyDayPa
 export { default as LuckyDayCycleListPage } from "./luckyDayCycleList/LuckyDayCycleListPage";
 export { default as LuckyDayCycleDetailPage } from "./luckyDayCycleDetail/LuckyDayCycleDetailPage";
 export { default as ViewLuckyActivityPage } from "./viewLuckyActivity/ViewLuckyActivityPage";
+export { default as ReviewLuckyDayPage } from "./reviewLuckyDay/ReviewLuckyDayPage";
+export { default as ViewLuckyDayPage } from "./viewLuckyDay/ViewLuckyDay";
 export { default as Error404Page } from "./404/Error404Page";
