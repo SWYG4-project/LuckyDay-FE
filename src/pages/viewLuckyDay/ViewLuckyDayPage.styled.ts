@@ -23,7 +23,7 @@ export const ReviewBox = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url("/images/img-review.png");
+  background-image: url("/images/img-review.webp");
   background-color: yellow;
 `;
 
