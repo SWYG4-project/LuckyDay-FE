@@ -8,12 +8,12 @@ export default function LandingPage() {
   const navigate = useNavigate();
 
   const images: string[] = [
-    "/images/landing/landing-01.png",
-    "/images/landing/landing-02.png",
-    "/images/landing/landing-03.png",
-    "/images/landing/landing-04.png",
-    "/images/landing/landing-05.png",
-    "/images/landing/landing-06.png",
+    "/images/landing/landing-01.webp",
+    "/images/landing/landing-02.webp",
+    "/images/landing/landing-03.webp",
+    "/images/landing/landing-04.webp",
+    "/images/landing/landing-05.webp",
+    "/images/landing/landing-06.webp",
   ];
 
   const texts: string[] = [

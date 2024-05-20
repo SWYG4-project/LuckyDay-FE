@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 
 export const BaseModal = styled.dialog`
   ${({ theme }) => css`
-    position: relative;
+    position: fixed;
     display: block;
     width: 288px;
     height: 415px;

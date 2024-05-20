@@ -5,6 +5,8 @@ import type {
   GetLuckyDayCycleDetailResponse,
   GetLuckyDayCycleInfoServerModel,
   GetLuckyDayCycleList,
+  GetLuckyDayCycleQueryModel,
+  GetLuckyDayCycleServerModel,
   GetLuckyDayDetailServerModel,
 } from "types";
 
@@ -34,7 +36,16 @@ export const getLuckyDayCycleInfo = async (req: number) => {
   const { data } = await ax.get<GetLuckyDayCycleInfoServerModel>(
     `/luckydays/info/${req}`
   );
-  return data;
+  return data.resData;
+};
+
+export const getLuckyDayCycle = async (req: GetLuckyDayCycleQueryModel) => {
+  const { data } = await ax.get<GetLuckyDayCycleServerModel>(
+    `/luckydays/cycl/${req.hasLuckyday}`,
+    { params: req.query }
+  );
+
+  return data.resData;
 };
 
 export const getLuckyDayCycles = async (): Promise<GetLuckyDayCycleList[]> => {

@@ -44,6 +44,8 @@ export const Text = styled.div<{ color?: string }>`
   top: 50%;
   left: 50%;
   width: 100%;
+  text-align: center;
+  white-space: pre-line;
   transform: translate(-50%, -50%);
   color: ${(props) => props.color || props.theme.colors.black};
   ${(props) => props.theme.fonts.headline1}

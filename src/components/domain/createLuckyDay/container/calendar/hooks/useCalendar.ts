@@ -47,9 +47,9 @@ const useCalendar = (
     const luckyday = LUCKYDAY_PERIODS.find((item) => item.period === +dates);
 
     if (!isAlreadyDisabled) {
-      if (expDates.length >= (luckyday?.cnt ?? 2))
+      if (expDates.length >= (luckyday?.expDate ?? 1))
         return addToast({
-          content: `${luckyday?.cnt}일 이상의 제외 날짜를 선택할 수 없어요 :(`,
+          content: `${luckyday?.expDate}일 이상의 제외 날짜를 선택할 수 없어요 :(`,
         });
 
       if (!monthsData.includes(formattedDate)) return;

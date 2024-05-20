@@ -6,27 +6,27 @@ import { useTheme } from "@emotion/react";
 interface SvgButtonProps {
   className?: string;
   label?: string;
-  textColor?: string;
-  onClick?: () => void;
-  children?: React.ReactNode;
   icon: ReactNode;
-  fillColor?: string;
   width?: string;
   height?: string;
+  textColor?: string;
+  fillColor?: string;
   disabled?: boolean;
+  children?: React.ReactNode;
+  onClick?: () => void;
 }
 
 export default function SvgButton({
   className,
   label,
-  textColor,
-  onClick,
-  children,
   icon,
-  fillColor,
   width = "247px",
   height = "45px",
+  textColor,
+  fillColor,
   disabled = false,
+  children,
+  onClick,
 }: SvgButtonProps) {
   const theme = useTheme();
   const finalFillColor = fillColor || theme.colors.beige;

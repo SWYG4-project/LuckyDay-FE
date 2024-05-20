@@ -68,10 +68,21 @@ export interface GetLuckyDayCycleResponse {
 
 export interface GetLuckyDayCycleDetail {
   dtlNo: number;
-  cycNo: number;
+  cyclNo: number;
   dDay: number;
   order: number;
   date: string;
+}
+
+export interface GetLuckyDayCycleQueryModel {
+  hasLuckyday: number;
+  query: {
+    isCurrent: number;
+  };
+}
+
+export interface GetLuckyDayCycleServerModel extends CommonServerModel {
+  resData: GetLuckyDayCycleDetail[];
 }
 
 export interface GetLuckyDayCycleDetailResponse {
@@ -80,4 +91,27 @@ export interface GetLuckyDayCycleDetailResponse {
   resData: {
     luckyDay: GetLuckyDayCycleDetail[];
   } | null;
+}
+
+export type LuckyBallType =
+  | "LuckyBall_unknown"
+  | "LuckyBall_Dday"
+  | "LuckyBall_D2"
+  | "LuckyBall_D1"
+  | "LuckyBallFace";
+
+export interface LuckyBallDetail {
+  type: LuckyBallType;
+  dtlNo?: number;
+}
+
+export interface LuckyBallGrid {
+  row1: LuckyBallDetail[];
+  row2: LuckyBallDetail[];
+  row3: LuckyBallDetail[];
+}
+
+export interface LuckyDayDetail {
+  dday: number | null;
+  dtlNo: number;
 }

@@ -8,11 +8,14 @@ export default function Auth() {
   const token = searchParams.get("token")!;
   const email = searchParams.get("email")!;
   const nickname = searchParams.get("nickname")!;
+  const hasLuckyday = searchParams.get("isExistLcDay")!;
 
   useEffect(() => {
     sessionStorage.setItem("accessToken", token!);
     sessionStorage.setItem("email", email!);
     sessionStorage.setItem("nickname", nickname!);
+    sessionStorage.setItem("hasLuckyday", hasLuckyday!);
+
     if (token) return navigate("/profile");
   }, [email, navigate, nickname, token]);
 
