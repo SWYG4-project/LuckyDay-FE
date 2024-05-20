@@ -18,7 +18,7 @@ export default function CreateAlertModal({
     <BaseModal>
       <S.ModalContainer>
         <S.Text_h1>럭키 데이 생성</S.Text_h1>
-        <S.Logo_Sad />
+        <S.Logo_Basic />
         <S.Text_h2>
           새로운 럭키 데이 생성을 시작하면 <br />
           지난 럭키 데이 아이콘들은 <br />

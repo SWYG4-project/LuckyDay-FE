@@ -18,6 +18,6 @@ export const Logo_Basic = styled.div`
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url("images/logo-basic.png");
+  background-image: url("images/logo-basic.webp");
   cursor: pointer;
 `;
