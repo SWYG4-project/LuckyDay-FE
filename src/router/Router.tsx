@@ -25,16 +25,12 @@ export default function Router({ children }: RouterProps) {
               path="viewLuckyDayActivity/:id"
               element={<P.ViewLuckyActivityPage />}
             />
-
-            {/* FIX: 현재 테스트 할 수 있는 사이클이 없어서 임시로 라우터 설정을 하였습니다.  */}
-            {/* 테스트 케이스 받고 나서 /:id로 변경하겠습니다.  */}
-
             <Route
-              path="luckyDayCycleList"
+              path="luckyDays/list"
               element={<P.LuckyDayCycleListPage />}
             />
             <Route
-              path="luckyDayCycleDetail"
+              path="luckyDays/list/:id"
               element={<P.LuckyDayCycleDetailPage />}
             />
           </Route>
