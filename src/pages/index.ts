@@ -9,5 +9,5 @@ export { default as LuckyDayCycleListPage } from "./luckyDayCycleList/LuckyDayCy
 export { default as LuckyDayCycleDetailPage } from "./luckyDayCycleDetail/LuckyDayCycleDetailPage";
 export { default as ViewLuckyActivityPage } from "./viewLuckyActivity/ViewLuckyActivityPage";
 export { default as ReviewLuckyDayPage } from "./reviewLuckyDay/ReviewLuckyDayPage";
-export { default as ViewLuckyDayPage } from "./viewLuckyDay/ViewLuckyDay";
+export { default as ViewLuckyDayPage } from "./viewLuckyDay/ViewLuckyDayPage";
 export { default as Error404Page } from "./404/Error404Page";

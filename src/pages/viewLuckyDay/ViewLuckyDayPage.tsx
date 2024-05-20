@@ -1,4 +1,4 @@
-import * as S from "./ViewLuckyDay.styled";
+import * as S from "./ViewLuckyDayPage.styled";
 import { useParams } from "react-router-dom";
 import { useGetLuckyDayReview } from "services";
 

@@ -8,6 +8,7 @@ import {
   getLuckyDayCycles,
   getLuckyDayCycleDetails,
   getLuckyDayCycle,
+  getLuckyDayReview,
 } from "apis";
 import {
   CreateLuckyDayForm,
@@ -33,6 +34,14 @@ export const useGetLuckyDayDetail = (req: string) => {
   return useQuery({
     queryKey: ["luckyday"],
     queryFn: () => getLuckyDayDetail(req),
+  });
+};
+
+export const useGetLuckyDayReview = (dtlNo: string) => {
+  return useQuery({
+    queryKey: ["luckyday", dtlNo],
+    queryFn: () => getLuckyDayReview(dtlNo),
+    enabled: !!dtlNo,
   });
 };
 

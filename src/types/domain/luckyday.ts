@@ -26,6 +26,7 @@ export interface CreateLuckyDayQueryModel {
 }
 
 interface GetLuckyDayDetail {
+  dtlNo: number;
   actNm: string;
   actInfo: string;
   review: string | null;
