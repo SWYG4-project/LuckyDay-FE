@@ -15,11 +15,11 @@ function LoadingPage() {
   const { addToast } = useToast();
 
   const images = [
-    "/images/profile/profile-01.png",
-    "/images/profile/profile-02.png",
-    "/images/profile/profile-03.png",
-    "/images/profile/profile-04.png",
-    "/images/profile/profile-05.png",
+    "/images/profile/profile-01.webp",
+    "/images/profile/profile-02.webp",
+    "/images/profile/profile-03.webp",
+    "/images/profile/profile-04.webp",
+    "/images/profile/profile-05.webp",
   ];
 
   useEffect(() => {

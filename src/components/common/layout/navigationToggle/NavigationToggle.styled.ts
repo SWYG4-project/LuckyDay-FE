@@ -49,7 +49,7 @@ export const ProfileImage = styled.div`
   margin-right: 10px;
   background-size: cover;
   background-position: center;
-  background-image: url("/images/profile/profile-03.png");
+  background-image: url("/images/profile/profile-03.webp");
 `;
 
 export const ToggleMenuBox = styled.div`
