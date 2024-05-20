@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
-import { Input as ReviewInput } from "components/common/input";
+import { css, Theme } from "@emotion/react";
 
 export const Container = styled.div`
   display: flex;
@@ -36,28 +35,26 @@ export const TextBox = styled.div`
   `}
 `;
 
-export const StyledInput = styled(ReviewInput)`
-  ${({ theme }) => css`
-    width: 270px;
-    height: 120px;
-    padding: 10px 20px;
-    margin-top: 70px;
-    margin-bottom: 70px;
-    border: 0;
-    background-color: transparent;
-    text-align: center;
-    color: ${theme.colors.black};
-    ${theme.fonts.headline2}
+export const ReviewInput = (theme: Theme) => css`
+  width: 270px;
+  height: 120px;
+  padding: 10px 20px;
+  margin-top: 70px;
+  margin-bottom: 70px;
+  border: 0;
+  background-color: transparent;
+  text-align: center;
+  color: ${theme.colors.black};
+  ${theme.fonts.headline2}
 
-    &:focus {
-      outline: none;
-    }
+  &:focus {
+    outline: none;
+  }
 
-    &:disabled {
-      background-color: ${theme.colors.gray};
-      color: ${theme.colors.gray};
-    }
-  `}
+  &:disabled {
+    background-color: ${theme.colors.gray};
+    color: ${theme.colors.gray};
+  }
 `;
 
 export const ImageUploadBox = styled.div`

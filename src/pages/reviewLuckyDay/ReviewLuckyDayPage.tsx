@@ -1,12 +1,16 @@
 import * as S from "./ReviewLuckyDayPage.styled";
 import { useState } from "react";
-import { getCurrentDate } from "utils/date";
-import { FileUploader, SvgButton } from "components";
+import { useParams } from "react-router-dom";
+import { useGetLuckyDayDetail } from "services";
+import { FileUploader, Input, SvgButton } from "components";
 import { ShortBoxIcon } from "assets";
 import { ax } from "apis/axios";
 import axios from "axios";
 
 export default function ReviewLuckyDayPage() {
+  const { id } = useParams();
+  const { data, isLoading, error } = useGetLuckyDayDetail(id || "");
+
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [review, setReview] = useState<string>("");
 
@@ -25,7 +29,7 @@ export default function ReviewLuckyDayPage() {
     }
 
     const formData = new FormData();
-    formData.append("dtlNo", "0");
+    formData.append("dtlNo", id || "0");
     formData.append("review", review);
     formData.append("image", uploadedFile);
 
@@ -56,11 +60,23 @@ export default function ReviewLuckyDayPage() {
     }
   };
 
+  if (isLoading) {
+    return <S.Container>로딩 중...</S.Container>; // NOTE: spinner 추가 예정입니다.
+  }
+
+  if (error || !data) {
+    console.log("에러 발생:", error);
+    console.log("받은 데이터:", data);
+    return <S.Container>오류가 발생했습니다.</S.Container>;
+  }
+
+  const { dday, actNm } = data.resData;
+
   return (
     <S.Container>
-      <S.TextBox>{getCurrentDate()}</S.TextBox>
+      <S.TextBox>{dday}</S.TextBox>
       <S.ReviewBox>
-        <S.TextBox>혼자 영화관 가기</S.TextBox>
+        <S.TextBox>{actNm}</S.TextBox>
         <S.ImageUploadBox>
           <FileUploader onFileSelect={handleFileSelect} />
           {uploadedFile && (
@@ -77,7 +93,8 @@ export default function ReviewLuckyDayPage() {
             </S.ImageBox>
           )}
         </S.ImageUploadBox>
-        <S.StyledInput
+        <Input
+          css={S.ReviewInput}
           value={review}
           handleChange={handleReviewChange}
           placeholder={"100자 이내로 럭키 데이를 기록해 보세요:)"}
@@ -85,7 +102,7 @@ export default function ReviewLuckyDayPage() {
       </S.ReviewBox>
       <S.ButtonBox>
         <SvgButton
-          label={"저장하기"}
+          label="저장하기"
           icon={<ShortBoxIcon />}
           width="120px"
           height="50px"
