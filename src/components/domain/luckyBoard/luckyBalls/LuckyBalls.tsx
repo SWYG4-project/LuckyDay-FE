@@ -75,7 +75,7 @@ export default function LuckyBalls() {
 
         const faceImages = shuffledData
           .filter((ball) => ball.type === "LuckyBallFace")
-          .map((_, index) => `/images/face-0${index + 1}.png`);
+          .map((_, index) => `/images/face-0${index + 1}.webp`);
         setLuckyBallFaceImages(faceImages);
       } catch (error) {
         console.error("Error :", error);

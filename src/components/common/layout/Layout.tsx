@@ -8,7 +8,7 @@ const Layout = () => {
 
   return (
     <S.Layout>
-      {pathname !== "/404" && <Header />}
+      {!(pathname === "/404" || pathname === "/loading") && <Header />}
       <Outlet />
     </S.Layout>
   );

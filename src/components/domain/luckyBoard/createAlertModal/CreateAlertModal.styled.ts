@@ -13,14 +13,14 @@ export const ModalContainer = styled.div`
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 `;
 
-export const Logo_Sad = styled.div`
+export const Logo_Basic = styled.div`
   width: 100px;
   height: 100px;
   margin: 30px 0px 15px 0px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url("images/logo-basic.png");
+  background-image: url("images/logo-basic.webp");
 `;
 
 export const Text_h1 = styled.div`
