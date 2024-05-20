@@ -38,6 +38,16 @@ export default function Router({ children }: RouterProps) {
               element={<P.LuckyDayCycleDetailPage />}
             />
           </Route>
+
+          <Route
+            path="/luckyDays/create/:id"
+            element={<P.ReviewLuckyDayPage />}
+          />
+          <Route
+            path="/luckyDays/review/:id"
+            element={<P.ViewLuckyDayPage />}
+          />
+
           <Route path="404" element={<P.Error404Page />} />
         </Route>
       </Routes>
