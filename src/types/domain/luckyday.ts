@@ -54,8 +54,8 @@ export interface GetLuckyDayCycleInfoServerModel extends CommonServerModel {
 
 export interface GetLuckyDayCycleList {
   cyclNo: number;
-  startDT: string;
-  endDT: string;
+  startDt: string;
+  endDt: string;
 }
 
 export interface GetLuckyDayCycleResponse {
@@ -88,9 +88,7 @@ export interface GetLuckyDayCycleServerModel extends CommonServerModel {
 export interface GetLuckyDayCycleDetailResponse {
   code: string;
   message: string;
-  resData: {
-    luckyDay: GetLuckyDayCycleDetail[];
-  } | null;
+  resData: GetLuckyDayCycleDetail[];
 }
 
 export type LuckyBallType =
