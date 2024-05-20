@@ -5,7 +5,7 @@ export const ButtonLayout = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: calc(100vh - 100px);
+  height: calc(100vh - 80px);
 `;
 
 export const Body = styled.div`
@@ -15,7 +15,7 @@ export const Body = styled.div`
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 0 24px 50px 24px;
+  padding: 3% 10% 5% 10%;
 `;
 
 export const icon = css`

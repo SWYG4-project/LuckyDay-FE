@@ -35,7 +35,7 @@ export const Image = styled.img`
 export const TextBox = styled.div`
   ${({ theme }) => css`
     width: 310px;
-    margin: 30px 0px 30px 0px;
+    margin: 5% 0px;
     text-align: center;
     white-space: pre-wrap;
     color: ${theme.colors.black};
@@ -47,7 +47,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin: 50px 0px 50px 0px;
+  margin: 10% 0px;
   padding: 0px 15px 0px 15px;
   box-sizing: border-box;
 `;
