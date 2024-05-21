@@ -40,8 +40,9 @@ export default function Router({ children }: RouterProps) {
             path="/luckydays/review/:id"
             element={<P.ViewLuckyDayPage />}
           />
-          <Route path="404" element={<P.Error404Page />} />
           <Route path="loading" element={<P.LoadingPage />} />
+          <Route path="404" element={<P.Error404Page />} />
+          <Route path="*" element={<P.Error404Page />} />
         </Route>
       </Routes>
     </BrowserRouter>
