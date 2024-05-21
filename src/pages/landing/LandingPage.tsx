@@ -28,7 +28,7 @@ export default function LandingPage() {
   useEffect(() => {
     const accessToken = Cookies.get("accessToken");
     if (accessToken) {
-      navigate("/luckyBoard");
+      navigate("/luckyboard");
     }
   }, [navigate]);
 

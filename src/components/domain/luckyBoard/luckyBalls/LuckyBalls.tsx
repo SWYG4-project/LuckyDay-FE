@@ -165,7 +165,7 @@ export default function LuckyBalls() {
     }
 
     if (ball.type === "LuckyBall_Dday" && ball.dtlNo) {
-      navigate(`/viewLuckyDayActivity/${ball.dtlNo}`);
+      navigate(`/luckydays/${ball.dtlNo}`);
       return;
     }
 

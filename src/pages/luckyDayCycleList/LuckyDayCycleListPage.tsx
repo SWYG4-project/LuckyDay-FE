@@ -29,7 +29,7 @@ export default function LuckyDayCycleListPage() {
         {cycles.map((cycle: GetLuckyDayCycleList) => (
           <S.MenuBox
             key={cycle.cyclNo}
-            onClick={() => navigate(`/luckyDays/list/${cycle.cyclNo}`)}
+            onClick={() => navigate(`/luckydays/list/${cycle.cyclNo}`)}
           >
             {`${cycle.startDt} ~ ${cycle.endDt}`}
           </S.MenuBox>

@@ -38,7 +38,7 @@ function LoadingPage() {
       setIsSliderOpen(false);
       clearInterval(intervalId);
       addToast({ content: "럭키데이 생성이 완료되었습니다." });
-      navigate("/luckyBoard", { replace: true });
+      navigate("/luckyboard", { replace: true });
     }, 4000);
 
     return () => {
@@ -48,7 +48,7 @@ function LoadingPage() {
   }, []);
 
   useEffect(() => {
-    if (!state) return navigate("/luckyBoard");
+    if (!state) return navigate("/luckyboard");
   }, [state]);
 
   if (!isSliderOpen) {

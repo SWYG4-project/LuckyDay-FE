@@ -62,7 +62,7 @@ export default function MyPage() {
     <>
       <S.TitleBox>마이페이지</S.TitleBox>
       <S.ContentsBox>
-        <Link to="/editProfile">
+        <Link to="/mypage/edit">
           <S.MenuBox>프로필 설정</S.MenuBox>
         </Link>
         <S.MenuBox onClick={openResetLuckyBoardrModal}>

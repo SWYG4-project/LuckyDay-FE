@@ -17,33 +17,29 @@ export default function Router({ children }: RouterProps) {
           <Route path="oauth2/kakao/callback" element={<P.Auth />} />
           <Route element={<AuthRoute />}>
             <Route path="profile" element={<P.Profile />} />
-            <Route path="myPage" element={<P.MyPage />} />
-            <Route path="editProfile" element={<P.EditProfilePage />} />
-            <Route path="luckyBoard" element={<P.LuckyBoardPage />} />
-            <Route path="createLuckyDay" element={<P.CreateLuckyDayPage />} />
+            <Route path="mypage" element={<P.MyPage />} />
+            <Route path="mypage/edit" element={<P.EditProfilePage />} />
+            <Route path="luckyboard" element={<P.LuckyBoardPage />} />
+            <Route path="create" element={<P.CreateLuckyDayPage />} />
+            <Route path="luckydays/:id" element={<P.ViewLuckyActivityPage />} />
             <Route
-              path="viewLuckyDayActivity/:id"
-              element={<P.ViewLuckyActivityPage />}
-            />
-            <Route
-              path="luckyDays/list"
+              path="luckydays/list"
               element={<P.LuckyDayCycleListPage />}
             />
             <Route
-              path="luckyDays/list/:id"
+              path="luckydays/list/:id"
               element={<P.LuckyDayCycleDetailPage />}
             />
           </Route>
 
           <Route
-            path="/luckyDays/create/:id"
+            path="/luckydays/create/:id"
             element={<P.ReviewLuckyDayPage />}
           />
           <Route
-            path="/luckyDays/review/:id"
+            path="/luckydays/review/:id"
             element={<P.ViewLuckyDayPage />}
           />
-
           <Route path="404" element={<P.Error404Page />} />
           <Route path="loading" element={<P.LoadingPage />} />
         </Route>
