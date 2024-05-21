@@ -1,19 +1,28 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import { SvgFrame } from "components";
 import { useModal } from "hooks";
-import { formatDate } from "utils";
 import { CircleBoxIcon, ShortBoxIcon } from "assets";
+import type { GetLuckyDayCycleDetail } from "types";
 import * as S from "./ArchiveModal.styled";
 
 interface ArchiveModalProps {
   className?: string;
   moreInfo?: React.ReactElement;
-  lastInfo?: string[];
+  lastInfo?: GetLuckyDayCycleDetail[];
 }
 
 function ArchiveModal({ className, moreInfo, lastInfo }: ArchiveModalProps) {
+  const navigate = useNavigate();
+
   const { handleModalClose } = useModal();
+
+  const moveToDetail = (dtlNo: number) => () => {
+    navigate(`/viewLuckyDayActivity/${dtlNo}`);
+
+    handleModalClose();
+  };
 
   return (
     <S.ArchiveModal className={className}>
@@ -23,9 +32,12 @@ function ArchiveModal({ className, moreInfo, lastInfo }: ArchiveModalProps) {
           {lastInfo?.length ? (
             <S.LuckyDayButtonWrapper>
               {lastInfo?.map((item) => (
-                <S.LuckyDayButton>
+                <S.LuckyDayButton
+                  key={item.dtlNo}
+                  onClick={moveToDetail(item.dtlNo)}
+                >
                   <SvgFrame css={S.svgFrame} icon={<CircleBoxIcon />} />
-                  <span>{formatDate(item, "MM-DD")}</span>
+                  <span>{item.date}</span>
                 </S.LuckyDayButton>
               ))}
             </S.LuckyDayButtonWrapper>

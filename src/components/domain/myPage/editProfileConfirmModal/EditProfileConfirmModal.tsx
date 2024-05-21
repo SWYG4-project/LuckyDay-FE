@@ -26,7 +26,7 @@ export default function EditProfileConfirmModal({
       <BaseModal>
         <S.ModalContainer>
           <S.Text_h1>프로필 설정 확인</S.Text_h1>
-          <S.Logo_Sad />
+          <S.Logo_Basic />
           <S.Text_h2>
             변경된 메일 주소 <br />
             <S.Email>{email}</S.Email>으로 <br />

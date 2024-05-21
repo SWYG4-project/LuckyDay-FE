@@ -8,10 +8,13 @@ import {
   getLuckyDayCycles,
   getLuckyDayCycleDetails,
   getLuckyDayCycle,
+  getLuckyDayReview,
+  getLuckyDayCycleLastLuckyDays,
 } from "apis";
 import {
   CreateLuckyDayForm,
   GetLuckyDayCycleDetailResponse,
+  GetLuckyDayCycleLastLuckyDaysQueryModel,
   GetLuckyDayCycleList,
   GetLuckyDayCycleQueryModel,
 } from "types";
@@ -36,6 +39,14 @@ export const useGetLuckyDayDetail = (req: string) => {
   });
 };
 
+export const useGetLuckyDayReview = (dtlNo: string) => {
+  return useQuery({
+    queryKey: ["luckyday", dtlNo],
+    queryFn: () => getLuckyDayReview(dtlNo),
+    enabled: !!dtlNo,
+  });
+};
+
 export const useGetLuckyDayCycleInfo = (req: number, enabled?: boolean) => {
   return useQuery({
     queryKey: ["luckydayCycleInfo"],
@@ -48,6 +59,17 @@ export const useGetLuckyDayCycle = (req: GetLuckyDayCycleQueryModel) => {
   return useQuery({
     queryKey: ["luckydayCycle"],
     queryFn: () => getLuckyDayCycle(req),
+  });
+};
+
+export const useGetLuckyDayCycleLastLuckyDays = (
+  req: GetLuckyDayCycleLastLuckyDaysQueryModel,
+  enabled?: boolean
+) => {
+  return useQuery({
+    queryKey: ["luckydayCycleLastLuckyDays"],
+    queryFn: () => getLuckyDayCycleLastLuckyDays(req),
+    enabled,
   });
 };
 

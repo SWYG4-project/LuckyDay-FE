@@ -4,6 +4,7 @@ import type {
   CreateLuckyDayForm,
   GetLuckyDayCycleDetailResponse,
   GetLuckyDayCycleInfoServerModel,
+  GetLuckyDayCycleLastLuckyDaysQueryModel,
   GetLuckyDayCycleList,
   GetLuckyDayCycleQueryModel,
   GetLuckyDayCycleServerModel,
@@ -27,6 +28,18 @@ export const getLuckyDayDetail = async (req: string) => {
   return data;
 };
 
+// FIX : consol.log 제거 예정입니다.
+export const getLuckyDayReview = async (
+  dtlNo: string
+): Promise<GetLuckyDayDetailServerModel> => {
+  console.log("API 호출 시작:", dtlNo);
+  const { data } = await ax.get<GetLuckyDayDetailServerModel>(
+    `/luckydays/${dtlNo}`
+  );
+  console.log("API 응답 데이터:", data);
+  return data;
+};
+
 export const deleteLuckyBoard = async () => {
   const { data } = await ax.delete("/luckydays");
   return data;
@@ -42,6 +55,17 @@ export const getLuckyDayCycleInfo = async (req: number) => {
 export const getLuckyDayCycle = async (req: GetLuckyDayCycleQueryModel) => {
   const { data } = await ax.get<GetLuckyDayCycleServerModel>(
     `/luckydays/cycl/${req.hasLuckyday}`,
+    { params: req.query }
+  );
+
+  return data.resData;
+};
+
+export const getLuckyDayCycleLastLuckyDays = async (
+  req: GetLuckyDayCycleLastLuckyDaysQueryModel
+) => {
+  const { data } = await ax.get<GetLuckyDayCycleServerModel>(
+    `/luckydays/cycl`,
     { params: req.query }
   );
 

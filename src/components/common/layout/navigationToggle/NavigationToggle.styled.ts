@@ -21,7 +21,7 @@ export const ToggleBox = styled.div`
   box-shadow: -4px 4px 4px 0px #00000040;
   background-size: cover;
   background-position: center;
-  background-image: url("/images/background.png");
+  background-image: url("/images/background.webp");
   z-index: 3;
 `;
 
@@ -49,7 +49,7 @@ export const ProfileImage = styled.div`
   margin-right: 10px;
   background-size: cover;
   background-position: center;
-  background-image: url("/images/profile/profile-03.png");
+  background-image: url("/images/profile/profile-03.webp");
 `;
 
 export const ToggleMenuBox = styled.div`

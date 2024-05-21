@@ -50,8 +50,7 @@ function CreateLuckyDayModal({
 
         handleModalClose();
         sessionStorage.setItem("hasLuckyday", "1");
-        addToast({ content: "럭키데이 생성이 완료되었습니다." });
-        navigate("/luckyBoard");
+        navigate("/loading", { state: "create" });
       },
     });
   });

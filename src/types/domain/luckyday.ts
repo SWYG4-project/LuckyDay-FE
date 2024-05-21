@@ -26,6 +26,7 @@ export interface CreateLuckyDayQueryModel {
 }
 
 interface GetLuckyDayDetail {
+  dtlNo: number;
   actNm: string;
   actInfo: string;
   review: string | null;
@@ -69,9 +70,15 @@ export interface GetLuckyDayCycleResponse {
 export interface GetLuckyDayCycleDetail {
   dtlNo: number;
   cyclNo: number;
-  dDay: number;
+  dday: number;
   order: number;
   date: string;
+}
+
+export interface GetLuckyDayCycleLastLuckyDaysQueryModel {
+  query: {
+    isCurrent: number;
+  };
 }
 
 export interface GetLuckyDayCycleQueryModel {
