@@ -1,15 +1,17 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import * as S from "./Logo.styled";
 
 export default function Logo() {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/luckyboard");
+  };
+
   return (
-    <>
-      <Link to="/luckyBoard">
-        <S.LogoBox>
-          <S.Logo_Basic />
-          Lucky Day
-        </S.LogoBox>
-      </Link>
-    </>
+    <S.LogoBox onClick={handleClick}>
+      <S.Logo_Basic />
+      Lucky Day
+    </S.LogoBox>
   );
 }

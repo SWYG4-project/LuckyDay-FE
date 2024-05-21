@@ -18,7 +18,7 @@ export default function Error404Page() {
         <S.Logo_Sad />
         <SvgButton
           label={"럭키 보드 홈으로 가기"}
-          onClick={() => navigate("/luckyBoard")}
+          onClick={() => navigate("/luckyboard")}
           icon={<LongBoxIcon />}
         ></SvgButton>
       </S.NotFound>
