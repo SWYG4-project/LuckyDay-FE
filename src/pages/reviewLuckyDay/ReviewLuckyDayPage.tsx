@@ -2,7 +2,7 @@ import * as S from "./ReviewLuckyDayPage.styled";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useGetLuckyDayDetail } from "services";
-import { FileUploader, Input, SvgButton } from "components";
+import { FileUploader, Input, PageSpinner, SvgButton } from "components";
 import { ShortBoxIcon } from "assets";
 import { ax } from "apis/axios";
 import axios from "axios";
@@ -61,7 +61,11 @@ export default function ReviewLuckyDayPage() {
   };
 
   if (isLoading) {
-    return <S.Container>로딩 중...</S.Container>; // NOTE: spinner 추가 예정입니다.
+    return (
+      <S.Container>
+        <PageSpinner />
+      </S.Container>
+    );
   }
 
   if (error || !data) {

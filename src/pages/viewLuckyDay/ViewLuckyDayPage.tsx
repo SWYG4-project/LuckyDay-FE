@@ -1,6 +1,7 @@
 import * as S from "./ViewLuckyDayPage.styled";
 import { useParams } from "react-router-dom";
 import { useGetLuckyDayReview } from "services";
+import { PageSpinner } from "components";
 
 export default function ViewLuckyDayPage() {
   const { id } = useParams();
@@ -9,7 +10,11 @@ export default function ViewLuckyDayPage() {
   const { data, isLoading, error } = useGetLuckyDayReview(id || "");
 
   if (isLoading) {
-    return <S.Container>로딩 중...</S.Container>; // NOTE: Spinner 연결 예정입니다.
+    return (
+      <S.Container>
+        <PageSpinner />
+      </S.Container>
+    );
   }
 
   if (error || !data) {

@@ -2,6 +2,7 @@ import * as S from "./LuckyDayCycleListPage.styled";
 import { useNavigate } from "react-router-dom";
 import { useGetLuckyDayCycleList } from "services";
 import { GetLuckyDayCycleList } from "types";
+import { PageSpinner } from "components";
 
 export default function LuckyDayCycleListPage() {
   const { data: cycles, error, isLoading } = useGetLuckyDayCycleList();
@@ -10,7 +11,11 @@ export default function LuckyDayCycleListPage() {
   console.log("Cycles:", cycles);
 
   if (isLoading) {
-    return <S.ErrorBox>로딩 중...</S.ErrorBox>; // NOTE: spinner 추가 예정입니다.
+    return (
+      <S.ErrorBox>
+        <PageSpinner />
+      </S.ErrorBox>
+    );
   }
 
   if (error || !cycles || cycles.length === 0) {
