@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { css, Theme } from "@emotion/react";
+import { css } from "@emotion/react";
 
 export const Container = styled.div`
   display: flex;
@@ -35,25 +35,22 @@ export const TextBox = styled.div`
   `}
 `;
 
-export const ReviewInput = (theme: Theme) => css`
+export const ReviewTextarea = styled.textarea`
   width: 270px;
-  height: 120px;
-  padding: 10px 20px;
-  margin-top: 70px;
+  height: 100px;
+  padding: 20px;
+  margin-top: 80px;
   margin-bottom: 70px;
   border: 0;
   background-color: transparent;
   text-align: center;
-  color: ${theme.colors.black};
-  ${theme.fonts.headline2}
-
+  color: ${({ theme }) => theme.colors.black};
+  ${({ theme }) => theme.fonts.headline2};
+  resize: none;
+  overflow-y: auto;
+  white-space: pre-wrap;
   &:focus {
     outline: none;
-  }
-
-  &:disabled {
-    background-color: ${theme.colors.gray};
-    color: ${theme.colors.gray};
   }
 `;
 
