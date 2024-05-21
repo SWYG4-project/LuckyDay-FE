@@ -81,13 +81,6 @@ export const getLuckyDayCycleLastLuckyDays = async (
   return data.resData;
 };
 
-export const getLuckyDayCycles = async (): Promise<GetLuckyDayCycleList[]> => {
-  const { data } = await ax.get<{
-    resData: { cyclList: GetLuckyDayCycleList[] };
-  }>("/luckydays/cycl/list");
-  return data.resData.cyclList;
-};
-
 export const getLuckyDayCycleDetails = async (
   id: number
 ): Promise<GetLuckyDayCycleDetailResponse> => {

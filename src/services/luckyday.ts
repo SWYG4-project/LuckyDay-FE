@@ -86,9 +86,10 @@ export const useGetLuckyDayCycleList = () => {
   });
 };
 
-export const useGetLuckyDayCycleDetails = (isCurrent: number) => {
+export const useGetLuckyDayCycleDetails = (id: number) => {
   return useQuery<GetLuckyDayCycleDetailResponse>({
-    queryKey: ["luckyDayCycleDetails", isCurrent],
-    queryFn: () => getLuckyDayCycleDetails(isCurrent),
+    queryKey: ["luckyDayCycleDetails", id],
+    queryFn: () => getLuckyDayCycleDetails(id),
+    enabled: !!id,
   });
 };
