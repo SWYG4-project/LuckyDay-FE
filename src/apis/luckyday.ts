@@ -4,6 +4,7 @@ import type {
   CreateLuckyDayForm,
   GetLuckyDayCycleDetailResponse,
   GetLuckyDayCycleInfoServerModel,
+  GetLuckyDayCycleLastLuckyDaysQueryModel,
   GetLuckyDayCycleList,
   GetLuckyDayCycleQueryModel,
   GetLuckyDayCycleServerModel,
@@ -67,6 +68,24 @@ export const getLuckyDayCycleList = async (): Promise<
   }>("/luckydays/cycl/list");
 
   return data.resData;
+};
+
+export const getLuckyDayCycleLastLuckyDays = async (
+  req: GetLuckyDayCycleLastLuckyDaysQueryModel
+) => {
+  const { data } = await ax.get<GetLuckyDayCycleServerModel>(
+    `/luckydays/cycl`,
+    { params: req.query }
+  );
+
+  return data.resData;
+};
+
+export const getLuckyDayCycles = async (): Promise<GetLuckyDayCycleList[]> => {
+  const { data } = await ax.get<{
+    resData: { cyclList: GetLuckyDayCycleList[] };
+  }>("/luckydays/cycl/list");
+  return data.resData.cyclList;
 };
 
 export const getLuckyDayCycleDetails = async (

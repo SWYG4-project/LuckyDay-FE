@@ -1,20 +1,30 @@
+import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 
 import { ArchiveModal, ButtonLayout, LuckyBalls } from "components";
 import { useModal, useToast } from "hooks";
-import { useGetLuckyDayCycle, useGetLuckyDayCycleInfo } from "services";
+import {
+  useGetLuckyDayCycle,
+  useGetLuckyDayCycleInfo,
+  useGetLuckyDayCycleLastLuckyDays,
+} from "services";
 import { formatDate } from "utils";
 import * as S from "./LuckyBoardAfterPage.styled";
 
 export default function LuckyBoardAfterPage() {
+  const [openLastLuckyDays, setOpenLastLuckyDays] = useState(false);
+
   const hasLuckyday = sessionStorage.getItem("hasLuckyday")!;
 
   const { data } = useGetLuckyDayCycle({
     hasLuckyday: +hasLuckyday,
     query: { isCurrent: 1 },
   });
-
-  const { data: info } = useGetLuckyDayCycleInfo(data?.[0].cyclNo ?? 0, !!data); //TODO: enable 조건 추가 리팩토링 필요
+  const { data: lastLuckyDays } = useGetLuckyDayCycleLastLuckyDays(
+    { query: { isCurrent: 0 } },
+    openLastLuckyDays
+  );
+  const { data: info } = useGetLuckyDayCycleInfo(data?.[0].cyclNo ?? 0, !!data);
 
   const { handleOpenModal } = useModal();
   const { addToast } = useToast();
@@ -39,8 +49,14 @@ export default function LuckyBoardAfterPage() {
   );
 
   const handleOpenLastLuckyDayModal = () => {
+    //TODO: dependency 임시 추가 -> 추후 수정 필요
     handleOpenModal(
-      <ArchiveModal css={S.archiveModal} lastInfo={info?.expDtList} />
+      <ArchiveModal
+        css={S.archiveModal}
+        lastInfo={lastLuckyDays?.filter(
+          (item) => item.dday !== 1 && item.date !== null
+        )}
+      />
     );
   };
 
@@ -50,6 +66,10 @@ export default function LuckyBoardAfterPage() {
 
     handleOpenModal(<ArchiveModal css={S.archiveModal} moreInfo={cycleInfo} />);
   };
+
+  useEffect(() => {
+    setOpenLastLuckyDays(true);
+  }, [handleOpenLastLuckyDayModal]);
 
   return (
     <>

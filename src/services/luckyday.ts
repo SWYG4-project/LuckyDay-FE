@@ -9,6 +9,7 @@ import {
   getLuckyDayCycleList,
   getLuckyDayCycleDetails,
   getLuckyDayReview,
+  getLuckyDayCycleLastLuckyDays,
 } from "apis";
 import {
   CreateLuckyDayForm,
@@ -57,6 +58,17 @@ export const useGetLuckyDayCycle = (req: GetLuckyDayCycleQueryModel) => {
   return useQuery({
     queryKey: ["luckydayCycle"],
     queryFn: () => getLuckyDayCycle(req),
+  });
+};
+
+export const useGetLuckyDayCycleLastLuckyDays = (
+  req: GetLuckyDayCycleLastLuckyDaysQueryModel,
+  enabled?: boolean
+) => {
+  return useQuery({
+    queryKey: ["luckydayCycleLastLuckyDays"],
+    queryFn: () => getLuckyDayCycleLastLuckyDays(req),
+    enabled,
   });
 };
 
