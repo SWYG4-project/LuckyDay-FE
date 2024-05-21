@@ -73,7 +73,10 @@ export const getLuckyDayCycleDetails = async (
   id: number
 ): Promise<GetLuckyDayCycleDetailResponse> => {
   const { data } = await ax.get<GetLuckyDayCycleDetailResponse>(
-    `/luckydays/${id}`
+    `/luckydays/cycl/${id}`,
+    {
+      params: { isCurrent: 0 },
+    }
   );
   return data;
 };
