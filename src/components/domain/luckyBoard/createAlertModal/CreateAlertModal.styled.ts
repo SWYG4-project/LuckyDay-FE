@@ -20,7 +20,7 @@ export const Logo_Basic = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url("images/logo-basic.webp");
+  background-image: url("images/logo.webp");
 `;
 
 export const Text_h1 = styled.div`

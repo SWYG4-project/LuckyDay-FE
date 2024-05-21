@@ -25,10 +25,6 @@ export const TitleBox = styled.div`
     color: ${theme.colors.black};
     ${theme.fonts.headline1}
     border-top: 1px  solid ${theme.colors.gray};
-    &:hover {
-      color: ${theme.colors.orange};
-    }
-    cursor: pointer;
   `}
 `;
 
