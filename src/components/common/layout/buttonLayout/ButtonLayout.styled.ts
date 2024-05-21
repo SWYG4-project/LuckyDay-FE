@@ -15,7 +15,7 @@ export const Body = styled.div`
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 3% 10% 5% 10%;
+  padding: 3% 5% 8% 5%;
 `;
 
 export const icon = css`

@@ -30,7 +30,7 @@ export const ToastItem = styled.div<{ isClosing: boolean }>`
 
     div {
       ${theme.fonts.body1};
-      width: 360px;
+      width: 340px;
       border-radius: 32px;
       padding: 10px 0;
       color: ${theme.colors.lightBeige};

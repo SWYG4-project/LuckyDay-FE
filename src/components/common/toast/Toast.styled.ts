@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Toast = styled.div`
   position: fixed;
-  top: 115px;
+  top: 95px;
   left: 50%;
   height: max-content;
   min-height: 40px;

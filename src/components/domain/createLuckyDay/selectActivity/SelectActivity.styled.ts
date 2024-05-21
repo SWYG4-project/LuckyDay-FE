@@ -4,7 +4,7 @@ import styled from "@emotion/styled";
 export const HeadLine = styled.span`
   ${({ theme }) => css`
     ${theme.fonts.headline1};
-    margin: 46px 0 39px;
+    margin: 36px 0 29px;
   `}
 `;
 

@@ -16,6 +16,10 @@ export const DayWeekWrapper = styled.div`
   align-items: center;
   width: 295px;
   z-index: 2;
+
+  @media (max-width: 380px) {
+    width: 250px;
+  }
 `;
 
 export const DayWeekBox = styled.div`
@@ -76,6 +80,10 @@ export const CalendarBox = styled.div`
   width: 390px;
   bottom: 25px;
   left: 0;
+
+  @media (max-width: 380px) {
+    width: 330px;
+  }
 `;
 
 export const CalendarHeader = styled.div`
@@ -86,11 +94,19 @@ export const CalendarHeader = styled.div`
   grid-template-columns: repeat(7, 35px);
   gap: 7px 13px;
   z-index: 1;
+
+  @media (max-width: 380px) {
+    grid-template-columns: repeat(7, 27px);
+  }
 `;
 
 export const DayWeek = styled.div`
   ${({ theme }) => css`
     ${theme.fonts.body1};
+
+    @media (max-width: 380px) {
+      ${theme.fonts.body2};
+    }
   `}
 `;
 
@@ -108,6 +124,10 @@ export const DayButton = styled.button<{
       : isExceptDate
       ? theme.colors.lightBeige
       : isSelected && theme.colors.lightOrange};
+
+    @media (max-width: 380px) {
+      height: 27px;
+    }
   `}
 `;
 

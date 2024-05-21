@@ -7,7 +7,7 @@ export const HeadLine = styled.div`
     display: flex;
     flex-direction: column;
     row-gap: 7px;
-    margin: 46px 0 37px;
+    margin: 36px 0 29px;
   `}
 `;
 
@@ -26,8 +26,12 @@ export const SelectDatesWrapper = styled.div`
   justify-content: center;
   column-gap: 30px;
   width: 100%;
-  margin: 128px 0 250px;
+  margin: 120px 0 200px;
   //TODO: 간격 맞추기 위해 margin 추가 -> layout 확정 후 수정 예정
+
+  @media (max-width: 380px) {
+    margin: 80px 0 110px;
+  }
 `;
 
 export const SelectDatesBox = styled.div`

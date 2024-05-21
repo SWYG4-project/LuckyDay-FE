@@ -7,7 +7,7 @@ export const HeadLine = styled.div`
     display: flex;
     flex-direction: column;
     row-gap: 7px;
-    margin: 46px 0 37px;
+    margin: 36px 0 29px;
   `}
 `;
 
