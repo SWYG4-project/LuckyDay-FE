@@ -5,4 +5,5 @@ export * from "./modal";
 export * from "./portal";
 export * from "./svgFrame";
 export * from "./toast";
+export * from "./spinner";
 export * from "./buttons/svgButton";
