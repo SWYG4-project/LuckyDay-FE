@@ -14,7 +14,7 @@ export default function LuckyBoardBeforePage() {
 
   const handleConfirm = () => {
     handleModalClose();
-    navigate("/createLuckyDay");
+    navigate("/create");
   };
 
   const openCreateAlertModal = () => {

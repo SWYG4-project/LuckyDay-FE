@@ -36,7 +36,7 @@ function ViewLuckyActivityPage() {
           </span>
         </S.LuckydayInfo>
         <S.LuckydayDetailInfo>
-          <S.Img src="/public/images/img_luckydayBg.png" alt="luckyday" />
+          <S.Img src="/public/images/img_luckydayBg.webp" alt="luckyday" />
           {
             activities.find((item) => item.label === data?.resData.category)
               ?.icon

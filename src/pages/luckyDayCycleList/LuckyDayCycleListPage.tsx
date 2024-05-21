@@ -1,30 +1,39 @@
 import * as S from "./LuckyDayCycleListPage.styled";
-import { useGetLuckyDayCycles } from "services";
+import { useNavigate } from "react-router-dom";
+import { useGetLuckyDayCycleList } from "services";
 import { GetLuckyDayCycleList } from "types";
-import { formatDate } from "utils";
 
 export default function LuckyDayCycleListPage() {
-  const { data: cycles, error } = useGetLuckyDayCycles();
+  const { data: cycles, error, isLoading } = useGetLuckyDayCycleList();
+  const navigate = useNavigate();
+
+  console.log("Cycles:", cycles);
+
+  if (isLoading) {
+    return <S.ErrorBox>로딩 중...</S.ErrorBox>; // NOTE: spinner 추가 예정입니다.
+  }
+
+  if (error || !cycles || cycles.length === 0) {
+    return (
+      <S.ErrorBox>
+        <p>아직 보관함이 비어 있어요.</p>
+        <S.Logo_Sad />
+      </S.ErrorBox>
+    );
+  }
 
   return (
     <>
       <S.TitleBox>럭키 데이 보관함</S.TitleBox>
       <S.ContentsBox>
-        {error ? (
-          <S.ErrorBox>
-            <p>지난 럭키 데이 사이클이 없어요.</p>
-            <S.Logo_Sad />
-          </S.ErrorBox>
-        ) : (
-          cycles?.map((cycle: GetLuckyDayCycleList) => (
-            <S.MenuBox key={cycle.cyclNo}>
-              {`${formatDate(cycle.startDT, "YYYY-MM-DD")} ~ ${formatDate(
-                cycle.endDT,
-                "YYYY-MM-DD"
-              )}`}
-            </S.MenuBox>
-          ))
-        )}
+        {cycles.map((cycle: GetLuckyDayCycleList) => (
+          <S.MenuBox
+            key={cycle.cyclNo}
+            onClick={() => navigate(`/luckydays/list/${cycle.cyclNo}`)}
+          >
+            {`${cycle.startDt} ~ ${cycle.endDt}`}
+          </S.MenuBox>
+        ))}
       </S.ContentsBox>
     </>
   );

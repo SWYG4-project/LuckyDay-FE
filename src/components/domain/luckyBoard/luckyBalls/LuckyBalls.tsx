@@ -2,6 +2,7 @@ import * as S from "./LuckyBalls.styled";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "hooks";
+import { theme } from "styles";
 import { SvgFrame, CenteredSvgFrame, CountLuckyDayModal } from "components";
 import { CircleBoxIcon } from "assets";
 import { ax } from "apis/axios";
@@ -100,7 +101,7 @@ export default function LuckyBalls() {
         return (
           <CenteredSvgFrame
             key={index}
-            label={"D-?"}
+            label="D-?"
             onClick={() => handleLuckyBallClick(ball)}
           >
             <SvgFrame
@@ -114,7 +115,8 @@ export default function LuckyBalls() {
         return (
           <CenteredSvgFrame
             key={index}
-            label={"D-day"}
+            label="D-day"
+            textColor={theme.colors.white}
             onClick={() => handleLuckyBallClick(ball)}
           >
             <SvgFrame
@@ -128,7 +130,7 @@ export default function LuckyBalls() {
         return (
           <CenteredSvgFrame
             key={index}
-            label={"D-1"}
+            label="D-1"
             onClick={() => handleLuckyBallClick(ball)}
           >
             <SvgFrame
@@ -142,7 +144,7 @@ export default function LuckyBalls() {
         return (
           <CenteredSvgFrame
             key={index}
-            label={"D-2"}
+            label="D-2"
             onClick={() => handleLuckyBallClick(ball)}
           >
             <SvgFrame
@@ -163,7 +165,7 @@ export default function LuckyBalls() {
     }
 
     if (ball.type === "LuckyBall_Dday" && ball.dtlNo) {
-      navigate(`/viewLuckyDayActivity/${ball.dtlNo}`);
+      navigate(`/luckydays/${ball.dtlNo}`);
       return;
     }
 

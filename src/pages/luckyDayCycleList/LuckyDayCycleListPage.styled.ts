@@ -32,6 +32,9 @@ export const MenuBox = styled.div`
     color: ${theme.colors.black};
     ${theme.fonts.headline1}
     border-bottom: 1px solid ${theme.colors.gray};
+    &:hover {
+      color: ${theme.colors.orange};
+    }
     cursor: pointer;
   `}
 `;
@@ -57,5 +60,5 @@ export const Logo_Sad = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url("images/logo-sad-blue.png");
+  background-image: url("images/logo-sad-blue.webp");
 `;

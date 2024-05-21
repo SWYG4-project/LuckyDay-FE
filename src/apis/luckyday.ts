@@ -57,6 +57,15 @@ export const getLuckyDayCycle = async (req: GetLuckyDayCycleQueryModel) => {
     `/luckydays/cycl/${req.hasLuckyday}`,
     { params: req.query }
   );
+  return data.resData;
+};
+
+export const getLuckyDayCycleList = async (): Promise<
+  GetLuckyDayCycleList[]
+> => {
+  const { data } = await ax.get<{
+    resData: GetLuckyDayCycleList[];
+  }>("/luckydays/cycl/list");
 
   return data.resData;
 };
@@ -80,12 +89,12 @@ export const getLuckyDayCycles = async (): Promise<GetLuckyDayCycleList[]> => {
 };
 
 export const getLuckyDayCycleDetails = async (
-  isCurrent: number
+  id: number
 ): Promise<GetLuckyDayCycleDetailResponse> => {
   const { data } = await ax.get<GetLuckyDayCycleDetailResponse>(
-    "/luckydays/cycl/0",
+    `/luckydays/cycl/${id}`,
     {
-      params: { isCurrent },
+      params: { isCurrent: 0 },
     }
   );
   return data;

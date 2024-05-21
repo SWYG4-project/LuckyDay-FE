@@ -19,7 +19,7 @@ function ArchiveModal({ className, moreInfo, lastInfo }: ArchiveModalProps) {
   const { handleModalClose } = useModal();
 
   const moveToDetail = (dtlNo: number) => () => {
-    navigate(`/viewLuckyDayActivity/${dtlNo}`);
+    navigate(`/luckydays/${dtlNo}`);
 
     handleModalClose();
   };

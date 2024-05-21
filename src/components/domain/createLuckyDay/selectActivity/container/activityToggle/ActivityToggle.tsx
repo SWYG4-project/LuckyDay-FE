@@ -77,8 +77,8 @@ function ActivityToggle({
         // TODO:innerShadow값이 있어 이미지로 따로 설정해줌
         src={
           isOpen
-            ? "images/img_empty_mediumBox.png"
-            : "images/img_empty_longBox.png"
+            ? "images/img_empty_mediumBox.webp"
+            : "images/img_empty_longBox.webp"
         }
       />
       <S.ActivityBox isOpen={isOpen}>

@@ -20,7 +20,7 @@ export const Logo_Sad = styled.div`
   background-size: 150px;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url("images/logo-sad.png");
+  background-image: url("images/logo-sad.webp");
 `;
 
 export const Text_404 = styled.div`

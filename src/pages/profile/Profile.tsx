@@ -31,7 +31,7 @@ export default function Profile() {
       <S.ButtonBox>
         <SvgButton
           label={"럭키 보드로 가기"}
-          onClick={() => navigate("/luckyBoard")}
+          onClick={() => navigate("/luckyboard")}
           icon={<LongBoxIcon />}
         ></SvgButton>
       </S.ButtonBox>

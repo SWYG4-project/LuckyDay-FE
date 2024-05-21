@@ -78,7 +78,7 @@ function CreateLuckyDayPage() {
     const hasLuckyday = sessionStorage.getItem("hasLuckyday");
 
     if (hasLuckyday === "1") {
-      navigate("/luckyBoard");
+      navigate("/luckyboard");
       return addToast({ content: "이미 생성된 럭키데이가 있어요." });
     }
   }, []);
