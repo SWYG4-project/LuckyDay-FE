@@ -16,7 +16,10 @@ export default function Auth() {
     sessionStorage.setItem("nickname", nickname!);
     sessionStorage.setItem("hasLuckyday", hasLuckyday!);
 
-    if (token) return navigate("/profile");
+    if (token) {
+      navigate("/profile");
+      window.location.reload();
+    }
   }, [email, navigate, nickname, token]);
 
   return (
