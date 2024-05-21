@@ -28,8 +28,11 @@ export const Slide = styled.div<SlideProps>`
 `;
 
 export const Image = styled.img`
-  width: 270px;
   height: 414px;
+
+  @media (max-height: 700px) {
+    height: 314px;
+  }
 `;
 
 export const TextBox = styled.div`
@@ -47,7 +50,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin: 10% 0px;
+  margin: 8% 0px;
   padding: 0px 15px 0px 15px;
   box-sizing: border-box;
 `;
