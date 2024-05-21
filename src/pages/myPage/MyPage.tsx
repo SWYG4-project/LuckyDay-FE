@@ -2,7 +2,11 @@ import * as S from "./myPage.styled";
 import { Link } from "react-router-dom";
 import { useModal } from "hooks";
 import { useLogout, useDeleteUser, useDeleteLuckyBoard } from "services";
-import { DeleteUserConfirmModal, ResetLuckyBoardModal } from "components";
+import {
+  DeleteUserConfirmModal,
+  ResetLuckyBoardModal,
+  SingleButtonLayout,
+} from "components";
 
 export default function MyPage() {
   const baseUrl = import.meta.env.VITE_BASE_URL;
@@ -59,7 +63,7 @@ export default function MyPage() {
   };
 
   return (
-    <>
+    <SingleButtonLayout>
       <S.TitleBox>마이페이지</S.TitleBox>
       <S.ContentsBox>
         <Link to="/mypage/edit">
@@ -71,6 +75,6 @@ export default function MyPage() {
         <S.MenuBox onClick={logout}>로그아웃</S.MenuBox>
         <S.MenuBox onClick={openDeleteUserModal}>회원 탈퇴</S.MenuBox>
       </S.ContentsBox>
-    </>
+    </SingleButtonLayout>
   );
 }

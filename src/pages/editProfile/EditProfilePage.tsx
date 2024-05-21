@@ -4,7 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { useTheme } from "@emotion/react";
 import { useModal } from "hooks";
 import { updateProfile } from "apis/users";
-import { EditProfileConfirmModal, SvgButton } from "components";
+import {
+  EditProfileConfirmModal,
+  SingleButtonLayout,
+  SvgButton,
+} from "components";
 import { ShortBoxIcon } from "assets";
 
 export default function EditProfilePage() {
@@ -87,7 +91,7 @@ export default function EditProfilePage() {
   };
 
   return (
-    <>
+    <SingleButtonLayout>
       <S.TitleBox>프로필 설정</S.TitleBox>
       <S.ContentsBox>
         <S.ProfileBox>
@@ -132,6 +136,6 @@ export default function EditProfilePage() {
           </S.ButtonBox>
         </S.ProfileBox>
       </S.ContentsBox>
-    </>
+    </SingleButtonLayout>
   );
 }

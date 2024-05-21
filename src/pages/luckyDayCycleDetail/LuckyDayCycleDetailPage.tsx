@@ -1,7 +1,7 @@
 import * as S from "./LuckyDayCycleDetailPage.styled";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTheme } from "@emotion/react";
-import { SvgButton } from "components";
+import { SingleButtonLayout, SvgButton } from "components";
 import { CircleBoxIcon } from "assets";
 import { GetLuckyDayCycleDetail } from "types";
 import { useGetLuckyDayCycleDetails } from "services";
@@ -33,7 +33,7 @@ const LuckyDayCycleDetailPage = () => {
   console.log("Labels:", labels);
 
   return (
-    <>
+    <SingleButtonLayout>
       <S.TitleBox>럭키 데이 보관함</S.TitleBox>
       <S.ContentsBox>
         <S.GridContainer>
@@ -51,7 +51,7 @@ const LuckyDayCycleDetailPage = () => {
           ))}
         </S.GridContainer>
       </S.ContentsBox>
-    </>
+    </SingleButtonLayout>
   );
 };
 

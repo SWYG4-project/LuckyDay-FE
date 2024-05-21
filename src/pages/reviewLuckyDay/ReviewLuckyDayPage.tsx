@@ -2,7 +2,13 @@ import * as S from "./ReviewLuckyDayPage.styled";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useGetLuckyDayDetail } from "services";
-import { FileUploader, Input, PageSpinner, SvgButton } from "components";
+import {
+  FileUploader,
+  Input,
+  PageSpinner,
+  SingleButtonLayout,
+  SvgButton,
+} from "components";
 import { ShortBoxIcon } from "assets";
 import { ax } from "apis/axios";
 import axios from "axios";
@@ -77,42 +83,44 @@ export default function ReviewLuckyDayPage() {
   const { dday, actNm } = data.resData;
 
   return (
-    <S.Container>
-      <S.TextBox>{dday}</S.TextBox>
-      <S.ReviewBox>
-        <S.TextBox>{actNm}</S.TextBox>
-        <S.ImageUploadBox>
-          <FileUploader onFileSelect={handleFileSelect} />
-          {uploadedFile && (
-            <S.ImageBox>
-              <img
-                src={URL.createObjectURL(uploadedFile)}
-                alt="Uploaded preview"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  borderRadius: "10px",
-                }}
-              />
-            </S.ImageBox>
-          )}
-        </S.ImageUploadBox>
-        <Input
-          css={S.ReviewInput}
-          value={review}
-          handleChange={handleReviewChange}
-          placeholder={"100자 이내로 럭키 데이를 기록해 보세요:)"}
-        />
-      </S.ReviewBox>
-      <S.ButtonBox>
-        <SvgButton
-          label="저장하기"
-          icon={<ShortBoxIcon />}
-          width="120px"
-          height="50px"
-          onClick={handleSubmit}
-        />
-      </S.ButtonBox>
-    </S.Container>
+    <SingleButtonLayout>
+      <S.Container>
+        <S.TextBox>{dday}</S.TextBox>
+        <S.ReviewBox>
+          <S.TextBox>{actNm}</S.TextBox>
+          <S.ImageUploadBox>
+            <FileUploader onFileSelect={handleFileSelect} />
+            {uploadedFile && (
+              <S.ImageBox>
+                <img
+                  src={URL.createObjectURL(uploadedFile)}
+                  alt="Uploaded preview"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    borderRadius: "10px",
+                  }}
+                />
+              </S.ImageBox>
+            )}
+          </S.ImageUploadBox>
+          <Input
+            css={S.ReviewInput}
+            value={review}
+            handleChange={handleReviewChange}
+            placeholder={"100자 이내로 럭키 데이를 기록해 보세요:)"}
+          />
+        </S.ReviewBox>
+        <S.ButtonBox>
+          <SvgButton
+            label="저장하기"
+            icon={<ShortBoxIcon />}
+            width="120px"
+            height="50px"
+            onClick={handleSubmit}
+          />
+        </S.ButtonBox>
+      </S.Container>
+    </SingleButtonLayout>
   );
 }

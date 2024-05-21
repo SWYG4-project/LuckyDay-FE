@@ -1,7 +1,7 @@
 import * as S from "./ViewLuckyDayPage.styled";
 import { useParams } from "react-router-dom";
 import { useGetLuckyDayReview } from "services";
-import { PageSpinner } from "components";
+import { PageSpinner, SingleButtonLayout } from "components";
 
 export default function ViewLuckyDayPage() {
   const { id } = useParams();
@@ -27,15 +27,17 @@ export default function ViewLuckyDayPage() {
   console.log("정상 데이터:", data);
 
   return (
-    <S.Container>
-      <S.TextBox>{dday}</S.TextBox>
-      <S.ReviewBox>
-        <S.TextBox>{actNm}</S.TextBox>
-        <S.ImageBox>
-          {imageUrl && <img src={imageUrl} alt={actNm} />}
-        </S.ImageBox>
-        <S.ReviewText>{review || "리뷰가 없습니다."}</S.ReviewText>
-      </S.ReviewBox>
-    </S.Container>
+    <SingleButtonLayout>
+      <S.Container>
+        <S.TextBox>{dday}</S.TextBox>
+        <S.ReviewBox>
+          <S.TextBox>{actNm}</S.TextBox>
+          <S.ImageBox>
+            {imageUrl && <img src={imageUrl} alt={actNm} />}
+          </S.ImageBox>
+          <S.ReviewText>{review || "리뷰가 없습니다."}</S.ReviewText>
+        </S.ReviewBox>
+      </S.Container>
+    </SingleButtonLayout>
   );
 }
