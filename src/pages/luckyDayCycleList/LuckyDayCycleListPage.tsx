@@ -11,11 +11,7 @@ export default function LuckyDayCycleListPage() {
   console.log("Cycles:", cycles);
 
   if (isLoading) {
-    return (
-      <S.ErrorBox>
-        <PageSpinner />
-      </S.ErrorBox>
-    );
+    return <PageSpinner />;
   }
 
   if (error || !cycles || cycles.length === 0) {

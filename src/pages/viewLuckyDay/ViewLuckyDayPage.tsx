@@ -10,11 +10,7 @@ export default function ViewLuckyDayPage() {
   const { data, isLoading, error } = useGetLuckyDayReview(id || "");
 
   if (isLoading) {
-    return (
-      <S.Container>
-        <PageSpinner />
-      </S.Container>
-    );
+    return <PageSpinner />;
   }
 
   if (error || !data) {

@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { useNavigate, useParams } from "react-router-dom";
 
-import { SingleButtonLayout, SvgFrame } from "components";
+import { PageSpinner, SingleButtonLayout, SvgFrame } from "components";
 import { useGetLuckyDayDetail } from "services";
 import { formatDate } from "utils";
 import { ShortBoxIcon, activities } from "assets";
@@ -11,7 +11,7 @@ function ViewLuckyActivityPage() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const { data } = useGetLuckyDayDetail(id!);
+  const { data, isLoading } = useGetLuckyDayDetail(id!);
 
   const handleClickRecord = () => {
     if (data?.resData.review) {
@@ -20,6 +20,10 @@ function ViewLuckyActivityPage() {
       navigate("/luckyboard"); //TODO: 적절한 경로로 변경 : 기록 남기기
     }
   };
+
+  if (isLoading) {
+    return <PageSpinner />;
+  }
 
   return (
     <SingleButtonLayout>

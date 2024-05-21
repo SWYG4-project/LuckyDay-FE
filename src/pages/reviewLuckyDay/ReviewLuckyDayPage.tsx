@@ -67,11 +67,7 @@ export default function ReviewLuckyDayPage() {
   };
 
   if (isLoading) {
-    return (
-      <S.Container>
-        <PageSpinner />
-      </S.Container>
-    );
+    return <PageSpinner />;
   }
 
   if (error || !data) {

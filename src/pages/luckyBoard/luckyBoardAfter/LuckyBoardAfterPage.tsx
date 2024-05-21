@@ -1,7 +1,13 @@
+import * as S from "./LuckyBoardAfterPage.styled";
 import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 
-import { ArchiveModal, ButtonLayout, LuckyBalls } from "components";
+import {
+  ArchiveModal,
+  ButtonLayout,
+  LuckyBalls,
+  PageSpinner,
+} from "components";
 import { useModal, useToast } from "hooks";
 import {
   useGetLuckyDayCycle,
@@ -9,14 +15,13 @@ import {
   useGetLuckyDayCycleLastLuckyDays,
 } from "services";
 import { formatDate } from "utils";
-import * as S from "./LuckyBoardAfterPage.styled";
 
 export default function LuckyBoardAfterPage() {
   const [openLastLuckyDays, setOpenLastLuckyDays] = useState(false);
 
   const hasLuckyday = sessionStorage.getItem("hasLuckyday")!;
 
-  const { data } = useGetLuckyDayCycle({
+  const { data, isLoading } = useGetLuckyDayCycle({
     hasLuckyday: +hasLuckyday,
     query: { isCurrent: 1 },
   });
@@ -71,23 +76,24 @@ export default function LuckyBoardAfterPage() {
     setOpenLastLuckyDays(true);
   }, [handleOpenLastLuckyDayModal]);
 
+  if (isLoading) {
+    return <PageSpinner />;
+  }
+
   return (
-    <>
-      {/* FIX: API 연결 예정입니다. */}
-      <ButtonLayout
-        variant="hasColor"
-        firstLabel="지난 럭키데이"
-        secondLabel="더보기"
-        handleClickFirstButton={handleOpenLastLuckyDayModal}
-        handleClickSecondButton={handleOpenCheckLuckyDayModal}
-      >
-        <S.Container>
-          <S.TextBox>{dayjs().format("YYYY년 MM월 DD일")}</S.TextBox>
-          <S.LuckyMachine>
-            <LuckyBalls />
-          </S.LuckyMachine>
-        </S.Container>
-      </ButtonLayout>
-    </>
+    <ButtonLayout
+      variant="hasColor"
+      firstLabel="지난 럭키데이"
+      secondLabel="더보기"
+      handleClickFirstButton={handleOpenLastLuckyDayModal}
+      handleClickSecondButton={handleOpenCheckLuckyDayModal}
+    >
+      <S.Container>
+        <S.TextBox>{dayjs().format("YYYY년 MM월 DD일")}</S.TextBox>
+        <S.LuckyMachine>
+          <LuckyBalls />
+        </S.LuckyMachine>
+      </S.Container>
+    </ButtonLayout>
   );
 }
