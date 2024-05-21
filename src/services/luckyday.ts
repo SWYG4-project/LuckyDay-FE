@@ -5,16 +5,17 @@ import {
   postLuckyDay,
   deleteLuckyBoard,
   getLuckyDayCycleInfo,
-  getLuckyDayCycle,
-  getLuckyDayCycleList,
   getLuckyDayCycleDetails,
+  getLuckyDayCycle,
   getLuckyDayReview,
   getLuckyDayCycleLastLuckyDays,
+  getLuckyDayCycleList,
 } from "apis";
 import {
   CreateLuckyDayForm,
-  GetLuckyDayCycleList,
   GetLuckyDayCycleDetailResponse,
+  GetLuckyDayCycleLastLuckyDaysQueryModel,
+  GetLuckyDayCycleList,
   GetLuckyDayCycleQueryModel,
 } from "types";
 
@@ -85,10 +86,9 @@ export const useGetLuckyDayCycleList = () => {
   });
 };
 
-export const useGetLuckyDayCycleDetails = (id: number) => {
+export const useGetLuckyDayCycleDetails = (isCurrent: number) => {
   return useQuery<GetLuckyDayCycleDetailResponse>({
-    queryKey: ["luckyDayCycleDetails", id],
-    queryFn: () => getLuckyDayCycleDetails(id),
-    enabled: !!id,
+    queryKey: ["luckyDayCycleDetails", isCurrent],
+    queryFn: () => getLuckyDayCycleDetails(isCurrent),
   });
 };
