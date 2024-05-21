@@ -15,9 +15,9 @@ function ViewLuckyActivityPage() {
 
   const handleClickRecord = () => {
     if (data?.resData.review) {
-      navigate("/"); //TODO: 적절한 경로로 변경 : 상세 보기
+      navigate(`/luckydays/review/${id}`);
     } else {
-      navigate("/luckyboard"); //TODO: 적절한 경로로 변경 : 기록 남기기
+      navigate(`/luckydays/create/${id}`);
     }
   };
 
