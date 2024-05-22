@@ -9,7 +9,6 @@ export const Container = styled.div`
   text-align: center;
   width: 100%;
   padding: 20px;
-  background-color: purple;
 `;
 
 export const ReviewBox = styled.div`
@@ -24,7 +23,6 @@ export const ReviewBox = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-image: url("/images/img-review.webp");
-  background-color: yellow;
 `;
 
 export const TextBox = styled.div`
@@ -38,22 +36,49 @@ export const TextBox = styled.div`
 `;
 
 export const ImageBox = styled.div`
-  width: 200px;
-  height: 140px;
-  margin-bottom: 80px;
-  border-radius: 10px;
-  background-color: pink;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: -30px;
 `;
 
-export const ReviewText = styled.div`
+export const Image = styled.div`
+  width: 200px;
+  height: 140px;
+  margin-top: 5px;
+  margin-bottom: 100px;
+  border-radius: 10px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+export const DefaultImage = styled.div`
+  width: 90px;
+  height: 90px;
+  margin-top: 20px;
+  margin-bottom: 140px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
+
+export const ReviewTextBox = styled.div`
   ${({ theme }) => css`
+    display: flex;
+    justify-content: center;
     width: 270px;
     height: 120px;
+    margin-top: -50px;
     padding: 10px 20px;
-    border: 0;
-    background-color: skyblue;
-    text-align: center;
     color: ${theme.colors.black};
     ${theme.fonts.headline2}
+    word-break: break-word;
+    white-space: pre-wrap;
   `}
 `;

@@ -1,7 +1,6 @@
-// components/FileUploader.tsx
-
-import React, { useRef } from "react";
 import * as S from "./FileUploader.styled";
+import React, { useRef, useState } from "react";
+import { ComponentSpinner } from "components";
 
 interface FileUploaderProps {
   onFileSelect: (file: File) => void;
@@ -9,11 +8,14 @@ interface FileUploaderProps {
 
 const FileUploader: React.FC<FileUploaderProps> = ({ onFileSelect }) => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
+      setLoading(true);
       onFileSelect(file);
+      setLoading(false);
     }
   };
 
@@ -26,6 +28,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onFileSelect }) => {
   return (
     <S.Container>
       <S.UploadBox onClick={handleClick}>
+        {loading && <ComponentSpinner />}
         <S.HiddenFileInput
           type="file"
           ref={fileInputRef}

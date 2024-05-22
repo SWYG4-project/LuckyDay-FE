@@ -25,7 +25,7 @@ export interface CreateLuckyDayQueryModel {
   body: CreateLuckyDayForm;
 }
 
-interface GetLuckyDayDetail {
+export interface GetLuckyDayDetail {
   dtlNo: number;
   actNm: string;
   actInfo: string;

@@ -15,9 +15,9 @@ function ViewLuckyActivityPage() {
 
   const handleClickRecord = () => {
     if (data?.resData.review) {
-      navigate("/"); //TODO: 적절한 경로로 변경 : 상세 보기
+      navigate(`/luckydays/review/${id}`);
     } else {
-      navigate("/luckyboard"); //TODO: 적절한 경로로 변경 : 기록 남기기
+      navigate(`/luckydays/create/${id}`);
     }
   };
 
@@ -50,7 +50,7 @@ function ViewLuckyActivityPage() {
         </S.LuckydayDetailInfo>
         <S.Button onClick={handleClickRecord}>
           <SvgFrame css={S.svgFrame} icon={<ShortBoxIcon />} />
-          <span>{data?.resData.review ? "기록하기" : "기록보기"}</span>
+          <span>{data?.resData.review ? "기록보기" : "기록하기"}</span>
         </S.Button>
       </S.ViewLuckyActivityPage>
     </SingleButtonLayout>
