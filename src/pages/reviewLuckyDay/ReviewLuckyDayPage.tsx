@@ -1,6 +1,6 @@
 import * as S from "./ReviewLuckyDayPage.styled";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useToast } from "hooks";
 import { useGetLuckyDayDetail } from "services";
 import {
@@ -16,6 +16,7 @@ import axios from "axios";
 
 export default function ReviewLuckyDayPage() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const { data, isLoading, error } = useGetLuckyDayDetail(id || "");
 
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
@@ -62,6 +63,7 @@ export default function ReviewLuckyDayPage() {
 
       if (response.status === 200) {
         addToast({ content: "저장되었습니다." });
+        navigate(`/luckydays/${id}`);
       } else {
         addToast({ content: "저장에 실패했습니다." });
       }
