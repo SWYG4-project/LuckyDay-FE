@@ -28,7 +28,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onFileSelect }) => {
   return (
     <S.Container>
       <S.UploadBox onClick={handleClick}>
-        {loading ? <ComponentSpinner /> : null}
+        {loading && <ComponentSpinner />}
         <S.HiddenFileInput
           type="file"
           ref={fileInputRef}
