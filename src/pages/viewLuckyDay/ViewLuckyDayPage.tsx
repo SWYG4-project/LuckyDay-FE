@@ -1,11 +1,14 @@
 import * as S from "./ViewLuckyDayPage.styled";
 import { useParams } from "react-router-dom";
 import { useGetLuckyDayReview } from "services";
+import { GetLuckyDayDetail } from "types";
+import { useToast } from "hooks";
 import { PageSpinner, SingleButtonLayout } from "components";
 import { formatDate } from "utils";
 
 export default function ViewLuckyDayPage() {
   const { id } = useParams();
+  const { addToast } = useToast();
   console.log("dtlNo:", id);
 
   const { data, isLoading, error } = useGetLuckyDayReview(id || "");
@@ -17,15 +20,19 @@ export default function ViewLuckyDayPage() {
   if (error || !data) {
     console.log("에러 발생:", error);
     console.log("받은 데이터:", data);
-    return <S.Container>오류가 발생했습니다.</S.Container>;
+    addToast({ content: "오류가 발생했습니다." });
+    return;
   }
 
-  const { dday, actNm, review, imageUrl } = data.resData;
+  const { dday, actNm, review, imageUrl } = data.resData as GetLuckyDayDetail;
   console.log("정상 데이터:", data);
   console.log(imageUrl);
 
-  // FIX : 이미지 주소 수정이 필요합니다.
-  // const ImageUrl = `${import.meta.env.VITE_BASE_URL}${imageUrl}`;
+  const ImageUrl = imageUrl
+    ? `${import.meta.env.VITE_BASE_URL}${imageUrl}`
+    : "";
+
+  const isDefaultImage = imageUrl?.includes("/images/default");
 
   return (
     <SingleButtonLayout>
@@ -34,12 +41,18 @@ export default function ViewLuckyDayPage() {
         <S.ReviewBox>
           <S.ImageBox>
             <S.TextBox>{actNm}</S.TextBox>
-            <S.Image>{imageUrl && <img src={imageUrl} />}</S.Image>
-
-            {/* FIX : 디폴트 이미지를 구분하는 파라미터가 없습니다. 백엔드 문의 예정 */}
-            {/* <S.DefaultImage>{imageUrl && <img src={imageUrl} />}</S.DefaultImage> */}
+            {imageUrl &&
+              (isDefaultImage ? (
+                <S.DefaultImage>
+                  <img src={ImageUrl} alt="Default" />
+                </S.DefaultImage>
+              ) : (
+                <S.Image>
+                  <img src={ImageUrl} alt="Uploaded" />
+                </S.Image>
+              ))}
           </S.ImageBox>
-          <S.ReviewTextBox>{review || "리뷰가 없습니다."}</S.ReviewTextBox>
+          <S.ReviewTextBox>{review}</S.ReviewTextBox>
         </S.ReviewBox>
       </S.Container>
     </SingleButtonLayout>

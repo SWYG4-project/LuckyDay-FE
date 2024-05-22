@@ -57,8 +57,8 @@ export const Image = styled.div`
 `;
 
 export const DefaultImage = styled.div`
-  width: 85px;
-  height: 85px;
+  width: 90px;
+  height: 90px;
   margin-top: 20px;
   margin-bottom: 140px;
   img {

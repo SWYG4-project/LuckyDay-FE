@@ -14,7 +14,6 @@ import {
 import {
   CreateLuckyDayForm,
   GetLuckyDayCycleDetailResponse,
-  GetLuckyDayCycleLastLuckyDaysQueryModel,
   GetLuckyDayCycleList,
   GetLuckyDayCycleQueryModel,
   GetLuckyDayCycleLastLuckyDaysQueryModel,
