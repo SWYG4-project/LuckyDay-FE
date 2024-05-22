@@ -49,12 +49,9 @@ export default function ReviewLuckyDayPage() {
       new Blob([JSON.stringify(reviewReqDto)], { type: "application/json" })
     );
 
-    formData.append(
-      "image",
-      uploadedFile
-        ? uploadedFile
-        : new Blob([JSON.stringify(null)], { type: "application/json" })
-    );
+    if (uploadedFile) {
+      formData.append("image", uploadedFile);
+    }
 
     try {
       const response = await ax.post("/luckydays/review", formData, {
@@ -71,11 +68,15 @@ export default function ReviewLuckyDayPage() {
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
         console.error("Error response:", error.response);
-        addToast({
-          content: `저장 중 오류가 발생했습니다: ${
-            error.response.data.message || error.response.status
-          }`,
-        });
+        if (error.response.status === 2013) {
+          addToast({ content: "이미지 또는 내용을 입력해 주세요." });
+        } else {
+          addToast({
+            content: `저장 중 오류가 발생했습니다: ${
+              error.response.data.message || error.response.status
+            }`,
+          });
+        }
       } else {
         console.error("Error:", error);
         addToast({ content: "저장 중 오류가 발생했습니다" });
