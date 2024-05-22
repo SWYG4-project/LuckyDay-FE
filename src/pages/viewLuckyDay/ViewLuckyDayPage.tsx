@@ -1,9 +1,10 @@
 import * as S from "./ViewLuckyDayPage.styled";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { useToast } from "hooks";
 import { useGetLuckyDayReview } from "services";
 import { GetLuckyDayDetail } from "types";
-import { useToast } from "hooks";
-import { PageSpinner, SingleButtonLayout } from "components";
+import { ComponentSpinner, PageSpinner, SingleButtonLayout } from "components";
 import { formatDate } from "utils";
 
 export default function ViewLuckyDayPage() {
@@ -12,6 +13,7 @@ export default function ViewLuckyDayPage() {
   console.log("dtlNo:", id);
 
   const { data, isLoading, error } = useGetLuckyDayReview(id || "");
+  const [imageLoading, setImageLoading] = useState<boolean>(true);
 
   if (isLoading) {
     return <PageSpinner />;
@@ -34,6 +36,10 @@ export default function ViewLuckyDayPage() {
 
   const isDefaultImage = imageUrl?.includes("/images/default");
 
+  const handleImageLoad = () => {
+    setImageLoading(false);
+  };
+
   return (
     <SingleButtonLayout>
       <S.Container>
@@ -41,14 +47,16 @@ export default function ViewLuckyDayPage() {
         <S.ReviewBox>
           <S.ImageBox>
             <S.TextBox>{actNm}</S.TextBox>
+            {imageLoading && <ComponentSpinner />}
+
             {imageUrl &&
               (isDefaultImage ? (
                 <S.DefaultImage>
-                  <img src={ImageUrl} alt="Default" />
+                  <img src={ImageUrl} alt="Default" onLoad={handleImageLoad} />
                 </S.DefaultImage>
               ) : (
                 <S.Image>
-                  <img src={ImageUrl} alt="Uploaded" />
+                  <img src={ImageUrl} alt="Uploaded" onLoad={handleImageLoad} />
                 </S.Image>
               ))}
           </S.ImageBox>
