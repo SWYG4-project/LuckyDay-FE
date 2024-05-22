@@ -1,7 +1,7 @@
 import * as S from "./ViewLuckyDayPage.styled";
 import { useParams } from "react-router-dom";
 import { useGetLuckyDayReview } from "services";
-import { PageSpinner } from "components";
+import { PageSpinner, SingleButtonLayout } from "components";
 import { formatDate } from "utils";
 
 export default function ViewLuckyDayPage() {
@@ -28,18 +28,20 @@ export default function ViewLuckyDayPage() {
   // const ImageUrl = `${import.meta.env.VITE_BASE_URL}${imageUrl}`;
 
   return (
-    <S.Container>
-      <S.TextBox>{formatDate(dday, "YYYY-MM-DD")}</S.TextBox>
-      <S.ReviewBox>
-        <S.ImageBox>
-          <S.TextBox>{actNm}</S.TextBox>
-          <S.Image>{imageUrl && <img src={imageUrl} />}</S.Image>
+    <SingleButtonLayout>
+      <S.Container>
+        <S.TextBox>{formatDate(dday, "YYYY-MM-DD")}</S.TextBox>
+        <S.ReviewBox>
+          <S.ImageBox>
+            <S.TextBox>{actNm}</S.TextBox>
+            <S.Image>{imageUrl && <img src={imageUrl} />}</S.Image>
 
-          {/* FIX : 디폴트 이미지를 구분하는 파라미터가 없습니다. 백엔드 문의 예정 */}
-          {/* <S.DefaultImage>{imageUrl && <img src={imageUrl} />}</S.DefaultImage> */}
-        </S.ImageBox>
-        <S.ReviewTextBox>{review || "리뷰가 없습니다."}</S.ReviewTextBox>
-      </S.ReviewBox>
-    </S.Container>
+            {/* FIX : 디폴트 이미지를 구분하는 파라미터가 없습니다. 백엔드 문의 예정 */}
+            {/* <S.DefaultImage>{imageUrl && <img src={imageUrl} />}</S.DefaultImage> */}
+          </S.ImageBox>
+          <S.ReviewTextBox>{review || "리뷰가 없습니다."}</S.ReviewTextBox>
+        </S.ReviewBox>
+      </S.Container>
+    </SingleButtonLayout>
   );
 }

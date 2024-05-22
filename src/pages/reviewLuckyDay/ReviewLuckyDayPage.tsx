@@ -3,7 +3,12 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useToast } from "hooks";
 import { useGetLuckyDayDetail } from "services";
-import { FileUploader, PageSpinner, SvgButton } from "components";
+import {
+  FileUploader,
+  PageSpinner,
+  SingleButtonLayout,
+  SvgButton,
+} from "components";
 import { ShortBoxIcon } from "assets";
 import { formatDate } from "utils";
 import { ax } from "apis/axios";
@@ -44,9 +49,12 @@ export default function ReviewLuckyDayPage() {
       new Blob([JSON.stringify(reviewReqDto)], { type: "application/json" })
     );
 
-    if (uploadedFile) {
-      formData.append("image", uploadedFile);
-    }
+    formData.append(
+      "image",
+      uploadedFile
+        ? uploadedFile
+        : new Blob([JSON.stringify(null)], { type: "application/json" })
+    );
 
     try {
       const response = await ax.post("/luckydays/review", formData, {
@@ -88,41 +96,43 @@ export default function ReviewLuckyDayPage() {
   const { dday, actNm } = data.resData;
 
   return (
-    <S.Container>
-      <S.TextBox>{formatDate(dday, "YYYY-MM-DD")}</S.TextBox>
-      <S.ReviewBox>
-        <S.TextBox>{actNm}</S.TextBox>
-        <S.ImageUploadBox>
-          <FileUploader onFileSelect={handleFileSelect} />
-          {uploadedFile && (
-            <S.ImageBox>
-              <img
-                src={URL.createObjectURL(uploadedFile)}
-                alt="Uploaded preview"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  borderRadius: "10px",
-                }}
-              />
-            </S.ImageBox>
-          )}
-        </S.ImageUploadBox>
-        <S.ReviewTextarea
-          value={review}
-          onChange={handleReviewChange}
-          placeholder={"100자 이내로 럭키 데이를 기록해 보세요:)"}
-        />
-      </S.ReviewBox>
-      <S.ButtonBox>
-        <SvgButton
-          label="저장하기"
-          icon={<ShortBoxIcon />}
-          width="120px"
-          height="50px"
-          onClick={handleSubmit}
-        />
-      </S.ButtonBox>
-    </S.Container>
+    <SingleButtonLayout>
+      <S.Container>
+        <S.TextBox>{formatDate(dday, "YYYY-MM-DD")}</S.TextBox>
+        <S.ReviewBox>
+          <S.TextBox>{actNm}</S.TextBox>
+          <S.ImageUploadBox>
+            <FileUploader onFileSelect={handleFileSelect} />
+            {uploadedFile && (
+              <S.ImageBox>
+                <img
+                  src={URL.createObjectURL(uploadedFile)}
+                  alt="Uploaded preview"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    borderRadius: "10px",
+                  }}
+                />
+              </S.ImageBox>
+            )}
+          </S.ImageUploadBox>
+          <S.ReviewTextarea
+            value={review}
+            onChange={handleReviewChange}
+            placeholder={"100자 이내로 럭키 데이를 기록해 보세요:)"}
+          />
+        </S.ReviewBox>
+        <S.ButtonBox>
+          <SvgButton
+            label="저장하기"
+            icon={<ShortBoxIcon />}
+            width="120px"
+            height="50px"
+            onClick={handleSubmit}
+          />
+        </S.ButtonBox>
+      </S.Container>
+    </SingleButtonLayout>
   );
 }
