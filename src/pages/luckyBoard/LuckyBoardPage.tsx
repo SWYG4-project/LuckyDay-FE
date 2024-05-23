@@ -1,61 +1,83 @@
-import React, { useEffect, useState } from "react";
-import { AxiosError, AxiosResponse } from "axios";
-import { ax } from "apis/axios";
-import { LuckyBoardAfterPage, LuckyBoardBeforePage } from ".";
+import React from "react";
 
-interface LuckyDayResponse {
-  code: string;
-  message: string;
-  resData: unknown | null;
-}
+import { LuckyBoardAfterPage, LuckyBoardBeforePage } from ".";
+import { ArchiveModal, ButtonLayout } from "components";
+import {
+  useGetLuckyDayCycle,
+  useGetLuckyDayCycleInfo,
+  useGetLuckyDayCycleLastLuckyDays,
+} from "services";
+import { useModal, useToast } from "hooks";
+import { formatDate } from "utils";
+import * as S from "./LuckyBoardPage.styled";
 
 const LuckyBoardPage: React.FC = () => {
-  const [hasCurrentLuckyDay, setHasCurrentLuckyDay] = useState<boolean | null>(
-    null
+  const hasLuckyday = sessionStorage.getItem("hasLuckyday")!;
+
+  const { data } = useGetLuckyDayCycle({
+    hasLuckyday: +hasLuckyday,
+    query: { isCurrent: 1 },
+  });
+  const { data: lastLuckyDays } = useGetLuckyDayCycleLastLuckyDays({
+    query: { isCurrent: 0 },
+  });
+  const { data: info } = useGetLuckyDayCycleInfo(data?.[0].cyclNo ?? 0, !!data);
+
+  const { handleOpenModal } = useModal();
+  const { addToast } = useToast();
+
+  const expDatesString = info?.expDtList
+    ?.map((item) => `${formatDate(item, "YYYY-MM-DD")}\n`)
+    .join("")
+    ?.replace(/,/g, "");
+
+  console.log(lastLuckyDays);
+  const cycleInfo = (
+    <p>
+      생성 옵션:
+      <br />
+      {info ? formatDate(info.startDt, "YYYY-MM-DD") : "-"} ~{" "}
+      {info ? formatDate(info.endDt, "YYYY-MM-DD") : "-"}
+      <br />
+      <strong>{info?.period}</strong>일 동안 <strong>{info?.cnt}</strong>개의
+      럭키 데이
+      <br />
+      {expDatesString ? `\n제외 날짜:\n${expDatesString}` : ""}
+    </p>
   );
 
-  useEffect(() => {
-    const fetchLuckyDayData = async () => {
-      try {
-        const res: AxiosResponse<LuckyDayResponse> = await ax.get(
-          "/luckydays/cycl/1",
-          {
-            params: { isCurrent: 1 },
-          }
-        );
+  const handleOpenLastLuckyDayModal = () => {
+    if (!lastLuckyDays) {
+      return;
+    }
 
-        console.log("API 요청 URL:", res.config.url);
-        console.log("API 요청 파라미터:", res.config.params);
-        console.log("API 응답 데이터:", res.data);
+    handleOpenModal(
+      <ArchiveModal
+        css={S.archiveModal}
+        lastInfo={lastLuckyDays?.filter(
+          (item) => item.dday !== 1 && item.date !== null
+        )}
+      />
+    );
+  };
 
-        if (res.data && res.data.resData !== null) {
-          setHasCurrentLuckyDay(true);
-        } else {
-          setHasCurrentLuckyDay(false);
-        }
-      } catch (error) {
-        const axiosError = error as AxiosError<LuckyDayResponse>;
-        console.error("Error fetching lucky day data:", axiosError);
+  const handleOpenCheckLuckyDayModal = () => {
+    if (!info)
+      return addToast({ content: "진행 중인 럭키 데이 정보가 없어요." });
 
-        if (
-          axiosError.response &&
-          axiosError.response.data &&
-          axiosError.response.data.code === "2007"
-        ) {
-          setHasCurrentLuckyDay(false);
-        } else {
-          console.error("Error fetching lucky day data:", axiosError);
-        }
-      }
-    };
-
-    fetchLuckyDayData();
-  }, []);
+    handleOpenModal(<ArchiveModal css={S.archiveModal} moreInfo={cycleInfo} />);
+  };
 
   return (
-    <div>
-      {hasCurrentLuckyDay ? <LuckyBoardAfterPage /> : <LuckyBoardBeforePage />}
-    </div>
+    <ButtonLayout
+      variant="hasColor"
+      firstLabel="지난 럭키데이"
+      secondLabel="더보기"
+      handleClickFirstButton={handleOpenLastLuckyDayModal}
+      handleClickSecondButton={handleOpenCheckLuckyDayModal}
+    >
+      {data ? <LuckyBoardAfterPage /> : <LuckyBoardBeforePage />}
+    </ButtonLayout>
   );
 };
 
