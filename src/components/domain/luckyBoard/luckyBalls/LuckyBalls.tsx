@@ -55,6 +55,8 @@ export default function LuckyBalls() {
               type = "LuckyBall_D1";
             } else if (day.dday === 2) {
               type = "LuckyBall_D2";
+            } else if (day.dday === 3) {
+              type = "LuckyBall_D3";
             } else {
               type = "LuckyBall_unknown";
             }
@@ -154,6 +156,20 @@ export default function LuckyBalls() {
             />
           </CenteredSvgFrame>
         );
+      case "LuckyBall_D3":
+        return (
+          <CenteredSvgFrame
+            key={index}
+            label="D-3"
+            onClick={() => handleLuckyBallClick(ball)}
+          >
+            <SvgFrame
+              key={index}
+              css={S.LuckyBall_D3}
+              icon={<CircleBoxIcon />}
+            />
+          </CenteredSvgFrame>
+        );
       default:
         return null;
     }
@@ -173,6 +189,9 @@ export default function LuckyBalls() {
     switch (ball.type) {
       case "LuckyBall_unknown":
         label = "아직 럭키 데이를 확인할 수 없어요.\n 조금만 기다려주세요.";
+        break;
+      case "LuckyBall_D3":
+        label = "럭키 데이가 3일 남았어요. \n 조금만 기다려주세요.";
         break;
       case "LuckyBall_D2":
         label = "럭키 데이가 2일 남았어요. \n 조금만 기다려주세요.";
