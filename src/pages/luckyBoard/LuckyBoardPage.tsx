@@ -31,7 +31,6 @@ const LuckyBoardPage: React.FC = () => {
     .join("")
     ?.replace(/,/g, "");
 
-  console.log(lastLuckyDays);
   const cycleInfo = (
     <p>
       생성 옵션:
