@@ -1,4 +1,5 @@
-import { css, keyframes } from "@emotion/react";
+import styled from "@emotion/styled";
+import { keyframes } from "@emotion/react";
 
 export const SpinnerAnimation = keyframes`
   to {
@@ -6,7 +7,7 @@ export const SpinnerAnimation = keyframes`
   }
 `;
 
-export const PageSpinnerContainer = css`
+export const PageSpinnerContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,7 +15,7 @@ export const PageSpinnerContainer = css`
   height: 50vh;
 `;
 
-export const PageSpinner = css`
+export const PageSpinner = styled.div`
   width: 56px;
   height: 56px;
   --c: radial-gradient(farthest-side, #ffb43e 92%, #0000);
