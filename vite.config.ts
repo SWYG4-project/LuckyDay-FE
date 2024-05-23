@@ -9,4 +9,7 @@ import { defineConfig } from "vite";
 export default defineConfig({
   plugins: [react(), svgr(), viteTsconfigPaths()],
   cacheDir: "./.vite",
+  build: {
+    chunkSizeWarningLimit: 1000,
+  },
 });

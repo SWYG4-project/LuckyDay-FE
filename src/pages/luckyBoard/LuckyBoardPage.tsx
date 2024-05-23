@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import { LuckyBoardAfterPage, LuckyBoardBeforePage } from ".";
 import { ArchiveModal, ButtonLayout } from "components";
