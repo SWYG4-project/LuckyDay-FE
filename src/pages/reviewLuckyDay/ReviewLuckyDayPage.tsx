@@ -63,7 +63,7 @@ export default function ReviewLuckyDayPage() {
 
       if (response.status === 200) {
         addToast({ content: "저장되었습니다." });
-        navigate(`/luckydays/${id}`);
+        navigate(`/luckydays/review/${id}`);
       } else {
         addToast({ content: "저장에 실패했습니다." });
       }
