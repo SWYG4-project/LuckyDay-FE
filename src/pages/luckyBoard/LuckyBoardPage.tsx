@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { LuckyBoardAfterPage, LuckyBoardBeforePage } from ".";
 import { ArchiveModal, ButtonLayout } from "components";
@@ -75,7 +75,7 @@ const LuckyBoardPage: React.FC = () => {
       handleClickFirstButton={handleOpenLastLuckyDayModal}
       handleClickSecondButton={handleOpenCheckLuckyDayModal}
     >
-      {data ? <LuckyBoardAfterPage /> : <LuckyBoardBeforePage />}
+      {data ? <LuckyBoardAfterPage /> : <LuckyBoardBeforePage data={data} />}
     </ButtonLayout>
   );
 };

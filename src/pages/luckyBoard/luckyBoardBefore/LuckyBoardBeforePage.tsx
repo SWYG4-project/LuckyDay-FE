@@ -5,8 +5,15 @@ import {
   CreateAlertModal,
   CreateLuckyDayButton,
 } from "components/domain/luckyBoard";
+import { GetLuckyDayCycleServerModel } from "types";
 
-export default function LuckyBoardBeforePage() {
+interface LuckyBoardBeforePageProps {
+  data?: GetLuckyDayCycleServerModel;
+}
+
+export default function LuckyBoardBeforePage({
+  data,
+}: LuckyBoardBeforePageProps) {
   const { handleOpenModal, handleModalClose } = useModal();
   const navigate = useNavigate();
 
@@ -16,6 +23,8 @@ export default function LuckyBoardBeforePage() {
   };
 
   const openCreateAlertModal = () => {
+    if (!data) sessionStorage.setItem("hasLuckyday", "0");
+
     handleOpenModal(
       <CreateAlertModal onClose={handleModalClose} onConfirm={handleConfirm} />
     );
