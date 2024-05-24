@@ -70,6 +70,11 @@ export default function EditProfilePage() {
   };
 
   useEffect(() => {
+    setNickname(initialNickname);
+    setEmail(initialEmail);
+  }, [initialNickname, initialEmail]);
+
+  useEffect(() => {
     if (
       (nickname !== initialNickname || email !== initialEmail) &&
       validateEmail(email)
