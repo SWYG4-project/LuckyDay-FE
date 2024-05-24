@@ -99,10 +99,11 @@ export interface GetLuckyDayCycleDetailResponse {
 }
 
 export type LuckyBallType =
-  | "LuckyBall_unknown"
   | "LuckyBall_Dday"
-  | "LuckyBall_D2"
   | "LuckyBall_D1"
+  | "LuckyBall_D2"
+  | "LuckyBall_D3"
+  | "LuckyBall_unknown"
   | "LuckyBallFace";
 
 export interface LuckyBallDetail {

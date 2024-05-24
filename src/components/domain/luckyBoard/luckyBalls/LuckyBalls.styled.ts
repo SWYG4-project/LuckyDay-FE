@@ -41,6 +41,13 @@ export const LuckyBall_unknown = (theme: Theme) => css`
   }
 `;
 
+export const LuckyBall_D3 = (theme: Theme) => css`
+  ${svgFrame(theme)}
+  path {
+    fill: ${theme.colors.orange};
+  }
+`;
+
 export const LuckyBall_D2 = (theme: Theme) => css`
   ${svgFrame(theme)}
   path {
