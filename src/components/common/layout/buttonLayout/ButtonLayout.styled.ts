@@ -1,4 +1,4 @@
-import { css } from "@emotion/react";
+import { Theme, css } from "@emotion/react";
 import styled from "@emotion/styled";
 
 export const ButtonLayout = styled.div`
@@ -61,3 +61,16 @@ export const ButtonBox = styled.div<{
 export const Img = styled.img`
   width: 100%;
 `;
+
+export const beigeIcon = (theme: Theme) => css`
+  path {
+    fill: ${theme.colors.beige};
+  }
+`;
+
+export const switchIcon = (hasIcon: boolean) => (theme: Theme) =>
+  css`
+    path {
+      fill: ${hasIcon ? theme.colors.beige : theme.colors.lightOrange};
+    }
+  `;

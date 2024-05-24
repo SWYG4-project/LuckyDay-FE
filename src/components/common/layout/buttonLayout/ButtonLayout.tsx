@@ -1,5 +1,7 @@
 import React from "react";
 
+import { SvgFrame } from "components";
+import { ShortBoxIcon } from "assets";
 import * as S from "./ButtonLayout.styled";
 
 interface ButtonLayoutProps {
@@ -28,19 +30,16 @@ function ButtonLayout({
       <S.Body>{children}</S.Body>
       <S.ButtonWrapper>
         <S.Button variant={variant} onClick={handleClickFirstButton}>
-          <S.Img src="images/img_small_beige.png" />
+          <SvgFrame css={S.beigeIcon} icon={<ShortBoxIcon />} />
           <S.ButtonBox variant={variant}>
             {icon && icon}
             {firstLabel}
           </S.ButtonBox>
         </S.Button>
         <S.Button onClick={handleClickSecondButton}>
-          <S.Img
-            src={
-              variant === "hasIcon"
-                ? "images/img_small_beige.png"
-                : "images/img_small_orange.png"
-            }
+          <SvgFrame
+            css={S.switchIcon(variant === "hasIcon")}
+            icon={<ShortBoxIcon />}
           />
           <S.ButtonBox isSecond variant={variant}>
             {secondLabel}
