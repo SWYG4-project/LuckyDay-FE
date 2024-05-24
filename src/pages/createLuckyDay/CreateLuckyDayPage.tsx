@@ -59,7 +59,8 @@ function CreateLuckyDayPage() {
   };
 
   const handleClickNextButton = () => {
-    const emptyActList = watch("actList")[0] === 0;
+    const emptyActList =
+      watch("actList")[0] === 0 && watch("actList").length === 1;
 
     if (currentProgress === 0 && emptyActList) {
       return addToast({ content: "최소 1개의 카테고리를 선택해 주세요." });
