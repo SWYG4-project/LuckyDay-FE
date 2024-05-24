@@ -44,7 +44,7 @@ function ArchiveModal({ className, moreInfo, lastInfo }: ArchiveModalProps) {
           ) : (
             <>
               <span>아직 지난 럭키 데이가 없어요.</span>
-              <S.Img src="/images/profile/profile-07.png" alt="noLuckyDay" />
+              <S.Img src="/images/profile/profile-07.webp" alt="noLuckyDay" />
             </>
           )}
         </>

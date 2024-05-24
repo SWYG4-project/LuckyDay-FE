@@ -45,17 +45,21 @@ const LuckyBoardPage: React.FC = () => {
     </p>
   );
 
+  console.log(data);
+
   const handleOpenLastLuckyDayModal = () => {
-    if (!lastLuckyDays) {
+    if (!lastLuckyDays && !data?.[0].cyclNo) {
       return;
     }
 
     handleOpenModal(
       <ArchiveModal
         css={S.archiveModal}
-        lastInfo={lastLuckyDays?.filter(
-          (item) => item.dday !== 1 && item.date !== null
-        )}
+        lastInfo={
+          lastLuckyDays?.filter(
+            (item) => item.dday !== 1 && item.date !== null
+          ) || []
+        }
       />
     );
   };
