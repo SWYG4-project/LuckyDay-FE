@@ -17,10 +17,14 @@ export default function Auth() {
     sessionStorage.setItem("hasLuckyday", hasLuckyday!);
 
     if (token) {
-      navigate("/profile");
+      if (hasLuckyday === "1") {
+        navigate("/luckyboard");
+      } else {
+        navigate("/profile");
+      }
       window.location.reload();
     }
-  }, [email, navigate, nickname, token]);
+  }, [email, navigate, nickname, token, hasLuckyday]);
 
   return (
     <div>
