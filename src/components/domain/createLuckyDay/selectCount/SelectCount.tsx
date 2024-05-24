@@ -15,16 +15,19 @@ interface SelectCountProps {
 function SelectCount({ watch, setValue }: SelectCountProps) {
   const { addToast } = useToast();
 
-  const selectedPeriod =
-    LUCKYDAY_PERIODS.find((item) => item.period === watch("period"))?.cnt ?? 0;
+  const selectedPeriod = LUCKYDAY_PERIODS.find(
+    (item) => item.period === watch("period")
+  );
 
   const handleSelectCounts = (count: number) => (): void => {
     const currentCount = watch("cnt") + count;
 
     if (currentCount <= 0)
       return addToast({ content: `1일 이상의 개수를 선택해주세요` });
-    if (currentCount > selectedPeriod)
-      return addToast({ content: `${selectedPeriod}일 이내로 선택해주세요` });
+    if (currentCount > (selectedPeriod?.cnt ?? 0))
+      return addToast({
+        content: `${selectedPeriod?.cnt ?? 0}일 이내로 선택해주세요`,
+      });
 
     setValue("cnt", watch("cnt") + count);
   };
@@ -35,7 +38,7 @@ function SelectCount({ watch, setValue }: SelectCountProps) {
         <span>배정을 원하는 럭키 데이 개수를 선택하세요.</span>
         <S.SubHeadLine>
           {dayjs().format("YYYY년 MM월 DD일")} 오늘로부터{" "}
-          <strong>{selectedPeriod}일</strong>
+          <strong>{selectedPeriod?.period ?? 0}일</strong>
           동안
         </S.SubHeadLine>
       </S.HeadLine>
@@ -52,8 +55,8 @@ function SelectCount({ watch, setValue }: SelectCountProps) {
       </S.SelectDatesWrapper>
       {!!selectedPeriod && (
         <S.SelectInfo>
-          최대 <strong>{selectedPeriod}개</strong>의 럭키 데이를 선택할 수
-          있어요.
+          최대 <strong>{selectedPeriod?.cnt ?? 0}개</strong>의 럭키 데이를
+          선택할 수 있어요.
         </S.SelectInfo>
       )}
     </>
