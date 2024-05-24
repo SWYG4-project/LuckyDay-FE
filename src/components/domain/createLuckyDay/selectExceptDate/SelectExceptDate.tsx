@@ -22,6 +22,7 @@ function SelectExceptDate({ watch, setValue }: SelectExceptDateProps) {
 
   const EndOfDate = dayjs(dayjs())
     .add(+selectedPeriod, "day")
+    .subtract(+1, "day")
     .format("YYYY년 MM월 DD일");
 
   const makeExpDates = (dates: string) => {

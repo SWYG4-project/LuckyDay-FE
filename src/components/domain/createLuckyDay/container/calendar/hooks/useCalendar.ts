@@ -27,7 +27,7 @@ const useCalendar = (
   const monthsData: string[] = [];
   let currentDay = dayjs().startOf("day");
 
-  while (currentDay.isSameOrBefore(currentDate.startOf("day"))) {
+  while (currentDay.isBefore(currentDate.startOf("day"))) {
     monthsData.push(currentDay.format("YYYY-MM-DD"));
     currentDay = currentDay.add(1, "day");
   }
