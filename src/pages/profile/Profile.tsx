@@ -25,7 +25,7 @@ export default function Profile() {
       <S.TextBox>
         {nickname}님, 반가워요. <br />
         {nickname}님의 럭키한 날에 <br />
-        아래 주소로 메일이 발송될 거에요.
+        아래 주소로 메일이 발송될 거예요.
       </S.TextBox>
       <S.MailBox>💌 {email}</S.MailBox>
       <S.ButtonBox>
