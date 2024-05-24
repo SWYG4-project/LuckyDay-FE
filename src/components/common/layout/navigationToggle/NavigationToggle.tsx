@@ -15,7 +15,7 @@ const NavigationToggle: (props: NavigationToggleProps) => JSX.Element = ({
   const menuIconRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
-  const nickname = sessionStorage.getItem("nickname")!;
+  const nickname = sessionStorage.getItem("nickname")!.slice(0, 8);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
