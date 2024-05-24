@@ -1,6 +1,6 @@
 import * as S from "./myPage.styled";
-import { Link } from "react-router-dom";
-import { useModal } from "hooks";
+import { Link, useNavigate } from "react-router-dom";
+import { useModal, useToast } from "hooks";
 import { useLogout, useDeleteUser, useDeleteLuckyBoard } from "services";
 import {
   DeleteUserConfirmModal,
@@ -14,6 +14,8 @@ export default function MyPage() {
   const { mutate: deleteUserMutate } = useDeleteUser();
   const { mutate: deleteLuckyBoardMutate } = useDeleteLuckyBoard();
   const { handleOpenModal, handleModalClose } = useModal();
+  const { addToast } = useToast();
+  const navigate = useNavigate();
 
   const logout = () => {
     sessionStorage.clear();
@@ -28,9 +30,13 @@ export default function MyPage() {
   const deleteUser = () => {
     deleteUserMutate(undefined, {
       onSuccess: () => {
-        logout();
+        sessionStorage.clear();
+        addToast({ content: "회원 탈퇴 완료" });
+        navigate("/");
+        window.location.reload();
       },
       onError: (error: unknown) => {
+        addToast({ content: "회원 탈퇴에 실패했습니다. 다시 시도해 주세요." });
         console.error("회원 탈퇴 실패", error);
       },
     });
