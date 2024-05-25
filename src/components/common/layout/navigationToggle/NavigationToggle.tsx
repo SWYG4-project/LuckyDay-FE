@@ -15,7 +15,7 @@ const NavigationToggle: (props: NavigationToggleProps) => JSX.Element = ({
   const menuIconRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
 
-  const nickname = sessionStorage.getItem("nickname")!.slice(0, 8);
+  const nickname = sessionStorage.getItem("nickname");
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -31,13 +31,12 @@ const NavigationToggle: (props: NavigationToggleProps) => JSX.Element = ({
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  useEffect(() => {
-    setIsToggleVisible(false);
-  }, [location]);
-
   const toggleNavigation = () => {
     setIsToggleVisible((prevState) => !prevState);
   };
+  useEffect(() => {
+    setIsToggleVisible(false);
+  }, [location]);
 
   return (
     <>
@@ -50,7 +49,7 @@ const NavigationToggle: (props: NavigationToggleProps) => JSX.Element = ({
           <S.ToggleContentsBox>
             <S.ProfileBox>
               <S.ProfileImage />
-              {!nickname ? "사용자님" : `${nickname}님`}
+              {!nickname ? "사용자님" : `${nickname!.slice(0, 8)}님`}
             </S.ProfileBox>
             <S.ToggleMenuBox>
               <Link to="/luckyboard" onClick={() => setIsToggleVisible(false)}>
