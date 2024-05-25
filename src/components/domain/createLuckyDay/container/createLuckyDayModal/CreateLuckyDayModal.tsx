@@ -27,6 +27,7 @@ function CreateLuckyDayModal({
 
   const EndOfDate = dayjs(dayjs())
     .add(+watch("period"), "day")
+    .subtract(1, "day")
     .format("YYYY년 MM월 DD일");
 
   const handleClick = handleSubmit((data) => {
