@@ -25,6 +25,13 @@ function SelectExceptDate({ watch, setValue }: SelectExceptDateProps) {
     .subtract(+1, "day")
     .format("YYYY년 MM월 DD일");
 
+  const sortDates = expDates.sort((a, b) => {
+    const dateA = dayjs(a.replace(/년 |월 /g, "-").replace(/일/, ""));
+    const dateB = dayjs(b.replace(/년 |월 /g, "-").replace(/일/, ""));
+
+    return dateA.isBefore(dateB) ? -1 : dateA.isAfter(dateB) ? 1 : 0;
+  });
+
   const makeExpDates = (dates: string) => {
     if (expDates.includes(dates)) {
       setExpDates((prevExpDates) =>
@@ -36,7 +43,7 @@ function SelectExceptDate({ watch, setValue }: SelectExceptDateProps) {
   };
 
   useEffect(() => {
-    setValue("expDTList", expDates);
+    setValue("expDTList", sortDates);
   }, [expDates]);
 
   return (
