@@ -1,11 +1,8 @@
 import * as S from "./LuckyBoardBeforePage.styled";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "hooks";
-import {
-  CreateAlertModal,
-  CreateLuckyDayButton,
-} from "components/domain/luckyBoard";
 import { GetLuckyDayCycleServerModel } from "types";
+import { CreateAlertModal, CreateLuckyDayButton } from "components";
 
 interface LuckyBoardBeforePageProps {
   data?: GetLuckyDayCycleServerModel;
@@ -23,11 +20,20 @@ export default function LuckyBoardBeforePage({
   };
 
   const openCreateAlertModal = () => {
+    const isExperienced = sessionStorage.getItem("isExperienced");
+
     if (!data) sessionStorage.setItem("hasLuckyday", "0");
 
-    handleOpenModal(
-      <CreateAlertModal onClose={handleModalClose} onConfirm={handleConfirm} />
-    );
+    if (isExperienced === "0") {
+      navigate("/create");
+    } else {
+      handleOpenModal(
+        <CreateAlertModal
+          onClose={handleModalClose}
+          onConfirm={handleConfirm}
+        />
+      );
+    }
   };
 
   return (
