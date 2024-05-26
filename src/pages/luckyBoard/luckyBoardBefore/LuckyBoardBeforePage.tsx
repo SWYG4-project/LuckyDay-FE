@@ -36,12 +36,21 @@ export default function LuckyBoardBeforePage({
     }
   };
 
+  const isExperienced = sessionStorage.getItem("isExperienced");
+
   return (
     <S.Container>
-      <S.TextBox>
-        아직 만들어진 럭키 데이가 없어요. <br />
-        클릭해서 럭키 데이를 만들어 보세요.
-      </S.TextBox>
+      {isExperienced === "0" ? (
+        <S.TextBox>
+          아직 만들어진 럭키 데이가 없어요. <br />
+          클릭해서 럭키 데이를 만들어 보세요.
+        </S.TextBox>
+      ) : (
+        <S.TextBox>
+          모든 럭키 데이가 오픈되었어요. <br />
+          클릭해서 새로운 럭키 데이를 만들어 보세요.
+        </S.TextBox>
+      )}
       <S.LuckyMachine>
         <CreateLuckyDayButton onClick={openCreateAlertModal} />
       </S.LuckyMachine>
