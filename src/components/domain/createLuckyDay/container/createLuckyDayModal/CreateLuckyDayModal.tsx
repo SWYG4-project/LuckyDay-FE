@@ -51,6 +51,7 @@ function CreateLuckyDayModal({
 
         handleModalClose();
         sessionStorage.setItem("hasLuckyday", "1");
+        sessionStorage.setItem("isExperienced", "1");
         navigate("/loading", { state: "create" });
       },
     });
