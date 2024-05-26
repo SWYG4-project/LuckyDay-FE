@@ -49,7 +49,7 @@ const useCalendar = (
     if (!isAlreadyDisabled) {
       if (expDates.length >= (luckyday?.expDate ?? 1))
         return addToast({
-          content: `${luckyday?.expDate}일 이상의 제외 날짜를 선택할 수 없어요 :(`,
+          content: `최대 ${luckyday?.expDate}개의 제외 날짜를 선택할 수 있어요.`,
         });
 
       if (!monthsData.includes(formattedDate)) return;

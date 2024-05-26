@@ -23,10 +23,12 @@ function SelectCount({ watch, setValue }: SelectCountProps) {
     const currentCount = watch("cnt") + count;
 
     if (currentCount <= 0)
-      return addToast({ content: `1일 이상의 개수를 선택해주세요` });
+      return addToast({ content: "최소 1개의 럭키 데이를 선택해 주세요." });
     if (currentCount > (selectedPeriod?.cnt ?? 0))
       return addToast({
-        content: `${selectedPeriod?.cnt ?? 0}일 이내로 선택해주세요`,
+        content: `최대 ${
+          selectedPeriod?.cnt ?? 0
+        }개의 럭키 데이를 선택할 수 있어요.`,
       });
 
     setValue("cnt", watch("cnt") + count);
