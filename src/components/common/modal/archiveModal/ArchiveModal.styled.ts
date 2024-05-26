@@ -1,8 +1,8 @@
 import { Theme, css } from "@emotion/react";
 import styled from "@emotion/styled";
 
-export const ArchiveModal = styled.div`
-  ${({ theme }) => css`
+export const ArchiveModal = styled.div<{ hasPadding: boolean }>`
+  ${({ theme, hasPadding }) => css`
     ${theme.fonts.headline1};
     position: fixed;
     bottom: 0;
@@ -15,14 +15,14 @@ export const ArchiveModal = styled.div`
     row-gap: 30px;
     width: 430px;
     max-height: 45%;
-    padding: 34px 24px 48px 24px;
+    padding: 34px 24px 40px 24px;
     border-radius: 24px 24px 0px 0px;
     background-color: ${theme.colors.lightBeige_opacity};
     filter: none;
     box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.25);
 
     & > div {
-      padding-top: 35px;
+      padding-top: ${hasPadding && "35px"};
       text-align: center;
       white-space: break-spaces;
       overflow-y: scroll;

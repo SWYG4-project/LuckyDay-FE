@@ -25,7 +25,7 @@ function ArchiveModal({ className, moreInfo, lastInfo }: ArchiveModalProps) {
   };
 
   return (
-    <S.ArchiveModal className={className}>
+    <S.ArchiveModal hasPadding={!!moreInfo} className={className}>
       {moreInfo && <div>{moreInfo}</div>}
       {lastInfo && (
         <>
