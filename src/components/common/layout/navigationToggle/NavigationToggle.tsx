@@ -16,6 +16,17 @@ const NavigationToggle: (props: NavigationToggleProps) => JSX.Element = ({
   const location = useLocation();
 
   const nickname = sessionStorage.getItem("nickname");
+  const profileNumber = sessionStorage.getItem("profileNumber");
+
+  const getProfileImageUrl = (prfNo: string | null) => {
+    if (!prfNo) return "/images/profile/profile-03.webp";
+    const profileNumber = parseInt(prfNo, 10);
+    if (profileNumber < 1 || profileNumber > 6)
+      return "/images/profile/profile-03.webp";
+    return `/images/profile/profile-0${profileNumber}.webp`;
+  };
+
+  const profileImageUrl = getProfileImageUrl(profileNumber);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -48,7 +59,7 @@ const NavigationToggle: (props: NavigationToggleProps) => JSX.Element = ({
           <button onClick={toggleNavigation}></button>
           <S.ToggleContentsBox>
             <S.ProfileBox>
-              <S.ProfileImage />
+              <S.ProfileImage imageUrl={profileImageUrl} />
               {!nickname ? "사용자님" : `${nickname!.slice(0, 8)}님`}
             </S.ProfileBox>
             <S.ToggleMenuBox>
