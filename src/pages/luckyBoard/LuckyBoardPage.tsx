@@ -45,8 +45,6 @@ const LuckyBoardPage: React.FC = () => {
     </p>
   );
 
-  console.log(data);
-
   const handleOpenLastLuckyDayModal = () => {
     if (!lastLuckyDays && !data?.[0].cyclNo) {
       return;
