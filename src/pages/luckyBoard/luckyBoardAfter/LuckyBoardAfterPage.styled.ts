@@ -25,7 +25,7 @@ export const LuckyMachine = styled.div`
   align-items: center;
   justify-content: center;
   background-size: cover;
-  background-image: url("images/machine-filled.webp");
+  background-image: url("/images/machine-filled.webp");
 `;
 
 export const archiveModal = (theme: Theme) => css`

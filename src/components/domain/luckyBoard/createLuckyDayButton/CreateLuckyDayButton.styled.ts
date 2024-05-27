@@ -5,7 +5,7 @@ export const CreateLuckyDayButton = styled.button`
   height: 70px;
   border: none;
   background-size: cover;
-  background-image: url("images/empty-white.png");
+  background-image: url("/images/empty-white.png");
   cursor: pointer;
   & > svg {
     width: 40px;

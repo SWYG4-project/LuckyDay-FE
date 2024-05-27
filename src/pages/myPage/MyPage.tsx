@@ -57,6 +57,7 @@ export default function MyPage() {
         console.log("럭키보드 초기화 성공", data);
         sessionStorage.setItem("hasLuckyday", "0");
         handleModalClose();
+        navigate("/luckyboard");
       },
       onError: (error: unknown) => {
         console.error("럭키보드 초기화 실패", error);

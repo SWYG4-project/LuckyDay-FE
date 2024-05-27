@@ -43,13 +43,13 @@ export const ProfileBox = styled.div`
   `}
 `;
 
-export const ProfileImage = styled.div`
+export const ProfileImage = styled.div<{ imageUrl: string }>`
   width: 45px;
   height: 45px;
   margin-right: 10px;
   background-size: cover;
   background-position: center;
-  background-image: url("/images/profile/profile-03.webp");
+  background-image: url(${(props) => props.imageUrl});
 `;
 
 export const ToggleMenuBox = styled.div`

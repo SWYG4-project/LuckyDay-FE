@@ -1,11 +1,8 @@
 import * as S from "./LuckyBoardBeforePage.styled";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "hooks";
-import {
-  CreateAlertModal,
-  CreateLuckyDayButton,
-} from "components/domain/luckyBoard";
 import { GetLuckyDayCycleServerModel } from "types";
+import { CreateAlertModal, CreateLuckyDayButton } from "components";
 
 interface LuckyBoardBeforePageProps {
   data?: GetLuckyDayCycleServerModel;
@@ -23,19 +20,37 @@ export default function LuckyBoardBeforePage({
   };
 
   const openCreateAlertModal = () => {
+    const isExperienced = sessionStorage.getItem("isExperienced");
+
     if (!data) sessionStorage.setItem("hasLuckyday", "0");
 
-    handleOpenModal(
-      <CreateAlertModal onClose={handleModalClose} onConfirm={handleConfirm} />
-    );
+    if (isExperienced === "0") {
+      navigate("/create");
+    } else {
+      handleOpenModal(
+        <CreateAlertModal
+          onClose={handleModalClose}
+          onConfirm={handleConfirm}
+        />
+      );
+    }
   };
+
+  const isExperienced = sessionStorage.getItem("isExperienced");
 
   return (
     <S.Container>
-      <S.TextBox>
-        아직 만들어진 럭키 데이가 없어요. <br />
-        클릭해서 럭키 데이를 만들어 보세요.
-      </S.TextBox>
+      {isExperienced === "0" ? (
+        <S.TextBox>
+          아직 만들어진 럭키 데이가 없어요. <br />
+          클릭해서 럭키 데이를 만들어 보세요.
+        </S.TextBox>
+      ) : (
+        <S.TextBox>
+          모든 럭키 데이가 오픈되었어요. <br />
+          클릭해서 새로운 럭키 데이를 만들어 보세요.
+        </S.TextBox>
+      )}
       <S.LuckyMachine>
         <CreateLuckyDayButton onClick={openCreateAlertModal} />
       </S.LuckyMachine>

@@ -20,7 +20,7 @@ export const Logo_Basic = styled.div`
   background-size: 150px;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url("images/logo.webp");
+  background-image: url("/images/logo.webp");
 `;
 
 export const MailBox = styled.div`

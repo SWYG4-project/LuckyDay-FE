@@ -60,5 +60,5 @@ export const Logo_Sad = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  background-image: url("images/logo-sad-blue.webp");
+  background-image: url("/images/logo-sad-blue.webp");
 `;
