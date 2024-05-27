@@ -26,10 +26,12 @@ export default function EditProfilePage() {
   const initialEmail = sessionStorage.getItem("email") || "";
 
   const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
     if (email === "") {
       setEmailError("럭키 데이 알림을 받을 이메일 주소를 입력하세요.");
       return false;
-    } else if (!email.includes("@")) {
+    } else if (!emailRegex.test(email)) {
       setEmailError("유효하지 않은 이메일 주소입니다.");
       return false;
     } else {
@@ -42,6 +44,8 @@ export default function EditProfilePage() {
     const newNickname = e.target.value;
     if (newNickname.length > 8) {
       setNicknameError("닉네임은 최대 8자까지 입력 가능합니다.");
+    } else if (/\s/.test(newNickname)) {
+      setNicknameError("닉네임에는 공백을 포함할 수 없습니다.");
     } else {
       setNicknameError("");
       setNickname(newNickname);
@@ -125,7 +129,7 @@ export default function EditProfilePage() {
           </S.ErrorContainer>
           <S.ButtonBox>
             <SvgButton
-              label={"저장하기"}
+              label="저장하기"
               onClick={openEditProfileModal}
               icon={<ShortBoxIcon />}
               textColor={
