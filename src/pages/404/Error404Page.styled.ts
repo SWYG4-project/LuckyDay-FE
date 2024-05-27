@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 
 export const NotFound = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

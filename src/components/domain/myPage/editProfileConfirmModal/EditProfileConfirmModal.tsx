@@ -34,14 +34,14 @@ export default function EditProfileConfirmModal({
           </S.Text_h2>
           <S.ButtonBox>
             <SvgButton
-              label={"취소"}
+              label="취소"
               onClick={onClose}
               icon={<ShortBoxIcon />}
               width="100px"
               height="42px"
             ></SvgButton>
             <SvgButton
-              label={"확인"}
+              label="확인"
               onClick={handleConfirmClick}
               icon={<ShortBoxIcon />}
               textColor={theme.colors.white}

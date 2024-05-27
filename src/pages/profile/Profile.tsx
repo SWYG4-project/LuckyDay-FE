@@ -30,7 +30,7 @@ export default function Profile() {
       <S.MailBox>💌 {email}</S.MailBox>
       <S.ButtonBox>
         <SvgButton
-          label={"럭키 보드로 가기"}
+          label="럭키 보드로 가기"
           onClick={() => navigate("/luckyboard")}
           icon={<LongBoxIcon />}
         ></SvgButton>

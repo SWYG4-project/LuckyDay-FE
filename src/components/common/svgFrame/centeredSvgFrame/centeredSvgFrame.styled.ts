@@ -18,6 +18,6 @@ export const Text = styled.div<{ color?: string }>`
   transform: translate(-50%, -50%);
   left: 50%;
   top: 50%;
-  color: ${(props) => props.color || props.theme.colors.black};
+  color: ${(props) => props.color || props.theme.colors.white};
   ${(props) => props.theme.fonts.luckyBall2}
 `;

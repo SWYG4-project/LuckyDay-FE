@@ -2,7 +2,6 @@ import * as S from "./LuckyBalls.styled";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useModal } from "hooks";
-import { theme } from "styles";
 import { SvgFrame, CenteredSvgFrame, CountLuckyDayModal } from "components";
 import { CircleBoxIcon } from "assets";
 import { ax } from "apis/axios";
@@ -118,7 +117,6 @@ export default function LuckyBalls() {
           <CenteredSvgFrame
             key={index}
             label="D-day"
-            textColor={theme.colors.white}
             onClick={() => handleLuckyBallClick(ball)}
           >
             <SvgFrame
