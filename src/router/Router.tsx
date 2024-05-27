@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import * as P from "pages";
-import { Layout } from "components";
 import AuthRoute from "./authRoute/AuthRoute";
+import { Layout } from "components";
+import * as P from "pages";
 
 interface RouterProps {
   children: React.ReactNode;
@@ -30,17 +30,16 @@ export default function Router({ children }: RouterProps) {
               path="luckydays/list/:id"
               element={<P.LuckyDayCycleDetailPage />}
             />
+            <Route
+              path="/luckydays/create/:id"
+              element={<P.ReviewLuckyDayPage />}
+            />
+            <Route
+              path="/luckydays/review/:id"
+              element={<P.ViewLuckyDayPage />}
+            />
+            <Route path="loading" element={<P.LoadingPage />} />
           </Route>
-
-          <Route
-            path="/luckydays/create/:id"
-            element={<P.ReviewLuckyDayPage />}
-          />
-          <Route
-            path="/luckydays/review/:id"
-            element={<P.ViewLuckyDayPage />}
-          />
-          <Route path="loading" element={<P.LoadingPage />} />
           <Route path="404" element={<P.Error404Page />} />
           <Route path="*" element={<P.Error404Page />} />
         </Route>
