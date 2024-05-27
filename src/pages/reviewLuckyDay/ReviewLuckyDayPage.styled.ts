@@ -75,3 +75,25 @@ export const ButtonBox = styled.div`
   justify-content: center;
   width: 100%;
 `;
+
+export const ErrorContainer = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  background-color: yellow;
+`;
+
+export const ErrorText = styled.p`
+  ${({ theme }) => css`
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-top: 20px;
+    color: ${theme.colors.black};
+    ${theme.fonts.body2}
+  `}
+`;

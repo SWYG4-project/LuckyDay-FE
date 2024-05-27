@@ -1,5 +1,5 @@
 import * as S from "./ReviewLuckyDayPage.styled";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useToast } from "hooks";
 import { useGetLuckyDayDetail } from "services";
@@ -21,6 +21,7 @@ export default function ReviewLuckyDayPage() {
 
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [review, setReview] = useState<string>("");
+  const [reviewError, setReviewError] = useState<string>("");
   const { addToast } = useToast();
 
   const handleFileSelect = (file: File) => {
@@ -28,7 +29,10 @@ export default function ReviewLuckyDayPage() {
   };
 
   const handleReviewChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if (e.target.value.length <= 100) {
+    if (e.target.value.length > 100) {
+      setReviewError("리뷰는 100자 이내로 작성해 주세요.");
+    } else {
+      setReviewError("");
       setReview(e.target.value);
     }
   };
@@ -86,6 +90,12 @@ export default function ReviewLuckyDayPage() {
     }
   };
 
+  useEffect(() => {
+    if (data && data.resData && data.resData.review !== null) {
+      navigate(`/luckydays/review/${id}`);
+    }
+  }, [data, id, navigate]);
+
   if (isLoading) {
     return <PageSpinner />;
   }
@@ -125,6 +135,9 @@ export default function ReviewLuckyDayPage() {
             onChange={handleReviewChange}
             placeholder={"100자 이내로 럭키 데이를 기록해 보세요:)"}
           />
+          <S.ErrorContainer>
+            {reviewError && <S.ErrorText>{reviewError}</S.ErrorText>}
+          </S.ErrorContainer>
         </S.ReviewBox>
         <S.ButtonBox>
           <SvgButton
