@@ -20,4 +20,12 @@ export const Text = styled.div<{ color?: string }>`
   top: 50%;
   color: ${(props) => props.color || props.theme.colors.white};
   ${(props) => props.theme.fonts.luckyBall2}
+
+  @media (max-width: 412px) {
+    ${(props) => props.theme.fonts.logo}
+  }
+
+  @media (max-width: 370px) {
+    ${(props) => props.theme.fonts.body1}
+  }
 `;

@@ -6,25 +6,29 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 80vh;
 `;
 
 export const TextBox = styled.div`
   ${({ theme }) => css`
     color: ${theme.colors.black};
     ${theme.fonts.headline1};
-    margin: 20px 0px 5px 0px;
+    margin: 20px 0px 20px 0px;
     text-align: center;
     white-space: pre-wrap;
   `}
 `;
 
 export const LuckyMachine = styled.div`
-  width: 430px;
-  height: 630px;
+  aspect-ratio: 430 / 625;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-size: cover;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   background-image: url("/images/machine-filled.webp");
 `;
 

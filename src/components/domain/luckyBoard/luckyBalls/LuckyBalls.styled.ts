@@ -6,7 +6,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: -40px;
+  margin-top: -55px;
 `;
 
 export const RowBox = styled.div`
@@ -21,6 +21,24 @@ export const LuckyBallFace = styled.div<{ imageUrl: string }>`
   background-repeat: no-repeat;
   background-image: url(${(props) => props.imageUrl});
   cursor: default;
+
+  @media (max-width: 412px) {
+    width: 95px;
+    height: 95px;
+    margin: 8px;
+  }
+
+  @media (max-width: 405px) {
+    width: 90px;
+    height: 90px;
+    margin: 8px;
+  }
+
+  @media (max-width: 370px) {
+    width: 80px;
+    height: 80px;
+    margin: 7px;
+  }
 `;
 
 export const svgFrame = (theme: Theme) => css`
@@ -31,6 +49,24 @@ export const svgFrame = (theme: Theme) => css`
     cursor: pointer;
     pointer-events: auto;
     ${theme.fonts.luckyBall2}
+
+    @media (max-width: 412px) {
+      width: 95px;
+      height: 95px;
+      margin: 8px;
+    }
+
+    @media (max-width: 405px) {
+      width: 90px;
+      height: 90px;
+      margin: 8px;
+    }
+
+    @media (max-width: 370px) {
+      width: 80px;
+      height: 80px;
+      margin: 7px;
+    }
   }
 `;
 
