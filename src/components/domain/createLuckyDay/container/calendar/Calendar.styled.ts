@@ -2,18 +2,13 @@ import styled from "@emotion/styled";
 import { Theme, css } from "@emotion/react";
 
 export const Calendar = styled.div`
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
   width: 100%;
 `;
 
 export const DayWeekWrapper = styled.div`
   position: relative;
-  display: flex;
-  align-items: center;
+  left: 50%;
+  transform: translateX(-50%);
   width: 295px;
   z-index: 2;
 
@@ -27,7 +22,8 @@ export const DayWeekBox = styled.div`
     ${theme.fonts.headline1};
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -78,7 +74,7 @@ export const Month = styled.h3`
 export const CalendarBox = styled.div`
   position: relative;
   width: 390px;
-  bottom: 25px;
+  top: -25px;
   left: 0;
 
   @media (max-width: 380px) {
