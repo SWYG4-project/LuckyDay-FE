@@ -48,7 +48,7 @@ export const LuckydayDetailInfo = styled.div`
     p:first-of-type {
       ${theme.fonts.headline1};
       position: absolute;
-      top: 100px;
+      top: 25%;
       left: 50%;
       transform: translateX(-50%);
     }
