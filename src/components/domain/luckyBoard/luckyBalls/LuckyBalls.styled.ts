@@ -34,10 +34,10 @@ export const LuckyBallFace = styled.div<{ imageUrl: string }>`
     margin: 8px;
   }
 
-  @media (max-width: 370px) {
+  @media (max-width: 375px) {
     width: 80px;
     height: 80px;
-    margin: 7px;
+    margin: 6px;
   }
 `;
 
@@ -62,10 +62,10 @@ export const svgFrame = (theme: Theme) => css`
       margin: 8px;
     }
 
-    @media (max-width: 370px) {
+    @media (max-width: 375px) {
       width: 80px;
       height: 80px;
-      margin: 7px;
+      margin: 6px;
     }
   }
 `;

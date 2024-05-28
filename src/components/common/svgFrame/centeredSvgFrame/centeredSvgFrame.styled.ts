@@ -25,7 +25,7 @@ export const Text = styled.div<{ color?: string }>`
     ${(props) => props.theme.fonts.logo}
   }
 
-  @media (max-width: 370px) {
+  @media (max-width: 375px) {
     ${(props) => props.theme.fonts.body1}
   }
 `;
