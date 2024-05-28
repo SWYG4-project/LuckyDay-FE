@@ -7,10 +7,12 @@ const Layout = () => {
   const { pathname } = useLocation();
 
   return (
-    <S.Layout>
-      {!(pathname === "/404" || pathname === "/loading") && <Header />}
-      <Outlet />
-    </S.Layout>
+    <S.LayoutContainer>
+      <S.Layout>
+        {!(pathname === "/404" || pathname === "/loading") && <Header />}
+        <Outlet />
+      </S.Layout>
+    </S.LayoutContainer>
   );
 };
 
