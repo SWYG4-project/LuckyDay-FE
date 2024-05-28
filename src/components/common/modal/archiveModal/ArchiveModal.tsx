@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { SvgButton, SvgFrame } from "components";
+import { SvgFrame } from "components";
 import { useModal } from "hooks";
 import { CircleBoxIcon, ShortBoxIcon } from "assets";
 import type { GetLuckyDayCycleDetail } from "types";
@@ -48,13 +48,11 @@ function ArchiveModal({ className, moreInfo, lastInfo }: ArchiveModalProps) {
           )}
         </>
       )}
-      <SvgButton
-        label="닫기"
-        onClick={handleModalClose}
-        icon={<ShortBoxIcon />}
-        width="100px"
-        height="42px"
-      ></SvgButton>
+
+      <S.Button onClick={handleModalClose}>
+        <SvgFrame css={S.svgFrameButton} icon={<ShortBoxIcon />} />
+        <span>닫기</span>
+      </S.Button>
     </S.ArchiveModal>
   );
 }

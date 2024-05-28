@@ -43,7 +43,7 @@ export const Button = styled.button`
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      color: ${theme.colors.white};
+      color: ${theme.colors.black};
     }
   `}
 `;
@@ -81,6 +81,12 @@ export const LuckyDayButton = styled.button`
 export const svgFrame = (theme: Theme) => css`
   path {
     fill: ${theme.colors.purple};
+  }
+`;
+
+export const svgFrameButton = (theme: Theme) => css`
+  path {
+    fill: ${theme.colors.beige};
   }
 `;
 
