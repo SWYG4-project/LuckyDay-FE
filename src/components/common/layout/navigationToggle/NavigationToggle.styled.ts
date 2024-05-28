@@ -13,8 +13,6 @@ export const MenuIcon = styled.div`
 
 export const ToggleBox = styled.div`
   position: absolute;
-  top: 80px;
-  right: 0;
   width: 200px;
   height: 400px;
   border-radius: 15px 0px 0px 15px;

@@ -11,6 +11,11 @@ const NavigationToggle: (props: NavigationToggleProps) => JSX.Element = ({
   defaultOn = false,
 }) => {
   const [isToggleVisible, setIsToggleVisible] = useState(defaultOn);
+  const [toggleBoxPosition, setToggleBoxPosition] = useState({
+    top: 0,
+    left: 0,
+    right: "auto" as number | "auto",
+  });
   const toggleRef = useRef<HTMLDivElement>(null);
   const menuIconRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
@@ -43,8 +48,28 @@ const NavigationToggle: (props: NavigationToggleProps) => JSX.Element = ({
   }, []);
 
   const toggleNavigation = () => {
+    if (menuIconRef.current) {
+      const { bottom, right, width } =
+        menuIconRef.current.getBoundingClientRect();
+      const toggleBoxWidth = 200;
+      const screenWidth = window.innerWidth;
+      let leftPosition = right - toggleBoxWidth + width / 2;
+      let rightPosition: number | "auto" = "auto";
+
+      if (leftPosition + toggleBoxWidth > screenWidth) {
+        leftPosition = screenWidth - toggleBoxWidth;
+        rightPosition = 0;
+      }
+
+      setToggleBoxPosition({
+        top: bottom,
+        left: leftPosition,
+        right: rightPosition,
+      });
+    }
     setIsToggleVisible((prevState) => !prevState);
   };
+
   useEffect(() => {
     setIsToggleVisible(false);
   }, [location]);
@@ -55,7 +80,20 @@ const NavigationToggle: (props: NavigationToggleProps) => JSX.Element = ({
         <MenuIcon />
       </S.MenuIcon>
       {isToggleVisible && (
-        <S.ToggleBox ref={toggleRef}>
+        <S.ToggleBox
+          ref={toggleRef}
+          style={{
+            top: `${toggleBoxPosition.top}px`,
+            left:
+              typeof toggleBoxPosition.left === "number"
+                ? `${toggleBoxPosition.left}px`
+                : toggleBoxPosition.left,
+            right:
+              toggleBoxPosition.right === "auto"
+                ? "auto"
+                : `${toggleBoxPosition.right}px`,
+          }}
+        >
           <button onClick={toggleNavigation}></button>
           <S.ToggleContentsBox>
             <S.ProfileBox>
