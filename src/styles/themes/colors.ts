@@ -9,6 +9,7 @@ export const colors = {
   purple: "#BD7DFF",
   lightPurple: "#EEDFF5",
   white: "#ffffff",
+  background: "#faf7f3",
 } as const;
 
 export type Colors = typeof colors;
