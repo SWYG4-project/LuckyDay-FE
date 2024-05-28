@@ -6,6 +6,8 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 80vh;
 `;
 
 export const TextBox = styled.div`
@@ -19,11 +21,14 @@ export const TextBox = styled.div`
 `;
 
 export const LuckyMachine = styled.div`
-  width: 430px;
-  height: 625px;
+  aspect-ratio: 430 / 625;
+  max-width: 430px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-size: cover;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   background-image: url("/images/machine-empty.webp");
 `;
