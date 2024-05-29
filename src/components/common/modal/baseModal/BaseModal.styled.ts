@@ -21,8 +21,8 @@ export const ModalOverlay = styled.div`
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.4); // NOTE: 디자인시스템 문의 예정
+  height: calc(var(--vh, 1vh) * 100);
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
