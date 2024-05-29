@@ -1,5 +1,5 @@
 @font-face {
   font-family: "omyu";
-  src: url("../assets/fonts/omyu.ttf") format("truetype");
+  src: url("../assets/fonts/omyu.woff") format("woff");
   font-weight: 400;
 }
