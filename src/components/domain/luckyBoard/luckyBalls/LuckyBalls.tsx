@@ -40,10 +40,6 @@ export default function LuckyBalls() {
           }
         );
 
-        console.log("API 요청 URL:", response.config.url);
-        console.log("API 요청 파라미터:", response.config.params);
-        console.log("API 응답 데이터:", response.data);
-
         const fetchedData: LuckyBallDetail[] = [];
         if (response.data.resData && Array.isArray(response.data.resData)) {
           response.data.resData.forEach((day) => {

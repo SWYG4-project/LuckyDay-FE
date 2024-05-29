@@ -28,15 +28,12 @@ export const getLuckyDayDetail = async (req: string) => {
   return data;
 };
 
-// FIX : consol.log 제거 예정입니다.
 export const getLuckyDayReview = async (
   dtlNo: string
 ): Promise<GetLuckyDayDetailServerModel> => {
-  console.log("API 호출 시작:", dtlNo);
   const { data } = await ax.get<GetLuckyDayDetailServerModel>(
     `/luckydays/${dtlNo}`
   );
-  console.log("API 응답 데이터:", data);
   return data;
 };
 

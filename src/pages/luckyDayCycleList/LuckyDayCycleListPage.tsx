@@ -8,8 +8,6 @@ export default function LuckyDayCycleListPage() {
   const { data: cycles, error, isLoading } = useGetLuckyDayCycleList();
   const navigate = useNavigate();
 
-  console.log("Cycles:", cycles);
-
   if (isLoading) {
     return <PageSpinner />;
   }

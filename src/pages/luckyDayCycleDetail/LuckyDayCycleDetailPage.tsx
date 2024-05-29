@@ -30,7 +30,6 @@ const LuckyDayCycleDetailPage = () => {
       date: item.date,
       dtlNo: item.dtlNo,
     })) || [];
-  console.log("Labels:", labels);
 
   return (
     <SingleButtonLayout>

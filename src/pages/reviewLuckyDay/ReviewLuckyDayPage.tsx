@@ -101,8 +101,6 @@ export default function ReviewLuckyDayPage() {
   }
 
   if (error || !data) {
-    console.log("에러 발생:", error);
-    console.log("받은 데이터:", data);
     return <S.Container>오류가 발생했습니다.</S.Container>;
   }
 

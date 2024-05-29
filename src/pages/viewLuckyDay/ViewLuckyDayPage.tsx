@@ -34,8 +34,6 @@ export default function ViewLuckyDayPage() {
   }
 
   const { dday, actNm, review, imageUrl } = data.resData as GetLuckyDayDetail;
-  console.log("정상 데이터:", data);
-  console.log(imageUrl);
 
   const ImageUrl = imageUrl
     ? `${import.meta.env.VITE_BASE_URL}${imageUrl}`
