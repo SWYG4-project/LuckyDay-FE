@@ -92,7 +92,7 @@ export default function ReviewLuckyDayPage() {
 
   useEffect(() => {
     if (data && data.resData && data.resData.review !== null) {
-      navigate(`/luckydays/review/${id}`);
+      navigate(`/luckydays/${id}`);
     }
   }, [data, id, navigate]);
 
@@ -121,11 +121,6 @@ export default function ReviewLuckyDayPage() {
                 <img
                   src={URL.createObjectURL(uploadedFile)}
                   alt="Uploaded preview"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "10px",
-                  }}
                 />
               </S.ImageBox>
             )}
