@@ -8,7 +8,7 @@ interface ModalPortalProps {
 export const ModalPortal = ({ children }: ModalPortalProps) => {
   const el = document.getElementById("modal");
 
-  if (!el) return;
+  if (!el) return null;
 
   return ReactDOM.createPortal(children, el);
 };
