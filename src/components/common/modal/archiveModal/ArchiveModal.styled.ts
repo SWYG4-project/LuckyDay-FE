@@ -74,6 +74,10 @@ export const LuckyDayButton = styled.button`
       left: 50%;
       transform: translate(-50%, -50%);
       color: ${theme.colors.white};
+
+      @media (max-width: 412px) {
+        ${theme.fonts.headline2};
+      }
     }
   `}
 `;
@@ -81,6 +85,15 @@ export const LuckyDayButton = styled.button`
 export const svgFrame = (theme: Theme) => css`
   path {
     fill: ${theme.colors.purple};
+  }
+  @media (max-width: 412px) {
+    width: 95px;
+    height: 95px;
+  }
+
+  @media (max-width: 405px) {
+    width: 90px;
+    height: 90px;
   }
 `;
 
