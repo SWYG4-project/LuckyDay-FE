@@ -3,16 +3,22 @@ import { Theme, css } from "@emotion/react";
 
 export const Calendar = styled.div`
   width: 100%;
+  height: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (max-width: 405px) {
+    height: 330px;
+  }
 `;
 
 export const DayWeekWrapper = styled.div`
   position: relative;
-  left: 50%;
-  transform: translateX(-50%);
   width: 295px;
   z-index: 2;
 
-  @media (max-width: 380px) {
+  @media (max-width: 405px) {
     width: 250px;
   }
 `;
@@ -77,8 +83,8 @@ export const CalendarBox = styled.div`
   top: -25px;
   left: 0;
 
-  @media (max-width: 380px) {
-    width: 330px;
+  @media (max-width: 405px) {
+    width: 340px;
   }
 `;
 
@@ -91,7 +97,7 @@ export const CalendarHeader = styled.div`
   gap: 7px 13px;
   z-index: 1;
 
-  @media (max-width: 380px) {
+  @media (max-width: 405px) {
     grid-template-columns: repeat(7, 27px);
   }
 `;
@@ -121,7 +127,7 @@ export const DayButton = styled.button<{
       ? theme.colors.lightBeige
       : isSelected && theme.colors.lightOrange};
 
-    @media (max-width: 380px) {
+    @media (max-width: 405px) {
       height: 27px;
     }
   `}
@@ -137,8 +143,29 @@ export const svgFrame = css`
 `;
 
 export const beigeIcon = (theme: Theme) => css`
-  ${svgFrame}
+  width: 300px;
   fill: ${theme.colors.beige};
+
+  svg {
+    width: 100%;
+  }
+
+  @media (max-width: 405px) {
+    width: 250px;
+  }
+`;
+
+export const largeBeigeIcon = (theme: Theme) => css`
+  width: 380px;
+  fill: ${theme.colors.beige};
+
+  svg {
+    width: 100%;
+  }
+
+  @media (max-width: 405px) {
+    width: 340px;
+  }
 `;
 
 export const lightbeigeIcon = (theme: Theme) => css`

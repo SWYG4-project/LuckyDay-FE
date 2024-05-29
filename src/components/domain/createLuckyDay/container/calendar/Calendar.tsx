@@ -39,7 +39,7 @@ const Calendar = ({ dates, expDates, makeExpDates }: CalendarProps) => {
         </S.DayWeekBox>
       </S.DayWeekWrapper>
       <S.CalendarBox>
-        <SvgFrame css={S.beigeIcon} icon={<LargeBoxIcon />} />
+        <SvgFrame css={S.largeBeigeIcon} icon={<LargeBoxIcon />} />
         <S.CalendarHeader>
           {dayWeek.map((dayWeek, index) => (
             <S.DayWeek key={index}>{dayWeek}</S.DayWeek>

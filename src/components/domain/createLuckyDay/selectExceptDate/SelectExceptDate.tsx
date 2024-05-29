@@ -52,16 +52,14 @@ function SelectExceptDate({ watch, setValue }: SelectExceptDateProps) {
       <S.SubHeadLine>
         {dayjs().format("YYYY년 MM월 DD일")} ~ {EndOfDate}
       </S.SubHeadLine>
-      <div>
-        <Calendar
-          dates={selectedPeriod}
-          expDates={expDates}
-          makeExpDates={makeExpDates}
-        />
-        <S.SelectInfo>
-          최대 <strong>{availableExpDates}개</strong>의 날짜를 제외할 수 있어요.
-        </S.SelectInfo>
-      </div>
+      <Calendar
+        dates={selectedPeriod}
+        expDates={expDates}
+        makeExpDates={makeExpDates}
+      />
+      <S.SelectInfo>
+        최대 <strong>{availableExpDates}개</strong>의 날짜를 제외할 수 있어요.
+      </S.SelectInfo>
     </>
   );
 }
