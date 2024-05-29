@@ -3,7 +3,6 @@ import { css } from "@emotion/react";
 
 export const ContentsBox = styled.div`
   width: 100%;
-  /* height: 100vh; */
   height: 70vh;
   display: flex;
   flex-direction: column;
@@ -56,5 +55,5 @@ export const TextBox = styled.div`
 
 export const ButtonBox = styled.div`
   position: fixed;
-  bottom: 7rem;
+  bottom: 10rem;
 `;

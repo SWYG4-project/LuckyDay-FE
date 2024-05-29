@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.ico" />
+
     <!-- IOS -->
     <link rel="apple-touch-icon" href="/images/logo/logo_square_192.png" />
 
@@ -23,6 +24,16 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://www.luckyday.swygbro.com" />
     <meta property="og:image" content="images/og_image.webp" />
+
+    <script>
+      function setVhProperty() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty("--vh", `${vh}px`);
+      }
+      setVhProperty();
+      window.addEventListener("resize", setVhProperty);
+    </script>
+
     <title>Lucky day</title>
   </head>
   <!-- <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script> -->

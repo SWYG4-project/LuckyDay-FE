@@ -7,12 +7,8 @@ export const LayoutContainer = styled.div`
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 100svh;
+    height: calc(var(--vh, 1vh) * 100);
     background-color: ${theme.colors.background};
-
-    @media (min-width: 768px) {
-      height: 100vh;
-    }
   `}
 `;
 

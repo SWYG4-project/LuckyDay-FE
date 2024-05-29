@@ -5,8 +5,7 @@ export const ButtonLayout = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: calc(100vh - 80px);
-  height: calc(100svh - 80px);
+  height: calc(var(--vh, 1vh) * 100 - 80px);
 `;
 
 export const Body = styled.div`
