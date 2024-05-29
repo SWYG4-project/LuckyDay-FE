@@ -61,6 +61,16 @@ export const LuckyDayButton = styled.button`
     width: 80px;
     height: 80px;
 
+    @media (max-width: 412px) {
+      width: 75px;
+      height: 75px;
+    }
+
+    @media (max-width: 405px) {
+      width: 70px;
+      height: 70px;
+    }
+
     & > div {
       width: 100%;
       height: 100%;
@@ -85,15 +95,6 @@ export const LuckyDayButton = styled.button`
 export const svgFrame = (theme: Theme) => css`
   path {
     fill: ${theme.colors.purple};
-  }
-  @media (max-width: 412px) {
-    width: 95px;
-    height: 95px;
-  }
-
-  @media (max-width: 405px) {
-    width: 90px;
-    height: 90px;
   }
 `;
 
