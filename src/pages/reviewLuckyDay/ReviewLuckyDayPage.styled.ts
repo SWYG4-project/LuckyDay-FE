@@ -58,6 +58,9 @@ export const ImageUploadBox = styled.div`
   width: 200px;
   margin-top: 20px;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const ImageBox = styled.div`
@@ -67,7 +70,12 @@ export const ImageBox = styled.div`
   overflow: hidden;
   position: absolute;
   top: -20px;
-  left: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 export const ButtonBox = styled.div`
