@@ -19,7 +19,7 @@ const LuckyDayCycleDetailPage = () => {
   if (error) {
     return (
       <S.ErrorBox>
-        <p>{(error as Error).message}</p>
+        <S.TitleBox>{(error as Error).message}</S.TitleBox>
         <S.Logo_Sad />
       </S.ErrorBox>
     );

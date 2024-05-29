@@ -5,6 +5,7 @@ export const ContentsBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0px 10px 0px 10px;
   padding: 20px;
 `;
 
@@ -12,6 +13,10 @@ export const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   justify-content: center;
+
+  @media (max-width: 405px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `;
 
 export const TitleBox = styled.div`
