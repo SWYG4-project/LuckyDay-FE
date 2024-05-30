@@ -4,8 +4,10 @@ import { css } from "@emotion/react";
 export const ContentsBox = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 25px;
+  height: 70vh;
+  overflow-y: auto;
 `;
 
 export const TitleBox = styled.div`
@@ -29,6 +31,7 @@ export const MenuBox = styled.div`
     width: 100%;
     height: 70px;
     padding: 5px;
+    box-sizing: border-box;
     color: ${theme.colors.black};
     ${theme.fonts.headline1}
     border-bottom: 1px solid ${theme.colors.gray};
@@ -37,6 +40,7 @@ export const MenuBox = styled.div`
       color: ${theme.colors.orange};
     }
     cursor: pointer;
+    flex-shrink: 0;
   `}
 `;
 

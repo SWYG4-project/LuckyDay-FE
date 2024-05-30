@@ -18,7 +18,7 @@ export const LuckydayInfo = styled.div`
     align-items: center;
     width: 100%;
     height: 100%;
-    padding-top: 3%;
+    padding-top: 10%;
 
     span:first-of-type {
       ${theme.fonts.headline1};
