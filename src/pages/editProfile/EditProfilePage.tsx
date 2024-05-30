@@ -2,7 +2,7 @@ import * as S from "./EditProfilePage.styled";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@emotion/react";
-import { useModal } from "hooks";
+import { useModal, useToast } from "hooks";
 import { updateProfile } from "apis/users";
 import {
   EditProfileConfirmModal,
@@ -14,6 +14,7 @@ import { ShortBoxIcon } from "assets";
 export default function EditProfilePage() {
   const navigate = useNavigate();
   const theme = useTheme();
+  const { addToast } = useToast();
 
   const [nickname, setNickname] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -59,7 +60,6 @@ export default function EditProfilePage() {
   };
 
   const handleSave = async () => {
-    console.log("저장 시도: ", nickname, email);
     if (!validateEmail(email)) {
       return;
     }
@@ -69,7 +69,7 @@ export default function EditProfilePage() {
       sessionStorage.setItem("email", email);
       navigate("/mypage");
     } catch (error) {
-      console.error("프로필 업데이트 실패: ", error);
+      addToast({ content: "프로필 변경에 실패했습니다." });
     }
   };
 

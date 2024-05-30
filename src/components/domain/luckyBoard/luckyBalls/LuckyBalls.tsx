@@ -1,7 +1,7 @@
 import * as S from "./LuckyBalls.styled";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useModal } from "hooks";
+import { useModal, useToast } from "hooks";
 import { SvgFrame, CenteredSvgFrame, CountLuckyDayModal } from "components";
 import { CircleBoxIcon } from "assets";
 import { ax } from "apis/axios";
@@ -29,6 +29,7 @@ export default function LuckyBalls() {
   const [luckyBallFaceImages, setLuckyBallFaceImages] = useState<string[]>([]);
   const { handleOpenModal, handleModalClose } = useModal();
   const navigate = useNavigate();
+  const { addToast } = useToast();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,7 +77,7 @@ export default function LuckyBalls() {
           .map((_, index) => `/images/face-0${index + 1}.webp`);
         setLuckyBallFaceImages(faceImages);
       } catch (error) {
-        console.error("Error :", error);
+        addToast({ content: "오류가 발생했습니다." });
       }
     };
 

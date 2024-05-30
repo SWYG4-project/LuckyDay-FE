@@ -43,7 +43,7 @@ const FileUploader: React.FC<FileUploaderProps> = ({ onFileSelect }) => {
 
         onFileSelect(compressedFile);
       } catch (error) {
-        console.error("Error compressing file:", error);
+        addToast({ content: "Error compressing file" });
       } finally {
         setLoading(false);
       }

@@ -35,9 +35,8 @@ export default function MyPage() {
         navigate("/");
         window.location.reload();
       },
-      onError: (error: unknown) => {
+      onError: () => {
         addToast({ content: "회원 탈퇴에 실패했습니다. 다시 시도해 주세요." });
-        console.error("회원 탈퇴 실패", error);
       },
     });
   };
@@ -53,14 +52,13 @@ export default function MyPage() {
 
   const resetLuckyBoard = () => {
     deleteLuckyBoardMutate(undefined, {
-      onSuccess: (data) => {
-        console.log("럭키보드 초기화 성공", data);
+      onSuccess: () => {
         sessionStorage.setItem("hasLuckyday", "0");
         handleModalClose();
         navigate("/luckyboard");
       },
-      onError: (error: unknown) => {
-        console.error("럭키보드 초기화 실패", error);
+      onError: () => {
+        addToast({ content: "다시 시도해 주세요." });
       },
     });
   };
