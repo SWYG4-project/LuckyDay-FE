@@ -73,7 +73,6 @@ export default function ReviewLuckyDayPage() {
       }
     } catch (error) {
       if (axios.isAxiosError(error) && error.response) {
-        console.error("Error response:", error.response);
         if (error.response.status === 2013) {
           addToast({ content: "이미지 또는 내용을 입력해 주세요." });
         } else {
@@ -84,7 +83,6 @@ export default function ReviewLuckyDayPage() {
           });
         }
       } else {
-        console.error("Error:", error);
         addToast({ content: "저장 중 오류가 발생했습니다" });
       }
     }
