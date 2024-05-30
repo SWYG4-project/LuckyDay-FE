@@ -1,30 +1,58 @@
-# React + TypeScript + Vite
+# 💛 Lucky Day
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+무작위로 "럭키 데이"의 배정을 받아, 우연과 놀라움에 기반한 행복을 경험하게 하는 서비스
 
-Currently, two official plugins are available:
+## 개요
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 프로젝트 이름 : LuckyDay
+- 프로젝트 기간 : 2024.05 ~ 진행중
+- 멤버 : FE - 김유래, 이현진
+- 웹사이트 : [https://luckyday.swygbro.com/](https://luckyday.swygbro.com/)
 
-## Expanding the ESLint configuration
+## 🔖 목차
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+#### [1. 기술 스택](#기술-스택)
 
-- Configure the top-level `parserOptions` property like this:
+#### [2. 페이지 별 기능](#페이지-별-기능)
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+#### [3. 화면 구성](#-화면-구성)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+#### [4. 트러블 슈팅](#트러블-슈팅)
+
+#### [5. 멤버 소개](#멤버-소개)
+
+### 🔧 기술 스택
+
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/TypeScript-F7DF1E?style=flat-square&logo=TypeScript&logoColor=white"/> &nbsp;
+<img src="https://img.shields.io/badge/Vite-646CFF?style=flat-square&logo=Vite&logoColor=white"/> &nbsp;
+<img src="https://img.shields.io/badge/Yarn-2C8EBB?style=flat-square&logo=Yarn&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/Axios-5A29E4?style=flat-square&logo=Axios&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/React Query-FF4154?style=flat-square&logo=React Query&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/emotion-609926?style=flat-square&logoColor=white"/>&nbsp;
+<img src="https://img.shields.io/badge/React Hook Form-EC5990?style=flat-square&logo=React Hook Form&logoColor=white"/>&nbsp;
+
+### 📖 페이지 별 기능
+
+| PAGE             | FUNCTION                                                                                                    |
+| ---------------- | ----------------------------------------------------------------------------------------------------------- |
+| 📑 MAIN          | 랜딩페이지 / 소셜(카카오) 로그인                                                                            |
+| 📑 LUCKYBOARD    | 현재 사이클 럭키보드 조회 / 생성 페이지로 이동 / 현재 사이클의 지난 럭키데이 조회 / 현재 사이클의 정보 조회 |
+| 📑 CREATE        | 럭키데이 생성 / 럭키데이 활동 목록 조회 / 기간 / 럭키데이 설정 / 제외 일자 선택 기능                        |
+| 📑 DETAIL        | 선택한 럭키데이 활동 조회                                                                                   |
+| 📑 LIST          | 지난 럭키데이 사이클 조회                                                                                   |
+| 📑 LIST > DETAIL | 지난 럭키데이 사이클의 럭키데이 목록 조회                                                                   |
+| 📑 CREATE REVIEW | 럭키데이 리뷰 작성                                                                                          |
+| 📑 REVIEW DETAIL | 럭키데이 리뷰 조회                                                                                          |
+| 📑 MYPAGE        | 프로필 설정 (닉네임, 이메일 변경) / 럭키보드 초기화 기능 / 로그아웃 / 회원 탈퇴                             |
+
+### 💻 화면 구성
+
+### 🔑 트러블 슈팅
+
+### 💛 멤버 소개
+
+|        |               MEMBER                |               MEMBER                |
+| ------ | :---------------------------------: | :---------------------------------: |
+| NAME   |               김유래                |               이현진                |
+| GITHUB | [yoorae](https://github.com/yrk721) | [zinnli](https://github.com/zinnli) |
