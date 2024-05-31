@@ -2,12 +2,13 @@
 
 무작위로 "럭키 데이"의 배정을 받아, 우연과 놀라움에 기반한 행복을 경험하게 하는 서비스
 
+<img width="1200" alt="banner" src="https://github.com/SWYG4-project/LuckyDay-FE/assets/114637091/50fe0ec0-e66b-4a68-b0a6-89e17e8fcf9d">
 ## 개요
 
 - 프로젝트 이름 : LuckyDay
 - 프로젝트 기간 : 2024.05 ~ 진행중
 - 멤버 : FE - 김유래, 이현진
-- 웹사이트 : [https://luckyday.swygbro.com/](https://luckyday.swygbro.com/)
+- 배포 : [https://luckyday.swygbro.com/](https://luckyday.swygbro.com/)
 
 ## 🔖 목차
 
