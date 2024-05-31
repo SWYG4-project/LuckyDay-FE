@@ -5,18 +5,19 @@ export const ButtonLayout = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
   height: calc(var(--vh, 1vh) * 100 - 80px);
-  min-height: calc(100vh - 80px);
+  min-height: calc(100% - 80px);
 `;
 
 export const Body = styled.div`
-  overflow: auto; //NOTE: 스크롤 기능/디자인 확인 필요
+  overflow-y: auto;
 `;
 
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 3% 5% 8% 5%;
+  padding: 3% 5% 6% 5%;
 `;
 
 export const icon = css`

@@ -5,16 +5,18 @@ export const SingleButtonLayout = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: calc(var(--vh, 1vh) * 100 - 100px);
-  min-height: calc(100vh - 100px);
+  height: calc(var(--vh, 1vh) * 100 - 80px);
+  min-height: calc(100% - 80px);
 `;
 
-export const Body = styled.div``;
+export const Body = styled.div`
+  overflow-y: hidden;
+`;
 
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 0 24px 50px 24px;
+  padding: 5px 24px 30px 24px;
 `;
 
 export const svgFrame = (theme: Theme) => css`
