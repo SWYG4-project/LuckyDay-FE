@@ -7,6 +7,7 @@ export const Landing = styled.div`
   position: relative;
   width: 100%;
   height: calc(var(--vh, 1vh) * 100 - 80px);
+  min-height: calc(100vh - 80px);
   z-index: 1;
 `;
 

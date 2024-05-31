@@ -8,6 +8,7 @@ export const LayoutContainer = styled.div`
     justify-content: center;
     width: 100%;
     height: calc(var(--vh, 1vh) * 100);
+    min-height: 100vh;
     background-color: ${theme.colors.background};
   `}
 `;

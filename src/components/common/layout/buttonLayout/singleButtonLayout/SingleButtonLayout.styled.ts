@@ -6,6 +6,7 @@ export const SingleButtonLayout = styled.div`
   flex-direction: column;
   justify-content: space-between;
   height: calc(var(--vh, 1vh) * 100 - 100px);
+  min-height: calc(100vh - 100px);
 `;
 
 export const Body = styled.div``;
