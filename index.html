@@ -41,6 +41,8 @@
       }
       setVhProperty();
       window.addEventListener("resize", setVhProperty);
+      window.addEventListener("orientationchange", setVhProperty);
+      document.addEventListener("DOMContentLoaded", setVhProperty);
     </script>
 
     <title>Lucky day</title>
