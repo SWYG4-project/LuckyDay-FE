@@ -30,7 +30,7 @@ export const LuckyMachine = styled.div`
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  background-image: url("/images/machine-fill.webp");
+  background-image: url("/images/machine-filled.webp");
 
   &::before {
     content: "";
