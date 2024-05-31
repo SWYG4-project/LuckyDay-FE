@@ -30,7 +30,7 @@ export const Slide = styled.div<SlideProps>`
 export const Image = styled.img`
   height: 414px;
 
-  @media (max-width: 380px) {
+  @media (max-width: 405px) {
     height: 314px;
   }
 `;
