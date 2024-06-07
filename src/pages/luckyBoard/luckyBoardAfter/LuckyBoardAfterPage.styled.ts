@@ -4,17 +4,18 @@ import { Theme, css } from "@emotion/react";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   width: 100%;
-  height: 80vh;
+  min-height: 80vh;
+  height: auto;
 `;
 
 export const TextBox = styled.div`
   ${({ theme }) => css`
     color: ${theme.colors.black};
     ${theme.fonts.headline1};
-    margin: 20px 0px 10px 0px;
+    margin: 10px 0px 5px 0px;
     text-align: center;
     white-space: pre-wrap;
   `}
