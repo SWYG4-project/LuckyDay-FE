@@ -13,13 +13,18 @@ export const ArchiveModal = styled.div<{ hasPadding: boolean }>`
     align-items: center;
     justify-content: space-between;
     row-gap: 30px;
-    width: 430px;
+    width: 100%;
+    max-width: 430px;
     max-height: 45%;
     padding: 34px 24px 40px 24px;
+    box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 24px 24px 0px 0px;
     background-color: ${theme.colors.lightBeige_opacity};
     filter: none;
-    box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.25);
+
+    @media (max-width: 375px) {
+      ${theme.fonts.headline2};
+    }
 
     & > div {
       padding-top: ${hasPadding && "35px"};
