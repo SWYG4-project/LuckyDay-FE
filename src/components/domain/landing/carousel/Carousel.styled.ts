@@ -28,16 +28,19 @@ export const Slide = styled.div<SlideProps>`
 `;
 
 export const Image = styled.img`
-  height: 414px;
+  width: 100%;
+  max-width: 430px;
+  max-height: 414px;
+  object-fit: contain;
 
   @media (max-width: 405px) {
-    height: 314px;
+    max-height: 310px;
   }
 `;
 
 export const TextBox = styled.div`
   ${({ theme }) => css`
-    width: 310px;
+    width: 315px;
     margin: 5% 0px;
     text-align: center;
     white-space: pre-wrap;
@@ -53,6 +56,10 @@ export const ButtonContainer = styled.div`
   margin: 8% 0px;
   padding: 0px 15px 0px 15px;
   box-sizing: border-box;
+
+  @media (max-width: 405px) {
+    width: 88%;
+  }
 `;
 
 export const button = css`
