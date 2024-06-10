@@ -39,7 +39,7 @@ export default function ViewLuckyDayPage() {
     ? `${import.meta.env.VITE_BASE_URL}${imageUrl}`
     : "";
 
-  const isDefaultImage = imageUrl?.includes("/images/default");
+  const isDefaultImage = imageUrl?.includes("/images/review/default");
 
   return (
     <SingleButtonLayout>
@@ -48,8 +48,11 @@ export default function ViewLuckyDayPage() {
         <S.ReviewBox>
           <S.ImageBox>
             <S.TextBox>{actNm}</S.TextBox>
-            {imageLoading && <ComponentSpinner />}
-
+            {imageLoading && (
+              <S.SpinnerBox>
+                <ComponentSpinner />
+              </S.SpinnerBox>
+            )}
             {imageUrl &&
               (isDefaultImage ? (
                 <S.DefaultImage>
