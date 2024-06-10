@@ -1,4 +1,3 @@
-// FileUploader.styled.ts
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
@@ -12,8 +11,11 @@ export const HiddenFileInput = styled.input`
 `;
 
 export const UploadBox = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 80px;
   height: 80px;
-  position: relative;
   cursor: pointer;
 `;

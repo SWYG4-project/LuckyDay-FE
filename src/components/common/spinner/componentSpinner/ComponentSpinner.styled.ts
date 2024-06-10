@@ -11,8 +11,9 @@ export const ComponentSpinnerContainer = styled.div`
   ${({ theme }) => css`
     display: flex;
     align-items: center;
+    justify-content: center;
     width: 100px;
-    padding: 20px;
+    padding: 30px;
     border-radius: 20px;
     background-color: ${theme.colors.lightBeige};
   `}
