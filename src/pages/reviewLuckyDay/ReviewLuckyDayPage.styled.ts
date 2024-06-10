@@ -15,11 +15,11 @@ export const ReviewBox = styled.div`
   aspect-ratio: 370 / 390;
   max-width: 370px;
   width: 100%;
+  margin: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 30px 20px 35px 20px;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -30,7 +30,7 @@ export const TextBox = styled.div`
   ${({ theme }) => css`
     color: ${theme.colors.black};
     ${theme.fonts.headline1};
-    margin: 20px 0px 5px 0px;
+    margin: 10px 0px 5px 0px;
     text-align: center;
     white-space: pre-wrap;
   `}
@@ -57,6 +57,7 @@ export const ReviewTextarea = styled.textarea`
 
 export const ImageUploadBox = styled.div`
   width: 200px;
+  height: 140px;
   margin-top: 20px;
   position: relative;
   display: flex;
@@ -70,7 +71,7 @@ export const ImageBox = styled.div`
   border-radius: 10px;
   overflow: hidden;
   position: absolute;
-  top: -20px;
+  top: -15px;
 
   img {
     width: 100%;
@@ -91,7 +92,6 @@ export const ErrorContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 250px;
-  background-color: yellow;
 `;
 
 export const ErrorText = styled.p`

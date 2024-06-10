@@ -15,11 +15,11 @@ export const ReviewBox = styled.div`
   aspect-ratio: 370 / 390;
   max-width: 370px;
   width: 100%;
+  margin: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 30px 20px 40px 20px;
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -30,7 +30,7 @@ export const TextBox = styled.div`
   ${({ theme }) => css`
     color: ${theme.colors.black};
     ${theme.fonts.headline1};
-    margin: 20px 0px 5px 0px;
+    margin: 10px 0px 5px 0px;
     text-align: center;
     white-space: pre-wrap;
   `}
@@ -49,19 +49,21 @@ export const Image = styled.div`
   height: 140px;
   margin-top: 5px;
   margin-bottom: 100px;
-  border-radius: 10px;
+
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 10px;
   }
 `;
 
 export const DefaultImage = styled.div`
-  width: 90px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
   margin-top: 20px;
-  margin-bottom: 140px;
+  margin-bottom: 120px;
+
   img {
     width: 100%;
     height: 100%;
@@ -81,5 +83,15 @@ export const ReviewTextBox = styled.div`
     ${theme.fonts.headline2}
     word-break: break-word;
     white-space: pre-wrap;
+  `}
+`;
+
+export const SpinnerBox = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: -120px;
+    background-color: ${theme.colors.lightBeige};
   `}
 `;

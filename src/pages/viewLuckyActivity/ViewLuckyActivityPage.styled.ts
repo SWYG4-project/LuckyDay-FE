@@ -18,7 +18,7 @@ export const LuckydayInfo = styled.div`
     align-items: center;
     width: 100%;
     height: 100%;
-    padding-top: 10%;
+    padding-top: 8%;
 
     span:first-of-type {
       ${theme.fonts.headline1};
@@ -75,6 +75,7 @@ export const svgFrame = (theme: Theme) => css`
 export const Button = styled.button`
   ${({ theme }) => css`
     position: relative;
+    margin: 10px 0px 20px 0px;
 
     & > span {
       ${theme.fonts.headline1};
