@@ -8,14 +8,14 @@ export const Container = styled.div`
   justify-content: center;
   text-align: center;
   width: 100%;
-  padding: 20px;
+  padding-top: 8%;
 `;
 
 export const ReviewBox = styled.div`
   aspect-ratio: 370 / 390;
   max-width: 370px;
   width: 100%;
-  margin: 20px;
+  margin: 14px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,13 +24,17 @@ export const ReviewBox = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-image: url("/images/img-review.webp");
+
+  @media (max-width: 390px) {
+    max-width: 350px;
+    margin: 24px;
+  }
 `;
 
 export const TextBox = styled.div`
   ${({ theme }) => css`
     color: ${theme.colors.black};
     ${theme.fonts.headline1};
-    margin: 10px 0px 5px 0px;
     text-align: center;
     white-space: pre-wrap;
   `}
