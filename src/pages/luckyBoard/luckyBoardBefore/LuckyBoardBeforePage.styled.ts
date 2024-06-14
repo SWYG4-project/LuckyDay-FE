@@ -48,4 +48,8 @@ export const LuckyMachine = styled.div`
     transform: translate(-50%, -50%);
     object-fit: contain;
   }
+
+  @media (max-width: 375px) {
+    width: 350px;
+  }
 `;
