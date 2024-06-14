@@ -26,12 +26,20 @@ export const LuckydayInfo = styled.div`
 
     span:last-of-type {
       ${theme.fonts.luckyBall2};
+
+      @media (max-width: 390px) {
+        ${theme.fonts.headline1};
+      }
     }
   `}
 `;
 
-export const LuckydayDetailInfo = styled.div`
-  ${({ theme }) => css`
+interface LuckydayDetailInfoProps {
+  isLongText: boolean;
+}
+
+export const LuckydayDetailInfo = styled.div<LuckydayDetailInfoProps>`
+  ${({ theme, isLongText }) => css`
     position: relative;
     display: flex;
     flex-direction: column;
@@ -51,6 +59,14 @@ export const LuckydayDetailInfo = styled.div`
       top: 25%;
       left: 50%;
       transform: translateX(-50%);
+
+      @media (max-width: 425px) {
+        ${isLongText &&
+        css`
+          ${theme.fonts.headline2};
+          top: 26%;
+        `}
+      }
     }
 
     p:last-of-type {
