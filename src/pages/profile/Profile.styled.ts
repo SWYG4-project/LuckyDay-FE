@@ -1,3 +1,4 @@
+// Profile.styled.ts
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
@@ -20,26 +21,37 @@ export const Logo_Basic = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-image: url("/images/logo.webp");
+
+  @media (max-width: 375px) {
+    margin: 0px;
+    width: 120px;
+    height: 120px;
+    background-size: cover;
+  }
 `;
 
-export const MailBox = styled.div`
-  ${({ theme }) => css`
-    width: 382px;
+interface MailBoxProps {
+  isLongEmail: boolean;
+}
+
+export const MailBox = styled.div<MailBoxProps>`
+  ${({ theme, isLongEmail }) => css`
+    width: 90%;
     height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 20px;
     border-radius: 20px;
-    ${theme.fonts.headline1}
+    ${isLongEmail ? theme.fonts.headline2 : theme.fonts.headline1}
     color: ${theme.colors.black};
     background-color: ${theme.colors.beige};
   `}
 `;
 
 export const TitleTextBox = styled.div`
-  margin: 20px;
   ${({ theme }) => css`
+    margin: 20px;
     color: ${theme.colors.black};
     ${theme.fonts.luckyBall1}
   `}
@@ -47,13 +59,21 @@ export const TitleTextBox = styled.div`
 
 export const TextBox = styled.div`
   ${({ theme }) => css`
+    padding: 20px;
     color: ${theme.colors.black};
     ${theme.fonts.headline1};
-    padding: 20px;
+
+    @media (max-width: 375px) {
+      padding: 10px;
+    }
   `}
 `;
 
 export const ButtonBox = styled.div`
   position: fixed;
   bottom: 10rem;
+
+  @media (max-width: 375px) {
+    bottom: 8rem;
+  }
 `;
