@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import type { UseFormSetValue, UseFormWatch } from "react-hook-form";
+import type {
+  UseFormRegister,
+  UseFormSetValue,
+  UseFormWatch,
+} from "react-hook-form";
 
 import { useGetLuckyDaysActivities } from "services";
 import { activities } from "assets";
@@ -10,9 +14,10 @@ import * as S from "./SelectActivity.styled";
 interface SelectActivityProps {
   setValue: UseFormSetValue<CreateLuckyDayForm>;
   watch: UseFormWatch<CreateLuckyDayForm>;
+  register: UseFormRegister<CreateLuckyDayForm>;
 }
 
-function SelectActivity({ watch, setValue }: SelectActivityProps) {
+function SelectActivity({ watch, setValue, register }: SelectActivityProps) {
   const { data } = useGetLuckyDaysActivities();
   const [toggle, setToggle] = useState<string | null>(null);
 
@@ -62,7 +67,10 @@ function SelectActivity({ watch, setValue }: SelectActivityProps) {
                 (item) => item.category === activity.label
               )}
               toggle={toggle}
-              isOpen={toggle === activity.label}
+              isOpen={
+                toggle === activity.label ||
+                (activity.label === toggle && toggle === "+) 직접 입력")
+              }
               handleToggle={handleToggle}
             />
           );

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
+import { Theme, css } from "@emotion/react";
 
 export const ActivityButton = styled.div<{ isOpen: boolean }>`
   ${({ isOpen }) => css`
@@ -88,12 +88,13 @@ export const Activities = styled.div`
   }
 `;
 
-export const Activity = styled.button<{ isSelected: boolean }>`
+export const Activity = styled.button<{ isSelected?: boolean }>`
   ${({ theme, isSelected }) => css`
     ${theme.fonts.body1};
     display: flex;
     align-items: center;
     column-gap: 3px;
+    width: fit-content;
     border-radius: 30px;
     padding: ${isSelected ? "0 11px 0 6px" : "0 11px"};
     color: ${!isSelected && theme.colors.gray};
@@ -114,4 +115,10 @@ export const Activity = styled.button<{ isSelected: boolean }>`
 export const icon = css`
   width: 12px;
   height: 12px;
+`;
+
+export const input = (theme: Theme) => css`
+  border: 0;
+  background-color: ${theme.colors.lightBeige};
+  outline: none;
 `;

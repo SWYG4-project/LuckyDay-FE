@@ -20,16 +20,17 @@ function CreateLuckyDayPage() {
   const navigate = useNavigate();
   const [currentProgress, setCurrentProgress] = useState(0);
 
-  const { setValue, watch, handleSubmit } = useForm<CreateLuckyDayForm>({
-    defaultValues: {
-      actList: [],
-      customActList: [],
-      period: 0,
-      cnt: 1,
-      expDTList: [],
-    },
-    mode: "onTouched",
-  });
+  const { setValue, watch, register, handleSubmit } =
+    useForm<CreateLuckyDayForm>({
+      defaultValues: {
+        actList: [],
+        customActList: [],
+        period: 0,
+        cnt: 1,
+        expDTList: [],
+      },
+      mode: "onTouched",
+    });
 
   const { handleOpenModal } = useModal();
   const { addToast } = useToast();
@@ -48,7 +49,13 @@ function CreateLuckyDayPage() {
   const changePage = (current: number): React.ReactNode => {
     switch (current) {
       case 0:
-        return <SelectActivity setValue={setValue} watch={watch} />;
+        return (
+          <SelectActivity
+            setValue={setValue}
+            watch={watch}
+            register={register}
+          />
+        );
       case 1:
         return <SelectPeriod setValue={setValue} watch={watch} />;
       case 2:

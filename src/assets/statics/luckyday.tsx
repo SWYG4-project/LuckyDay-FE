@@ -4,6 +4,7 @@ import {
   HeartIcon,
   PresentIcon,
   ShoeIcon,
+  SmileIcon,
 } from "assets/icon";
 
 export const activities = [
@@ -12,7 +13,7 @@ export const activities = [
   { icon: <BookIcon />, label: "배움과 문화" },
   { icon: <ShoeIcon />, label: "이동과 탐험" },
   { icon: <HeartIcon />, label: "일상 속 소소함" },
-  // { icon: <SmileIcon />, label: "+) 직접 입력" },
+  { icon: <SmileIcon />, label: "+) 직접 입력" },
 ] as const;
 
 export const LUCKYDAY_PERIODS = [
