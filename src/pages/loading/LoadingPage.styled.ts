@@ -67,22 +67,28 @@ export const ImagesContainer = styled.div`
 export const Img = styled.img<{ delay: number }>`
   position: relative;
   object-fit: cover;
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   z-index: 1;
   transform-origin: center bottom;
   animation: ${({ delay }) => css`
     ${bounce} 0.6s alternate infinite ease ${delay}s;
   `};
 
-  @media (max-width: 385px) {
-    width: 30px;
+  @media (max-width: 390px) {
+    width: 42px;
+    height: 42px;
+  }
+
+  @media (max-width: 375px) {
+    width: 38px;
+    height: 38px;
   }
 `;
 
 export const Shadow = styled.div<{ delay: number }>`
   position: absolute;
-  width: 40px;
+  width: 45px;
   height: 6px;
   top: 105px;
   border-radius: 50%;
@@ -93,7 +99,11 @@ export const Shadow = styled.div<{ delay: number }>`
     ${shadowBounce} 0.6s alternate infinite ease ${delay}s;
   `};
 
-  @media (max-width: 385px) {
-    width: 30px;
+  @media (max-width: 390px) {
+    width: 42px;
+  }
+
+  @media (max-width: 375px) {
+    width: 38px;
   }
 `;
