@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-
-import { useToast } from "hooks";
 import * as S from "./LoadingPage.styled";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useToast } from "hooks";
 
 function LoadingPage() {
   const navigate = useNavigate();
@@ -10,7 +9,7 @@ function LoadingPage() {
 
   const [, setCurrentImageIndex] = useState(0);
   const [isSliderOpen, setIsSliderOpen] = useState(true);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [, setIsAnimating] = useState(false);
 
   const { addToast } = useToast();
 
@@ -20,6 +19,7 @@ function LoadingPage() {
     "/images/profile/profile-03.webp",
     "/images/profile/profile-04.webp",
     "/images/profile/profile-05.webp",
+    "/images/profile/profile-06.webp",
   ];
 
   useEffect(() => {
@@ -58,17 +58,20 @@ function LoadingPage() {
   return (
     <S.LoadingPage>
       <S.Title>럭키볼을 꺼내고 있어요!</S.Title>
-      <S.ImagesContainer>
-        {images.map((src, index) => (
-          <S.Img
-            key={index}
-            isAnimating={isAnimating}
-            delay={index * 0.3}
-            src={src}
-            alt={`슬라이드 이미지 ${index + 1}`}
-          />
-        ))}
-      </S.ImagesContainer>
+      <S.Wrapper>
+        <S.ImagesContainer>
+          {images.map((src, index) => (
+            <div key={index} style={{ position: "relative" }}>
+              <S.Img
+                delay={index * 0.2}
+                src={src}
+                alt={`슬라이드 이미지 ${index + 1}`}
+              />
+              <S.Shadow delay={index * 0.2} />
+            </div>
+          ))}
+        </S.ImagesContainer>
+      </S.Wrapper>
     </S.LoadingPage>
   );
 }
