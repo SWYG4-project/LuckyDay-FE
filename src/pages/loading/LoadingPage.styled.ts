@@ -74,6 +74,10 @@ export const Img = styled.img<{ delay: number }>`
   animation: ${({ delay }) => css`
     ${bounce} 0.6s alternate infinite ease ${delay}s;
   `};
+
+  @media (max-width: 385px) {
+    width: 30px;
+  }
 `;
 
 export const Shadow = styled.div<{ delay: number }>`
@@ -88,4 +92,8 @@ export const Shadow = styled.div<{ delay: number }>`
   animation: ${({ delay }) => css`
     ${shadowBounce} 0.6s alternate infinite ease ${delay}s;
   `};
+
+  @media (max-width: 385px) {
+    width: 30px;
+  }
 `;
