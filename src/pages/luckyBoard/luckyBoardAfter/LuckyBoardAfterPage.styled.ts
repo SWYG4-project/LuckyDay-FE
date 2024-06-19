@@ -57,15 +57,15 @@ export const LuckyMachine = styled.div`
   }
 
   @media (max-width: 412px) {
-    width: 400px;
+    width: 390px;
   }
 
-  @media (max-width: 390px) {
-    width: 375px;
+  @media (max-width: 392px) {
+    width: 370px;
   }
 
   @media (max-width: 375px) {
-    width: 320px;
+    width: 305px;
   }
 `;
 
