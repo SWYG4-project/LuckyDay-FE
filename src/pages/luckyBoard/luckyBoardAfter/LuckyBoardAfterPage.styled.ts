@@ -7,8 +7,11 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: 80vh;
   height: auto;
+
+  @media (min-height: 1024px) {
+    min-height: 80vh;
+  }
 `;
 
 export const TextBox = styled.div`
@@ -18,6 +21,10 @@ export const TextBox = styled.div`
     margin: 10px 0px 5px 0px;
     text-align: center;
     white-space: pre-wrap;
+
+    @media (max-width: 375px) {
+      margin: 0px;
+    }
   `}
 `;
 
@@ -49,8 +56,16 @@ export const LuckyMachine = styled.div`
     object-fit: contain;
   }
 
+  @media (max-width: 412px) {
+    width: 400px;
+  }
+
+  @media (max-width: 390px) {
+    width: 375px;
+  }
+
   @media (max-width: 375px) {
-    width: 350px;
+    width: 320px;
   }
 `;
 
