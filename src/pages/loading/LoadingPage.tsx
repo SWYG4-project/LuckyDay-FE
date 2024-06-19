@@ -39,7 +39,7 @@ function LoadingPage() {
       clearInterval(intervalId);
       addToast({ content: "럭키데이 생성이 완료되었습니다." });
       navigate("/luckyboard", { replace: true });
-    }, 4000);
+    }, 5000);
 
     return () => {
       clearInterval(intervalId);
