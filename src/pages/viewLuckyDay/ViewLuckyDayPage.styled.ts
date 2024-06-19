@@ -9,6 +9,10 @@ export const Container = styled.div`
   text-align: center;
   width: 100%;
   padding-top: 8%;
+
+  @media (min-height: 1024px) {
+    min-height: 71.3vh;
+  }
 `;
 
 export const ReviewBox = styled.div`

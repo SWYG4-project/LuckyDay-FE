@@ -4,7 +4,12 @@ import styled from "@emotion/styled";
 export const ViewLuckyActivityPage = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
+
+  @media (min-height: 1024px) {
+    min-height: 80vh;
+  }
 `;
 
 export const Img = styled.img`
