@@ -35,12 +35,13 @@ const shadowBounce = keyframes`
 `;
 
 export const LoadingPage = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 90%;
+  width: 100%;
+  height: calc(var(--vh, 1vh) * 100);
+  min-height: 100vh;
   overflow: hidden;
 `;
 
@@ -55,7 +56,7 @@ export const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   width: 88%;
-  height: 150px;
+  height: 210px;
 `;
 
 export const ImagesContainer = styled.div`
