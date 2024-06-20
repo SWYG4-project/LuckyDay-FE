@@ -11,6 +11,10 @@ export const ContentsBox = styled.div`
   @media (min-height: 1024px) {
     min-height: 70vh;
   }
+
+  @media (max-width: 375px) {
+    padding: 0px 25px 20px 25px;
+  }
 `;
 
 export const TitleBox = styled.div`
