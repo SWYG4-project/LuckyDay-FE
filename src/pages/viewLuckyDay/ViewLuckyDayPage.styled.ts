@@ -10,6 +10,10 @@ export const Container = styled.div`
   width: 100%;
   padding-top: 8%;
 
+  @media (min-height: 945px) {
+    min-height: 70vh;
+  }
+
   @media (min-height: 1024px) {
     min-height: 71.3vh;
   }

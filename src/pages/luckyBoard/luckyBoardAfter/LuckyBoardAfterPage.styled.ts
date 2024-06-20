@@ -9,7 +9,7 @@ export const Container = styled.div`
   width: 100%;
   height: auto;
 
-  @media (min-height: 1024px) {
+  @media (min-height: 945px) {
     min-height: 80vh;
   }
 `;

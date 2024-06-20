@@ -7,7 +7,7 @@ export const ViewLuckyActivityPage = styled.div`
   justify-content: center;
   align-items: center;
 
-  @media (min-height: 1024px) {
+  @media (min-height: 945px) {
     min-height: 80vh;
   }
 `;
