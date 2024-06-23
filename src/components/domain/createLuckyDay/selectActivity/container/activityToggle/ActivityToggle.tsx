@@ -31,6 +31,8 @@ function ActivityToggle({
 
   const ref = useRef<HTMLDivElement>(null);
   const activityRef = useRef<HTMLButtonElement>(null);
+  const spanRef = useRef<HTMLSpanElement>(null);
+  const inputWidth = spanRef.current?.getBoundingClientRect().width;
 
   const handleToggleClick = (): void => {
     if (activity.label === toggle) {
@@ -131,8 +133,8 @@ function ActivityToggle({
                   return (
                     <>
                       <S.Activity
-                        key={item}
                         ref={activityRef}
+                        key={item}
                         isSelected
                         // onClick={handleCustomItemClick}
                       >
@@ -149,7 +151,7 @@ function ActivityToggle({
                 >
                   <Input
                     value={text}
-                    css={S.input}
+                    css={S.input(inputWidth)}
                     placeholder=""
                     handleChange={handleCustomItemChange}
                   />{" "}
@@ -159,6 +161,7 @@ function ActivityToggle({
             ))}
         </S.Activities>
       </S.ActivityBox>
+      <S.Span ref={spanRef}>{text}</S.Span>
     </S.ActivityButton>
   );
 }

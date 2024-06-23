@@ -117,8 +117,14 @@ export const icon = css`
   height: 12px;
 `;
 
-export const input = (theme: Theme) => css`
-  border: 0;
-  background-color: ${theme.colors.lightBeige};
-  outline: none;
+export const input = (width?: number) => (theme: Theme) =>
+  css`
+    width: ${width ? `calc(${width}px * 1.2 + 40px)` : "40px"};
+    border: 0;
+    background-color: ${theme.colors.lightBeige};
+    outline: none;
+  `;
+
+export const Span = styled.span`
+  visibility: hidden;
 `;
