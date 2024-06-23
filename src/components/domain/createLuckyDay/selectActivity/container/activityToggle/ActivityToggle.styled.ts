@@ -125,7 +125,8 @@ export const input = (width?: number) => (theme: Theme) =>
     outline: none;
   `;
 
-export const Span = styled.span`
+export const customActiviyItem = styled.span`
+  position: absolute;
   visibility: hidden;
 `;
 

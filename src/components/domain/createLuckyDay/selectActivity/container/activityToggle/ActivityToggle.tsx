@@ -35,6 +35,10 @@ function ActivityToggle({
   const inputWidth = spanRef.current?.getBoundingClientRect().width;
 
   const handleToggleClick = (): void => {
+    if (text) {
+      setText("");
+    }
+
     if (activity.label === toggle) {
       return handleToggle(null);
     }
@@ -138,21 +142,9 @@ function ActivityToggle({
                 })
               ) : (
                 <>
-                  {watch("customActList")?.map((item) => {
-                    return (
-                      <>
-                        <S.CustomActivity
-                          ref={activityRef}
-                          key={item}
-                          isSelected
-                          onClick={handleCustomItemClick}
-                        >
-                          {item}
-                          <CloseIcon onClick={DeleteCustomActivity(item)} />
-                        </S.CustomActivity>
-                      </>
-                    );
-                  })}
+                  <S.customActiviyItem ref={spanRef}>
+                    {text}
+                  </S.customActiviyItem>
                   <S.CustomActivity
                     ref={activityRef}
                     key={activities[5].label}
@@ -163,8 +155,21 @@ function ActivityToggle({
                       css={S.input(inputWidth)}
                       placeholder=""
                       handleChange={handleCustomItemChange}
-                    />{" "}
+                    />
                   </S.CustomActivity>
+                  {watch("customActList")?.map((item, i) => {
+                    return (
+                      <S.CustomActivity
+                        ref={activityRef}
+                        key={`${item + i}`}
+                        isSelected
+                        onClick={handleCustomItemClick}
+                      >
+                        {item}
+                        <CloseIcon onClick={DeleteCustomActivity(item)} />
+                      </S.CustomActivity>
+                    );
+                  })}
                 </>
               ))}
           </S.Activities>
@@ -176,7 +181,6 @@ function ActivityToggle({
           </S.CustomInfo>
         )}
       </S.ActivityButton>
-      <S.Span ref={spanRef}>{text}</S.Span>
     </>
   );
 }
