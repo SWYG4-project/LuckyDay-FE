@@ -119,7 +119,7 @@ export const icon = css`
 
 export const input = (width?: number) => (theme: Theme) =>
   css`
-    width: ${width ? `calc(${width}px * 1.2 + 40px)` : "40px"};
+    width: ${width ? `calc(${width}px * 1.2 + 40px)` : "30px"};
     border: 0;
     background-color: ${theme.colors.lightBeige};
     outline: none;
@@ -127,4 +127,43 @@ export const input = (width?: number) => (theme: Theme) =>
 
 export const Span = styled.span`
   visibility: hidden;
+`;
+
+export const CustomInfo = styled.div<{ isCustom?: boolean }>`
+  ${({ isCustom }) => css`
+    position: absolute;
+    bottom: 60px;
+    left: 0;
+    display: ${isCustom ? "flex" : "none"};
+    width: 100%;
+  `}
+`;
+
+export const ContentLength = styled.span`
+  ${({ theme }) => css`
+    ${theme.fonts.body1};
+    position: absolute;
+    left: 40px;
+    color: ${theme.colors.black};
+  `}
+`;
+
+export const AddButton = styled.button`
+  ${({ theme }) => css`
+    position: absolute;
+    right: 40px;
+    width: 60px;
+    height: 20px;
+    border-radius: 10px;
+    color: ${theme.colors.lightBeige};
+    background-color: ${theme.colors.black};
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  `}
+`;
+
+export const CustomActivity = styled(Activity)`
+  svg {
+    width: 15px;
+    height: 15px;
+  }
 `;

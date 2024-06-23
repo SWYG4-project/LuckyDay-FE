@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import type { UseFormSetValue, UseFormWatch } from "react-hook-form";
 
-import { ArrowIcon, CheckIcon } from "assets";
+import { Input } from "components";
+import { ArrowIcon, CheckIcon, CloseIcon, activities } from "assets";
 import type { Activities, CreateLuckyDayForm } from "types";
 import * as S from "./ActivityToggle.styled";
-import { Input } from "components";
 
 interface ActivityToggleProps {
   activity: { icon: React.ReactNode; label: string };
@@ -71,6 +71,14 @@ function ActivityToggle({
     setText("");
   };
 
+  const DeleteCustomActivity = (selectedActivity: string) => (): void => {
+    const filteredActivities = watch("customActList")?.filter(
+      (item) => item !== selectedActivity
+    );
+
+    setValue("customActList", filteredActivities);
+  };
+
   useEffect(() => {
     const handleFocus = (e: MouseEvent): void => {
       if (
@@ -89,80 +97,87 @@ function ActivityToggle({
   }, [handleToggle, toggle, activity.label]);
 
   return (
-    <S.ActivityButton
-      key={data?.category}
-      ref={ref}
-      isOpen={isOpen}
-      onClick={handleToggleClick}
-    >
-      <S.Img
-        // TODO:innerShadow값이 있어 이미지로 따로 설정해줌
-        src={
-          isOpen
-            ? "images/img_empty_mediumBox.webp"
-            : "images/img_empty_longBox.webp"
-        }
-      />
-      <S.ActivityBox isOpen={isOpen}>
-        <S.ActivityInfo isOpen={isOpen}>
-          {activity.icon}
-          <S.ActivityTitle>{activity.label}</S.ActivityTitle>
-          <ArrowIcon css={S.arrowIcon(isOpen)} />
-        </S.ActivityInfo>
-        <S.Activities>
-          {isOpen &&
-            (data ? (
-              data.actList?.map((item) => {
-                const isSelected = watch("actList")?.includes(item.actNo);
+    <>
+      <S.ActivityButton
+        key={data?.category}
+        ref={ref}
+        isOpen={isOpen}
+        onClick={handleToggleClick}
+      >
+        <S.Img
+          // TODO:innerShadow값이 있어 이미지로 따로 설정해줌
+          src={
+            isOpen
+              ? "images/img_empty_mediumBox.webp"
+              : "images/img_empty_longBox.webp"
+          }
+        />
+        <S.ActivityBox isOpen={isOpen}>
+          <S.ActivityInfo isOpen={isOpen}>
+            {activity.icon}
+            <S.ActivityTitle>{activity.label}</S.ActivityTitle>
+            <ArrowIcon css={S.arrowIcon(isOpen)} />
+          </S.ActivityInfo>
+          <S.Activities>
+            {isOpen &&
+              (data ? (
+                data.actList?.map((item) => {
+                  const isSelected = watch("actList")?.includes(item.actNo);
 
-                return (
-                  <S.Activity
-                    isSelected={isSelected}
-                    ref={activityRef}
-                    key={item.actNo}
-                    onClick={handleItemClick(item.actNo)}
-                  >
-                    <CheckIcon css={S.icon} />
-                    {item.keyword}
-                  </S.Activity>
-                );
-              })
-            ) : (
-              <>
-                {watch("customActList")?.map((item) => {
                   return (
-                    <>
-                      <S.Activity
-                        ref={activityRef}
-                        key={item}
-                        isSelected
-                        // onClick={handleCustomItemClick}
-                      >
-                        <CheckIcon css={S.icon} />
-                        {item}
-                      </S.Activity>
-                    </>
+                    <S.Activity
+                      isSelected={isSelected}
+                      ref={activityRef}
+                      key={item.actNo}
+                      onClick={handleItemClick(item.actNo)}
+                    >
+                      <CheckIcon css={S.icon} />
+                      {item.keyword}
+                    </S.Activity>
                   );
-                })}
-                <S.Activity
-                  ref={activityRef}
-                  key={1}
-                  onClick={handleCustomItemClick}
-                >
-                  <Input
-                    value={text}
-                    css={S.input(inputWidth)}
-                    placeholder=""
-                    handleChange={handleCustomItemChange}
-                  />{" "}
-                </S.Activity>
-                <button onClick={handleAddCustomActivity}>추가</button>
-              </>
-            ))}
-        </S.Activities>
-      </S.ActivityBox>
+                })
+              ) : (
+                <>
+                  {watch("customActList")?.map((item) => {
+                    return (
+                      <>
+                        <S.CustomActivity
+                          ref={activityRef}
+                          key={item}
+                          isSelected
+                          onClick={handleCustomItemClick}
+                        >
+                          {item}
+                          <CloseIcon onClick={DeleteCustomActivity(item)} />
+                        </S.CustomActivity>
+                      </>
+                    );
+                  })}
+                  <S.CustomActivity
+                    ref={activityRef}
+                    key={activities[5].label}
+                    onClick={handleCustomItemClick}
+                  >
+                    <Input
+                      value={text}
+                      css={S.input(inputWidth)}
+                      placeholder=""
+                      handleChange={handleCustomItemChange}
+                    />{" "}
+                  </S.CustomActivity>
+                </>
+              ))}
+          </S.Activities>
+        </S.ActivityBox>
+        {isOpen && (
+          <S.CustomInfo isCustom={activity.label === activities[5].label}>
+            <S.ContentLength>{text.length}/14</S.ContentLength>
+            <S.AddButton onClick={handleAddCustomActivity}>추가</S.AddButton>
+          </S.CustomInfo>
+        )}
+      </S.ActivityButton>
       <S.Span ref={spanRef}>{text}</S.Span>
-    </S.ActivityButton>
+    </>
   );
 }
 
