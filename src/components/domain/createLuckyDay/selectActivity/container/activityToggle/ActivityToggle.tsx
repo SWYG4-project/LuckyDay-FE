@@ -4,7 +4,7 @@ import type { UseFormSetValue, UseFormWatch } from "react-hook-form";
 import { ArrowIcon, CheckIcon } from "assets";
 import type { Activities, CreateLuckyDayForm } from "types";
 import * as S from "./ActivityToggle.styled";
-import { Input } from "components/common";
+import { Input } from "components";
 
 interface ActivityToggleProps {
   activity: { icon: React.ReactNode; label: string };
@@ -54,32 +54,37 @@ function ActivityToggle({
 
   const handleCustomItemClick = (e: React.MouseEvent): void => {
     e.stopPropagation();
-
-    console.log(e);
   };
 
   const handleCustomItemChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+    if (e.target.value.length > 14) return;
 
     setText(e.target.value);
   };
 
-  // useEffect(() => {
-  //   const handleFocus = (e: MouseEvent): void => {
-  //     if (
-  //       ref.current?.contains(e.target as HTMLElement) ||
-  //       toggle !== activity.label
-  //     ) {
-  //       return;
-  //     }
-  //     handleToggle(null);
-  //   };
+  const handleAddCustomActivity = (e: React.MouseEvent): void => {
+    e.stopPropagation();
 
-  //   document.addEventListener("mouseup", handleFocus);
-  //   return () => {
-  //     document.removeEventListener("mouseup", handleFocus);
-  //   };
-  // }, [handleToggle, toggle, activity.label]);
+    setValue("customActList", [...(watch("customActList") ?? ""), text]);
+    setText("");
+  };
+
+  useEffect(() => {
+    const handleFocus = (e: MouseEvent): void => {
+      if (
+        ref.current?.contains(e.target as HTMLElement) ||
+        toggle !== activity.label
+      ) {
+        return;
+      }
+      handleToggle(null);
+    };
+
+    document.addEventListener("mouseup", handleFocus);
+    return () => {
+      document.removeEventListener("mouseup", handleFocus);
+    };
+  }, [handleToggle, toggle, activity.label]);
 
   return (
     <S.ActivityButton
@@ -120,33 +125,37 @@ function ActivityToggle({
                   </S.Activity>
                 );
               })
-            ) : watch("customActList")?.length ? (
-              watch("customActList")?.map((item) => {
-                return (
-                  <>
-                    <S.Activity
-                      ref={activityRef}
-                      key={item}
-                      // onClick={handleCustomItemClick}
-                    >
-                      <CheckIcon css={S.icon} />
-                      {item}dd
-                    </S.Activity>
-                  </>
-                );
-              })
             ) : (
-              <S.Activity
-                ref={activityRef}
-                key={1}
-                onClick={handleCustomItemClick}
-              >
-                <Input
-                  css={S.input}
-                  placeholder=""
-                  handleChange={handleCustomItemChange}
-                />{" "}
-              </S.Activity>
+              <>
+                {watch("customActList")?.map((item) => {
+                  return (
+                    <>
+                      <S.Activity
+                        key={item}
+                        ref={activityRef}
+                        isSelected
+                        // onClick={handleCustomItemClick}
+                      >
+                        <CheckIcon css={S.icon} />
+                        {item}
+                      </S.Activity>
+                    </>
+                  );
+                })}
+                <S.Activity
+                  ref={activityRef}
+                  key={1}
+                  onClick={handleCustomItemClick}
+                >
+                  <Input
+                    value={text}
+                    css={S.input}
+                    placeholder=""
+                    handleChange={handleCustomItemChange}
+                  />{" "}
+                </S.Activity>
+                <button onClick={handleAddCustomActivity}>추가</button>
+              </>
             ))}
         </S.Activities>
       </S.ActivityBox>
