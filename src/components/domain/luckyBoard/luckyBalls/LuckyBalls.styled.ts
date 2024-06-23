@@ -7,6 +7,14 @@ export const Container = styled.div`
   align-items: center;
   justify-content: center;
   margin-top: -55px;
+
+  @media (max-width: 405px) {
+    margin-top: -50px;
+  }
+
+  @media (max-width: 375px) {
+    margin-top: -45px;
+  }
 `;
 
 export const RowBox = styled.div`
@@ -31,13 +39,13 @@ export const LuckyBallFace = styled.div<{ imageUrl: string }>`
   @media (max-width: 405px) {
     width: 90px;
     height: 90px;
-    margin: 8px;
+    margin: 7px;
   }
 
   @media (max-width: 375px) {
-    width: 80px;
-    height: 80px;
-    margin: 6px;
+    width: 75px;
+    height: 75px;
+    margin: 5px;
   }
 `;
 
@@ -59,13 +67,13 @@ export const svgFrame = (theme: Theme) => css`
     @media (max-width: 405px) {
       width: 90px;
       height: 90px;
-      margin: 8px;
+      margin: 7px;
     }
 
     @media (max-width: 375px) {
-      width: 80px;
-      height: 80px;
-      margin: 6px;
+      width: 75px;
+      height: 75px;
+      margin: 5px;
     }
   }
 `;

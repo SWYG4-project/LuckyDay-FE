@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
 import { PageSpinner, SingleButtonLayout, SvgFrame } from "components";
 import { useGetLuckyDayDetail } from "services";
 import { formatDate } from "utils";
@@ -10,7 +10,7 @@ import * as S from "./ViewLuckyActivityPage.styled";
 function ViewLuckyActivityPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-
+  const [isLongText, setIsLongText] = useState(false);
   const { data, isLoading } = useGetLuckyDayDetail(id!);
 
   const handleClickRecord = () => {
@@ -20,6 +20,12 @@ function ViewLuckyActivityPage() {
       navigate(`/luckydays/create/${id}`);
     }
   };
+
+  useEffect(() => {
+    if (data?.resData?.actNm && data.resData.actNm.length > 16) {
+      setIsLongText(true);
+    }
+  }, [data]);
 
   if (isLoading) {
     return <PageSpinner />;
@@ -39,7 +45,7 @@ function ViewLuckyActivityPage() {
             럭키 데이 활동은...
           </span>
         </S.LuckydayInfo>
-        <S.LuckydayDetailInfo>
+        <S.LuckydayDetailInfo isLongText={isLongText}>
           <S.Img src="/images/img_luckydayBg.webp" alt="luckyday" />
           {
             activities.find((item) => item.label === data?.resData.category)

@@ -38,10 +38,14 @@ export const Text_h2 = styled.div`
   `}
 `;
 
-export const Email = styled.div`
-  ${({ theme }) => css`
+interface EmailProps {
+  isLongEmail: boolean;
+}
+
+export const Email = styled.div<EmailProps>`
+  ${({ theme, isLongEmail }) => css`
     color: ${theme.colors.orange};
-    ${theme.fonts.headline2};
+    ${isLongEmail ? theme.fonts.body2 : theme.fonts.headline2}
     display: inline;
   `}
 `;

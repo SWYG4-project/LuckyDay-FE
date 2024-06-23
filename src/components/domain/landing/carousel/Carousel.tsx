@@ -1,6 +1,7 @@
 import * as S from "./Carousel.styled";
 import { useState } from "react";
 import { ArrowIcon } from "assets";
+import { useSwipeable } from "react-swipeable";
 
 interface CarouselProps {
   images: string[];
@@ -24,8 +25,13 @@ const Carousel = ({ images, texts }: CarouselProps): JSX.Element => {
     setActiveIndex(index);
   };
 
+  const handlers = useSwipeable({
+    onSwipedLeft: handleNextSlide,
+    onSwipedRight: handlePrevSlide,
+  });
+
   return (
-    <S.CarouselContainer>
+    <S.CarouselContainer {...handlers}>
       <S.TextBox>{texts[activeIndex]}</S.TextBox>
       <S.SlideContainer>
         {images.map((image, index) => (

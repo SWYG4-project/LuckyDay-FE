@@ -13,7 +13,17 @@ export const CreateLuckyDayButton = styled.button`
     height: 40px;
   }
 
-  @media (max-width: 405px) {
+  @media (max-width: 390px) {
+    width: 60px;
+    height: 60px;
+
+    & > svg {
+      width: 35px;
+      height: 35px;
+    }
+  }
+
+  @media (max-width: 375px) {
     width: 50px;
     height: 50px;
 

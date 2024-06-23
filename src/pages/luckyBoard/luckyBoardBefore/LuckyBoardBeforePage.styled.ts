@@ -7,8 +7,11 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: 80vh;
   height: auto;
+
+  @media (min-height: 945px) {
+    min-height: 80vh;
+  }
 `;
 
 export const TextBox = styled.div`
@@ -18,6 +21,11 @@ export const TextBox = styled.div`
     margin: 10px 0px 5px 0px;
     text-align: center;
     white-space: pre-wrap;
+
+    @media (max-width: 375px) {
+      ${theme.fonts.headline2};
+      margin: 0px;
+    }
   `}
 `;
 
@@ -47,5 +55,17 @@ export const LuckyMachine = styled.div`
     height: 100%;
     transform: translate(-50%, -50%);
     object-fit: contain;
+  }
+
+  @media (max-width: 412px) {
+    width: 390px;
+  }
+
+  @media (max-width: 392px) {
+    width: 370px;
+  }
+
+  @media (max-width: 375px) {
+    width: 300px;
   }
 `;

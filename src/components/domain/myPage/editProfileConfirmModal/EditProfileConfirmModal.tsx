@@ -1,5 +1,6 @@
 import * as S from "./EditProfileConfirmModal.styled";
 import { useTheme } from "@emotion/react";
+import { useState, useEffect } from "react";
 import { BaseModal, SvgButton } from "components/common";
 import { ShortBoxIcon } from "assets";
 
@@ -15,6 +16,15 @@ export default function EditProfileConfirmModal({
   email,
 }: EditProfileConfirmModalProps) {
   const theme = useTheme();
+  const [isLongEmail, setIsLongEmail] = useState(false);
+
+  useEffect(() => {
+    if (email.length >= 27) {
+      setIsLongEmail(true);
+    } else {
+      setIsLongEmail(false);
+    }
+  }, [email]);
 
   const handleConfirmClick = () => {
     onSave();
@@ -29,7 +39,7 @@ export default function EditProfileConfirmModal({
           <S.Logo_Basic />
           <S.Text_h2>
             변경된 메일 주소 <br />
-            <S.Email>{email}</S.Email>으로 <br />
+            <S.Email isLongEmail={isLongEmail}>{email}</S.Email>으로 <br />
             럭키 데이 전날에 알림 메일이 발송됩니다.
           </S.Text_h2>
           <S.ButtonBox>
