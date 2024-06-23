@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import type { UseFormSetValue, UseFormWatch } from "react-hook-form";
 
 import { Input } from "components";
+import { useToast } from "hooks";
 import { ArrowIcon, CheckIcon, CloseIcon, activities } from "assets";
 import type { Activities, CreateLuckyDayForm } from "types";
 import * as S from "./ActivityToggle.styled";
@@ -32,7 +33,11 @@ function ActivityToggle({
   const ref = useRef<HTMLDivElement>(null);
   const activityRef = useRef<HTMLButtonElement>(null);
   const spanRef = useRef<HTMLSpanElement>(null);
-  const inputWidth = spanRef.current?.getBoundingClientRect().width;
+  const inputWidth = text.length
+    ? spanRef.current?.getBoundingClientRect().width
+    : 0;
+
+  const { addToast } = useToast();
 
   const handleToggleClick = (): void => {
     if (text) {
@@ -70,6 +75,15 @@ function ActivityToggle({
 
   const handleAddCustomActivity = (e: React.MouseEvent): void => {
     e.stopPropagation();
+
+    const checkSameActivity = watch("customActList")?.includes(text);
+
+    if (checkSameActivity) {
+      addToast({ content: "이미 추가된 활동입니다." });
+      setText("");
+
+      return;
+    }
 
     setValue("customActList", [...(watch("customActList") ?? ""), text]);
     setText("");
@@ -141,7 +155,7 @@ function ActivityToggle({
                   );
                 })
               ) : (
-                <>
+                <S.CustomActivityWrapper>
                   <S.customActiviyItem ref={spanRef}>
                     {text}
                   </S.customActiviyItem>
@@ -170,7 +184,7 @@ function ActivityToggle({
                       </S.CustomActivity>
                     );
                   })}
-                </>
+                </S.CustomActivityWrapper>
               ))}
           </S.Activities>
         </S.ActivityBox>
