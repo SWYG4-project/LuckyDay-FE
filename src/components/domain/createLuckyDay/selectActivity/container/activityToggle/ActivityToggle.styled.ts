@@ -163,12 +163,16 @@ export const AddButton = styled.button`
   `}
 `;
 
-export const CustomActivity = styled(Activity)`
-  height: 20px;
-  svg {
-    width: 15px;
-    height: 15px;
-  }
+export const CustomActivity = styled(Activity)<{ hasValue?: boolean }>`
+  ${({ hasValue }) => css`
+    height: 20px;
+    padding: ${hasValue && "0 6px 0 11px"};
+
+    svg {
+      width: 15px;
+      height: 15px;
+    }
+  `}
 `;
 
 export const CustomActivityWrapper = styled.div`

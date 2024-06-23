@@ -177,6 +177,7 @@ function ActivityToggle({
                         ref={activityRef}
                         key={`${item + i}`}
                         isSelected
+                        hasValue
                         onClick={handleCustomItemClick}
                       >
                         {item}
