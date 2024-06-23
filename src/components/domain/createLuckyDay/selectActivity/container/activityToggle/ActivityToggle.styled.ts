@@ -119,7 +119,8 @@ export const icon = css`
 
 export const input = (width?: number) => (theme: Theme) =>
   css`
-    width: ${width ? `calc(${width}px * 1.2 + 40px)` : "30px"};
+    width: ${width ? `calc(${width}px * 1.2 + 16px)` : "22px"};
+    padding: 0;
     border: 0;
     background-color: ${theme.colors.lightBeige};
     outline: none;
