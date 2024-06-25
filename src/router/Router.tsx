@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import AuthRoute from "./authRoute/AuthRoute";
 import { Layout } from "components";
 import * as P from "pages";
@@ -41,7 +41,7 @@ export default function Router({ children }: RouterProps) {
           </Route>
           <Route path="loading" element={<P.LoadingPage />} />
           <Route path="404" element={<P.Error404Page />} />
-          <Route path="*" element={<P.Error404Page />} />
+          <Route path="*" element={<Navigate to="/404" replace />} />
         </Route>
       </Routes>
     </BrowserRouter>
