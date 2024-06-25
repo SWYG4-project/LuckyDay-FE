@@ -3,15 +3,12 @@ import { css } from "@emotion/react";
 
 export const NotFound = styled.div`
   width: 100%;
-  height: 85vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  position: relative;
-  padding: 30px 0px 30px 0px;
-  z-index: 1;
 `;
 
 export const Logo_Sad = styled.div`
