@@ -1,29 +1,27 @@
-// Profile.styled.ts
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
 export const ContentsBox = styled.div`
   width: 100%;
-  height: 70vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  position: relative;
 `;
 
 export const Logo_Basic = styled.div`
   width: 150px;
   height: 150px;
-  margin: 30px 0px 30px 0px;
+  margin: -120px 0px 20px 0px;
   background-size: 150px;
   background-repeat: no-repeat;
   background-position: center;
   background-image: url("/images/logo.webp");
 
   @media (max-width: 375px) {
-    margin: 0px;
+    margin: -100px 0px 10px 0px;
     width: 120px;
     height: 120px;
     background-size: cover;
@@ -71,7 +69,7 @@ export const TextBox = styled.div`
 
 export const ButtonBox = styled.div`
   position: fixed;
-  bottom: 10rem;
+  bottom: 12rem;
 
   @media (max-width: 375px) {
     bottom: 8rem;
