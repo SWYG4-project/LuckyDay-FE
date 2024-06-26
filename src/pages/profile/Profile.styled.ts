@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 
 export const ContentsBox = styled.div`
   width: 100%;
-  height: 90vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,14 +14,14 @@ export const ContentsBox = styled.div`
 export const Logo_Basic = styled.div`
   width: 150px;
   height: 150px;
-  margin: -120px 0px 20px 0px;
+  margin: 10px;
   background-size: 150px;
   background-repeat: no-repeat;
   background-position: center;
   background-image: url("/images/logo.webp");
 
   @media (max-width: 375px) {
-    margin: -100px 0px 10px 0px;
+    margin: 0px;
     width: 120px;
     height: 120px;
     background-size: cover;
@@ -57,21 +57,20 @@ export const TitleTextBox = styled.div`
 
 export const TextBox = styled.div`
   ${({ theme }) => css`
-    padding: 20px;
+    padding: 15px;
     color: ${theme.colors.black};
     ${theme.fonts.headline1};
 
     @media (max-width: 375px) {
-      padding: 10px;
+      padding: 0px;
     }
   `}
 `;
 
 export const ButtonBox = styled.div`
-  position: fixed;
-  bottom: 12rem;
+  padding-top: 20px;
 
   @media (max-width: 375px) {
-    bottom: 8rem;
+    padding-top: 0px;
   }
 `;
