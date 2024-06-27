@@ -123,6 +123,7 @@ export const input = (width?: number) => (theme: Theme) =>
     padding: 0;
     border: 0;
     background-color: ${theme.colors.lightBeige};
+    font-size: 1.6rem;
     outline: none;
   `;
 
