@@ -31,12 +31,15 @@ function CreateLuckyDayModal({
     .format("YYYY년 MM월 DD일");
 
   const handleClick = handleSubmit((data) => {
-    const filteredActList = data.actList.filter((item) =>
-      data.customActList?.length ? true : item !== 0
+    const filteredActList = data.actList.filter((item) => item !== 0);
+
+    const addCustomActList = Array.from(
+      { length: data.customActList?.length ?? 0 },
+      () => 0
     );
 
     const req = {
-      actList: filteredActList,
+      actList: [...filteredActList, ...addCustomActList],
       customActList: data.customActList,
       period: data.period,
       cnt: data.cnt,
