@@ -9,6 +9,7 @@ interface InputProps {
   value?: string;
   handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleFocus?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  handleKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   handleBlur?: () => void;
 }
 
@@ -20,6 +21,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       disabled,
       handleFocus,
       handleBlur,
+      handleKeyDown,
       handleChange,
       value,
     },
@@ -33,6 +35,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         disabled={disabled}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        onKeyDown={handleKeyDown}
         onChange={handleChange}
         value={value}
       />

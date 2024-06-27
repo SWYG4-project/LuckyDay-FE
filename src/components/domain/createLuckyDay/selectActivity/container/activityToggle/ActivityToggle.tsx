@@ -89,6 +89,14 @@ function ActivityToggle({
     setText("");
   };
 
+  const handleEnterCustomItemChange = (
+    e: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (e.key === "Enter") {
+      handleAddCustomActivity(e as unknown as React.MouseEvent);
+    }
+  };
+
   const DeleteCustomActivity = (selectedActivity: string) => (): void => {
     const filteredActivities = watch("customActList")?.filter(
       (item) => item !== selectedActivity
@@ -169,6 +177,7 @@ function ActivityToggle({
                       css={S.input(inputWidth)}
                       placeholder=""
                       handleChange={handleCustomItemChange}
+                      handleKeyDown={handleEnterCustomItemChange}
                     />
                   </S.CustomActivity>
                   {watch("customActList")?.map((item, i) => {
