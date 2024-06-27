@@ -1,22 +1,20 @@
-// Profile.styled.ts
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
 export const ContentsBox = styled.div`
   width: 100%;
-  height: 70vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  position: relative;
 `;
 
 export const Logo_Basic = styled.div`
   width: 150px;
   height: 150px;
-  margin: 30px 0px 30px 0px;
+  margin: 10px;
   background-size: 150px;
   background-repeat: no-repeat;
   background-position: center;
@@ -59,21 +57,20 @@ export const TitleTextBox = styled.div`
 
 export const TextBox = styled.div`
   ${({ theme }) => css`
-    padding: 20px;
+    padding: 15px;
     color: ${theme.colors.black};
     ${theme.fonts.headline1};
 
     @media (max-width: 375px) {
-      padding: 10px;
+      padding: 0px;
     }
   `}
 `;
 
 export const ButtonBox = styled.div`
-  position: fixed;
-  bottom: 10rem;
+  padding-top: 20px;
 
   @media (max-width: 375px) {
-    bottom: 8rem;
+    padding-top: 0px;
   }
 `;

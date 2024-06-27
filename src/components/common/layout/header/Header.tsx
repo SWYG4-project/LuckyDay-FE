@@ -9,7 +9,7 @@ const Header = () => {
     <>
       <S.Header>
         <Logo />
-        {pathname !== "/" && <NavigationToggle />}
+        {!(pathname === "/" || pathname === "/profile") && <NavigationToggle />}
       </S.Header>
     </>
   );

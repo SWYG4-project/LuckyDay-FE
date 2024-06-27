@@ -14,10 +14,12 @@ export default function LuckyDayCycleListPage() {
 
   if (error || !cycles || cycles.length === 0) {
     return (
-      <S.ErrorBox>
-        <p>아직 보관함이 비어 있어요.</p>
-        <S.Logo_Sad />
-      </S.ErrorBox>
+      <SingleButtonLayout>
+        <S.ErrorBox>
+          <p>아직 보관함이 비어 있어요.</p>
+          <S.Logo_Sad />
+        </S.ErrorBox>
+      </SingleButtonLayout>
     );
   }
 
