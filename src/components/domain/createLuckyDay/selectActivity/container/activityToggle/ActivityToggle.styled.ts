@@ -106,6 +106,14 @@ export const Activity = styled.button<{ isSelected?: boolean }>`
       display: ${!isSelected && "none"};
     }
 
+    &:hover {
+      color: ${theme.colors.orange};
+
+      & > svg > path {
+        fill: ${theme.colors.orange};
+      }
+    }
+
     @media (max-width: 380px) {
       ${theme.fonts.headline3};
     }
