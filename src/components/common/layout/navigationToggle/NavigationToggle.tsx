@@ -111,7 +111,10 @@ const NavigationToggle: (props: NavigationToggleProps) => JSX.Element = ({
                 <S.ToggleMenu>럭키 데이 보관함</S.ToggleMenu>
               </Link>
               <Link to="/mypage" onClick={() => setIsToggleVisible(false)}>
-                <S.ToggleMenuBottom>마이페이지</S.ToggleMenuBottom>
+                <S.ToggleMenu>마이페이지</S.ToggleMenu>
+              </Link>
+              <Link to="/board" onClick={() => setIsToggleVisible(false)}>
+                <S.ToggleMenuBottom>게시판</S.ToggleMenuBottom>
               </Link>
             </S.ToggleMenuBox>
           </S.ToggleContentsBox>
