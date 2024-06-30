@@ -7,7 +7,26 @@ export default function InfoPage() {
       <S.TitleBox>만든 사람들</S.TitleBox>
       <S.ContentsBox>
         <S.MenuBox>
-          <S.JobBox>디자인</S.JobBox>
+          <S.ProfileBox>
+            <S.ProfileImage src="/images/logo.webp" />
+            <S.InfoBox>
+              Team LuckyDay
+              <S.EmailBox>enjoyluckday@gmail.com</S.EmailBox>
+            </S.InfoBox>
+          </S.ProfileBox>
+        </S.MenuBox>
+        <S.MenuBox>
+          <S.JobBox>Product Manager</S.JobBox>
+          <S.ProfileBox>
+            <S.ProfileImage src="/images/profile/profile-03.webp" />
+            <S.InfoBox>
+              명채린
+              <S.EmailBox>ghkrk1132@gmail.com</S.EmailBox>
+            </S.InfoBox>
+          </S.ProfileBox>
+        </S.MenuBox>
+        <S.MenuBox>
+          <S.JobBox>Designer</S.JobBox>
           <S.ProfileBox>
             <S.ProfileImage src="/images/profile/profile-01.webp" />
             <S.InfoBox>
@@ -17,7 +36,7 @@ export default function InfoPage() {
           </S.ProfileBox>
         </S.MenuBox>
         <S.MenuBox>
-          <S.JobBox>프론트엔드 개발</S.JobBox>
+          <S.JobBox>Frontend Developer</S.JobBox>
           <S.ProfileBox>
             <S.ProfileImage src="/images/profile/profile-05.webp" />
             <S.InfoBox>
@@ -34,7 +53,7 @@ export default function InfoPage() {
           </S.ProfileBox>
         </S.MenuBox>
         <S.MenuBox>
-          <S.JobBox>백엔드 개발</S.JobBox>
+          <S.JobBox>Backend Developer</S.JobBox>
           <S.ProfileBox>
             <S.ProfileImage src="/images/profile/profile-02.webp" />
             <S.InfoBox>
@@ -50,6 +69,7 @@ export default function InfoPage() {
             </S.InfoBox>
           </S.ProfileBox>
         </S.MenuBox>
+        <S.TextBox>© 2024 Team LuckyDay. All rights reserved</S.TextBox>
       </S.ContentsBox>
     </SingleButtonLayout>
   );

@@ -5,7 +5,8 @@ export const ContentsBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 25px;
+  padding: 5px 25px 25px 20px;
+  overflow-y: auto;
 `;
 
 export const TitleBox = styled.div`
@@ -27,8 +28,8 @@ export const MenuBox = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
-    padding: 5px;
-    margin-bottom: 20px;
+    padding: 3px;
+    margin-bottom: 15px;
     color: ${theme.colors.black};
     ${theme.fonts.headline1}
     border-bottom: 1px solid ${theme.colors.gray};
@@ -44,7 +45,7 @@ export const JobBox = styled.div`
   ${({ theme }) => css`
     color: ${theme.colors.orange};
     ${theme.fonts.headline2};
-  `}
+  `}margin: 0px 5px 0px 5px;
 `;
 
 export const ProfileBox = styled.div`
@@ -62,12 +63,22 @@ export const ProfileImage = styled.img`
   width: 45px;
   height: 45px;
   object-fit: cover;
-  margin: 15px;
+  margin: 13px;
 `;
 
 export const EmailBox = styled.div`
   ${({ theme }) => css`
     color: ${theme.colors.black};
     ${theme.fonts.headline2}
+  `}
+`;
+
+export const TextBox = styled.div`
+  ${({ theme }) => css`
+    color: ${theme.colors.gray};
+    ${theme.fonts.body2}
+    display: flex;
+    justify-content: center;
+    align-items: center;
   `}
 `;
