@@ -31,16 +31,16 @@ export default function Router({ children }: RouterProps) {
               element={<P.LuckyDayCycleDetailPage />}
             />
             <Route
-              path="/luckydays/create/:id"
+              path="luckydays/create/:id"
               element={<P.ReviewLuckyDayPage />}
             />
             <Route
-              path="/luckydays/review/:id"
+              path="luckydays/review/:id"
               element={<P.ViewLuckyDayPage />}
             />
-            <Route path="board" element={<P.BoardPage />} />
-            <Route path="notice" element={<P.NoticePage />} />
-            <Route path="info" element={<P.InfoPage />} />
+            <Route path="noticeboard" element={<P.NoticeBoardPage />} />
+            <Route path="noticeboard/notice" element={<P.NoticePage />} />
+            <Route path="noticeboard/info" element={<P.InfoPage />} />
           </Route>
           <Route path="loading" element={<P.LoadingPage />} />
           <Route path="404" element={<P.Error404Page />} />
