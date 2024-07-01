@@ -65,7 +65,7 @@ export default function InfoPage() {
             <S.ProfileImage src="/images/profile/profile-04.webp" />
             <S.InfoBox>
               홍정명
-              <S.EmailBox>hkdhjm@kangwon.ac.kr</S.EmailBox>
+              <S.EmailBox>hkdhjm@gmail.com</S.EmailBox>
             </S.InfoBox>
           </S.ProfileBox>
         </S.MenuBox>
