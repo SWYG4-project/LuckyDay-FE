@@ -1,44 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import type { UseFormSetValue, UseFormWatch } from "react-hook-form";
 
-import { useGetLuckyDaysActivities } from "services";
 import { activities } from "assets";
-import type { CreateLuckyDayForm } from "types";
+import type { ActivitiesServerModel, CreateLuckyDayForm } from "types";
 import { ActivityToggle } from "./container";
 import * as S from "./SelectActivity.styled";
 
 interface SelectActivityProps {
+  data?: ActivitiesServerModel;
   setValue: UseFormSetValue<CreateLuckyDayForm>;
   watch: UseFormWatch<CreateLuckyDayForm>;
+  getSelectItems: (value: number[]) => void;
 }
 
-function SelectActivity({ watch, setValue }: SelectActivityProps) {
-  const { data } = useGetLuckyDaysActivities();
+function SelectActivity({
+  data,
+  getSelectItems,
+  watch,
+  setValue,
+}: SelectActivityProps) {
   const [toggle, setToggle] = useState<string | null>(null);
 
   const actNos = data?.resData.flatMap((activity) =>
     activity.actList.map((item) => item.actNo)
   );
 
-  const [, setSelectedItems] = useState<number[]>([]);
-
-  const getSelectItems = (value: number[]) => {
-    setSelectedItems(value);
-  };
-
   const handleToggle = (toggleLabel: string | null): void =>
     setToggle(toggleLabel);
-
-  useEffect(() => {
-    if (data && !watch("actList").length) {
-      const actNos = data.resData.flatMap((activity) =>
-        activity.actList.map((item) => item.actNo)
-      );
-
-      setSelectedItems(actNos);
-      setValue("actList", actNos);
-    }
-  }, [data]);
 
   return (
     <>
@@ -48,7 +36,7 @@ function SelectActivity({ watch, setValue }: SelectActivityProps) {
         럭키 데이 활동을 모두 골라 보세요.
       </S.HeadLine>
       <S.Activities>
-        {activities.map((activity) => {
+        {activities.map((activity, i) => {
           if (!actNos) return null;
 
           return (
@@ -58,9 +46,11 @@ function SelectActivity({ watch, setValue }: SelectActivityProps) {
               getSelectItems={getSelectItems}
               setValue={setValue}
               watch={watch}
-              data={data?.resData.find(
+              data={data?.resData?.find(
                 (item) => item.category === activity.label
               )}
+              checked={watch(`acts.${i}.checked`) ?? false}
+              index={i}
               toggle={toggle}
               isOpen={
                 toggle === activity.label ||

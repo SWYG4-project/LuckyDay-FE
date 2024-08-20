@@ -12,7 +12,7 @@ import {
   getLuckyDayCycleList,
 } from "apis";
 import {
-  CreateLuckyDayForm,
+  CreateLuckyDayQueryModel,
   GetLuckyDayCycleDetailResponse,
   GetLuckyDayCycleList,
   GetLuckyDayCycleQueryModel,
@@ -23,12 +23,13 @@ export const useGetLuckyDaysActivities = () => {
   return useQuery({
     queryKey: ["activities"],
     queryFn: () => getLuckyDaysActivities(),
+    staleTime: Infinity,
   });
 };
 
 export const useCreateLuckyDay = () => {
   return useMutation({
-    mutationFn: (req: CreateLuckyDayForm) => postLuckyDay(req),
+    mutationFn: (req: CreateLuckyDayQueryModel) => postLuckyDay(req),
   });
 };
 

@@ -1,7 +1,7 @@
 import { ax } from "./axios";
 import type {
   ActivitiesServerModel,
-  CreateLuckyDayForm,
+  CreateLuckyDayQueryModel,
   GetLuckyDayCycleDetailResponse,
   GetLuckyDayCycleInfoServerModel,
   GetLuckyDayCycleLastLuckyDaysQueryModel,
@@ -16,8 +16,8 @@ export const getLuckyDaysActivities = async () => {
   return data;
 };
 
-export const postLuckyDay = async (req: CreateLuckyDayForm) => {
-  const { data } = await ax.post("/luckydays", req);
+export const postLuckyDay = async (req: CreateLuckyDayQueryModel) => {
+  const { data } = await ax.post("/luckydays", req.body);
   return data;
 };
 

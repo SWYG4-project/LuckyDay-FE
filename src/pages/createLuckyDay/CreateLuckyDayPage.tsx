@@ -13,12 +13,17 @@ import {
 } from "components";
 import { ArrowIcon } from "assets";
 import { useModal, useToast } from "hooks";
+import { useGetLuckyDaysActivities } from "services";
 import type { CreateLuckyDayForm } from "types";
 import * as S from "./CreateLuckyDayPage.styled";
 
 function CreateLuckyDayPage() {
   const navigate = useNavigate();
+
   const [currentProgress, setCurrentProgress] = useState(0);
+  const [, setSelectedItems] = useState<number[]>([]);
+
+  const { data } = useGetLuckyDaysActivities();
 
   const { setValue, watch, handleSubmit } = useForm<CreateLuckyDayForm>({
     defaultValues: {
@@ -45,10 +50,21 @@ function CreateLuckyDayPage() {
     setCurrentProgress(changedProgress);
   };
 
+  const getSelectItems = (value: number[]): void => {
+    setSelectedItems(value);
+  };
+
   const changePage = (current: number): React.ReactNode => {
     switch (current) {
       case 0:
-        return <SelectActivity setValue={setValue} watch={watch} />;
+        return (
+          <SelectActivity
+            data={data}
+            getSelectItems={getSelectItems}
+            setValue={setValue}
+            watch={watch}
+          />
+        );
       case 1:
         return <SelectPeriod setValue={setValue} watch={watch} />;
       case 2:
@@ -85,6 +101,26 @@ function CreateLuckyDayPage() {
       return addToast({ content: "이미 생성된 럭키데이가 있어요." });
     }
   }, []);
+
+  useEffect(() => {
+    if (!data) return;
+
+    if (!watch("actList").length) {
+      const actNos = data.resData.flatMap((activity) =>
+        activity.actList.map((item) => item.actNo)
+      );
+
+      setSelectedItems(actNos);
+    }
+
+    setValue(
+      "acts",
+      data.resData.map((item) => ({
+        category: item.category,
+        checked: false,
+      }))
+    );
+  }, [data]);
 
   return (
     <ButtonLayout

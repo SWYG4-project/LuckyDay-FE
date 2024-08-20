@@ -31,7 +31,9 @@ function CreateLuckyDayModal({
     .format("YYYY년 MM월 DD일");
 
   const handleClick = handleSubmit((data) => {
-    const filteredActList = data.actList.filter((item) => item !== 0);
+    const filteredActList = data.acts
+      .flatMap((item) => item.actList)
+      .filter((item): item is number => item !== undefined);
 
     const addCustomActList = Array.from(
       { length: data.customActList?.length ?? 0 },
@@ -39,11 +41,13 @@ function CreateLuckyDayModal({
     );
 
     const req = {
-      actList: [...filteredActList, ...addCustomActList],
-      customActList: data.customActList,
-      period: data.period,
-      cnt: data.cnt,
-      expDTList: data.expDTList,
+      body: {
+        actList: [...filteredActList, ...addCustomActList],
+        customActList: data.customActList,
+        period: data.period,
+        cnt: data.cnt,
+        expDTList: data.expDTList,
+      },
     };
 
     createLuckyDayMutate(req, {

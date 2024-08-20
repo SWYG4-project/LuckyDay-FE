@@ -32,23 +32,25 @@ export const ActivityBox = styled.div<{ isOpen: boolean }>`
   `}
 `;
 
-export const ActivityInfo = styled.div<{ isOpen: boolean }>`
-  ${({ isOpen }) => css`
+export const ActivityInfo = styled.div<{ isOpen: boolean; isChecked: boolean }>`
+  ${({ isOpen, isChecked }) => css`
     display: grid;
-    grid-template-columns: 35px 1fr 40px;
-    column-gap: 15px;
+    grid-template-columns: ${isChecked
+      ? "35px 1fr 24px 24px"
+      : "35px 1fr 24px"};
+    column-gap: 10px;
     align-items: center;
     height: fit-content;
-    padding: 15px 0 ${isOpen ? "8px" : "18px"} 0; //NOTE: 이미지 간격이 맞지 않아 padding-top 임의 설정함
+    padding: 15px 0 ${isOpen ? "8px" : "18px"} 0;
     text-align: start;
     cursor: pointer;
 
     & > svg:first-of-type {
-      margin: 5px 5px 0 5px;
+      margin: 8px 5px 0 5px;
     }
 
     @media (max-width: 380px) {
-      padding: 9px 0 ${isOpen ? "8px" : "18px"} 0; //NOTE: 이미지 간격이 맞지 않아 padding-top 임의 설정함
+      padding: 9px 0 ${isOpen ? "8px" : "18px"} 0;
 
       & > svg:first-of-type {
         margin: 5px 5px 0 5px;
@@ -69,8 +71,8 @@ export const ActivityTitle = styled.span`
 
 export const arrowIcon = (isOpen: boolean) =>
   css`
-    width: 40px;
-    height: 40px;
+    width: 24px;
+    height: 24px;
     rotate: ${isOpen ? "0deg" : "180deg"};
   `;
 
@@ -183,4 +185,33 @@ export const CustomActivityWrapper = styled.div`
   row-gap: 8px;
   height: 40px;
   overflow-y: auto;
+`;
+
+export const CheckboxWrapper = styled.div<{ isOpen: boolean }>`
+  ${({ isOpen }) => css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    input {
+      display: none;
+    }
+
+    input + label {
+      width: 24px;
+      height: 24px;
+      background: ${isOpen
+          ? `url("images/ic_uncheckedOrange.svg")`
+          : `url("images/ic_uncheckedBeige.svg")`}
+        no-repeat;
+    }
+    input:checked + label {
+      width: 24px;
+      height: 24px;
+      background: ${isOpen
+          ? `url("images/ic_checkedOrange.svg")`
+          : `url("images/ic_checkedBeige.svg")`}
+        no-repeat;
+    }
+  `}
 `;

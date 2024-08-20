@@ -1,17 +1,22 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import type { UseFormSetValue, UseFormWatch } from "react-hook-form";
 
 import { Input } from "components";
-import { useToast } from "hooks";
 import { ArrowIcon, CheckIcon, CloseIcon, activities } from "assets";
 import type { Activities, CreateLuckyDayForm } from "types";
+import { useCustomInput } from "./hooks";
 import * as S from "./ActivityToggle.styled";
 
 interface ActivityToggleProps {
-  activity: { icon: React.ReactNode; label: string };
+  activity: {
+    icon: React.ReactNode;
+    label: (typeof activities)[number]["label"];
+  };
   data?: Activities;
+  index: number;
   isOpen: boolean;
   toggle: string | null;
+  checked: boolean;
   setValue: UseFormSetValue<CreateLuckyDayForm>;
   watch: UseFormWatch<CreateLuckyDayForm>;
   handleToggle: (toggle: string | null) => void;
@@ -21,6 +26,8 @@ interface ActivityToggleProps {
 function ActivityToggle({
   activity,
   data,
+  index,
+  checked,
   isOpen,
   toggle,
   setValue,
@@ -28,16 +35,21 @@ function ActivityToggle({
   handleToggle,
   getSelectItems,
 }: ActivityToggleProps) {
-  const [text, setText] = useState("");
-
   const ref = useRef<HTMLDivElement>(null);
   const activityRef = useRef<HTMLButtonElement>(null);
-  const spanRef = useRef<HTMLSpanElement>(null);
-  const inputWidth = text.length
-    ? spanRef.current?.getBoundingClientRect().width
-    : 0;
 
-  const { addToast } = useToast();
+  const {
+    spanRef,
+    inputWidth,
+    text,
+    setText,
+    handleCustomItemChange,
+    handleEnterCustomItemChange,
+    DeleteCustomActivity,
+    handleAddCustomActivity,
+  } = useCustomInput({ setValue, watch });
+
+  const actNos = data?.actList.map((item) => item.actNo);
 
   const handleToggleClick = (): void => {
     if (text) {
@@ -51,59 +63,52 @@ function ActivityToggle({
     handleToggle(activity.label);
   };
 
+  const handleStopPropagation = (e: React.MouseEvent): void => {
+    e.stopPropagation();
+  };
+
+  const handleClickCheckbox =
+    (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      const currentCheckedValue = e.target?.checked;
+
+      if (!currentCheckedValue) {
+        setValue(`acts.${index}.checked`, false);
+        setValue(`acts.${index}.actList`, []);
+      }
+      if (currentCheckedValue) {
+        setValue(`acts.${index}.checked`, true);
+        setValue(`acts.${index}.actList`, [
+          ...(watch(`acts.${index}.actList`) ?? []),
+          ...(actNos ?? []),
+        ]);
+      }
+    };
+
   const handleItemClick =
     (actNo: number) =>
     (e: React.MouseEvent): void => {
-      e.stopPropagation();
-      const updatedSelectedItems = watch("actList").includes(actNo)
-        ? watch("actList").filter((item) => item !== actNo)
-        : [...watch("actList"), actNo];
+      handleStopPropagation(e);
 
-      setValue("actList", updatedSelectedItems);
-      getSelectItems(updatedSelectedItems);
+      const updatedSelectedItems = watch(`acts.${index}.actList`)?.includes(
+        actNo
+      )
+        ? watch(`acts.${index}.actList`)?.filter((item) => item !== actNo)
+        : [...(watch(`acts.${index}.actList`) ?? []), actNo];
+
+      setValue(`acts.${index}.actList`, [
+        ...(watch(`acts.${index}.actList`) ?? []),
+        ...(actNos ?? []),
+      ]);
+      setValue(`acts.${index}.actList`, updatedSelectedItems);
+      getSelectItems(updatedSelectedItems ?? []);
+
+      if (
+        actNos?.length ??
+        0 > (watch(`acts.${index}`).actList ?? [])?.length
+      ) {
+        setValue(`acts.${index}.checked`, false);
+      }
     };
-
-  const handleCustomItemClick = (e: React.MouseEvent): void => {
-    e.stopPropagation();
-  };
-
-  const handleCustomItemChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length > 14) return;
-
-    setText(e.target.value);
-  };
-
-  const handleAddCustomActivity = (e: React.MouseEvent): void => {
-    e.stopPropagation();
-
-    const checkSameActivity = watch("customActList")?.includes(text);
-
-    if (checkSameActivity) {
-      addToast({ content: "이미 추가된 활동입니다." });
-      setText("");
-
-      return;
-    }
-
-    setValue("customActList", [...(watch("customActList") ?? ""), text]);
-    setText("");
-  };
-
-  const handleEnterCustomItemChange = (
-    e: React.KeyboardEvent<HTMLInputElement>
-  ) => {
-    if (e.key === "Enter") {
-      handleAddCustomActivity(e as unknown as React.MouseEvent);
-    }
-  };
-
-  const DeleteCustomActivity = (selectedActivity: string) => (): void => {
-    const filteredActivities = watch("customActList")?.filter(
-      (item) => item !== selectedActivity
-    );
-
-    setValue("customActList", filteredActivities);
-  };
 
   useEffect(() => {
     const handleFocus = (e: MouseEvent): void => {
@@ -125,7 +130,7 @@ function ActivityToggle({
   return (
     <>
       <S.ActivityButton
-        key={data?.category}
+        key={index}
         ref={ref}
         isOpen={isOpen}
         onClick={handleToggleClick}
@@ -139,16 +144,32 @@ function ActivityToggle({
           }
         />
         <S.ActivityBox isOpen={isOpen}>
-          <S.ActivityInfo isOpen={isOpen}>
+          <S.ActivityInfo
+            isOpen={isOpen}
+            isChecked={activity.label !== "+) 직접 입력"}
+          >
             {activity.icon}
             <S.ActivityTitle>{activity.label}</S.ActivityTitle>
+            {activity.label !== "+) 직접 입력" && (
+              <S.CheckboxWrapper isOpen={isOpen}>
+                <input
+                  type="checkbox"
+                  checked={checked}
+                  id={`check${index}`}
+                  onChange={handleClickCheckbox(index)}
+                />
+                <label htmlFor={`check${index}`} />
+              </S.CheckboxWrapper>
+            )}
             <ArrowIcon css={S.arrowIcon(isOpen)} />
           </S.ActivityInfo>
           <S.Activities>
             {isOpen &&
               (data ? (
                 data.actList?.map((item) => {
-                  const isSelected = watch("actList")?.includes(item.actNo);
+                  const isSelected = watch(`acts.${index}.actList`)?.includes(
+                    item.actNo
+                  );
 
                   return (
                     <S.Activity
@@ -170,7 +191,7 @@ function ActivityToggle({
                   <S.CustomActivity
                     ref={activityRef}
                     key={activities[5].label}
-                    onClick={handleCustomItemClick}
+                    onClick={handleStopPropagation}
                   >
                     <Input
                       value={text}
@@ -187,7 +208,7 @@ function ActivityToggle({
                         key={`${item + i}`}
                         isSelected
                         hasValue
-                        onClick={handleCustomItemClick}
+                        onClick={handleStopPropagation}
                       >
                         {item}
                         <CloseIcon onClick={DeleteCustomActivity(item)} />

@@ -7,6 +7,11 @@ export interface Activities {
   actList: actList[];
 }
 
+export interface ActivitiesClient {
+  category: string;
+  actList: actList[];
+}
+
 export interface ActivitiesServerModel {
   code: string;
   message: string;
@@ -19,10 +24,23 @@ export interface CreateLuckyDayForm {
   period: number;
   cnt: number;
   expDTList?: string[];
+  acts: {
+    category: string;
+    actList?: number[];
+    checked: boolean;
+  }[];
+}
+
+export interface CreateLuckyDayQuery {
+  actList: number[];
+  customActList?: string[];
+  period: number;
+  cnt: number;
+  expDTList?: string[];
 }
 
 export interface CreateLuckyDayQueryModel {
-  body: CreateLuckyDayForm;
+  body: CreateLuckyDayQuery;
 }
 
 export interface GetLuckyDayDetail {
