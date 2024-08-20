@@ -101,9 +101,6 @@ const NavigationToggle: (props: NavigationToggleProps) => JSX.Element = ({
               {!nickname ? "사용자님" : `${nickname!.slice(0, 8)}님`}
             </S.ProfileBox>
             <S.ToggleMenuBox>
-              <Link to="/luckyboard" onClick={() => setIsToggleVisible(false)}>
-                <S.ToggleMenu>럭키 보드</S.ToggleMenu>
-              </Link>
               <Link
                 to="/luckydays/list"
                 onClick={() => setIsToggleVisible(false)}
@@ -111,7 +108,10 @@ const NavigationToggle: (props: NavigationToggleProps) => JSX.Element = ({
                 <S.ToggleMenu>럭키 데이 보관함</S.ToggleMenu>
               </Link>
               <Link to="/mypage" onClick={() => setIsToggleVisible(false)}>
-                <S.ToggleMenuBottom>마이페이지</S.ToggleMenuBottom>
+                <S.ToggleMenu>마이페이지</S.ToggleMenu>
+              </Link>
+              <Link to="/noticeboard" onClick={() => setIsToggleVisible(false)}>
+                <S.ToggleMenuBottom>게시판</S.ToggleMenuBottom>
               </Link>
             </S.ToggleMenuBox>
           </S.ToggleContentsBox>

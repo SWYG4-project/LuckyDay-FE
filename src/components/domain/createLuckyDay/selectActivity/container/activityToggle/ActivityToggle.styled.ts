@@ -92,7 +92,7 @@ export const Activities = styled.div`
 
 export const Activity = styled.button<{ isSelected?: boolean }>`
   ${({ theme, isSelected }) => css`
-    ${theme.fonts.body1};
+    ${theme.fonts.headline3};
     display: flex;
     align-items: center;
     column-gap: 3px;
@@ -108,8 +108,16 @@ export const Activity = styled.button<{ isSelected?: boolean }>`
       display: ${!isSelected && "none"};
     }
 
+    &:hover {
+      color: ${theme.colors.orange};
+
+      & > svg > path {
+        fill: ${theme.colors.orange};
+      }
+    }
+
     @media (max-width: 380px) {
-      ${theme.fonts.body2};
+      ${theme.fonts.headline3};
     }
   `}
 `;
@@ -146,7 +154,7 @@ export const CustomInfo = styled.div<{ isCustom?: boolean }>`
 
 export const ContentLength = styled.span`
   ${({ theme }) => css`
-    ${theme.fonts.body1};
+    ${theme.fonts.headline3};
     position: absolute;
     left: 40px;
     color: ${theme.colors.black};
