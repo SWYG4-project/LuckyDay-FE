@@ -25,28 +25,26 @@ function SelectActivity({
     activity.actList.map((item) => item.actNo)
   );
 
-  const currentActs = watch("acts")?.filter(({ checked }) => !checked);
+  const currentActsUnChecked = watch("acts")?.filter(({ checked }) => !checked);
 
   const handleToggle = (toggleLabel: string | null): void =>
     setToggle(toggleLabel);
 
   const handleCheckAllBoxes = () => {
-    const result = data?.resData
+    const acts = data?.resData
       .map((activity) => ({
         category: activity.category ?? "",
         actList:
           activity.actList.length > 0
             ? activity.actList.map((act) => act.actNo)
             : [],
-        checked: currentActs?.length === 5 ? true : false,
+        checked: currentActsUnChecked?.length === 5 ? true : false,
       }))
       .filter(({ category }) => category !== "직접 입력");
 
-    if (!result) return;
+    if (!acts) return;
 
-    console.log(result);
-
-    setValue("acts", result);
+    setValue("acts", acts);
   };
 
   return (
@@ -58,11 +56,11 @@ function SelectActivity({
           럭키 데이 활동을 모두 골라 보세요.
         </S.HeadLine>
         <S.Button
-          isNotChecked={currentActs?.length === 5}
+          isNotChecked={currentActsUnChecked?.length === 5}
           onClick={handleCheckAllBoxes}
         >
           <CheckIcon css={S.icon} />
-          {currentActs?.length === 5 ? (
+          {currentActsUnChecked?.length === 5 ? (
             <span>모두 선택</span>
           ) : (
             <span>전체 해제</span>
