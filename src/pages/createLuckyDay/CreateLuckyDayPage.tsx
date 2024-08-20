@@ -94,15 +94,6 @@ function CreateLuckyDayPage() {
   };
 
   useEffect(() => {
-    const hasLuckyday = sessionStorage.getItem("hasLuckyday");
-
-    if (hasLuckyday === "1") {
-      navigate("/luckyboard");
-      return addToast({ content: "이미 생성된 럭키데이가 있어요." });
-    }
-  }, []);
-
-  useEffect(() => {
     if (!data) return;
 
     if (!watch("actList").length) {
@@ -115,12 +106,24 @@ function CreateLuckyDayPage() {
 
     setValue(
       "acts",
-      data.resData.map((item) => ({
-        category: item.category,
-        checked: false,
-      }))
+      data.resData
+        .map((item) => ({
+          category: item.category,
+          actList: [],
+          checked: false,
+        }))
+        .filter(({ category }) => category !== "직접 입력")
     );
   }, [data]);
+
+  useEffect(() => {
+    const hasLuckyday = sessionStorage.getItem("hasLuckyday");
+
+    if (hasLuckyday === "1") {
+      navigate("/luckyboard");
+      return addToast({ content: "이미 생성된 럭키데이가 있어요." });
+    }
+  }, []);
 
   return (
     <ButtonLayout

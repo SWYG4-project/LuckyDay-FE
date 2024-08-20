@@ -7,11 +7,6 @@ export interface Activities {
   actList: actList[];
 }
 
-export interface ActivitiesClient {
-  category: string;
-  actList: actList[];
-}
-
 export interface ActivitiesServerModel {
   code: string;
   message: string;
