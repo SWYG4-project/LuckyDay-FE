@@ -27,11 +27,11 @@ function CreateLuckyDayPage() {
 
   const { setValue, watch, handleSubmit } = useForm<CreateLuckyDayForm>({
     defaultValues: {
-      actList: [],
       customActList: [],
       period: 0,
       cnt: 1,
       expDTList: [],
+      acts: [],
     },
     mode: "onTouched",
   });
@@ -75,10 +75,17 @@ function CreateLuckyDayPage() {
   };
 
   const handleClickNextButton = () => {
-    const emptyActList =
-      watch("actList")[0] === 0 && watch("actList").length === 1;
+    const emptyActList = watch("acts")
+      .filter(({ actList }) => !!actList)
+      .flatMap((item) => item.actList);
 
-    if (currentProgress === 0 && emptyActList) {
+    console.log(emptyActList);
+
+    if (
+      currentProgress === 0 &&
+      !emptyActList?.length &&
+      !watch("customActList")?.length
+    ) {
       return addToast({ content: "최소 1개의 카테고리를 선택해 주세요." });
     }
 
@@ -95,14 +102,6 @@ function CreateLuckyDayPage() {
 
   useEffect(() => {
     if (!data) return;
-
-    if (!watch("actList").length) {
-      const actNos = data.resData.flatMap((activity) =>
-        activity.actList.map((item) => item.actNo)
-      );
-
-      setSelectedItems(actNos);
-    }
 
     setValue(
       "acts",
