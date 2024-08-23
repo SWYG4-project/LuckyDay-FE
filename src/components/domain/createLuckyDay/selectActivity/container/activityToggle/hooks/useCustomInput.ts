@@ -44,7 +44,7 @@ const useCustomInput = ({ setValue, watch }: useCustomInputProps) => {
   const handleEnterCustomItemChange = (
     e: React.KeyboardEvent<HTMLInputElement>
   ) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && !e.nativeEvent.isComposing) {
       handleAddCustomActivity(e as unknown as React.MouseEvent);
     }
   };
