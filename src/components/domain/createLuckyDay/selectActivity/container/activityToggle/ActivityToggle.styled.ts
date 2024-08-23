@@ -212,6 +212,7 @@ export const CheckboxWrapper = styled.div<{ isOpen: boolean }>`
           ? `url("images/ic_uncheckedOrange.svg")`
           : `url("images/ic_uncheckedBeige.svg")`}
         no-repeat;
+      cursor: pointer;
     }
     input:checked + label {
       width: 24px;
