@@ -1,6 +1,6 @@
 import * as S from "./ArchiveModal.styled";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useModal } from "hooks";
 import { SvgFrame } from "components";
 import { CircleBoxIcon, ShortBoxIcon } from "assets";
@@ -17,9 +17,11 @@ export default function ArchiveModal({
   moreInfo,
   lastInfo,
 }: ArchiveModalProps) {
-  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const { handleModalClose } = useModal();
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const closeModal = () => {
     setIsVisible(false);
@@ -34,6 +36,12 @@ export default function ArchiveModal({
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  useEffect(() => {
+    if (isVisible) {
+      closeModal();
+    }
+  }, [location]);
 
   return (
     <S.ArchiveModal
