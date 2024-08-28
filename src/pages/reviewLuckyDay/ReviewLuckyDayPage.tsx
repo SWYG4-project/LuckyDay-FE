@@ -138,7 +138,13 @@ export default function ReviewLuckyDayPage() {
   }
 
   if (error || !data) {
-    return <S.Container>오류가 발생했습니다.</S.Container>;
+    return (
+      <SingleButtonLayout>
+        <S.Container>
+          <S.TextBox> 오류가 발생했습니다.</S.TextBox>
+        </S.Container>
+      </SingleButtonLayout>
+    );
   }
 
   const { dday, actNm } = data.resData;
