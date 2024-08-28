@@ -1,9 +1,20 @@
-import { Theme, css } from "@emotion/react";
+import { Theme, css, keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 
-export const ArchiveModal = styled.div<{ hasPadding: boolean }>`
-  ${({ theme, hasPadding }) => css`
-    ${theme.fonts.headline1};
+const slideUp = keyframes`
+  0% {
+    transform: translate(-50%, 100%);
+  }
+  100% {
+    transform: translate(-50%, 0);
+  }
+`;
+
+export const ArchiveModal = styled.div<{
+  hasPadding: boolean;
+  isVisible: boolean;
+}>`
+  ${({ theme, hasPadding, isVisible }) => css`
     position: fixed;
     bottom: 0;
     left: 50%;
@@ -12,6 +23,7 @@ export const ArchiveModal = styled.div<{ hasPadding: boolean }>`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    ${theme.fonts.headline1};
     row-gap: 30px;
     width: 100%;
     max-width: 430px;
@@ -19,6 +31,9 @@ export const ArchiveModal = styled.div<{ hasPadding: boolean }>`
     padding: 34px 24px 40px 24px;
     box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 24px 24px 0px 0px;
+    opacity: ${isVisible ? 1 : 0};
+    transition: opacity 0.1s ease, transform 0.35s ease;
+    animation: ${isVisible ? slideUp : ""} 0.35s ease forwards;
     background-color: ${theme.colors.lightBeige_opacity};
     filter: none;
 

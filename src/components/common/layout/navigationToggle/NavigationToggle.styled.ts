@@ -20,7 +20,7 @@ export const ToggleBox = styled.div<{ isVisible: boolean }>`
   background-size: cover;
   background-position: center;
   background-image: url("/images/background.webp");
-  transition: opacity 0.1s ease, transform 0.2s ease;
+  transition: opacity 0.1s ease, transform 0.3s ease;
   opacity: ${({ isVisible }) => (isVisible ? 1 : 0)};
   transform: ${({ isVisible }) => (isVisible ? "scale(1)" : "scale(0.95)")};
   pointer-events: ${({ isVisible }) => (isVisible ? "auto" : "none")};

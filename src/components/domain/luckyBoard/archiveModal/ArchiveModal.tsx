@@ -1,10 +1,10 @@
-import React from "react";
+import * as S from "./ArchiveModal.styled";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { SvgFrame } from "components";
 import { useModal } from "hooks";
+import { SvgFrame } from "components";
 import { CircleBoxIcon, ShortBoxIcon } from "assets";
 import type { GetLuckyDayCycleDetail } from "types";
-import * as S from "./ArchiveModal.styled";
 
 interface ArchiveModalProps {
   className?: string;
@@ -12,19 +12,35 @@ interface ArchiveModalProps {
   lastInfo?: GetLuckyDayCycleDetail[];
 }
 
-function ArchiveModal({ className, moreInfo, lastInfo }: ArchiveModalProps) {
+export default function ArchiveModal({
+  className,
+  moreInfo,
+  lastInfo,
+}: ArchiveModalProps) {
   const navigate = useNavigate();
-
+  const [isVisible, setIsVisible] = useState(false);
   const { handleModalClose } = useModal();
 
-  const moveToDetail = (dtlNo: number) => () => {
-    navigate(`/luckydays/${dtlNo}`);
-
+  const closeModal = () => {
+    setIsVisible(false);
     handleModalClose();
   };
 
+  const moveToDetail = (dtlNo: number) => () => {
+    navigate(`/luckydays/${dtlNo}`);
+    closeModal();
+  };
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
-    <S.ArchiveModal hasPadding={!!moreInfo} className={className}>
+    <S.ArchiveModal
+      hasPadding={!!moreInfo}
+      className={className}
+      isVisible={isVisible}
+    >
       {moreInfo && <div>{moreInfo}</div>}
       {lastInfo && (
         <>
@@ -49,12 +65,10 @@ function ArchiveModal({ className, moreInfo, lastInfo }: ArchiveModalProps) {
         </>
       )}
 
-      <S.Button onClick={handleModalClose}>
+      <S.Button onClick={closeModal}>
         <SvgFrame css={S.svgFrameButton} icon={<ShortBoxIcon />} />
         <span>닫기</span>
       </S.Button>
     </S.ArchiveModal>
   );
 }
-
-export default ArchiveModal;
