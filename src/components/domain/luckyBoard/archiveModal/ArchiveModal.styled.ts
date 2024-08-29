@@ -32,8 +32,8 @@ export const ArchiveModal = styled.div<{
     box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 24px 24px 0px 0px;
     opacity: ${isVisible ? 1 : 0};
-    transition: opacity 0.1s ease, transform 0.35s ease;
-    animation: ${isVisible ? slideUp : ""} 0.35s ease forwards;
+    transition: opacity 0.1s ease, transform 0.3s ease;
+    animation: ${isVisible ? slideUp : ""} 0.3s ease forwards;
     background-color: ${theme.colors.lightBeige_opacity};
     filter: none;
 

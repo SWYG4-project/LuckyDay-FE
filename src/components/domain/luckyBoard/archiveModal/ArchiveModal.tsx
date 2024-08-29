@@ -1,7 +1,7 @@
 import * as S from "./ArchiveModal.styled";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useModal } from "hooks";
+import { useModal, useVisibility } from "hooks";
 import { SvgFrame } from "components";
 import { CircleBoxIcon, ShortBoxIcon } from "assets";
 import type { GetLuckyDayCycleDetail } from "types";
@@ -17,14 +17,14 @@ export default function ArchiveModal({
   moreInfo,
   lastInfo,
 }: ArchiveModalProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const { isVisible, show, hide } = useVisibility(false);
   const { handleModalClose } = useModal();
 
   const navigate = useNavigate();
   const location = useLocation();
 
   const closeModal = () => {
-    setIsVisible(false);
+    hide();
     handleModalClose();
   };
 
@@ -34,7 +34,7 @@ export default function ArchiveModal({
   };
 
   useEffect(() => {
-    setIsVisible(true);
+    show();
   }, []);
 
   useEffect(() => {
