@@ -1,7 +1,8 @@
 import * as S from "./ArchiveModal.styled";
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useModal, useVisibility } from "hooks";
+import { useModal } from "hooks";
+import { useVisibility } from "./hooks";
 import { SvgFrame } from "components";
 import { CircleBoxIcon, ShortBoxIcon } from "assets";
 import type { GetLuckyDayCycleDetail } from "types";
