@@ -1,16 +1,18 @@
 import styled from "@emotion/styled";
 
 export const CreateLuckyDayButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 70px;
   height: 70px;
-  border: none;
   background-size: cover;
   background-image: url("/images/empty-white.png");
   cursor: pointer;
 
   & > svg {
-    width: 40px;
-    height: 40px;
+    width: 36px;
+    height: 36px;
   }
 
   @media (max-width: 390px) {
@@ -18,8 +20,8 @@ export const CreateLuckyDayButton = styled.button`
     height: 60px;
 
     & > svg {
-      width: 35px;
-      height: 35px;
+      width: 32px;
+      height: 32px;
     }
   }
 
@@ -28,8 +30,8 @@ export const CreateLuckyDayButton = styled.button`
     height: 50px;
 
     & > svg {
-      width: 30px;
-      height: 30px;
+      width: 28px;
+      height: 28px;
     }
   }
 `;
