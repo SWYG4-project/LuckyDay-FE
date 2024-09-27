@@ -15,7 +15,7 @@ interface SelectExceptDateProps {
 function SelectExceptDate({ watch, setValue }: SelectExceptDateProps) {
   const [expDates, setExpDates] = useState<string[]>([]);
 
-  const selectedPeriod = `${watch("period")}` ?? "0";
+  const selectedPeriod = `${watch("period") || "0"}`;
   const availableExpDates = LUCKYDAY_PERIODS.find(
     (item) => item.period === +selectedPeriod
   )?.expDate;
