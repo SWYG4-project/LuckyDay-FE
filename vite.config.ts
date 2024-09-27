@@ -14,12 +14,7 @@ export default defineConfig({
     viteTsconfigPaths(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: [
-        "favicon.ico",
-        "robots.txt",
-        "apple-touch-icon.png",
-        "https://developers.kakao.com/sdk/js/kakao.min.js",
-      ],
+      includeAssets: ["favicon.ico", "robots.txt", "apple-touch-icon.png"],
       manifest: {
         name: "Lucky Day",
         short_name: "Lucky Day",
@@ -76,6 +71,26 @@ export default defineConfig({
           },
         ],
         lang: "ko",
+      },
+      workbox: {
+        runtimeCaching: [
+          {
+            urlPattern:
+              /^https:\/\/developers\.kakao\.com\/sdk\/js\/kakao\.min\.js$/,
+            handler: "NetworkOnly", // Kakao SDK는 네트워크에서만 로드
+          },
+          {
+            urlPattern: ({ url }) => url.origin === self.location.origin,
+            handler: "CacheFirst",
+            options: {
+              cacheName: "local-assets",
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 30 * 24 * 60 * 60, // 30일
+              },
+            },
+          },
+        ],
       },
     }),
   ],
