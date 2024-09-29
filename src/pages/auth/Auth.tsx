@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { useToast } from "hooks";
 
 export default function Auth() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const { addToast } = useToast();
 
   const token = searchParams.get("token")!;
   const email = searchParams.get("email")!;
@@ -47,7 +49,7 @@ export default function Auth() {
       const expiration = parseInt(expirationTime);
 
       if (currentTime >= expiration) {
-        alert("토큰이 만료되었습니다. 다시 로그인해 주세요.");
+        addToast({ content: "토큰이 만료되었습니다. 다시 로그인해 주세요." });
         sessionStorage.clear();
         navigate("/");
       }
@@ -56,7 +58,7 @@ export default function Auth() {
     const interval = setInterval(checkTokenExpiration, 5 * 60 * 1000);
 
     return () => clearInterval(interval);
-  }, [expirationTime, navigate]);
+  }, [expirationTime, navigate, addToast]);
 
   return (
     <div>
