@@ -1,6 +1,15 @@
 import { css, keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
 const bounce = keyframes`
   0% {
     top: 70px;
@@ -40,8 +49,9 @@ export const LoadingPage = styled.div`
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 70vh;
+  height: 75vh;
   overflow: hidden;
+  animation: ${fadeIn} 0.5s ease-in;
 `;
 
 export const Title = styled.span`
@@ -56,24 +66,27 @@ export const Wrapper = styled.div`
   justify-content: center;
   width: 88%;
   height: 210px;
+  margin-top: 20px;
 `;
 
 export const ImagesContainer = styled.div`
   display: flex;
   justify-content: space-around;
   width: 100%;
+  height: 140px;
 `;
 
 export const Img = styled.img<{ delay: number }>`
   position: relative;
   object-fit: cover;
+  top: 70px;
   width: 45px;
   height: 45px;
-  z-index: 1;
   transform-origin: center bottom;
   animation: ${({ delay }) => css`
     ${bounce} 0.6s alternate infinite ease ${delay}s;
   `};
+  z-index: 1;
 
   @media (max-width: 390px) {
     width: 42px;
@@ -90,10 +103,11 @@ export const Shadow = styled.div<{ delay: number }>`
   position: absolute;
   width: 45px;
   height: 6px;
-  top: 105px;
+  bottom: 22px;
+  opacity: 0;
+  filter: blur(1px);
   border-radius: 50%;
   transform-origin: 50%;
-  filter: blur(1px);
   background-color: rgba(0, 0, 0, 0.4);
   animation: ${({ delay }) => css`
     ${shadowBounce} 0.6s alternate infinite ease ${delay}s;

@@ -28,17 +28,17 @@ export const ArchiveModal = styled.div<{
     width: 100%;
     max-width: 430px;
     max-height: 45%;
-    padding: 34px 24px 40px 24px;
+    padding: 35px 24px 40px 24px;
     box-shadow: 0px -4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 24px 24px 0px 0px;
     opacity: ${isVisible ? 1 : 0};
-    transition: opacity 0.1s ease, transform 0.3s ease;
     animation: ${isVisible ? slideUp : ""} 0.3s ease forwards;
+    transition: opacity 0.1s ease, transform 0.3s ease;
     background-color: ${theme.colors.lightBeige_opacity};
     filter: none;
 
     & > div {
-      padding-top: ${hasPadding && "35px"};
+      padding-top: ${hasPadding && "15px"};
       text-align: center;
       white-space: break-spaces;
       overflow-y: scroll;
@@ -48,10 +48,24 @@ export const ArchiveModal = styled.div<{
   `}
 `;
 
+export const ButtonWrapper = styled.div`
+  && {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    padding: 10px 0;
+  }
+`;
+
 export const Button = styled.button`
   ${({ theme }) => css`
+    flex: 0 0 auto;
     position: relative;
-    width: 100px;
+    width: 110px;
+    height: 48px;
+    margin: 0 5px;
 
     & > span {
       position: absolute;
@@ -60,6 +74,7 @@ export const Button = styled.button`
       transform: translate(-50%, -50%);
       ${theme.fonts.headline2};
       color: ${theme.colors.black};
+      white-space: nowrap;
     }
   `}
 `;
@@ -104,15 +119,18 @@ export const LuckyDayButton = styled.button`
   `}
 `;
 
-export const svgFrame = (theme: Theme) => css`
+export const BasicSvgFrame = (theme: Theme) => css`
   path {
-    fill: ${theme.colors.purple};
+    fill: ${theme.colors.beige};
   }
 `;
 
-export const svgFrameButton = (theme: Theme) => css`
+export const PurpleSvgFrame = (theme: Theme) => css`
   path {
-    fill: ${theme.colors.beige};
+    fill: ${theme.colors.purple};
+  }
+  & + span {
+    color: ${theme.colors.white};
   }
 `;
 

@@ -1,25 +1,31 @@
 import * as S from "./ArchiveModal.styled";
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useModal } from "hooks";
+import { useModal, useToast } from "hooks";
 import { useVisibility } from "./hooks";
-import { SvgFrame } from "components";
-import { CircleBoxIcon, ShortBoxIcon } from "assets";
+import { useDeleteLuckyBoard } from "services";
 import type { GetLuckyDayCycleDetail } from "types";
+import { ResetLuckyBoardModal, SvgFrame } from "components";
+import { CircleBoxIcon, ShortBoxIcon } from "assets";
 
 interface ArchiveModalProps {
   className?: string;
   moreInfo?: React.ReactElement;
   lastInfo?: GetLuckyDayCycleDetail[];
+  isMoreInfoModal?: boolean;
 }
 
 export default function ArchiveModal({
   className,
   moreInfo,
   lastInfo,
+  isMoreInfoModal = false,
 }: ArchiveModalProps) {
   const { isVisible, show, hide } = useVisibility(false);
-  const { handleModalClose } = useModal();
+  const { mutate: deleteLuckyBoardMutate } = useDeleteLuckyBoard();
+
+  const { handleOpenModal, handleModalClose } = useModal();
+  const { addToast } = useToast();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -32,6 +38,23 @@ export default function ArchiveModal({
   const moveToDetail = (dtlNo: number) => () => {
     navigate(`/luckydays/${dtlNo}`);
     closeModal();
+  };
+
+  const resetLuckyBoard = () => {
+    deleteLuckyBoardMutate(undefined, {
+      onSuccess: () => {
+        sessionStorage.setItem("hasLuckyday", "0");
+        handleModalClose();
+        window.location.reload();
+      },
+      onError: () => {
+        addToast({ content: "다시 시도해 주세요." });
+      },
+    });
+  };
+
+  const openResetLuckyBoardrModal = () => {
+    handleOpenModal(<ResetLuckyBoardModal onReset={resetLuckyBoard} />);
   };
 
   useEffect(() => {
@@ -60,7 +83,7 @@ export default function ArchiveModal({
                   key={item.dtlNo}
                   onClick={moveToDetail(item.dtlNo)}
                 >
-                  <SvgFrame css={S.svgFrame} icon={<CircleBoxIcon />} />
+                  <SvgFrame css={S.PurpleSvgFrame} icon={<CircleBoxIcon />} />
                   <span>{item.date}</span>
                 </S.LuckyDayButton>
               ))}
@@ -74,10 +97,21 @@ export default function ArchiveModal({
         </>
       )}
 
-      <S.Button onClick={closeModal}>
-        <SvgFrame css={S.svgFrameButton} icon={<ShortBoxIcon />} />
-        <span>닫기</span>
-      </S.Button>
+      <S.ButtonWrapper>
+        {isMoreInfoModal && (
+          <S.Button onClick={openResetLuckyBoardrModal}>
+            <SvgFrame css={S.BasicSvgFrame} icon={<ShortBoxIcon />} />
+            <span>럭키보드 초기화</span>
+          </S.Button>
+        )}
+        <S.Button onClick={closeModal}>
+          <SvgFrame
+            css={isMoreInfoModal ? S.PurpleSvgFrame : S.BasicSvgFrame}
+            icon={<ShortBoxIcon />}
+          />
+          <span>닫기</span>
+        </S.Button>
+      </S.ButtonWrapper>
     </S.ArchiveModal>
   );
 }

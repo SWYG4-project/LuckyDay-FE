@@ -1,17 +1,15 @@
-import React from "react";
-
+import * as S from "./LuckyBoardPage.styled";
 import { LuckyBoardAfterPage, LuckyBoardBeforePage } from ".";
 import { ArchiveModal, ButtonLayout } from "components";
+import { useModal, useToast } from "hooks";
 import {
   useGetLuckyDayCycle,
   useGetLuckyDayCycleInfo,
   useGetLuckyDayCycleLastLuckyDays,
 } from "services";
-import { useModal, useToast } from "hooks";
 import { formatDate } from "utils";
-import * as S from "./LuckyBoardPage.styled";
 
-const LuckyBoardPage: React.FC = () => {
+export default function LuckyBoardPage() {
   const hasLuckyday = sessionStorage.getItem("hasLuckyday")!;
   const isExperienced = sessionStorage.getItem("isExperienced")!;
 
@@ -59,6 +57,7 @@ const LuckyBoardPage: React.FC = () => {
             (item) => item.dday !== 1 && item.date !== null
           ) || []
         }
+        isMoreInfoModal={false}
       />
     );
   };
@@ -67,7 +66,13 @@ const LuckyBoardPage: React.FC = () => {
     if (!info)
       return addToast({ content: "진행 중인 럭키 데이 정보가 없어요." });
 
-    handleOpenModal(<ArchiveModal css={S.archiveModal} moreInfo={cycleInfo} />);
+    handleOpenModal(
+      <ArchiveModal
+        css={S.archiveModal}
+        moreInfo={cycleInfo}
+        isMoreInfoModal={true}
+      />
+    );
   };
 
   return (
@@ -82,6 +87,4 @@ const LuckyBoardPage: React.FC = () => {
       {data ? <LuckyBoardAfterPage /> : <LuckyBoardBeforePage data={data} />}
     </ButtonLayout>
   );
-};
-
-export default LuckyBoardPage;
+}
